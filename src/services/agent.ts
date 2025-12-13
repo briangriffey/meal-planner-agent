@@ -122,9 +122,16 @@ Your task is to:
 6. Include prep time and cook time
 
 After generating the meal plan, you should:
-1. Format it as an attractive HTML email
-2. Use the send_email tool to send the meal plan
-${this.config.heb.enabled ? '3. Use the browse_heb tool to search for key ingredients on HEB website and include shopping links in the email' : ''}
+1. ${this.config.heb.enabled ? 'Use the browse_heb tool to search for all unique ingredients on HEB website' : 'Prepare a consolidated shopping list'}
+2. Create a consolidated shopping list by combining like ingredients across all meals
+   - Combine quantities for duplicate ingredients (e.g., if multiple meals use chicken breast, sum the total needed)
+   - Organize ingredients by category (proteins, vegetables, pantry items, etc.)
+   ${this.config.heb.enabled ? '- Include HEB shopping links for each ingredient found on their website' : ''}
+3. Format the meal plan and shopping list as an attractive HTML email
+   - Include the meal plan with all recipes
+   - Add a dedicated shopping list section at the end with combined ingredients
+   ${this.config.heb.enabled ? '- Make ingredient names clickable links to add them to HEB cart' : ''}
+4. Use the send_email tool to send the complete email
 
 Make the meal plans varied, delicious, and practical for home cooking. Consider seasonal ingredients when possible.`;
   }
@@ -149,10 +156,18 @@ Requirements:
       prompt += `\n- Dietary restrictions: ${this.config.preferences.dietaryRestrictions.join(', ')}`;
     }
 
-    prompt += `\n\nAfter creating the meal plan, send it via email with an attractive HTML format.`;
+    prompt += `\n\nAfter creating the meal plan:
+1. Create a consolidated shopping list that combines all ingredients across all meals
+2. Organize the shopping list by category (proteins, vegetables, grains, dairy, pantry, etc.)
+3. Sum quantities for duplicate ingredients`;
 
     if (this.config.heb.enabled) {
-      prompt += ` Also search HEB for the main protein ingredients and include shopping links in the email.`;
+      prompt += `
+4. Search HEB for all ingredients and get shopping links
+5. Format everything as an attractive HTML email with the shopping list at the end, with clickable HEB links for each ingredient`;
+    } else {
+      prompt += `
+4. Format everything as an attractive HTML email with the shopping list at the end`;
     }
 
     return prompt;
