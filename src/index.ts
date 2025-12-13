@@ -42,13 +42,18 @@ function loadConfig(): Config {
   }
 }
 
-async function runMealPlanner(config: Config): Promise<void> {
+async function runMealPlanner(config: Config, testMode: boolean = false): Promise<void> {
   console.log('\n=== Starting Meal Planner Agent ===');
-  console.log(`Time: ${new Date().toLocaleString()}\n`);
+  console.log(`Time: ${new Date().toLocaleString()}`);
+  if (testMode) {
+    console.log('Mode: TEST (email will be saved to TESTEMAIL.html)\n');
+  } else {
+    console.log('Mode: PRODUCTION (email will be sent)\n');
+  }
 
   const registry = new ConnectorRegistry();
 
-  registry.register(new EmailConnector(config.email));
+  registry.register(new EmailConnector(config.email, testMode));
   registry.register(new HEBBrowsingConnector());
   registry.register(new WebSearchConnector());
 
@@ -57,6 +62,9 @@ async function runMealPlanner(config: Config): Promise<void> {
   try {
     await agent.generateMealPlan();
     console.log('\n=== Meal Planner Agent Complete ===\n');
+    if (testMode) {
+      console.log('Email content saved to: TESTEMAIL.html\n');
+    }
   } catch (error) {
     console.error('Error running meal planner:', error);
     throw error;
@@ -79,7 +87,7 @@ async function main(): Promise<void> {
 
   if (args.includes('--now') || args.includes('-n')) {
     console.log('Running meal planner immediately...');
-    await runMealPlanner(config);
+    await runMealPlanner(config, true);
     return;
   }
 

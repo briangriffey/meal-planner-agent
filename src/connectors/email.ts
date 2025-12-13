@@ -1,38 +1,82 @@
 import nodemailer from 'nodemailer';
+import * as fs from 'fs';
+import * as path from 'path';
 import { BaseConnector } from './base';
 import { Config } from '../types';
 
 export class EmailConnector extends BaseConnector {
   name = 'send_email';
-  private transporter: nodemailer.Transporter;
+  private transporter: nodemailer.Transporter | null;
   private config: Config['email'];
+  private testMode: boolean;
 
-  constructor(config: Config['email']) {
+  constructor(config: Config['email'], testMode: boolean = false) {
     super();
     this.config = config;
-    this.transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: config.user,
-        pass: config.appPassword
-      }
-    });
+    this.testMode = testMode;
+
+    if (!testMode) {
+      this.transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: config.user,
+          pass: config.appPassword
+        }
+      });
+    } else {
+      this.transporter = null;
+    }
   }
 
   async execute(params: { subject: string; body: string }): Promise<any> {
     try {
-      const info = await this.transporter.sendMail({
-        from: this.config.user,
-        to: this.config.recipient,
-        subject: params.subject,
-        html: params.body
-      });
+      if (this.testMode) {
+        const outputPath = path.join(process.cwd(), 'TESTEMAIL.html');
 
-      return {
-        success: true,
-        messageId: info.messageId,
-        message: `Email sent successfully to ${this.config.recipient}`
-      };
+        if (fs.existsSync(outputPath)) {
+          fs.unlinkSync(outputPath);
+        }
+
+        const emailContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>${params.subject}</title>
+</head>
+<body>
+  <div style="background: #f5f5f5; padding: 20px; margin-bottom: 20px;">
+    <h1 style="margin: 0;">Email Preview</h1>
+    <p style="margin: 5px 0;"><strong>Subject:</strong> ${params.subject}</p>
+    <p style="margin: 5px 0;"><strong>From:</strong> ${this.config.user || 'Not configured'}</p>
+    <p style="margin: 5px 0;"><strong>To:</strong> ${this.config.recipient || 'Not configured'}</p>
+  </div>
+  ${params.body}
+</body>
+</html>`;
+
+        fs.writeFileSync(outputPath, emailContent, 'utf-8');
+
+        return {
+          success: true,
+          testMode: true,
+          filePath: outputPath,
+          message: `Email content saved to ${outputPath}`
+        };
+      } else {
+        const info = await this.transporter!.sendMail({
+          from: this.config.user,
+          to: this.config.recipient,
+          subject: params.subject,
+          html: params.body
+        });
+
+        return {
+          success: true,
+          testMode: false,
+          messageId: info.messageId,
+          message: `Email sent successfully to ${this.config.recipient}`
+        };
+      }
     } catch (error) {
       return {
         success: false,

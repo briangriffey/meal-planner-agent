@@ -4,3 +4,4 @@ dist/
 config/config.json
 *.log
 .DS_Store
+TESTEMAIL.html

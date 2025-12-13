@@ -99,7 +99,13 @@ pnpm test:now
 # or: pnpm run dev -- -n
 ```
 
-This runs the agent once immediately, generating and sending a meal plan without waiting for the scheduled time. Perfect for testing your configuration.
+This runs the agent once immediately in **TEST MODE**. Instead of sending an email, it will:
+- Generate a meal plan
+- Browse HEB for ingredients (if enabled)
+- Save the email content to `TESTEMAIL.html` in the project root
+- Overwrite any existing `TESTEMAIL.html` file
+
+Perfect for testing your configuration without sending actual emails. Open `TESTEMAIL.html` in your browser to preview the meal plan email.
 
 ### Build the project:
 ```bash
