@@ -34,7 +34,7 @@ export class MealPlannerAgent {
       console.log(`Agent iteration ${iterationCount}...`);
 
       const response = await this.client.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
+        model: this.config.claude.model,
         max_tokens: 4096,
         system: systemPrompt,
         messages,

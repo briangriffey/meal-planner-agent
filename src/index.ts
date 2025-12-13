@@ -1,12 +1,20 @@
 import * as cron from 'node-cron';
 import * as dotenv from 'dotenv';
+import * as path from 'path';
 import { MealPlannerAgent } from './services/agent';
 import { ConnectorRegistry } from './connectors/base';
 import { EmailConnector } from './connectors/email';
 import { HEBBrowsingConnector, WebSearchConnector } from './connectors/web';
 import { Config } from './types';
 
-dotenv.config();
+const envPath = path.join(process.cwd(), '.env');
+const result = dotenv.config({ path: envPath });
+
+if (result.error) {
+  console.error('Error loading .env file:', result.error);
+  console.error('Attempted path:', envPath);
+  console.error('process.cwd():', process.cwd());
+}
 
 function loadConfig(): Config {
   const configPath = process.env.CONFIG_PATH || './config/config.json';
@@ -37,6 +45,9 @@ function loadConfig(): Config {
       },
       heb: {
         enabled: true
+      },
+      claude: {
+        model: 'claude-3-sonnet-20240229'
       }
     };
   }

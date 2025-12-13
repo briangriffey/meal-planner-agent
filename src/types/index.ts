@@ -59,6 +59,9 @@ export interface Config {
   heb: {
     enabled: boolean;
   };
+  claude: {
+    model: string;
+  };
 }
 
 export interface Connector {
