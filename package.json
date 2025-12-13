@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Weekly meal planning agent with Claude AI, email notifications, and HEB ordering",
   "main": "dist/index.js",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",

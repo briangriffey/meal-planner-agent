@@ -14,7 +14,7 @@ An automated weekly meal planning agent that uses Claude AI to generate high-pro
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn
+- pnpm (or npm/yarn)
 - Anthropic API key
 - Gmail account with App Password enabled
 
@@ -27,7 +27,8 @@ cd meal-planner-agent
 
 2. Install dependencies:
 ```bash
-npm install
+pnpm install
+# or: npm install
 ```
 
 3. Set up your environment variables:
@@ -93,24 +94,24 @@ Update with your details:
 
 ### Build the project:
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Run immediately (for testing):
 ```bash
-npm run dev -- --now
+pnpm run dev -- --now
 ```
 
 ### Run on schedule:
 ```bash
-npm start
+pnpm start
 ```
 
 The agent will run in the background and execute at your scheduled time each week.
 
 ### Development mode with auto-reload:
 ```bash
-npm run watch
+pnpm run watch
 ```
 
 ## How It Works
