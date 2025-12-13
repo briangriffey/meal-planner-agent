@@ -142,13 +142,16 @@ The project includes comprehensive test scripts for validating functionality:
 # Run agent with email saved to file (test mode)
 pnpm test:now
 
+# Run agent immediately AND send actual email ⚠️
+pnpm test:now:send
+
 # Test HEB scraping standalone
 pnpm test:heb-scraper
 
 # Test HEB connector integration
 pnpm test:heb-connector
 
-# Send actual email (requires confirmation)
+# Alternative: Send actual email (requires confirmation)
 CONFIRM_EMAIL_SEND=true pnpm test:email-send
 ```
 

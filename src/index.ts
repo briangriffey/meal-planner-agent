@@ -99,7 +99,14 @@ async function main(): Promise<void> {
 
   if (args.includes('--now') || args.includes('-n')) {
     console.log('Running meal planner immediately...');
-    await runMealPlanner(config, true);
+    const sendEmail = args.includes('--sendemail');
+    const testMode = !sendEmail; // If --sendemail is present, testMode is false (production)
+
+    if (sendEmail) {
+      console.log('⚠️  --sendemail flag detected: Email will be SENT to recipients!');
+    }
+
+    await runMealPlanner(config, testMode);
     return;
   }
 
@@ -111,7 +118,8 @@ async function main(): Promise<void> {
   console.log(`Cron expression: ${cronExpression}`);
   console.log('\nWaiting for scheduled time...');
   console.log('Press Ctrl+C to stop\n');
-  console.log('Run with --now flag to execute immediately: npm run dev -- --now\n');
+  console.log('Run with --now flag to execute immediately: npm run dev -- --now');
+  console.log('Add --sendemail to actually send emails: npm run dev -- --now --sendemail\n');
 
   cron.schedule(cronExpression, async () => {
     try {

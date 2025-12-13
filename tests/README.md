@@ -53,9 +53,10 @@ CONFIRM_EMAIL_SEND=true pnpm test:email-send
 | Command | Description | Mode |
 |---------|-------------|------|
 | `pnpm test:now` | Run agent with email saved to file | Test Mode |
+| `pnpm test:now:send` | Run agent immediately AND send email | **Production** ⚠️ |
 | `pnpm test:heb-scraper` | Test HEB scraping standalone | Test Mode |
 | `pnpm test:heb-connector` | Test HEB connector class | Test Mode |
-| `pnpm test:email-send` | Send actual email | **Production** ⚠️ |
+| `pnpm test:email-send` | Send actual email (alternative) | **Production** ⚠️ |
 
 ---
 
@@ -91,10 +92,15 @@ Expected: Meal plan generated, saved to TESTEMAIL.html
 
 ### Full Agent Test (With Email) ⚠️
 ```bash
-# Set confirmation environment variable
+# Option 1: Using --sendemail flag (simpler)
+pnpm test:now:send
+
+# Option 2: Using dedicated test script with confirmation
 CONFIRM_EMAIL_SEND=true pnpm test:email-send
 ```
 Expected: Email sent to recipients
+
+**Note:** `pnpm test:now:send` is equivalent to `pnpm dev -- --now --sendemail`
 
 ---
 
