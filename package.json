@@ -11,15 +11,21 @@
     "test:now": "ts-node src/index.ts --now",
     "watch": "tsc --watch"
   },
-  "keywords": ["meal-planner", "claude", "ai-agent"],
+  "keywords": [
+    "meal-planner",
+    "claude",
+    "ai-agent"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
+    "dotenv": "^16.4.7",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.15",
     "puppeteer": "^23.11.1",
-    "dotenv": "^16.4.7"
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
