@@ -52,6 +52,7 @@ export interface Config {
     minute: number;
   };
   preferences: {
+    numberOfMeals: number;
     minProteinPerMeal: number;
     maxCaloriesPerMeal: number;
     dietaryRestrictions: string[];

@@ -111,7 +111,7 @@ export class MealPlannerAgent {
     return `You are a meal planning assistant specialized in creating high-protein, low-calorie dinner plans.
 
 Your task is to:
-1. Generate a 7-day meal plan for dinners only
+1. Generate a ${this.config.preferences.numberOfMeals}-day meal plan for dinners only
 2. Each meal should meet these nutritional requirements:
    - Minimum ${this.config.preferences.minProteinPerMeal}g of protein per meal
    - Maximum ${this.config.preferences.maxCaloriesPerMeal} calories per meal
@@ -136,12 +136,12 @@ Make the meal plans varied, delicious, and practical for home cooking. Consider 
 
     const weekString = `Week of ${weekStart.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
 
-    let prompt = `Create a weekly dinner meal plan for ${weekString}.
+    let prompt = `Create a dinner meal plan for ${weekString}.
 
 Requirements:
 - High protein (minimum ${this.config.preferences.minProteinPerMeal}g per meal)
 - Low calorie (maximum ${this.config.preferences.maxCaloriesPerMeal} calories per meal)
-- 7 different dinners (Monday through Sunday)
+- ${this.config.preferences.numberOfMeals} different dinners
 - Include complete nutritional information
 - Include ingredient lists and cooking instructions`;
 
