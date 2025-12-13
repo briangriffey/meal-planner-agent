@@ -92,22 +92,27 @@ Update with your details:
 
 ## Usage
 
+### Test immediately (without cron):
+```bash
+pnpm test:now
+# or: pnpm run dev -- --now
+# or: pnpm run dev -- -n
+```
+
+This runs the agent once immediately, generating and sending a meal plan without waiting for the scheduled time. Perfect for testing your configuration.
+
 ### Build the project:
 ```bash
 pnpm run build
 ```
 
-### Run immediately (for testing):
-```bash
-pnpm run dev -- --now
-```
-
 ### Run on schedule:
 ```bash
 pnpm start
+# or after building: node dist/index.js
 ```
 
-The agent will run in the background and execute at your scheduled time each week.
+The agent will run in the background and execute at your scheduled time each week. Press Ctrl+C to stop.
 
 ### Development mode with auto-reload:
 ```bash

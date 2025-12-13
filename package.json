@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
+    "test:now": "ts-node src/index.ts --now",
     "watch": "tsc --watch"
   },
   "keywords": ["meal-planner", "claude", "ai-agent"],
