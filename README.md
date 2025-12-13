@@ -134,6 +134,26 @@ pnpm run watch
    - Format and send email with meal plan
 4. **Extensibility**: Add new connectors in `src/connectors/` to enable new capabilities
 
+## Testing
+
+The project includes comprehensive test scripts for validating functionality:
+
+```bash
+# Run agent with email saved to file (test mode)
+pnpm test:now
+
+# Test HEB scraping standalone
+pnpm test:heb-scraper
+
+# Test HEB connector integration
+pnpm test:heb-connector
+
+# Send actual email (requires confirmation)
+CONFIRM_EMAIL_SEND=true pnpm test:email-send
+```
+
+See [tests/README.md](./tests/README.md) for detailed test documentation.
+
 ## Project Structure
 
 ```
@@ -150,6 +170,10 @@ meal-planner-agent/
 │   └── index.ts             # Entry point with scheduling
 ├── config/
 │   └── config.json          # User configuration
+├── tests/
+│   ├── heb-scraper/         # HEB scraping tests
+│   ├── test-email-send.ts   # Production email test
+│   └── README.md            # Test documentation
 ├── package.json
 ├── tsconfig.json
 └── README.md

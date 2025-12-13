@@ -9,6 +9,9 @@
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "test:now": "ts-node src/index.ts --now",
+    "test:heb-scraper": "ts-node tests/heb-scraper/test-heb-scraper.ts",
+    "test:heb-connector": "ts-node tests/heb-scraper/test-connector-only.ts",
+    "test:email-send": "ts-node tests/test-email-send.ts",
     "watch": "tsc --watch"
   },
   "keywords": [
