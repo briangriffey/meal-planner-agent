@@ -31,7 +31,7 @@ function loadConfig(): Config {
       email: {
         user: process.env.GMAIL_USER || '',
         appPassword: process.env.GMAIL_APP_PASSWORD || '',
-        recipient: process.env.EMAIL_RECIPIENT || ''
+        recipients: process.env.EMAIL_RECIPIENTS?.split(',').map(r => r.trim()) || []
       },
       schedule: {
         dayOfWeek: 0,

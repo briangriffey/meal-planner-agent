@@ -48,7 +48,7 @@ export class EmailConnector extends BaseConnector {
     <h1 style="margin: 0;">Email Preview</h1>
     <p style="margin: 5px 0;"><strong>Subject:</strong> ${params.subject}</p>
     <p style="margin: 5px 0;"><strong>From:</strong> ${this.config.user || 'Not configured'}</p>
-    <p style="margin: 5px 0;"><strong>To:</strong> ${this.config.recipient || 'Not configured'}</p>
+    <p style="margin: 5px 0;"><strong>To:</strong> ${this.config.recipients?.join(', ') || 'Not configured'}</p>
   </div>
   ${params.body}
 </body>
@@ -65,7 +65,7 @@ export class EmailConnector extends BaseConnector {
       } else {
         const info = await this.transporter!.sendMail({
           from: this.config.user,
-          to: this.config.recipient,
+          to: this.config.recipients.join(', '),
           subject: params.subject,
           html: params.body
         });
@@ -74,7 +74,7 @@ export class EmailConnector extends BaseConnector {
           success: true,
           testMode: false,
           messageId: info.messageId,
-          message: `Email sent successfully to ${this.config.recipient}`
+          message: `Email sent successfully to ${this.config.recipients.join(', ')}`
         };
       }
     } catch (error) {

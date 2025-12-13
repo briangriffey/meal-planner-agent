@@ -44,7 +44,7 @@ export interface Config {
   email: {
     user: string;
     appPassword: string;
-    recipient: string;
+    recipients: string[];
   };
   schedule: {
     dayOfWeek: number;
