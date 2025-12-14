@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+apps/web/.next/
+packages/*/dist/
+
+# Development
+.git/
+.github/
+.vscode/
+*.log
+*.md
+!README.md
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+TESTEMAIL.html
+data/
+
+# Local Docker
+docker-compose.yml
+docker-compose.full.yml

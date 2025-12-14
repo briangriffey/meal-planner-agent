@@ -1,0 +1,77 @@
+# Stage 1: Install dependencies
+FROM node:20-bookworm-slim AS deps
+
+# Install OpenSSL for Prisma
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Copy all source files (needed for Prisma schema)
+COPY . .
+
+# Install dependencies (postinstall will generate Prisma client)
+RUN pnpm install --frozen-lockfile
+
+# Stage 2: Build the application
+FROM node:20-bookworm-slim AS builder
+
+# Install OpenSSL for Prisma
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Copy everything from deps stage (includes node_modules and source)
+COPY --from=deps /app ./
+
+# Build all packages (Prisma client was already generated during install postinstall)
+WORKDIR /app
+RUN pnpm --filter @meal-planner/core build
+RUN pnpm --filter @meal-planner/queue build
+
+# Stage 3: Production runtime
+FROM node:20-bookworm-slim AS runner
+
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Install Chromium and dependencies for Puppeteer
+RUN apt-get update && apt-get install -y \
+    chromium \
+    fonts-liberation \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 worker
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+# Copy built application from builder
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml /app/pnpm-workspace.yaml ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/packages ./packages
+
+# Change ownership to non-root user
+RUN chown -R worker:nodejs /app
+
+# Switch to non-root user
+USER worker
+
+# Health check - verify worker process is running
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD pgrep -f "node.*worker.js" > /dev/null || exit 1
+
+# Start worker
+CMD ["node", "packages/queue/dist/worker.js"]

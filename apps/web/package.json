@@ -14,6 +14,7 @@
     "@meal-planner/database": "workspace:*",
     "@meal-planner/queue": "workspace:*",
     "bcryptjs": "^2.4.3",
+    "ioredis": "^5.4.1",
     "next": "14.2.18",
     "next-auth": "^5.0.0-beta.25",
     "react": "^18.3.1",
