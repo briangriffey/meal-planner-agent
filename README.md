@@ -71,6 +71,8 @@ Update with your details:
     "minute": 0
   },
   "preferences": {
+    "numberOfMeals": 7,
+    "servingsPerMeal": 2,
     "minProteinPerMeal": 40,
     "maxCaloriesPerMeal": 600,
     "dietaryRestrictions": []
@@ -86,6 +88,8 @@ Update with your details:
 - `schedule.dayOfWeek`: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 - `schedule.hour`: Hour in 24-hour format (0-23)
 - `schedule.minute`: Minute (0-59)
+- `preferences.numberOfMeals`: Number of meals to generate (default: 7 for weekly plan)
+- `preferences.servingsPerMeal`: Number of servings each meal should provide (default: 2)
 - `preferences.minProteinPerMeal`: Minimum grams of protein per meal
 - `preferences.maxCaloriesPerMeal`: Maximum calories per meal
 - `preferences.dietaryRestrictions`: Array of restrictions (e.g., ["gluten-free", "dairy-free"])

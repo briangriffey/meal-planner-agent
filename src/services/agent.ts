@@ -134,14 +134,15 @@ export class MealPlannerAgent {
 
 Your task is to:
 1. Generate a ${this.config.preferences.numberOfMeals}-day meal plan for dinners only
-2. Each meal should meet these nutritional requirements:
-   - Minimum ${this.config.preferences.minProteinPerMeal}g of protein per meal
-   - Maximum ${this.config.preferences.maxCaloriesPerMeal} calories per meal
+2. Each meal should serve ${this.config.preferences.servingsPerMeal} ${this.config.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
+3. Each meal should meet these nutritional requirements (per serving):
+   - Minimum ${this.config.preferences.minProteinPerMeal}g of protein per serving
+   - Maximum ${this.config.preferences.maxCaloriesPerMeal} calories per serving
    - Focus on whole foods, lean proteins, and vegetables
-3. Include detailed nutritional information for each meal (calories, protein, carbs, fat, fiber)
-4. Provide a complete ingredient list with amounts
-5. Include clear cooking instructions
-6. Include prep time and cook time
+4. Include detailed nutritional information for each meal (calories, protein, carbs, fat, fiber) - provide both per-serving and total
+5. Provide a complete ingredient list with amounts (for ${this.config.preferences.servingsPerMeal} ${this.config.preferences.servingsPerMeal === 1 ? 'serving' : 'servings'})
+6. Include clear cooking instructions
+7. Include prep time and cook time
 
 After generating the meal plan, you should:
 1. ${this.config.heb.enabled ? 'Use the browse_heb tool to search for all unique ingredients on HEB website' : 'Prepare a consolidated shopping list'}

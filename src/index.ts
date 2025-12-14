@@ -40,6 +40,7 @@ function loadConfig(): Config {
       },
       preferences: {
         numberOfMeals: 7,
+        servingsPerMeal: 2,
         minProteinPerMeal: 40,
         maxCaloriesPerMeal: 600,
         dietaryRestrictions: []
