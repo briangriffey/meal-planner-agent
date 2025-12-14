@@ -129,11 +129,15 @@ pnpm run watch
 ## How It Works
 
 1. **Scheduling**: The agent uses node-cron to run at your specified day/time
-2. **AI Generation**: Claude generates a 7-day meal plan based on your preferences
-3. **Tool Use**: Claude autonomously uses connectors to:
+2. **Meal History**: Loads previous meal plans to ensure variety across weeks
+3. **AI Generation**: Claude generates a 7-day meal plan based on your preferences and recent meal history
+4. **Tool Use**: Claude autonomously uses connectors to:
    - Browse HEB for ingredients (optional)
    - Format and send email with meal plan
-4. **Extensibility**: Add new connectors in `src/connectors/` to enable new capabilities
+5. **Saving History**: After generation, the new meal plan is saved to `data/meal-history.json`
+6. **Extensibility**: Add new connectors in `src/connectors/` to enable new capabilities
+
+For more details on the meal history feature, see [docs/MEAL_HISTORY.md](./docs/MEAL_HISTORY.md).
 
 ## Testing
 
@@ -152,6 +156,9 @@ pnpm test:heb-scraper
 # Test HEB connector integration
 pnpm test:heb-connector
 
+# Test meal history tracking and variety
+pnpm test:meal-history
+
 # Alternative: Send actual email (requires confirmation)
 CONFIRM_EMAIL_SEND=true pnpm test:email-send
 ```
@@ -168,15 +175,21 @@ meal-planner-agent/
 │   │   ├── email.ts         # Gmail email connector
 │   │   └── web.ts           # HEB browsing and web search connectors
 │   ├── services/
-│   │   └── agent.ts         # Main agent logic with Claude integration
+│   │   ├── agent.ts         # Main agent logic with Claude integration
+│   │   └── mealHistory.ts   # Meal history tracking service
 │   ├── types/
 │   │   └── index.ts         # TypeScript type definitions
 │   └── index.ts             # Entry point with scheduling
 ├── config/
 │   └── config.json          # User configuration
+├── data/
+│   └── meal-history.json    # Meal history storage (gitignored)
+├── docs/
+│   └── MEAL_HISTORY.md      # Meal history feature documentation
 ├── tests/
 │   ├── heb-scraper/         # HEB scraping tests
 │   ├── test-email-send.ts   # Production email test
+│   ├── test-meal-history.ts # Meal history tests
 │   └── README.md            # Test documentation
 ├── package.json
 ├── tsconfig.json
