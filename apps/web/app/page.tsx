@@ -1,5 +1,6 @@
 import { auth } from '@/lib/auth';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function Home() {
   const session = await auth();
@@ -11,10 +12,13 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <Image
+                  src="/logo-themed.svg"
+                  alt="Easy Meal Planner"
+                  width={40}
+                  height={40}
+                />
               </div>
               <h1 className="text-2xl font-bold text-primary-dark">Meal Planner</h1>
             </div>
