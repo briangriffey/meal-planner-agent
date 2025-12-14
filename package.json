@@ -13,6 +13,7 @@
     "test:heb-scraper": "ts-node tests/heb-scraper/test-heb-scraper.ts",
     "test:heb-connector": "ts-node tests/heb-scraper/test-connector-only.ts",
     "test:email-send": "ts-node tests/test-email-send.ts",
+    "test:meal-history": "ts-node tests/test-meal-history.ts",
     "watch": "tsc --watch"
   },
   "keywords": [

@@ -6,6 +6,7 @@ An automated weekly meal planning agent that uses Claude AI to generate high-pro
 
 - **AI-Powered Meal Planning**: Uses Claude to generate personalized, nutritious dinner plans
 - **High Protein, Low Calorie**: Configurable nutritional targets (default: 40g+ protein, <600 calories)
+- **Meal Variety Tracking**: Automatically tracks previous meals to avoid repetition week-to-week
 - **Email Delivery**: Automatically sends formatted meal plans via Gmail
 - **HEB Integration**: Browses HEB website to find ingredients and create shopping links
 - **Weekly Scheduling**: Runs automatically on a schedule (default: Sunday 10:00 AM)

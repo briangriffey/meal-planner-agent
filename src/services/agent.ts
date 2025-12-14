@@ -1,15 +1,18 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { ConnectorRegistry } from '../connectors/base';
 import { Config, MealPlan } from '../types';
+import { MealHistoryService } from './mealHistory';
 
 export class MealPlannerAgent {
   private client: Anthropic;
   private connectorRegistry: ConnectorRegistry;
   private config: Config;
+  private mealHistory: MealHistoryService;
 
   constructor(config: Config, connectorRegistry: ConnectorRegistry) {
     this.config = config;
     this.connectorRegistry = connectorRegistry;
+    this.mealHistory = new MealHistoryService();
     this.client = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY
     });
@@ -28,6 +31,7 @@ export class MealPlannerAgent {
     let continueLoop = true;
     let iterationCount = 0;
     const maxIterations = 10;
+    let finalResponse: string = '';
 
     while (continueLoop && iterationCount < maxIterations) {
       iterationCount++;
@@ -42,6 +46,13 @@ export class MealPlannerAgent {
       });
 
       console.log(`Stop reason: ${response.stop_reason}`);
+
+      // Capture text content for meal history parsing
+      for (const block of response.content) {
+        if (block.type === 'text') {
+          finalResponse += block.text + '\n';
+        }
+      }
 
       if (response.stop_reason === 'end_turn') {
         continueLoop = false;
@@ -104,6 +115,17 @@ export class MealPlannerAgent {
       console.warn('Agent reached maximum iterations');
     }
 
+    // Save meal plan to history
+    if (finalResponse) {
+      const meals = this.mealHistory.parseMealPlanFromResponse(finalResponse);
+      if (meals.length > 0) {
+        this.mealHistory.saveMealPlan(meals);
+        console.log(`📝 Saved ${meals.length} meals to history`);
+      } else {
+        console.warn('⚠️  Could not parse meals from response for history');
+      }
+    }
+
     console.log('Meal plan generation complete!');
   }
 
@@ -154,6 +176,16 @@ Requirements:
 
     if (this.config.preferences.dietaryRestrictions.length > 0) {
       prompt += `\n- Dietary restrictions: ${this.config.preferences.dietaryRestrictions.join(', ')}`;
+    }
+
+    // Add meal history for variety
+    const recentMeals = this.mealHistory.getRecentMealNames(4);
+    if (recentMeals.length > 0) {
+      prompt += `\n\n**IMPORTANT - Meal Variety:**
+The following meals were recommended in recent weeks. Please ensure variety by creating DIFFERENT meals:
+${recentMeals.map((meal, i) => `${i + 1}. ${meal}`).join('\n')}
+
+Avoid repeating these exact meals or very similar variations. Aim for diverse proteins, cooking methods, and flavor profiles.`;
     }
 
     prompt += `\n\nAfter creating the meal plan:

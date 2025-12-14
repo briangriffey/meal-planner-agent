@@ -5,3 +5,4 @@ config/config.json
 *.log
 .DS_Store
 TESTEMAIL.html
+data/meal-history.json
