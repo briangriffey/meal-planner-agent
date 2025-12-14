@@ -5,6 +5,7 @@ An automated weekly meal planning agent that uses Claude AI to generate high-pro
 ## Features
 
 - **AI-Powered Meal Planning**: Uses Claude to generate personalized, nutritious dinner plans
+- **Multi-User Support**: Independent configurations, preferences, and meal history for multiple users
 - **High Protein, Low Calorie**: Configurable nutritional targets (default: 40g+ protein, <600 calories)
 - **Meal Variety Tracking**: Automatically tracks previous meals to avoid repetition week-to-week
 - **Email Delivery**: Automatically sends formatted meal plans via Gmail
@@ -97,7 +98,24 @@ Update with your details:
 
 ## Usage
 
-### Test immediately (without cron):
+### Multi-User Mode
+
+Run the agent for a specific user (using `config/users.json`):
+
+```bash
+# Test mode (saves to TESTEMAIL.html)
+pnpm test:now --user brian
+
+# Production mode (sends email)
+pnpm test:now:send --user brian
+```
+
+See [Multi-User Documentation](./docs/MULTI_USER.md) for detailed setup and configuration.
+
+### Legacy Single-User Mode
+
+Test immediately without specifying a user (using `config/config.json`):
+
 ```bash
 pnpm test:now
 # or: pnpm run dev -- --now
@@ -163,6 +181,9 @@ pnpm test:heb-connector
 # Test meal history tracking and variety
 pnpm test:meal-history
 
+# Test multi-user functionality
+pnpm test:multi-user
+
 # Alternative: Send actual email (requires confirmation)
 CONFIRM_EMAIL_SEND=true pnpm test:email-send
 ```
@@ -180,20 +201,30 @@ meal-planner-agent/
 │   │   └── web.ts           # HEB browsing and web search connectors
 │   ├── services/
 │   │   ├── agent.ts         # Main agent logic with Claude integration
-│   │   └── mealHistory.ts   # Meal history tracking service
+│   │   ├── mealHistory.ts   # Meal history tracking service
+│   │   └── userConfig.ts    # Multi-user configuration service
 │   ├── types/
 │   │   └── index.ts         # TypeScript type definitions
 │   └── index.ts             # Entry point with scheduling
 ├── config/
-│   └── config.json          # User configuration
+│   ├── config.json          # Legacy single-user configuration (gitignored)
+│   ├── users.json           # Multi-user configurations (gitignored)
+│   └── users.json.example   # Example multi-user config
 ├── data/
-│   └── meal-history.json    # Meal history storage (gitignored)
+│   ├── meal-history.json    # Legacy meal history (gitignored)
+│   └── users/               # User-specific data (gitignored)
+│       ├── user1/
+│       │   └── meal-history.json
+│       └── user2/
+│           └── meal-history.json
 ├── docs/
-│   └── MEAL_HISTORY.md      # Meal history feature documentation
+│   ├── MEAL_HISTORY.md      # Meal history feature documentation
+│   └── MULTI_USER.md        # Multi-user feature documentation
 ├── tests/
 │   ├── heb-scraper/         # HEB scraping tests
 │   ├── test-email-send.ts   # Production email test
 │   ├── test-meal-history.ts # Meal history tests
+│   ├── test-multi-user.ts   # Multi-user tests
 │   └── README.md            # Test documentation
 ├── package.json
 ├── tsconfig.json

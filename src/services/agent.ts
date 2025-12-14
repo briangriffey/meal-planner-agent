@@ -8,11 +8,13 @@ export class MealPlannerAgent {
   private connectorRegistry: ConnectorRegistry;
   private config: Config;
   private mealHistory: MealHistoryService;
+  private userId?: string;
 
-  constructor(config: Config, connectorRegistry: ConnectorRegistry) {
+  constructor(config: Config, connectorRegistry: ConnectorRegistry, userId?: string) {
     this.config = config;
     this.connectorRegistry = connectorRegistry;
-    this.mealHistory = new MealHistoryService();
+    this.userId = userId;
+    this.mealHistory = new MealHistoryService(undefined, 12, userId);
     this.client = new Anthropic({
       apiKey: process.env.ANTHROPIC_API_KEY
     });

@@ -14,6 +14,7 @@
     "test:heb-connector": "ts-node tests/heb-scraper/test-connector-only.ts",
     "test:email-send": "ts-node tests/test-email-send.ts",
     "test:meal-history": "ts-node tests/test-meal-history.ts",
+    "test:multi-user": "ts-node tests/test-multi-user.ts",
     "watch": "tsc --watch"
   },
   "keywords": [

@@ -20,10 +20,17 @@ export interface MealHistoryData {
 export class MealHistoryService {
   private historyPath: string;
   private maxHistoryEntries: number;
+  private userId?: string;
 
-  constructor(historyPath?: string, maxEntries: number = 12) {
-    this.historyPath = historyPath || path.join(process.cwd(), 'data', 'meal-history.json');
+  constructor(historyPath?: string, maxEntries: number = 12, userId?: string) {
+    // If userId is provided, use user-specific path
+    if (userId && !historyPath) {
+      this.historyPath = path.join(process.cwd(), 'data', 'users', userId, 'meal-history.json');
+    } else {
+      this.historyPath = historyPath || path.join(process.cwd(), 'data', 'meal-history.json');
+    }
     this.maxHistoryEntries = maxEntries; // Keep last ~3 months of weekly plans
+    this.userId = userId;
     this.ensureDataDirectory();
   }
 

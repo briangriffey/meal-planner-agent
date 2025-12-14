@@ -2,7 +2,9 @@ node_modules/
 dist/
 .env
 config/config.json
+config/users.json
 *.log
 .DS_Store
 TESTEMAIL.html
 data/meal-history.json
+data/users/

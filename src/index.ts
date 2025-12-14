@@ -6,6 +6,7 @@ import { ConnectorRegistry } from './connectors/base';
 import { EmailConnector } from './connectors/email';
 import { HEBBrowsingConnector, WebSearchConnector } from './connectors/web';
 import { Config } from './types';
+import { UserConfigService } from './services/userConfig';
 
 const envPath = path.join(process.cwd(), '.env');
 const result = dotenv.config({ path: envPath });
@@ -16,7 +17,10 @@ if (result.error) {
   console.error('process.cwd():', process.cwd());
 }
 
-function loadConfig(): Config {
+/**
+ * Load legacy single-user config (for backwards compatibility)
+ */
+function loadLegacyConfig(): Config {
   const configPath = process.env.CONFIG_PATH || './config/config.json';
 
   try {
@@ -55,8 +59,11 @@ function loadConfig(): Config {
   }
 }
 
-async function runMealPlanner(config: Config, testMode: boolean = false): Promise<void> {
+async function runMealPlanner(config: Config, testMode: boolean = false, userId?: string): Promise<void> {
   console.log('\n=== Starting Meal Planner Agent ===');
+  if (userId) {
+    console.log(`User: ${userId}`);
+  }
   console.log(`Time: ${new Date().toLocaleString()}`);
   if (testMode) {
     console.log('Mode: TEST (email will be saved to TESTEMAIL.html)\n');
@@ -70,7 +77,7 @@ async function runMealPlanner(config: Config, testMode: boolean = false): Promis
   registry.register(new HEBBrowsingConnector());
   registry.register(new WebSearchConnector());
 
-  const agent = new MealPlannerAgent(config, registry);
+  const agent = new MealPlannerAgent(config, registry, userId);
 
   try {
     await agent.generateMealPlan();
@@ -85,50 +92,91 @@ async function runMealPlanner(config: Config, testMode: boolean = false): Promis
 }
 
 async function main(): Promise<void> {
-  const config = loadConfig();
-
   if (!process.env.ANTHROPIC_API_KEY) {
     console.error('Error: ANTHROPIC_API_KEY environment variable is required');
     process.exit(1);
+  }
+
+  const args = process.argv.slice(2);
+
+  // Parse command-line arguments
+  const userIdIndex = args.indexOf('--user');
+  const userId = userIdIndex !== -1 && args[userIdIndex + 1] ? args[userIdIndex + 1] : undefined;
+
+  // Initialize user config service
+  const systemEmail = {
+    user: process.env.GMAIL_USER || '',
+    appPassword: process.env.GMAIL_APP_PASSWORD || ''
+  };
+  const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
+  const userConfigService = new UserConfigService(undefined, systemEmail, claudeModel);
+
+  // Determine which config to use
+  let config: Config;
+
+  if (userId) {
+    // Multi-user mode: load config for specific user
+    const userConfig = userConfigService.getUserConfig(userId);
+    if (!userConfig) {
+      console.error(`Error: User '${userId}' not found in users.json`);
+      console.log('\nAvailable users:', userConfigService.getAllUserIds().join(', ') || 'none');
+      console.log('\nTo create a user, add them to config/users.json or use the migration command.');
+      process.exit(1);
+    }
+    config = userConfigService.toSystemConfig(userConfig);
+    console.log(`Loading configuration for user: ${userId}`);
+  } else {
+    // Legacy mode: load from config.json
+    config = loadLegacyConfig();
+    console.log('Loading legacy single-user configuration from config.json');
+    console.log('Tip: Use --user <userId> to specify a user from users.json');
   }
 
   if (!config.email.user || !config.email.appPassword) {
     console.warn('Warning: Gmail credentials not configured. Email sending will fail.');
   }
 
-  const args = process.argv.slice(2);
-
+  // Handle immediate execution
   if (args.includes('--now') || args.includes('-n')) {
     console.log('Running meal planner immediately...');
     const sendEmail = args.includes('--sendemail');
-    const testMode = !sendEmail; // If --sendemail is present, testMode is false (production)
+    const testMode = !sendEmail;
 
     if (sendEmail) {
       console.log('⚠️  --sendemail flag detected: Email will be SENT to recipients!');
     }
 
-    await runMealPlanner(config, testMode);
+    await runMealPlanner(config, testMode, userId);
     return;
   }
 
-  const { dayOfWeek, hour, minute } = config.schedule;
-  const cronExpression = `${minute} ${hour} * * ${dayOfWeek}`;
+  // Handle scheduled execution
+  if (userId) {
+    // For multi-user scheduled mode, run for all users with their own schedules
+    console.error('Error: Scheduled multi-user mode not yet implemented in this version.');
+    console.error('Use --now --user <userId> to run immediately for a specific user.');
+    process.exit(1);
+  } else {
+    // Legacy scheduled mode for single user
+    const { dayOfWeek, hour, minute } = config.schedule;
+    const cronExpression = `${minute} ${hour} * * ${dayOfWeek}`;
 
-  console.log('Meal Planner Agent started!');
-  console.log(`Scheduled to run: Every ${getDayName(dayOfWeek)} at ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
-  console.log(`Cron expression: ${cronExpression}`);
-  console.log('\nWaiting for scheduled time...');
-  console.log('Press Ctrl+C to stop\n');
-  console.log('Run with --now flag to execute immediately: npm run dev -- --now');
-  console.log('Add --sendemail to actually send emails: npm run dev -- --now --sendemail\n');
+    console.log('Meal Planner Agent started!');
+    console.log(`Scheduled to run: Every ${getDayName(dayOfWeek)} at ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+    console.log(`Cron expression: ${cronExpression}`);
+    console.log('\nWaiting for scheduled time...');
+    console.log('Press Ctrl+C to stop\n');
+    console.log('Run with --now flag to execute immediately: npm run dev -- --now');
+    console.log('Add --sendemail to actually send emails: npm run dev -- --now --sendemail\n');
 
-  cron.schedule(cronExpression, async () => {
-    try {
-      await runMealPlanner(config);
-    } catch (error) {
-      console.error('Scheduled run failed:', error);
-    }
-  });
+    cron.schedule(cronExpression, async () => {
+      try {
+        await runMealPlanner(config);
+      } catch (error) {
+        console.error('Scheduled run failed:', error);
+      }
+    });
+  }
 }
 
 function getDayName(dayOfWeek: number): string {
