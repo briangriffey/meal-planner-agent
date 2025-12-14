@@ -1,260 +1,245 @@
-# Meal Planner Agent
+# Meal Planner Agent - Web Application
 
-An automated weekly meal planning agent that uses Claude AI to generate high-protein, low-calorie dinner plans and emails them to you. The agent can also browse HEB's website to find ingredients and include shopping links.
+An AI-powered meal planning web application that uses Claude AI to generate personalized, nutritious meal plans. Built with Next.js, Prisma, and BullMQ for scalable, multi-user meal planning.
 
 ## Features
 
-- **AI-Powered Meal Planning**: Uses Claude to generate personalized, nutritious dinner plans
-- **Multi-User Support**: Independent configurations, preferences, and meal history for multiple users
-- **High Protein, Low Calorie**: Configurable nutritional targets (default: 40g+ protein, <600 calories)
-- **Meal Variety Tracking**: Automatically tracks previous meals to avoid repetition week-to-week
-- **Email Delivery**: Automatically sends formatted meal plans via Gmail
-- **HEB Integration**: Browses HEB website to find ingredients and create shopping links
-- **Weekly Scheduling**: Runs automatically on a schedule (default: Sunday 10:00 AM)
-- **Extensible Connectors**: Easy to add new capabilities (delivery services, other stores, etc.)
+- **AI-Powered Meal Planning**: Uses Claude to generate personalized, nutritious meal plans
+- **Multi-User Support**: Independent user accounts with secure authentication
+- **Customizable Preferences**: Configure meals per week, servings, nutrition targets, and dietary restrictions
+- **Meal History & Analytics**: Track previous meals and view nutritional analytics
+- **Async Job Processing**: Queue-based meal plan generation with real-time progress tracking
+- **Email Delivery**: Automatically sends formatted meal plans via email
+- **HEB Integration**: Optional integration to browse HEB website for ingredients
+- **Automated Scheduling**: Configure automatic weekly meal plan generation
+
+## Architecture
+
+This is a monorepo containing:
+
+- **apps/web**: Next.js 14 web application with App Router and NextAuth.js authentication
+- **packages/core**: Shared meal planning agent logic with Claude AI integration
+- **packages/database**: Prisma ORM schema and database client
+- **packages/queue**: BullMQ job queue for async meal plan generation
 
 ## Prerequisites
 
 - Node.js (v18 or higher)
-- pnpm (or npm/yarn)
+- pnpm (package manager)
+- PostgreSQL database
+- Redis server
 - Anthropic API key
-- Gmail account with App Password enabled
+- Gmail account with App Password (for email delivery)
 
-## Installation
+## Quick Start
 
-1. Clone or navigate to the project directory:
+### 1. Clone and Install
+
 ```bash
 cd meal-planner-agent
-```
-
-2. Install dependencies:
-```bash
 pnpm install
-# or: npm install
 ```
 
-3. Set up your environment variables:
+### 2. Start Services
+
+Start PostgreSQL and Redis using Docker Compose:
+
 ```bash
-cp .env.example .env
+docker-compose up -d
 ```
 
-Edit `.env` and add your Anthropic API key:
+### 3. Environment Variables
+
+Create `.env` file in `apps/web/`:
+
+```env
+DATABASE_URL="postgresql://mealplanner:mealplanner123@localhost:5432/mealplanner"
+REDIS_URL="redis://localhost:6379"
+NEXTAUTH_SECRET="your-secret-key-here-change-in-production"
+NEXTAUTH_URL="http://localhost:3000"
+ANTHROPIC_API_KEY="your-anthropic-api-key"
+CLAUDE_MODEL="claude-sonnet-4-20250514"
+GMAIL_USER="your-email@gmail.com"
+GMAIL_APP_PASSWORD="your-gmail-app-password"
 ```
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
-```
 
-4. Configure Gmail:
+### 4. Run Database Migrations
 
-You need to create a Gmail App Password (not your regular Gmail password):
-
-- Go to your Google Account settings
-- Navigate to Security > 2-Step Verification (enable if not already)
-- Scroll down to "App passwords"
-- Generate a new app password for "Mail"
-- Copy the 16-character password
-
-5. Create user configuration file:
 ```bash
-cp config/users.json.example config/users.json
-nano config/users.json
+cd apps/web
+pnpm prisma migrate dev
 ```
 
-Add your user(s) to the configuration:
-```json
-{
-  "users": {
-    "your-name": {
-      "userId": "your-name",
-      "email": {
-        "recipients": ["your-email@gmail.com"]
-      },
-      "schedule": {
-        "dayOfWeek": 0,
-        "hour": 10,
-        "minute": 0
-      },
-      "preferences": {
-        "numberOfMeals": 7,
-        "servingsPerMeal": 2,
-        "minProteinPerMeal": 40,
-        "maxCaloriesPerMeal": 600,
-        "dietaryRestrictions": []
-      },
-      "heb": {
-        "enabled": true
-      }
-    }
-  }
-}
+### 5. Start Development Servers
+
+Terminal 1 - Web Application:
+```bash
+pnpm dev
 ```
 
-See [Multi-User Documentation](./docs/MULTI_USER.md) for complete configuration options and examples.
+Terminal 2 - Queue Worker:
+```bash
+pnpm dev:worker
+```
+
+### 6. Access the Application
+
+Open http://localhost:3000 in your browser and create an account!
 
 ## Usage
 
-**Important**: All commands require the `--user <userId>` flag to specify which user configuration to use.
+### User Registration
 
-### Test Mode (Email Saved to File)
+1. Navigate to http://localhost:3000
+2. Click "Create an account"
+3. Fill in your email, password, and name
+4. Submit to create your account
 
-Run the agent immediately and save the email to `TESTEMAIL.html`:
+### Configure Preferences
 
-```bash
-pnpm test:now --user your-name
-```
+1. Sign in to your account
+2. Navigate to "Preferences" in the dashboard
+3. Configure:
+   - Number of meals per week
+   - Servings per meal
+   - Nutritional targets (protein, calories, etc.)
+   - Dietary restrictions
+   - Email recipients
+   - Automatic generation schedule
 
-### Production Mode (Send Email)
+### Generate a Meal Plan
 
-Run the agent immediately and send the email to configured recipients:
+1. Click "Generate New Meal Plan" from the dashboard
+2. Select a week start date
+3. Click "Generate Meal Plan"
+4. Watch real-time progress as Claude AI:
+   - Analyzes your meal history
+   - Generates personalized meals
+   - Sends email with meal plan
+5. View your completed meal plan with:
+   - Detailed nutrition information
+   - Ingredients and instructions
+   - Shopping lists
 
-```bash
-pnpm test:now:send --user your-name
-# or: pnpm run dev -- --now --sendemail --user your-name
-```
+### View Analytics
 
-### Scheduled Mode
-
-Run the agent on a schedule (using the schedule from user config):
-
-```bash
-pnpm start --user your-name
-# or after building: node dist/index.js --user your-name
-```
-
-**Test Mode** saves the email content to `TESTEMAIL.html` instead of sending it. This is perfect for testing your configuration without sending actual emails. Open `TESTEMAIL.html` in your browser to preview the meal plan.
-
-For more usage examples and multi-user scenarios, see [Multi-User Documentation](./docs/MULTI_USER.md).
-
-## How It Works
-
-1. **Scheduling**: The agent uses node-cron to run at your specified day/time
-2. **Meal History**: Loads previous meal plans to ensure variety across weeks
-3. **AI Generation**: Claude generates a 7-day meal plan based on your preferences and recent meal history
-4. **Tool Use**: Claude autonomously uses connectors to:
-   - Browse HEB for ingredients (optional)
-   - Format and send email with meal plan
-5. **Saving History**: After generation, the new meal plan is saved to `data/meal-history.json`
-6. **Extensibility**: Add new connectors in `src/connectors/` to enable new capabilities
-
-For more details on the meal history feature, see [docs/MEAL_HISTORY.md](./docs/MEAL_HISTORY.md).
-
-## Testing
-
-The project includes comprehensive test scripts for validating functionality:
-
-```bash
-# Run agent with email saved to file (test mode)
-pnpm test:now
-
-# Run agent immediately AND send actual email ⚠️
-pnpm test:now:send
-
-# Test HEB scraping standalone
-pnpm test:heb-scraper
-
-# Test HEB connector integration
-pnpm test:heb-connector
-
-# Test meal history tracking and variety
-pnpm test:meal-history
-
-# Test multi-user functionality
-pnpm test:multi-user
-
-# Alternative: Send actual email (requires confirmation)
-CONFIRM_EMAIL_SEND=true pnpm test:email-send
-```
-
-See [tests/README.md](./tests/README.md) for detailed test documentation.
+Navigate to "History & Analytics" to see:
+- Total meal plans generated
+- Average nutrition per meal
+- Most frequently generated meals
+- Recent meal history
 
 ## Project Structure
 
 ```
 meal-planner-agent/
-├── src/
-│   ├── connectors/
-│   │   ├── base.ts          # Connector base class and registry
-│   │   ├── email.ts         # Gmail email connector
-│   │   └── web.ts           # HEB browsing and web search connectors
-│   ├── services/
-│   │   ├── agent.ts         # Main agent logic with Claude integration
-│   │   ├── mealHistory.ts   # Meal history tracking service
-│   │   └── userConfig.ts    # Multi-user configuration service
-│   ├── types/
-│   │   └── index.ts         # TypeScript type definitions
-│   └── index.ts             # Entry point with scheduling
-├── config/
-│   ├── config.json          # Legacy single-user configuration (gitignored)
-│   ├── users.json           # Multi-user configurations (gitignored)
-│   └── users.json.example   # Example multi-user config
-├── data/
-│   ├── meal-history.json    # Legacy meal history (gitignored)
-│   └── users/               # User-specific data (gitignored)
-│       ├── user1/
-│       │   └── meal-history.json
-│       └── user2/
-│           └── meal-history.json
-├── docs/
-│   ├── MEAL_HISTORY.md      # Meal history feature documentation
-│   └── MULTI_USER.md        # Multi-user feature documentation
-├── tests/
-│   ├── heb-scraper/         # HEB scraping tests
-│   ├── test-email-send.ts   # Production email test
-│   ├── test-meal-history.ts # Meal history tests
-│   ├── test-multi-user.ts   # Multi-user tests
-│   └── README.md            # Test documentation
-├── package.json
-├── tsconfig.json
-└── README.md
+├── apps/
+│   └── web/                    # Next.js web application
+│       ├── app/                # App Router pages
+│       │   ├── api/           # API routes
+│       │   ├── dashboard/     # Dashboard pages
+│       │   ├── login/         # Authentication pages
+│       │   └── register/
+│       ├── components/        # React components
+│       ├── lib/               # Auth & database config
+│       └── prisma/            # Prisma schema
+├── packages/
+│   ├── core/                  # Meal planning agent
+│   │   ├── src/
+│   │   │   ├── agent/        # MealPlannerAgent class
+│   │   │   ├── connectors/   # Email, HEB, web search
+│   │   │   ├── services/     # Meal history service
+│   │   │   └── types/        # TypeScript types
+│   ├── database/              # Prisma ORM
+│   │   └── prisma/
+│   │       └── schema.prisma  # Database schema
+│   └── queue/                 # BullMQ job processing
+│       └── src/
+│           ├── client.ts      # Queue client
+│           ├── worker.ts      # Job worker
+│           └── jobs/          # Job processors
+├── docker-compose.yml         # PostgreSQL + Redis
+└── pnpm-workspace.yaml        # Monorepo config
 ```
 
-## Adding New Connectors
+## API Documentation
 
-To add a new connector (e.g., for Instacart, meal tracking, etc.):
+See [apps/web/API_TESTING.md](apps/web/API_TESTING.md) for comprehensive API endpoint documentation and testing instructions.
 
-1. Create a new file in `src/connectors/`:
-```typescript
-import { BaseConnector } from './base';
+## Development Scripts
 
-export class MyNewConnector extends BaseConnector {
-  name = 'my_new_tool';
+```bash
+# Build all packages
+pnpm build
 
-  async execute(params: any): Promise<any> {
-    // Your implementation
-    return { success: true, data: 'result' };
-  }
-}
+# Start web dev server
+pnpm dev
+
+# Start queue worker
+pnpm dev:worker
+
+# Run database migrations
+pnpm db:migrate
+
+# Open Prisma Studio (database GUI)
+pnpm db:studio
 ```
 
-2. Register it in `src/index.ts`:
-```typescript
-registry.register(new MyNewConnector());
-```
+## How It Works
 
-3. Add the tool definition in `src/connectors/base.ts` in the `getDescription` and `getInputSchema` methods.
+1. **User Registration**: Users create accounts with NextAuth.js authentication
+2. **Configuration**: Users set preferences for meals, nutrition, and scheduling
+3. **Job Queue**: When a user requests a meal plan, a job is queued in BullMQ
+4. **Worker Processing**: The queue worker:
+   - Loads user preferences and meal history from database
+   - Creates MealPlannerAgent with connectors
+   - Generates meal plan using Claude AI
+   - Saves results to database
+   - Sends email with meal plan
+5. **Real-Time Updates**: User sees progress updates via polling
+6. **Analytics**: Meal records are stored for analytics and variety tracking
 
-Claude will automatically discover and use your new connector!
+## Gmail Setup
+
+To enable email delivery:
+
+1. Go to your Google Account settings
+2. Navigate to Security > 2-Step Verification (enable if not already)
+3. Scroll down to "App passwords"
+4. Generate a new app password for "Mail"
+5. Add the 16-character password to your user preferences in the web app
 
 ## Troubleshooting
 
-### Email not sending:
-- Verify your Gmail App Password is correct (16 characters, no spaces)
-- Check that 2-Step Verification is enabled on your Google account
-- Make sure the email addresses in config.json are correct
+### Database Connection Error
+- Ensure PostgreSQL is running: `docker-compose ps`
+- Check DATABASE_URL in `.env`
+- Run migrations: `pnpm db:migrate`
 
-### HEB browsing fails:
-- This feature requires Puppeteer which downloads Chromium
-- First run may take longer to download browser
-- Set `heb.enabled: false` in config if you don't need this feature
+### Redis Connection Error
+- Ensure Redis is running: `docker-compose ps`
+- Check REDIS_URL in `.env`
 
-### Agent doesn't run on schedule:
-- Make sure the process is running (`npm start`)
-- Check your cron expression is correct
-- Use `--now` flag to test immediately
+### Queue Jobs Not Processing
+- Make sure the worker is running: `pnpm dev:worker`
+- Check worker logs for errors
+- Verify Redis connection
 
-### ANTHROPIC_API_KEY error:
-- Ensure your API key is set in `.env` file
-- The key should start with `sk-ant-`
-- Get your key from: https://console.anthropic.com/
+### Email Not Sending
+- Configure Gmail App Password in user preferences
+- Check email connector configuration
+- Review worker logs for SMTP errors
+
+## Production Deployment
+
+For production deployment:
+
+1. Set up PostgreSQL and Redis instances
+2. Configure environment variables
+3. Build the application: `pnpm build`
+4. Run database migrations
+5. Start web server: `cd apps/web && pnpm start`
+6. Start worker: `cd packages/queue && node dist/worker.js`
 
 ## License
 

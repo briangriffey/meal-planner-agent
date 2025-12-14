@@ -1,43 +1,24 @@
 {
   "name": "meal-planner-agent",
-  "version": "1.0.0",
-  "description": "Weekly meal planning agent with Claude AI, email notifications, and HEB ordering",
-  "main": "dist/index.js",
+  "version": "2.0.0",
+  "description": "AI-powered meal planning web application with Claude AI - Monorepo",
+  "private": true,
   "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
-    "test:now": "ts-node src/index.ts --now",
-    "test:now:send": "ts-node src/index.ts --now --sendemail",
-    "test:heb-scraper": "ts-node tests/heb-scraper/test-heb-scraper.ts",
-    "test:heb-connector": "ts-node tests/heb-scraper/test-connector-only.ts",
-    "test:email-send": "ts-node tests/test-email-send.ts",
-    "test:meal-history": "ts-node tests/test-meal-history.ts",
-    "test:multi-user": "ts-node tests/test-multi-user.ts",
-    "watch": "tsc --watch"
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @meal-planner/web dev",
+    "dev:worker": "pnpm --filter @meal-planner/queue dev",
+    "db:migrate": "pnpm --filter @meal-planner/database migrate",
+    "db:studio": "pnpm --filter @meal-planner/database studio",
+    "db:seed": "pnpm --filter @meal-planner/database seed"
   },
   "keywords": [
     "meal-planner",
     "claude",
-    "ai-agent"
+    "ai-agent",
+    "nextjs",
+    "web-app"
   ],
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
-    "dotenv": "^16.4.7",
-    "node-cron": "^3.0.3",
-    "nodemailer": "^6.9.15",
-    "puppeteer": "^23.11.1",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.2",
-    "@types/node-cron": "^3.0.11",
-    "@types/nodemailer": "^6.4.17",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
-  }
+  "license": "MIT"
 }

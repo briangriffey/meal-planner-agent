@@ -1,0 +1,24 @@
+import { PrismaClient } from '@prisma/client';
+
+export * from '@prisma/client';
+
+// Singleton Prisma Client instance
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+export const prisma =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+// Helper to disconnect
+export async function disconnect() {
+  await prisma.$disconnect();
+}
+
+// Helper to connect
+export async function connect() {
+  await prisma.$connect();
+}

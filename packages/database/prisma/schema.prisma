@@ -1,0 +1,211 @@
+// Prisma schema for Meal Planner Agent
+// Database: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// NextAuth.js Models
+// ============================================================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?   // Hashed password for email/password auth
+  emailVerified DateTime?
+  image         String?
+
+  // External user ID for legacy compatibility (e.g., "brian", "allison")
+  externalUserId String? @unique
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
+  mealPlans      MealPlan[]
+  userPreferences UserPreferences?
+  apiKeys        ApiKey[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([externalUserId])
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================================================
+// Application Models
+// ============================================================================
+
+model UserPreferences {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Email preferences
+  emailRecipients String[] @default([])
+
+  // Schedule preferences
+  scheduleDayOfWeek Int     @default(0) // 0 = Sunday, 6 = Saturday
+  scheduleHour      Int     @default(10)
+  scheduleMinute    Int     @default(0)
+  scheduleEnabled   Boolean @default(true)
+
+  // Meal preferences
+  numberOfMeals      Int      @default(7)
+  servingsPerMeal    Int      @default(2)
+  minProteinPerMeal  Int      @default(40)
+  maxCaloriesPerMeal Int      @default(600)
+  dietaryRestrictions String[] @default([])
+
+  // Feature flags
+  hebEnabled Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_preferences")
+}
+
+model MealPlan {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Metadata
+  weekStartDate DateTime
+  generatedAt   DateTime        @default(now())
+  status        MealPlanStatus  @default(PENDING)
+
+  // Job tracking
+  jobId         String?   @unique
+  jobStartedAt  DateTime?
+  jobCompletedAt DateTime?
+  jobError      String?   @db.Text
+
+  // Generated content (stored as JSON)
+  meals     Json? // Array of meal objects
+  emailSent Boolean @default(false)
+  emailSentAt DateTime?
+  emailHtml String? @db.Text
+
+  // Agent execution details
+  iterationCount Int?
+  claudeModel    String?
+
+  // Relations
+  mealRecords MealRecord[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, weekStartDate])
+  @@index([status])
+  @@index([jobId])
+  @@map("meal_plans")
+}
+
+enum MealPlanStatus {
+  PENDING    // Job queued but not started
+  PROCESSING // Agent is working
+  COMPLETED  // Successfully generated
+  FAILED     // Error occurred
+  CANCELLED  // User cancelled
+}
+
+// Individual meal records for analytics and history tracking
+model MealRecord {
+  id         String   @id @default(cuid())
+  userId     String
+  mealPlanId String
+  mealPlan   MealPlan @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+
+  // Meal details
+  day  String // "Monday", "Tuesday", etc.
+  name String // Meal name
+
+  // Nutrition (optional, parsed from agent response)
+  calories Int?
+  protein  Int?
+  carbs    Int?
+  fat      Int?
+  fiber    Int?
+
+  // Recipe details (stored as JSON for flexibility)
+  ingredients  Json? // Array of { item: string, amount: string }
+  instructions Json? // Array of strings
+  prepTime     String?
+  cookTime     String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([name]) // For finding duplicate meals
+  @@map("meal_records")
+}
+
+// API Keys for CLI access
+model ApiKey {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name       String // e.g., "CLI Key", "Mobile App"
+  key        String   @unique // Hashed API key
+  lastUsedAt DateTime?
+  expiresAt  DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([key])
+  @@index([userId])
+  @@map("api_keys")
+}
