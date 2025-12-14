@@ -38,7 +38,6 @@ async function testEnqueue() {
               maxCaloriesPerMeal: 600,
               dietaryRestrictions: [],
               hebEnabled: false, // Disable HEB for testing
-              claudeModel: 'claude-sonnet-4-20250514',
             },
           },
         },
@@ -53,6 +52,7 @@ async function testEnqueue() {
     }
 
     // Create a meal plan record
+    const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
     const weekStart = new Date();
     weekStart.setDate(weekStart.getDate() + (7 - weekStart.getDay()) % 7);
     weekStart.setHours(0, 0, 0, 0);
@@ -62,7 +62,7 @@ async function testEnqueue() {
         userId: user.id,
         weekStartDate: weekStart,
         status: 'PENDING',
-        claudeModel: user.userPreferences.claudeModel,
+        claudeModel,
       },
     });
 
@@ -82,7 +82,7 @@ async function testEnqueue() {
         dietaryRestrictions: prefs.dietaryRestrictions,
       },
       hebEnabled: prefs.hebEnabled,
-      claudeModel: prefs.claudeModel,
+      claudeModel,
       emailConfig: {
         user: process.env.GMAIL_USER || 'test@example.com',
         appPassword: process.env.GMAIL_APP_PASSWORD || 'test',

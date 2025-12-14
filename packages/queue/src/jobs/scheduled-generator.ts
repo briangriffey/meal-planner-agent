@@ -64,12 +64,13 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
     }
 
     // Create a new meal plan record
+    const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
     const mealPlan = await prisma.mealPlan.create({
       data: {
         userId,
         weekStartDate: weekStart,
         status: 'PENDING',
-        claudeModel: prefs.claudeModel,
+        claudeModel,
       },
     });
 
@@ -87,7 +88,7 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
         dietaryRestrictions: prefs.dietaryRestrictions,
       },
       hebEnabled: prefs.hebEnabled,
-      claudeModel: prefs.claudeModel,
+      claudeModel,
       emailConfig: {
         user: process.env.GMAIL_USER!,
         appPassword: process.env.GMAIL_APP_PASSWORD!,
