@@ -35,7 +35,7 @@ async function testAgent() {
   try {
     // Get or create test user
     let user = await prisma.user.findFirst({
-      where: { email: 'test@example.com' },
+      where: { email: 'brian.a.griffey@gmail.com' },
       include: { userPreferences: true },
     });
 
@@ -43,12 +43,12 @@ async function testAgent() {
       console.log('📝 Creating test user...');
       user = await prisma.user.create({
         data: {
-          email: 'test@example.com',
-          name: 'Test User',
-          passwordHash: 'test-hash',
+          email: 'brian.a.griffey@gmail.com',
+          name: 'Brian Griffey',
+          password: 'test-hash',
           userPreferences: {
             create: {
-              emailRecipients: ['test@example.com'],
+              emailRecipients: ['brian.a.griffey@gmail.com'],
               numberOfMeals: 3,
               servingsPerMeal: 2,
               minProteinPerMeal: 40,
@@ -65,8 +65,8 @@ async function testAgent() {
       console.log('✅ Using existing test user\n');
     }
 
-    if (!user.userPreferences) {
-      throw new Error('User has no preferences');
+    if (!user || !user.userPreferences) {
+      throw new Error('User or user preferences not found');
     }
 
     const prefs = user.userPreferences;
