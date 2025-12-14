@@ -29,7 +29,11 @@ WORKDIR /app
 # Copy everything from deps stage (includes node_modules and source)
 COPY --from=deps /app ./
 
-# Build all packages (Prisma client was already generated during install postinstall)
+# Ensure Prisma client is generated
+WORKDIR /app/packages/database
+RUN pnpm exec prisma generate
+
+# Build all packages
 WORKDIR /app
 RUN pnpm --filter @meal-planner/core build
 RUN pnpm --filter @meal-planner/queue build
