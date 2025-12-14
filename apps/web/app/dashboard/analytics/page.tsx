@@ -46,7 +46,7 @@ export default async function AnalyticsPage() {
     fiber: avgNutrition.count > 0 ? Math.round(avgNutrition.fiber / avgNutrition.count) : 0,
   };
 
-  const mealFrequency = mealRecords.reduce((acc, meal) => {
+  const mealFrequency = mealRecords.reduce((acc: Record<string, number>, meal: any) => {
     const name = meal.name;
     acc[name] = (acc[name] || 0) + 1;
     return acc;
