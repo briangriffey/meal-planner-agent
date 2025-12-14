@@ -149,10 +149,24 @@ After generating the meal plan, you should:
    - Combine quantities for duplicate ingredients (e.g., if multiple meals use chicken breast, sum the total needed)
    - Organize ingredients by category (proteins, vegetables, pantry items, etc.)
    ${this.config.heb.enabled ? '- Include HEB shopping links for each ingredient found on their website' : ''}
-3. Format the meal plan and shopping list as an attractive HTML email
+3. Format the meal plan and shopping list as an attractive, MOBILE-FRIENDLY HTML email
+   - Use responsive design with proper viewport meta tags and max-width: 600px for desktop
    - Include the meal plan with all recipes
    - Add a dedicated shopping list section at the end with combined ingredients
    ${this.config.heb.enabled ? '- Make ingredient names clickable links to add them to HEB cart' : ''}
+   - For the ingredient list specifically, use a mobile-friendly format like this example:
+     <div style="background: #f9f9f9; padding: 15px; margin: 8px 0; border-radius: 8px;">
+       <a href="[link]" style="display: block; color: #c8102e; text-decoration: none; font-size: 16px; line-height: 1.6;">
+         <strong>Ingredient Name</strong> - Quantity
+       </a>
+     </div>
+   - Key requirements for ingredient list:
+     * Use larger font sizes (minimum 16px for body text, 18px for links)
+     * Add generous padding/spacing between items (at least 12-15px)
+     * Make clickable links full-width blocks for easy tapping (minimum 44px height)
+     * Use a single-column layout
+     * Add background colors or rounded borders to make items visually distinct and tappable
+     * Ensure adequate contrast for readability
 4. Use the send_email tool to send the complete email
 
 Make the meal plans varied, delicious, and practical for home cooking. Consider seasonal ingredients when possible.`;
