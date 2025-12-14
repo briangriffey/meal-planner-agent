@@ -13,7 +13,8 @@
     "db:generate": "pnpm --filter @meal-planner/database generate",
     "db:studio": "pnpm --filter @meal-planner/database studio",
     "db:push": "pnpm --filter @meal-planner/database push",
-    "db:seed": "pnpm --filter @meal-planner/database seed"
+    "db:seed": "pnpm --filter @meal-planner/database seed",
+    "test:agent": "ts-node scripts/test-agent.ts"
   },
   "keywords": [
     "meal-planner",
@@ -23,5 +24,10 @@
     "web-app"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
 }
