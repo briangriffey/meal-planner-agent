@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { enqueueMealPlanGeneration } from '@/lib/queue';
-import { CLAUDE_MODEL } from '@meal-planner/core';
+import { CLAUDE_MODEL } from '@meal-planner/core/src/constants';
 import { z } from 'zod';
 
 const generateSchema = z.object({

@@ -5,7 +5,7 @@ import {
   getJobStatus,
   cancelJob,
   type MealPlanJobData,
-} from '@meal-planner/queue';
+} from '@meal-planner/queue/src/client';
 
 export {
   getMealPlanQueue,

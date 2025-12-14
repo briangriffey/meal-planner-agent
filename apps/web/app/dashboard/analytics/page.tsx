@@ -1,6 +1,6 @@
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { MealRecord } from '@prisma/client';
+import { MealRecord } from '@meal-planner/database';
 import { redirect } from 'next/navigation';
 
 export default async function AnalyticsPage() {
