@@ -26,7 +26,7 @@ export default async function AnalyticsPage() {
   const totalMeals = mealRecords.length;
 
   const avgNutrition = mealRecords.reduce(
-    (acc: { calories: number; protein: number; carbs: number; fat: number; fiber: number; count: number }, meal) => {
+    (acc: { calories: number; protein: number; carbs: number; fat: number; fiber: number; count: number }, meal: any) => {
       if (meal.calories) acc.calories += meal.calories;
       if (meal.protein) acc.protein += meal.protein;
       if (meal.carbs) acc.carbs += meal.carbs;
