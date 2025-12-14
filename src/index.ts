@@ -17,47 +17,6 @@ if (result.error) {
   console.error('process.cwd():', process.cwd());
 }
 
-/**
- * Load legacy single-user config (for backwards compatibility)
- */
-function loadLegacyConfig(): Config {
-  const configPath = process.env.CONFIG_PATH || './config/config.json';
-
-  try {
-    const fs = require('fs');
-    const configData = fs.readFileSync(configPath, 'utf-8');
-    return JSON.parse(configData);
-  } catch (error) {
-    console.error(`Failed to load config from ${configPath}:`, error);
-    console.log('Using default configuration...');
-
-    return {
-      email: {
-        user: process.env.GMAIL_USER || '',
-        appPassword: process.env.GMAIL_APP_PASSWORD || '',
-        recipients: process.env.EMAIL_RECIPIENTS?.split(',').map(r => r.trim()) || []
-      },
-      schedule: {
-        dayOfWeek: 0,
-        hour: 10,
-        minute: 0
-      },
-      preferences: {
-        numberOfMeals: 7,
-        servingsPerMeal: 2,
-        minProteinPerMeal: 40,
-        maxCaloriesPerMeal: 600,
-        dietaryRestrictions: []
-      },
-      heb: {
-        enabled: true
-      },
-      claude: {
-        model: 'claude-3-sonnet-20240229'
-      }
-    };
-  }
-}
 
 async function runMealPlanner(config: Config, testMode: boolean = false, userId?: string): Promise<void> {
   console.log('\n=== Starting Meal Planner Agent ===');
@@ -103,6 +62,34 @@ async function main(): Promise<void> {
   const userIdIndex = args.indexOf('--user');
   const userId = userIdIndex !== -1 && args[userIdIndex + 1] ? args[userIdIndex + 1] : undefined;
 
+  // Require --user flag
+  if (!userId) {
+    console.error('Error: --user <userId> flag is required');
+    console.log('\nUsage:');
+    console.log('  pnpm test:now --user <userId>          # Test mode');
+    console.log('  pnpm test:now:send --user <userId>     # Production mode');
+    console.log('  pnpm start --user <userId>             # Scheduled mode');
+    console.log('\nExample:');
+    console.log('  pnpm test:now --user brian');
+
+    const systemEmail = {
+      user: process.env.GMAIL_USER || '',
+      appPassword: process.env.GMAIL_APP_PASSWORD || ''
+    };
+    const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
+    const tempConfigService = new UserConfigService(undefined, systemEmail, claudeModel);
+    const availableUsers = tempConfigService.getAllUserIds();
+
+    if (availableUsers.length > 0) {
+      console.log('\nAvailable users:', availableUsers.join(', '));
+    } else {
+      console.log('\nNo users found in config/users.json');
+      console.log('Create a user by editing config/users.json (see config/users.json.example)');
+    }
+
+    process.exit(1);
+  }
+
   // Initialize user config service
   const systemEmail = {
     user: process.env.GMAIL_USER || '',
@@ -111,26 +98,17 @@ async function main(): Promise<void> {
   const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
   const userConfigService = new UserConfigService(undefined, systemEmail, claudeModel);
 
-  // Determine which config to use
-  let config: Config;
-
-  if (userId) {
-    // Multi-user mode: load config for specific user
-    const userConfig = userConfigService.getUserConfig(userId);
-    if (!userConfig) {
-      console.error(`Error: User '${userId}' not found in users.json`);
-      console.log('\nAvailable users:', userConfigService.getAllUserIds().join(', ') || 'none');
-      console.log('\nTo create a user, add them to config/users.json or use the migration command.');
-      process.exit(1);
-    }
-    config = userConfigService.toSystemConfig(userConfig);
-    console.log(`Loading configuration for user: ${userId}`);
-  } else {
-    // Legacy mode: load from config.json
-    config = loadLegacyConfig();
-    console.log('Loading legacy single-user configuration from config.json');
-    console.log('Tip: Use --user <userId> to specify a user from users.json');
+  // Load config for specific user
+  const userConfig = userConfigService.getUserConfig(userId);
+  if (!userConfig) {
+    console.error(`Error: User '${userId}' not found in users.json`);
+    console.log('\nAvailable users:', userConfigService.getAllUserIds().join(', ') || 'none');
+    console.log('\nTo create a user, edit config/users.json (see config/users.json.example)');
+    process.exit(1);
   }
+
+  const config = userConfigService.toSystemConfig(userConfig);
+  console.log(`Loading configuration for user: ${userId}`);
 
   if (!config.email.user || !config.email.appPassword) {
     console.warn('Warning: Gmail credentials not configured. Email sending will fail.');
@@ -151,32 +129,25 @@ async function main(): Promise<void> {
   }
 
   // Handle scheduled execution
-  if (userId) {
-    // For multi-user scheduled mode, run for all users with their own schedules
-    console.error('Error: Scheduled multi-user mode not yet implemented in this version.');
-    console.error('Use --now --user <userId> to run immediately for a specific user.');
-    process.exit(1);
-  } else {
-    // Legacy scheduled mode for single user
-    const { dayOfWeek, hour, minute } = config.schedule;
-    const cronExpression = `${minute} ${hour} * * ${dayOfWeek}`;
+  const { dayOfWeek, hour, minute } = config.schedule;
+  const cronExpression = `${minute} ${hour} * * ${dayOfWeek}`;
 
-    console.log('Meal Planner Agent started!');
-    console.log(`Scheduled to run: Every ${getDayName(dayOfWeek)} at ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
-    console.log(`Cron expression: ${cronExpression}`);
-    console.log('\nWaiting for scheduled time...');
-    console.log('Press Ctrl+C to stop\n');
-    console.log('Run with --now flag to execute immediately: npm run dev -- --now');
-    console.log('Add --sendemail to actually send emails: npm run dev -- --now --sendemail\n');
+  console.log('Meal Planner Agent started!');
+  console.log(`User: ${userId}`);
+  console.log(`Scheduled to run: Every ${getDayName(dayOfWeek)} at ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`);
+  console.log(`Cron expression: ${cronExpression}`);
+  console.log('\nWaiting for scheduled time...');
+  console.log('Press Ctrl+C to stop\n');
+  console.log('Run with --now flag to execute immediately: pnpm test:now --user ' + userId);
+  console.log('Add --sendemail to actually send emails: pnpm test:now:send --user ' + userId + '\n');
 
-    cron.schedule(cronExpression, async () => {
-      try {
-        await runMealPlanner(config);
-      } catch (error) {
-        console.error('Scheduled run failed:', error);
-      }
-    });
-  }
+  cron.schedule(cronExpression, async () => {
+    try {
+      await runMealPlanner(config, false, userId);
+    } catch (error) {
+      console.error('Scheduled run failed:', error);
+    }
+  });
 }
 
 function getDayName(dayOfWeek: number): string {
