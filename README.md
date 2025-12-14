@@ -53,100 +53,76 @@ You need to create a Gmail App Password (not your regular Gmail password):
 - Generate a new app password for "Mail"
 - Copy the 16-character password
 
-5. Edit the configuration file:
+5. Create user configuration file:
 ```bash
-nano config/config.json
+cp config/users.json.example config/users.json
+nano config/users.json
 ```
 
-Update with your details:
+Add your user(s) to the configuration:
 ```json
 {
-  "email": {
-    "user": "your-email@gmail.com",
-    "appPassword": "your-16-char-app-password",
-    "recipient": "your-email@gmail.com"
-  },
-  "schedule": {
-    "dayOfWeek": 0,
-    "hour": 10,
-    "minute": 0
-  },
-  "preferences": {
-    "numberOfMeals": 7,
-    "servingsPerMeal": 2,
-    "minProteinPerMeal": 40,
-    "maxCaloriesPerMeal": 600,
-    "dietaryRestrictions": []
-  },
-  "heb": {
-    "enabled": true
+  "users": {
+    "your-name": {
+      "userId": "your-name",
+      "email": {
+        "recipients": ["your-email@gmail.com"]
+      },
+      "schedule": {
+        "dayOfWeek": 0,
+        "hour": 10,
+        "minute": 0
+      },
+      "preferences": {
+        "numberOfMeals": 7,
+        "servingsPerMeal": 2,
+        "minProteinPerMeal": 40,
+        "maxCaloriesPerMeal": 600,
+        "dietaryRestrictions": []
+      },
+      "heb": {
+        "enabled": true
+      }
+    }
   }
 }
 ```
 
-### Configuration Options
-
-- `schedule.dayOfWeek`: 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-- `schedule.hour`: Hour in 24-hour format (0-23)
-- `schedule.minute`: Minute (0-59)
-- `preferences.numberOfMeals`: Number of meals to generate (default: 7 for weekly plan)
-- `preferences.servingsPerMeal`: Number of servings each meal should provide (default: 2)
-- `preferences.minProteinPerMeal`: Minimum grams of protein per meal
-- `preferences.maxCaloriesPerMeal`: Maximum calories per meal
-- `preferences.dietaryRestrictions`: Array of restrictions (e.g., ["gluten-free", "dairy-free"])
-- `heb.enabled`: Set to false to disable HEB browsing feature
+See [Multi-User Documentation](./docs/MULTI_USER.md) for complete configuration options and examples.
 
 ## Usage
 
-### Multi-User Mode
+**Important**: All commands require the `--user <userId>` flag to specify which user configuration to use.
 
-Run the agent for a specific user (using `config/users.json`):
+### Test Mode (Email Saved to File)
 
-```bash
-# Test mode (saves to TESTEMAIL.html)
-pnpm test:now --user brian
-
-# Production mode (sends email)
-pnpm test:now:send --user brian
-```
-
-See [Multi-User Documentation](./docs/MULTI_USER.md) for detailed setup and configuration.
-
-### Legacy Single-User Mode
-
-Test immediately without specifying a user (using `config/config.json`):
+Run the agent immediately and save the email to `TESTEMAIL.html`:
 
 ```bash
-pnpm test:now
-# or: pnpm run dev -- --now
-# or: pnpm run dev -- -n
+pnpm test:now --user your-name
 ```
 
-This runs the agent once immediately in **TEST MODE**. Instead of sending an email, it will:
-- Generate a meal plan
-- Browse HEB for ingredients (if enabled)
-- Save the email content to `TESTEMAIL.html` in the project root
-- Overwrite any existing `TESTEMAIL.html` file
+### Production Mode (Send Email)
 
-Perfect for testing your configuration without sending actual emails. Open `TESTEMAIL.html` in your browser to preview the meal plan email.
+Run the agent immediately and send the email to configured recipients:
 
-### Build the project:
 ```bash
-pnpm run build
+pnpm test:now:send --user your-name
+# or: pnpm run dev -- --now --sendemail --user your-name
 ```
 
-### Run on schedule:
+### Scheduled Mode
+
+Run the agent on a schedule (using the schedule from user config):
+
 ```bash
-pnpm start
-# or after building: node dist/index.js
+pnpm start --user your-name
+# or after building: node dist/index.js --user your-name
 ```
 
-The agent will run in the background and execute at your scheduled time each week. Press Ctrl+C to stop.
+**Test Mode** saves the email content to `TESTEMAIL.html` instead of sending it. This is perfect for testing your configuration without sending actual emails. Open `TESTEMAIL.html` in your browser to preview the meal plan.
 
-### Development mode with auto-reload:
-```bash
-pnpm run watch
-```
+For more usage examples and multi-user scenarios, see [Multi-User Documentation](./docs/MULTI_USER.md).
 
 ## How It Works
 
