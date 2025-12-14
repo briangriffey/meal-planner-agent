@@ -6,6 +6,7 @@
   "packageManager": "pnpm@9.15.0",
   "scripts": {
     "build": "pnpm -r build",
+    "build:clean": "rm -rf apps/web/.next packages/*/dist && pnpm -r build",
     "dev": "pnpm --filter @meal-planner/web dev",
     "dev:worker": "pnpm --filter @meal-planner/queue dev",
     "db:migrate": "pnpm --filter @meal-planner/database migrate",
