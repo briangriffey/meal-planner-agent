@@ -193,7 +193,7 @@ async function testEmailSend(): Promise<void> {
     // Execute the email connector directly with sample content
     await emailConnector.execute({
       subject: 'Test Email - Weekly Meal Plan',
-      content: SAMPLE_MEAL_PLAN
+      body: SAMPLE_MEAL_PLAN
     });
 
     console.log('\n=== Email Test Complete ===\n');
