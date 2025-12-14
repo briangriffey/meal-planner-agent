@@ -50,7 +50,7 @@ docker-compose up -d
 
 ### 3. Environment Variables
 
-Create `.env` file in `apps/web/`:
+Create `.env` file in the **root directory** (shared across all packages):
 
 ```env
 DATABASE_URL="postgresql://mealplanner:mealplanner123@localhost:5432/mealplanner"
@@ -63,11 +63,17 @@ GMAIL_USER="your-email@gmail.com"
 GMAIL_APP_PASSWORD="your-gmail-app-password"
 ```
 
+**Note:** All database operations (migrations, schema management) run from the `packages/database` package, which is the single source of truth for the database schema.
+
 ### 4. Run Database Migrations
 
 ```bash
-cd apps/web
-pnpm prisma migrate dev
+# From root directory
+pnpm db:migrate
+
+# Or directly from database package
+cd packages/database
+pnpm migrate
 ```
 
 ### 5. Start Development Servers
@@ -141,18 +147,20 @@ meal-planner-agent/
 │       │   ├── login/         # Authentication pages
 │       │   └── register/
 │       ├── components/        # React components
-│       ├── lib/               # Auth & database config
-│       └── prisma/            # Prisma schema
+│       └── lib/               # Auth & database config
 ├── packages/
+│   ├── database/              # Database Package (Source of Truth)
+│   │   ├── prisma/
+│   │   │   ├── schema.prisma     # Single database schema
+│   │   │   └── migrations/       # Migration history
+│   │   └── src/
+│   │       └── index.ts          # Exports PrismaClient singleton
 │   ├── core/                  # Meal planning agent
 │   │   ├── src/
 │   │   │   ├── agent/        # MealPlannerAgent class
 │   │   │   ├── connectors/   # Email, HEB, web search
 │   │   │   ├── services/     # Meal history service
 │   │   │   └── types/        # TypeScript types
-│   ├── database/              # Prisma ORM
-│   │   └── prisma/
-│   │       └── schema.prisma  # Database schema
 │   └── queue/                 # BullMQ job processing
 │       └── src/
 │           ├── client.ts      # Queue client
@@ -177,13 +185,33 @@ pnpm dev
 
 # Start queue worker
 pnpm dev:worker
+```
 
-# Run database migrations
+## Database Operations
+
+All database operations run from `packages/database/` (single source of truth):
+
+```bash
+# Development migrations (interactive)
 pnpm db:migrate
+
+# Production migrations (non-interactive)
+pnpm db:migrate:deploy
+
+# Generate Prisma client
+pnpm db:generate
 
 # Open Prisma Studio (database GUI)
 pnpm db:studio
+
+# Push schema without migration (prototyping)
+pnpm db:push
+
+# Seed database
+pnpm db:seed
 ```
+
+**Note:** The `.env` file at the root is shared across all packages.
 
 ## How It Works
 

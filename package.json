@@ -9,7 +9,10 @@
     "dev": "pnpm --filter @meal-planner/web dev",
     "dev:worker": "pnpm --filter @meal-planner/queue dev",
     "db:migrate": "pnpm --filter @meal-planner/database migrate",
+    "db:migrate:deploy": "pnpm --filter @meal-planner/database migrate:deploy",
+    "db:generate": "pnpm --filter @meal-planner/database generate",
     "db:studio": "pnpm --filter @meal-planner/database studio",
+    "db:push": "pnpm --filter @meal-planner/database push",
     "db:seed": "pnpm --filter @meal-planner/database seed"
   },
   "keywords": [

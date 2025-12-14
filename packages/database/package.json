@@ -10,7 +10,8 @@
     "studio": "prisma studio",
     "generate": "prisma generate",
     "seed": "ts-node src/migrations/json-to-db.ts",
-    "push": "prisma db push"
+    "push": "prisma db push",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0"
