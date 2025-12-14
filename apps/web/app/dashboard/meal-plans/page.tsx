@@ -74,7 +74,7 @@ export default async function MealPlansPage() {
               </div>
             </li>
           ) : (
-            mealPlans.map((plan) => (
+            mealPlans.map((plan: any) => (
               <li key={plan.id}>
                 <div className="px-4 py-4 sm:px-6 hover:bg-gray-50">
                   <div className="flex items-center justify-between">
@@ -105,7 +105,7 @@ export default async function MealPlansPage() {
                     <div className="ml-4 flex items-center space-x-4">
                       <span
                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          statusColors[plan.status]
+                          statusColors[plan.status as keyof typeof statusColors]
                         }`}
                       >
                         {plan.status}
