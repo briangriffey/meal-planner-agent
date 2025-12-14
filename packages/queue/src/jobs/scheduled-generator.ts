@@ -1,5 +1,6 @@
 import { Job } from 'bullmq';
 import { PrismaClient } from '@meal-planner/database';
+import { CLAUDE_MODEL } from '@meal-planner/core';
 import { ScheduledJobData, enqueueMealPlanGeneration } from '../client';
 
 /**
@@ -64,13 +65,12 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
     }
 
     // Create a new meal plan record
-    const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
     const mealPlan = await prisma.mealPlan.create({
       data: {
         userId,
         weekStartDate: weekStart,
         status: 'PENDING',
-        claudeModel,
+        claudeModel: CLAUDE_MODEL,
       },
     });
 
@@ -88,7 +88,7 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
         dietaryRestrictions: prefs.dietaryRestrictions,
       },
       hebEnabled: prefs.hebEnabled,
-      claudeModel,
+      claudeModel: CLAUDE_MODEL,
       emailConfig: {
         user: process.env.GMAIL_USER!,
         appPassword: process.env.GMAIL_APP_PASSWORD!,

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { enqueueMealPlanGeneration } from '@/lib/queue';
+import { CLAUDE_MODEL } from '@meal-planner/core';
 import { z } from 'zod';
 
 const generateSchema = z.object({
@@ -68,16 +69,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get Claude model from environment
-    const claudeModel = process.env.CLAUDE_MODEL || 'claude-sonnet-4-20250514';
-
     // Create meal plan record
     const mealPlan = await prisma.mealPlan.create({
       data: {
         userId: session.user.id,
         weekStartDate: weekStart,
         status: 'PENDING',
-        claudeModel,
+        claudeModel: CLAUDE_MODEL,
       },
     });
 
@@ -93,7 +91,7 @@ export async function POST(request: Request) {
         dietaryRestrictions: userPreferences.dietaryRestrictions,
       },
       hebEnabled: userPreferences.hebEnabled,
-      claudeModel,
+      claudeModel: CLAUDE_MODEL,
       emailConfig: {
         user: process.env.GMAIL_USER!,
         appPassword: process.env.GMAIL_APP_PASSWORD!,

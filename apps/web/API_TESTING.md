@@ -48,7 +48,7 @@ REDIS_URL="redis://localhost:6379"
 NEXTAUTH_SECRET="your-secret-key-here-change-in-production"
 NEXTAUTH_URL="http://localhost:3000"
 ANTHROPIC_API_KEY="your-anthropic-api-key"
-CLAUDE_MODEL="claude-sonnet-4-20250514"
+# Claude model is defined in packages/core/src/constants.ts
 GMAIL_USER="your-email@gmail.com"
 GMAIL_APP_PASSWORD="your-gmail-app-password"
 ```
