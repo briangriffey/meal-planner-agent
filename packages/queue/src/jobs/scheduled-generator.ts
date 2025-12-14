@@ -90,7 +90,6 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
       hebEnabled: prefs.hebEnabled,
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
-        user: process.env.GMAIL_USER!,
         recipients: prefs.emailRecipients,
       },
       testMode: false,

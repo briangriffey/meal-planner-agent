@@ -20,7 +20,6 @@ export interface MealPlanJobData {
   hebEnabled: boolean;
   claudeModel: string;
   emailConfig: {
-    user: string;
     recipients: string[];
   };
   testMode?: boolean;

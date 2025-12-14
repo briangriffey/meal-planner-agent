@@ -93,7 +93,6 @@ export async function POST(request: Request) {
       hebEnabled: userPreferences.hebEnabled,
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
-        user: process.env.GMAIL_USER!,
         recipients: sendEmail ? userPreferences.emailRecipients : [],
       },
       testMode: !sendEmail,

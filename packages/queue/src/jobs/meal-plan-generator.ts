@@ -30,10 +30,10 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
     // Create connector registry
     const connectorRegistry = new ConnectorRegistry();
 
-    // Email connector - retrieve app password from environment
+    // Email connector - retrieve credentials from environment
     const emailConnector = new EmailConnector(
       {
-        user: emailConfig.user,
+        user: process.env.GMAIL_USER!,
         appPassword: process.env.GMAIL_APP_PASSWORD!,
         recipients: emailConfig.recipients,
       },
