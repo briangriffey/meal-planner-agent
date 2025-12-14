@@ -1,6 +1,5 @@
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { MealRecord } from '@meal-planner/database';
 import { redirect } from 'next/navigation';
 
 export default async function AnalyticsPage() {
@@ -27,7 +26,7 @@ export default async function AnalyticsPage() {
   const totalMeals = mealRecords.length;
 
   const avgNutrition = mealRecords.reduce(
-    (acc: { calories: number; protein: number; carbs: number; fat: number; fiber: number; count: number }, meal: MealRecord) => {
+    (acc, meal) => {
       if (meal.calories) acc.calories += meal.calories;
       if (meal.protein) acc.protein += meal.protein;
       if (meal.carbs) acc.carbs += meal.carbs;
