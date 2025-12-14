@@ -199,9 +199,26 @@ After generating the meal plan, you should:
    - Include the meal plan with all recipes
    - Add a dedicated shopping list section at the end with combined ingredients
    - Make ingredient names clickable links to add them to HEB cart
-   - For the ingredient list specifically, use a mobile-friendly format like this example:
-     <div style="background: #f9f9f9; padding: 15px; margin: 8px 0; border-radius: 8px;">
-       <a href="[link]" style="display: block; color: #c8102e; text-decoration: none; font-size: 16px; line-height: 1.6;">
+
+   **BRAND COLORS - Use these consistently throughout the email:**
+   - Primary Teal: #3F9BA6 (use for headers, buttons, primary accents)
+   - Primary Teal Dark: #2A6B73 (use for gradients and hover states)
+   - Accent Terracotta: #A66A5D (use for secondary accents, links)
+   - Accent Terracotta Dark: #8B4F44 (use for gradients)
+   - Background: #f5f5f5 or white
+   - Text: #1f2937 (dark gray)
+
+   **Email Design Guidelines:**
+   - Use gradient backgrounds: linear-gradient(135deg, #3F9BA6, #2A6B73) for headers
+   - Apply rounded corners (border-radius: 8-12px) to cards and sections
+   - For buttons/CTAs: background with gradient from #3F9BA6 to #2A6B73, white text
+   - For links: color #A66A5D with hover effect
+   - Use card-style layouts with subtle shadows for each meal
+   - Add the "Easy Meal Planner" branding at the top with logo styling
+
+   - For the ingredient list specifically, use this mobile-friendly format:
+     <div style="background: #f9f9f9; padding: 15px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #3F9BA6;">
+       <a href="[link]" style="display: block; color: #A66A5D; text-decoration: none; font-size: 16px; line-height: 1.6;">
          <strong>Ingredient Name</strong> - Quantity
        </a>
      </div>
@@ -212,6 +229,7 @@ After generating the meal plan, you should:
      * Use a single-column layout
      * Add background colors or rounded borders to make items visually distinct and tappable
      * Ensure adequate contrast for readability
+     * Use brand colors (#3F9BA6 for accents, #A66A5D for links)
 4. Use the send_email tool to send the complete email
 
 Make the meal plans varied, delicious, and practical for home cooking. Consider seasonal ingredients when possible.`;
