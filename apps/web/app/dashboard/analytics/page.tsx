@@ -52,8 +52,10 @@ export default async function AnalyticsPage() {
     return acc;
   }, {} as Record<string, number>);
 
-  const topMeals = Object.entries(mealFrequency)
-    .sort(([, a], [, b]) => b - a)
+
+
+  const topMeals = (Object.entries(mealFrequency) as [string, number][])
+    .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
 
   return (
@@ -229,7 +231,7 @@ export default async function AnalyticsPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {mealRecords.slice(0, 20).map((meal) => (
+              {mealRecords.slice(0, 20).map((meal: any) => (
                 <tr key={meal.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {meal.name}
