@@ -1,19 +1,20 @@
 #!/usr/bin/env ts-node
 /**
- * Test script for sending actual emails
+ * Test script for email sending only
  *
- * This script runs the meal planner agent in PRODUCTION mode,
- * which means it will actually send emails to the configured recipients.
+ * This script tests the email connector in PRODUCTION mode
+ * by sending a sample meal plan email to configured recipients.
+ *
+ * NOTE: This does NOT generate a meal plan with AI - it uses
+ * a hardcoded sample for testing email functionality only.
  *
  * USE WITH CAUTION - This will send real emails!
  */
 
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-import { MealPlannerAgent } from '../src/services/agent';
 import { ConnectorRegistry } from '../src/connectors/base';
 import { EmailConnector } from '../src/connectors/email';
-import { HEBBrowsingConnector, WebSearchConnector } from '../src/connectors/web';
 import { Config } from '../src/types';
 
 // Load environment variables
@@ -58,19 +59,86 @@ function loadConfig(): Config {
   }
 }
 
+// Sample meal plan for testing
+const SAMPLE_MEAL_PLAN = `
+# Weekly Meal Plan - Test Email
+
+## Monday
+**Grilled Chicken with Roasted Vegetables**
+- Calories: 520
+- Protein: 45g
+- [Chicken Breast](https://www.heb.com/product-detail/313243)
+- [Broccoli](https://www.heb.com/product-detail/319052)
+
+## Tuesday
+**Salmon with Quinoa and Asparagus**
+- Calories: 580
+- Protein: 42g
+
+## Wednesday
+**Turkey Chili with Black Beans**
+- Calories: 490
+- Protein: 48g
+
+## Thursday
+**Baked Cod with Sweet Potato**
+- Calories: 540
+- Protein: 41g
+
+## Friday
+**Lean Beef Stir-Fry with Brown Rice**
+- Calories: 595
+- Protein: 46g
+
+## Saturday
+**Greek Chicken Bowl**
+- Calories: 510
+- Protein: 44g
+
+## Sunday
+**Shrimp Tacos with Cabbage Slaw**
+- Calories: 485
+- Protein: 43g
+
+---
+
+## Shopping List
+
+### Proteins
+- Chicken breast (2 lbs)
+- Salmon fillet (1 lb)
+- Ground turkey (1 lb)
+- Cod fillet (1 lb)
+- Lean beef (1 lb)
+- Large shrimp (1 lb)
+
+### Vegetables
+- Broccoli (2 heads)
+- Asparagus (1 bunch)
+- Sweet potato (2 large)
+- Bell peppers (3)
+- Cabbage (1 head)
+- Mixed vegetables
+
+### Pantry
+- Quinoa
+- Brown rice
+- Black beans
+- Taco shells
+
+---
+
+**Note:** This is a TEST email generated to verify email sending functionality.
+`;
+
 async function testEmailSend(): Promise<void> {
   console.log('\n========================================');
-  console.log('🚨 EMAIL SEND TEST - PRODUCTION MODE 🚨');
+  console.log('📧 EMAIL SEND TEST - PRODUCTION MODE');
   console.log('========================================\n');
 
   const config = loadConfig();
 
-  // Validate required environment variables
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('❌ Error: ANTHROPIC_API_KEY environment variable is required');
-    process.exit(1);
-  }
-
+  // Validate email configuration
   if (!config.email.user || !config.email.appPassword) {
     console.error('❌ Error: Gmail credentials not configured');
     console.error('   Please set GMAIL_USER and GMAIL_APP_PASSWORD in .env');
@@ -88,49 +156,54 @@ async function testEmailSend(): Promise<void> {
   console.log(`   From: ${config.email.user}`);
   console.log(`   To: ${config.email.recipients.join(', ')}`);
   console.log('');
-  console.log('🍽️  Meal Preferences:');
-  console.log(`   Number of meals: ${config.preferences.numberOfMeals}`);
-  console.log(`   Min protein: ${config.preferences.minProteinPerMeal}g per meal`);
-  console.log(`   Max calories: ${config.preferences.maxCaloriesPerMeal} per meal`);
-  console.log('');
-  console.log('🛒 HEB Integration: ' + (config.heb.enabled ? 'Enabled ✅' : 'Disabled ❌'));
-  console.log('');
 
   // Confirmation prompt
-  console.log('⚠️  WARNING: This will send ACTUAL EMAILS to the recipients above!');
+  console.log('⚠️  WARNING: This will send a TEST EMAIL to the recipients above!');
+  console.log('');
+  console.log('   Content: Sample meal plan (not AI-generated)');
+  console.log('   Purpose: Test email sending functionality only');
   console.log('');
   console.log('To confirm, set the environment variable CONFIRM_EMAIL_SEND=true');
-  console.log('Example: CONFIRM_EMAIL_SEND=true npx ts-node tests/test-email-send.ts');
+  console.log('Example: CONFIRM_EMAIL_SEND=true pnpm test:email-send');
   console.log('');
 
   if (process.env.CONFIRM_EMAIL_SEND !== 'true') {
     console.log('❌ Email send not confirmed. Exiting safely.');
     console.log('   (This is a safety measure to prevent accidental email sends)');
+    console.log('');
+    console.log('💡 Tip: To test with a FULL meal plan, use:');
+    console.log('   pnpm test:now:send');
     process.exit(0);
   }
 
-  console.log('✅ Email send confirmed! Starting meal planner...\n');
-  console.log('=== Starting Meal Planner Agent ===');
+  console.log('✅ Email send confirmed!\n');
+  console.log('=== Testing Email Connector ===');
   console.log(`Time: ${new Date().toLocaleString()}`);
   console.log('Mode: PRODUCTION (email WILL be sent)\n');
 
   const registry = new ConnectorRegistry();
 
   // testMode = false means production mode (actually send emails)
-  registry.register(new EmailConnector(config.email, false));
-  registry.register(new HEBBrowsingConnector());
-  registry.register(new WebSearchConnector());
-
-  const agent = new MealPlannerAgent(config, registry);
+  const emailConnector = new EmailConnector(config.email, false);
+  registry.register(emailConnector);
 
   try {
-    console.log('Starting meal plan generation...');
-    await agent.generateMealPlan();
-    console.log('\n=== Meal Planner Agent Complete ===\n');
-    console.log('✅ Email sent successfully!');
+    console.log('📤 Sending test email with sample meal plan...');
+
+    // Execute the email connector directly with sample content
+    await emailConnector.execute({
+      subject: 'Test Email - Weekly Meal Plan',
+      content: SAMPLE_MEAL_PLAN
+    });
+
+    console.log('\n=== Email Test Complete ===\n');
+    console.log('✅ Test email sent successfully!');
     console.log(`📧 Check inbox: ${config.email.recipients.join(', ')}`);
+    console.log('');
+    console.log('📝 Note: This was a test email with sample content.');
+    console.log('   To generate a real meal plan with AI, use: pnpm test:now:send');
   } catch (error) {
-    console.error('\n❌ Error running meal planner:', error);
+    console.error('\n❌ Error sending email:', error);
     throw error;
   }
 }

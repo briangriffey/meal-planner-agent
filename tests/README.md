@@ -19,7 +19,7 @@ pnpm test:heb-connector
 
 ### 2. Email Send Test (`test-email-send.ts`)
 
-Tests the full meal planner with ACTUAL email sending (production mode).
+Tests ONLY the email connector with a sample meal plan (no AI generation).
 
 **⚠️ WARNING:** This sends real emails to configured recipients!
 
@@ -30,21 +30,24 @@ CONFIRM_EMAIL_SEND=true pnpm test:email-send
 ```
 
 **What it does:**
-- Validates all required environment variables
+- Validates email configuration
 - Shows email configuration summary
 - Requires explicit confirmation via environment variable
-- Runs meal planner in production mode (sends actual emails)
-- Uses HEB scraping and Claude AI to generate meal plan
+- Sends a **hardcoded sample meal plan** (NO AI generation)
+- Tests email sending functionality in isolation
 
 **Prerequisites:**
-- `ANTHROPIC_API_KEY` set in .env
 - `GMAIL_USER` and `GMAIL_APP_PASSWORD` set in .env
 - `EMAIL_RECIPIENTS` configured (comma-separated list)
+- **NO** `ANTHROPIC_API_KEY` required (doesn't use AI)
 
 **Safety features:**
 - Requires `CONFIRM_EMAIL_SEND=true` to prevent accidental sends
 - Displays configuration before running
 - Shows all recipients before proceeding
+- Uses sample content (fast, no API costs)
+
+**Note:** For testing with a FULL AI-generated meal plan, use `pnpm test:now:send` instead
 
 ---
 
@@ -53,10 +56,10 @@ CONFIRM_EMAIL_SEND=true pnpm test:email-send
 | Command | Description | Mode |
 |---------|-------------|------|
 | `pnpm test:now` | Run agent with email saved to file | Test Mode |
-| `pnpm test:now:send` | Run agent immediately AND send email | **Production** ⚠️ |
+| `pnpm test:now:send` | Run full agent + send actual email (AI-generated) | **Production** ⚠️ |
 | `pnpm test:heb-scraper` | Test HEB scraping standalone | Test Mode |
 | `pnpm test:heb-connector` | Test HEB connector class | Test Mode |
-| `pnpm test:email-send` | Send actual email (alternative) | **Production** ⚠️ |
+| `pnpm test:email-send` | Test email only (sample content, no AI) | **Production** ⚠️ |
 
 ---
 
@@ -106,12 +109,12 @@ Expected: Email sent to recipients
 
 ## Environment Variables Required
 
-For all tests:
+For AI-powered tests (`pnpm test:now`, `pnpm test:now:send`):
 ```bash
 ANTHROPIC_API_KEY=your_api_key_here
 ```
 
-For email tests:
+For email tests (`pnpm test:email-send`, `pnpm test:now:send`):
 ```bash
 GMAIL_USER=your_email@gmail.com
 GMAIL_APP_PASSWORD=your_app_password
@@ -120,8 +123,10 @@ EMAIL_RECIPIENTS=recipient1@example.com,recipient2@example.com
 
 For email send test (safety):
 ```bash
-CONFIRM_EMAIL_SEND=true
+CONFIRM_EMAIL_SEND=true  # Only for pnpm test:email-send
 ```
+
+**Note:** `pnpm test:email-send` does NOT require `ANTHROPIC_API_KEY` since it uses sample content
 
 ---
 
