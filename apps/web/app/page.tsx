@@ -57,7 +57,7 @@ export default async function Home() {
           <h2 className="text-5xl sm:text-6xl font-bold text-primary-dark mb-6">
             Stop Thinking About
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mt-2">
-              What's for Dinner
+              What&apos;s for Dinner
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">

@@ -21,7 +21,6 @@ export interface MealPlanJobData {
   claudeModel: string;
   emailConfig: {
     user: string;
-    appPassword: string;
     recipients: string[];
   };
   testMode?: boolean;

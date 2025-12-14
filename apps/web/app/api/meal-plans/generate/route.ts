@@ -94,7 +94,6 @@ export async function POST(request: Request) {
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
         user: process.env.GMAIL_USER!,
-        appPassword: process.env.GMAIL_APP_PASSWORD!,
         recipients: sendEmail ? userPreferences.emailRecipients : [],
       },
       testMode: !sendEmail,

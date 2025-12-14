@@ -85,7 +85,6 @@ async function testEnqueue() {
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
         user: process.env.GMAIL_USER || 'test@example.com',
-        appPassword: process.env.GMAIL_APP_PASSWORD || 'test',
         recipients: prefs.emailRecipients,
       },
       testMode: true, // Test mode - saves email to file instead of sending
