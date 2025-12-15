@@ -26,7 +26,7 @@ export default async function AnalyticsPage() {
   const totalMeals = mealRecords.length;
 
   const avgNutrition = mealRecords.reduce(
-    (acc, meal) => {
+    (acc: { calories: number; protein: number; carbs: number; fat: number; fiber: number; count: number }, meal: any) => {
       if (meal.calories) acc.calories += meal.calories;
       if (meal.protein) acc.protein += meal.protein;
       if (meal.carbs) acc.carbs += meal.carbs;
@@ -46,14 +46,16 @@ export default async function AnalyticsPage() {
     fiber: avgNutrition.count > 0 ? Math.round(avgNutrition.fiber / avgNutrition.count) : 0,
   };
 
-  const mealFrequency = mealRecords.reduce((acc, meal) => {
+  const mealFrequency = mealRecords.reduce((acc: Record<string, number>, meal: any) => {
     const name = meal.name;
     acc[name] = (acc[name] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
-  const topMeals = Object.entries(mealFrequency)
-    .sort(([, a], [, b]) => b - a)
+
+
+  const topMeals = (Object.entries(mealFrequency) as [string, number][])
+    .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
 
   return (
@@ -229,7 +231,7 @@ export default async function AnalyticsPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {mealRecords.slice(0, 20).map((meal) => (
+              {mealRecords.slice(0, 20).map((meal: any) => (
                 <tr key={meal.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {meal.name}

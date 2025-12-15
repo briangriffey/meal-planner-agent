@@ -136,7 +136,7 @@ export default async function DashboardPage() {
               </div>
             </li>
           ) : (
-            recentMealPlans.map((plan) => (
+            recentMealPlans.map((plan: any) => (
               <li key={plan.id} className="px-6 py-4 hover:bg-primary-light/5 transition-colors duration-150">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center flex-1 min-w-0">
@@ -157,7 +157,7 @@ export default async function DashboardPage() {
                     </div>
                   </div>
                   <div className="ml-4 flex items-center space-x-3">
-                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColors[plan.status]}`}>
+                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColors[plan.status as keyof typeof statusColors]}`}>
                       {plan.status}
                     </span>
                     {plan.status === 'COMPLETED' && (

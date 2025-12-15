@@ -1,0 +1,40 @@
+FROM node:20-bookworm-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    openssl \
+    chromium \
+    fonts-liberation \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Copy entire workspace (excluding .env via .dockerignore)
+COPY . .
+
+# Build everything inside Docker
+RUN pnpm build:docker
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+# Create non-root user with home directory
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 --home /home/worker worker
+
+# Change ownership to non-root user
+RUN chown -R worker:nodejs /app && \
+    mkdir -p /home/worker/.cache && \
+    chown -R worker:nodejs /home/worker
+
+# Switch to non-root user
+USER worker
+
+# Run worker
+CMD ["node", "packages/queue/dist/worker.js"]
