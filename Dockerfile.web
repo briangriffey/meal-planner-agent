@@ -1,87 +1,37 @@
-# Stage 1: Install dependencies
-FROM node:20-bookworm-slim AS deps
+FROM node:20-bookworm-slim
 
-# Install OpenSSL for Prisma
-RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
-
-# Enable corepack for pnpm
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
-
-WORKDIR /app
-
-# Copy all source files (needed for Prisma schema)
-COPY . .
-
-# Install dependencies (postinstall will generate Prisma client)
-RUN pnpm install --frozen-lockfile
-
-# Stage 2: Build the application
-FROM node:20-bookworm-slim AS builder
-
-# Install OpenSSL for Prisma
-RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
-
-# Enable corepack for pnpm
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
-
-WORKDIR /app
-
-# Copy everything from deps stage (includes node_modules and source)
-COPY --from=deps /app ./
-
-# Build all packages
-WORKDIR /app
-RUN pnpm --filter @meal-planner/core build
-RUN pnpm --filter @meal-planner/queue build
-# Ensure Prisma client is generated after database package postinstall
-RUN pnpm --filter @meal-planner/database exec prisma generate
-
-# Build Next.js application
-WORKDIR /app/apps/web
-ENV NEXT_TELEMETRY_DISABLED=1
-# Set dummy DATABASE_URL so Prisma client initialization doesn't fail during build
-# This is only used for build-time page data collection, not actual database access
-ENV DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
-RUN pnpm build
-
-# Stage 3: Production runtime
-FROM node:20-bookworm-slim AS runner
-
-# Enable corepack for pnpm
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
-
-WORKDIR /app
-
-# Install Chromium and dependencies for Puppeteer
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    chromium \
+    openssl \
     fonts-liberation \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+# Enable corepack for pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
+
+WORKDIR /app
+
+# Copy entire workspace (excluding .env via .dockerignore)
+COPY . .
+
+# Build everything inside Docker
+RUN pnpm build:docker
 
 # Set environment variables
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# Copy built application from builder (standalone output)
-COPY --from=builder /app/apps/web/.next/standalone ./
-COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=builder /app/apps/web/public ./apps/web/public
-# Copy Prisma schema and generated client
-COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/packages/database/node_modules/.prisma ./packages/database/node_modules/.prisma
+# Create non-root user with home directory
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 --home /home/nextjs nextjs
 
 # Change ownership to non-root user
-RUN chown -R nextjs:nodejs /app
+RUN chown -R nextjs:nodejs /app && \
+    mkdir -p /home/nextjs/.cache && \
+    chown -R nextjs:nodejs /home/nextjs
 
 # Switch to non-root user
 USER nextjs
@@ -94,4 +44,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD node -e "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"
 
 # Run migrations and start application
-CMD ["sh", "-c", "cd packages/database && npx prisma migrate deploy && cd ../.. && node apps/web/server.js"]
+CMD ["sh", "-c", "cd packages/database && npx prisma migrate deploy && cd ../.. && cd apps/web && pnpm start"]

@@ -1,37 +1,29 @@
-# Dependencies
-node_modules/
-.pnpm-store/
-
-# Build outputs
-dist/
-.next/
-apps/web/.next/
-packages/*/dist/
-
-# Development
-.git/
-.github/
-.vscode/
-*.log
-*.md
-!README.md
-
-# Environment
+# Environment files - MUST be excluded
 .env
 .env.*
 !.env.example
+
+# Git and development
+.git/
+.github/
+.vscode/
+
+# Documentation
+*.md
+!README.md
 
 # Testing
 coverage/
 .nyc_output/
 
-# Temporary
+# Temporary files
 tmp/
 temp/
 *.tmp
+*.log
 TESTEMAIL.html
 data/
 
-# Local Docker
+# Docker compose files (not needed in container)
 docker-compose.yml
 docker-compose.full.yml
