@@ -57,7 +57,7 @@ export class MealPlannerAgent {
 
       const response = await this.client.messages.create({
         model: this.claudeModel,
-        max_tokens: 8192,
+        max_tokens: 4096,
         system: systemPrompt,
         messages,
         tools: this.connectorRegistry.getToolDefinitions()
