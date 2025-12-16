@@ -46,6 +46,7 @@ export class EmailConnector extends BaseConnector {
 
   async execute(params: { subject: string; body: string }): Promise<any> {
     try {
+      console.log(`Sending email to ${this.config.recipients.join(', ')}} testmode=${this.testMode}`);
       if (this.testMode) {
         const outputPath = path.join(process.cwd(), 'TESTEMAIL.html');
 

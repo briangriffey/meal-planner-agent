@@ -11,6 +11,7 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
   const { userId, mealPlanId, preferences, hebEnabled, claudeModel, emailConfig, testMode } = job.data;
 
   console.log(`🚀 Starting meal plan generation for user ${userId}, plan ${mealPlanId}`);
+  console.log(`Payload: ${JSON.stringify(job.data)}`);
 
   const prisma = new PrismaClient();
 
