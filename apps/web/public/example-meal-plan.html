@@ -1,560 +1,607 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>🍽️ Your High-Protein Dinner Meal Plan - Week of December 15, 2025</title>
-</head>
-<body>
-  <div style="background: #f5f5f5; padding: 20px; margin-bottom: 20px;">
-    <h1 style="margin: 0;">Email Preview</h1>
-    <p style="margin: 5px 0;"><strong>Subject:</strong> 🍽️ Your High-Protein Dinner Meal Plan - Week of December 15, 2025</p>
-    <p style="margin: 5px 0;"><strong>From:</strong> brian.a.griffey@gmail.com</p>
-    <p style="margin: 5px 0;"><strong>To:</strong> brian.a.griffey@gmail.com</p>
-  </div>
-  <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-Protein Dinner Meal Plan</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #1f2937;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .header {
-            background: linear-gradient(135deg, #3F9BA6, #2A6B73);
-            color: #ffffff;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .header p {
-            margin: 10px 0 0 0;
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        .content {
-            padding: 20px;
-        }
-        .meal-card {
-            background: #ffffff;
-            border-radius: 12px;
-            margin: 20px 0;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-left: 4px solid #3F9BA6;
-        }
-        .meal-header {
-            background: linear-gradient(135deg, #A66A5D, #8B4F44);
-            color: #ffffff;
-            padding: 15px;
-            margin: -20px -20px 20px -20px;
-            border-radius: 8px 8px 0 0;
-        }
-        .meal-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 0;
-        }
-        .meal-subtitle {
-            font-size: 14px;
-            margin: 5px 0 0 0;
-            opacity: 0.9;
-        }
-        .nutrition-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin: 15px 0;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        .nutrition-item {
-            text-align: center;
-        }
-        .nutrition-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #3F9BA6;
-        }
-        .nutrition-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-        }
-        .ingredients {
-            background: #f0f8f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        .ingredients h4 {
-            color: #2A6B73;
-            margin: 0 0 10px 0;
-            font-size: 16px;
-        }
-        .ingredients ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .ingredients li {
-            margin: 5px 0;
-            font-size: 14px;
-        }
-        .instructions {
-            margin: 15px 0;
-        }
-        .instructions h4 {
-            color: #2A6B73;
-            margin: 0 0 10px 0;
-            font-size: 16px;
-        }
-        .instructions ol {
-            padding-left: 20px;
-        }
-        .instructions li {
-            margin: 8px 0;
-            font-size: 14px;
-        }
-        .shopping-section {
-            background: linear-gradient(135deg, #3F9BA6, #2A6B73);
-            color: #ffffff;
-            padding: 30px 20px;
-            margin-top: 30px;
-        }
-        .shopping-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0 0 20px 0;
-            text-align: center;
-        }
-        .category {
-            margin: 25px 0;
-        }
-        .category-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 0 15px 0;
-            color: #ffffff;
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 6px;
-        }
-        .ingredient-item {
-            background: #ffffff;
-            padding: 15px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border-left: 4px solid #A66A5D;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-        .ingredient-item:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transform: translateX(4px);
-        }
-        .ingredient-item a {
-            display: flex;
-            align-items: center;
-            color: #1f2937;
-            text-decoration: none;
-            font-size: 16px;
-            line-height: 1.6;
-            width: 100%;
-        }
-        .ingredient-item a:after {
-            content: "→";
-            margin-left: auto;
-            padding-left: 10px;
-            color: #A66A5D;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .ingredient-item a:hover {
-            color: #2A6B73;
-        }
-        .ingredient-item a:hover:after {
-            color: #3F9BA6;
-        }
-        .ingredient-item strong {
-            color: #1f2937;
-        }
-        .ingredient-text {
-            color: #1f2937;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-        }
-        @media (max-width: 480px) {
-            .container {
+    <title>🍽️ Your High-Protein Dinner Meal Plan - Week of December 15, 2025</title>
+</head>
+
+<body>
+    <div style="background: #f5f5f5; padding: 20px; margin-bottom: 20px;">
+        <h1 style="margin: 0;">Email Preview</h1>
+        <p style="margin: 5px 0;"><strong>Subject:</strong> 🍽️ Your High-Protein Dinner Meal Plan - Week of December
+            15, 2025</p>
+        <p style="margin: 5px 0;"><strong>From:</strong> example@example.com</p>
+        <p style="margin: 5px 0;"><strong>To:</strong> example@example.com</p>
+    </div>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>High-Protein Dinner Meal Plan</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
                 margin: 0;
-                border-radius: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+                color: #1f2937;
+                line-height: 1.6;
             }
-            .nutrition-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                background: #ffffff;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
+
+            .header {
+                background: linear-gradient(135deg, #3F9BA6, #2A6B73);
+                color: #ffffff;
+                padding: 30px 20px;
+                text-align: center;
+            }
+
             .header h1 {
-                font-size: 24px;
+                margin: 0;
+                font-size: 28px;
+                font-weight: bold;
             }
+
+            .header p {
+                margin: 10px 0 0 0;
+                font-size: 16px;
+                opacity: 0.9;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .meal-card {
+                background: #ffffff;
+                border-radius: 12px;
+                margin: 20px 0;
+                padding: 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #3F9BA6;
+            }
+
+            .meal-header {
+                background: linear-gradient(135deg, #A66A5D, #8B4F44);
+                color: #ffffff;
+                padding: 15px;
+                margin: -20px -20px 20px -20px;
+                border-radius: 8px 8px 0 0;
+            }
+
             .meal-title {
+                font-size: 20px;
+                font-weight: bold;
+                margin: 0;
+            }
+
+            .meal-subtitle {
+                font-size: 14px;
+                margin: 5px 0 0 0;
+                opacity: 0.9;
+            }
+
+            .nutrition-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 15px 0;
+                background: #f9f9f9;
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .nutrition-item {
+                text-align: center;
+            }
+
+            .nutrition-value {
+                font-size: 18px;
+                font-weight: bold;
+                color: #3F9BA6;
+            }
+
+            .nutrition-label {
+                font-size: 12px;
+                color: #666;
+                text-transform: uppercase;
+            }
+
+            .ingredients {
+                background: #f0f8f9;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 15px 0;
+            }
+
+            .ingredients h4 {
+                color: #2A6B73;
+                margin: 0 0 10px 0;
+                font-size: 16px;
+            }
+
+            .ingredients ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+
+            .ingredients li {
+                margin: 5px 0;
+                font-size: 14px;
+            }
+
+            .instructions {
+                margin: 15px 0;
+            }
+
+            .instructions h4 {
+                color: #2A6B73;
+                margin: 0 0 10px 0;
+                font-size: 16px;
+            }
+
+            .instructions ol {
+                padding-left: 20px;
+            }
+
+            .instructions li {
+                margin: 8px 0;
+                font-size: 14px;
+            }
+
+            .shopping-section {
+                background: linear-gradient(135deg, #3F9BA6, #2A6B73);
+                color: #ffffff;
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+
+            .shopping-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin: 0 0 20px 0;
+                text-align: center;
+            }
+
+            .category {
+                margin: 25px 0;
+            }
+
+            .category-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0 0 15px 0;
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 10px;
+                border-radius: 6px;
+            }
+
+            .ingredient-item {
+                background: #ffffff;
+                padding: 15px;
+                margin: 8px 0;
+                border-radius: 8px;
+                border-left: 4px solid #A66A5D;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                transition: all 0.2s ease;
+            }
+
+            .ingredient-item:hover {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                transform: translateX(4px);
+            }
+
+            .ingredient-item a {
+                display: flex;
+                align-items: center;
+                color: #1f2937;
+                text-decoration: none;
+                font-size: 16px;
+                line-height: 1.6;
+                width: 100%;
+            }
+
+            .ingredient-item a:after {
+                content: "→";
+                margin-left: auto;
+                padding-left: 10px;
+                color: #A66A5D;
+                font-weight: bold;
                 font-size: 18px;
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🍽️ Easy Meal Planner</h1>
-            <p>High-Protein Dinner Plan | Week of December 15, 2025</p>
+
+            .ingredient-item a:hover {
+                color: #2A6B73;
+            }
+
+            .ingredient-item a:hover:after {
+                color: #3F9BA6;
+            }
+
+            .ingredient-item strong {
+                color: #1f2937;
+            }
+
+            .ingredient-text {
+                color: #1f2937;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 20px;
+                color: #666;
+                font-size: 14px;
+            }
+
+            @media (max-width: 480px) {
+                .container {
+                    margin: 0;
+                    border-radius: 0;
+                }
+
+                .nutrition-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .header h1 {
+                    font-size: 24px;
+                }
+
+                .meal-title {
+                    font-size: 18px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🍽️ Easy Meal Planner</h1>
+                <p>High-Protein Dinner Plan | Week of December 15, 2025</p>
+            </div>
+
+            <div class="content">
+                <p style="text-align: center; font-size: 16px; margin-bottom: 30px; color: #666;">
+                    <strong>3 delicious dinners</strong> • <strong>40g+ protein per serving</strong> • <strong>Under 600
+                        calories</strong> • <strong>Serves 2</strong>
+                </p>
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-title">Day 1: Garlic Herb Baked Cod with Roasted Vegetables</div>
+                        <div class="meal-subtitle">Prep: 10 min • Cook: 20 min • Serves: 2</div>
+                    </div>
+
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">285</div>
+                            <div class="nutrition-label">Calories</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">42g</div>
+                            <div class="nutrition-label">Protein</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">12g</div>
+                            <div class="nutrition-label">Carbs</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">8g</div>
+                            <div class="nutrition-label">Fat</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">4g</div>
+                            <div class="nutrition-label">Fiber</div>
+                        </div>
+                    </div>
+
+                    <div class="ingredients">
+                        <h4>Ingredients (for 2 servings):</h4>
+                        <ul>
+                            <li>cod fillets - 1 lb</li>
+                            <li>fresh parsley - 2 tbsp chopped</li>
+                            <li>fresh lemon - 1 whole</li>
+                            <li>garlic - 4 cloves minced</li>
+                            <li>cherry tomatoes - 1 cup halved</li>
+                            <li>zucchini - 1 medium sliced</li>
+                            <li>olive oil - 2 tbsp</li>
+                            <li>salt - 1 tsp</li>
+                            <li>black pepper - 1/2 tsp</li>
+                        </ul>
+                    </div>
+
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <ol>
+                            <li>Preheat oven to 400°F</li>
+                            <li>Season cod with garlic, parsley, lemon juice, salt and pepper</li>
+                            <li>Toss vegetables with olive oil and seasonings</li>
+                            <li>Arrange vegetables on baking sheet, place cod on top</li>
+                            <li>Bake for 15-20 minutes until fish flakes easily</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-title">Day 2: Spicy Turkey and Black Bean Lettuce Wraps</div>
+                        <div class="meal-subtitle">Prep: 10 min • Cook: 15 min • Serves: 2</div>
+                    </div>
+
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">365</div>
+                            <div class="nutrition-label">Calories</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">41g</div>
+                            <div class="nutrition-label">Protein</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">28g</div>
+                            <div class="nutrition-label">Carbs</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">10g</div>
+                            <div class="nutrition-label">Fat</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">9g</div>
+                            <div class="nutrition-label">Fiber</div>
+                        </div>
+                    </div>
+
+                    <div class="ingredients">
+                        <h4>Ingredients (for 2 servings):</h4>
+                        <ul>
+                            <li>ground turkey - 1 lb</li>
+                            <li>black beans - 1 cup cooked</li>
+                            <li>butter lettuce - 1 head</li>
+                            <li>bell pepper - 1 diced</li>
+                            <li>red onion - 1/2 diced</li>
+                            <li>cumin - 1 tsp</li>
+                            <li>chili powder - 1 tsp</li>
+                            <li>lime - 1 whole</li>
+                            <li>cilantro - 1/4 cup chopped</li>
+                        </ul>
+                    </div>
+
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <ol>
+                            <li>Brown turkey in large skillet over medium-high heat</li>
+                            <li>Add bell pepper and onion, cook until softened</li>
+                            <li>Stir in beans, cumin, and chili powder</li>
+                            <li>Cook for 5 minutes, squeeze in lime juice</li>
+                            <li>Serve in lettuce leaves, top with cilantro</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="meal-card">
+                    <div class="meal-header">
+                        <div class="meal-title">Day 3: Mediterranean Chicken with Zucchini Noodles</div>
+                        <div class="meal-subtitle">Prep: 15 min • Cook: 15 min • Serves: 2</div>
+                    </div>
+
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">385</div>
+                            <div class="nutrition-label">Calories</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">45g</div>
+                            <div class="nutrition-label">Protein</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">15g</div>
+                            <div class="nutrition-label">Carbs</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">16g</div>
+                            <div class="nutrition-label">Fat</div>
+                        </div>
+                        <div class="nutrition-item">
+                            <div class="nutrition-value">5g</div>
+                            <div class="nutrition-label">Fiber</div>
+                        </div>
+                    </div>
+
+                    <div class="ingredients">
+                        <h4>Ingredients (for 2 servings):</h4>
+                        <ul>
+                            <li>chicken breast - 1.5 lbs</li>
+                            <li>zucchini - 3 large spiralized</li>
+                            <li>cherry tomatoes - 2 cups halved</li>
+                            <li>feta cheese - 1/4 cup crumbled</li>
+                            <li>garlic - 3 cloves minced</li>
+                            <li>oregano - 1 tsp dried</li>
+                            <li>olive oil - 2 tbsp</li>
+                            <li>lemon juice - 2 tbsp</li>
+                            <li>kalamata olives - 1/4 cup sliced</li>
+                        </ul>
+                    </div>
+
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <ol>
+                            <li>Season chicken with oregano, salt, and pepper</li>
+                            <li>Grill chicken for 6-7 minutes per side until cooked through</li>
+                            <li>Sauté zucchini noodles with garlic in olive oil for 2-3 minutes</li>
+                            <li>Add cherry tomatoes and cook until just softened</li>
+                            <li>Slice chicken and serve over zucchini noodles</li>
+                            <li>Top with feta, olives, and lemon juice</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-section">
+                <h2 class="shopping-title">🛒 Complete Shopping List</h2>
+                <p style="text-align: center; margin-bottom: 30px; opacity: 0.9; font-size: 16px;">
+                    Organized by category with combined quantities.<br>
+                    <strong>Click any ingredient to search for it on H-E-B's website!</strong>
+                </p>
+
+                <div class="category">
+                    <h3 class="category-title">🥬 Produce</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=fresh%20parsley">
+                            <strong>fresh parsley</strong> - 2 tbsp chopped
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=fresh%20lemon">
+                            <strong>fresh lemon</strong> - 1 whole
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=garlic">
+                            <strong>garlic</strong> - 7 cloves minced
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=cherry%20tomatoes">
+                            <strong>cherry tomatoes</strong> - 1 cup halved + 2 cups halved
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=zucchini">
+                            <strong>zucchini</strong> - 1 medium sliced + 3 large spiralized
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=black%20pepper">
+                            <strong>black pepper</strong> - 1/2 tsp
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=butter%20lettuce">
+                            <strong>butter lettuce</strong> - 1 head
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=bell%20pepper">
+                            <strong>bell pepper</strong> - 1 diced
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=red%20onion">
+                            <strong>red onion</strong> - 1/2 diced
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=chili%20powder">
+                            <strong>chili powder</strong> - 1 tsp
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=lime">
+                            <strong>lime</strong> - 1 whole
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=cilantro">
+                            <strong>cilantro</strong> - 1/4 cup chopped
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=lemon%20juice">
+                            <strong>lemon juice</strong> - 2 tbsp
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">🥩 Meat & Seafood</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=cod%20fillets">
+                            <strong>cod fillets</strong> - 1 lb
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=ground%20turkey">
+                            <strong>ground turkey</strong> - 1 lb
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=chicken%20breast">
+                            <strong>chicken breast</strong> - 1.5 lbs
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">🥛 Dairy & Eggs</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=feta%20cheese">
+                            <strong>feta cheese</strong> - 1/4 cup crumbled
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">🌾 Pantry Staples</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=black%20beans">
+                            <strong>black beans</strong> - 1 cup cooked
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">🧂 Spices & Seasonings</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=olive%20oil">
+                            <strong>olive oil</strong> - 4 tbsp
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=salt">
+                            <strong>salt</strong> - 1 tsp
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=cumin">
+                            <strong>cumin</strong> - 1 tsp
+                        </a>
+                    </div>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=oregano">
+                            <strong>oregano</strong> - 1 tsp dried
+                        </a>
+                    </div>
+                </div>
+                <div class="category">
+                    <h3 class="category-title">📦 Other</h3>
+                    <div class="ingredient-item">
+                        <a href="https://www.heb.com/search?esc=true&q=kalamata%20olives">
+                            <strong>kalamata olives</strong> - 1/4 cup sliced
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>🍽️ <strong>Easy Meal Planner</strong></p>
+                <p>Happy cooking! Each meal provides 40g+ protein and stays under 600 calories per serving.</p>
+                <p style="font-size: 12px; color: #999;">Nutritional information is approximate. Individual results may
+                    vary.</p>
+            </div>
         </div>
+    </body>
 
-        <div class="content">
-            <p style="text-align: center; font-size: 16px; margin-bottom: 30px; color: #666;">
-                <strong>3 delicious dinners</strong> • <strong>40g+ protein per serving</strong> • <strong>Under 600 calories</strong> • <strong>Serves 2</strong>
-            </p>
-            <div class="meal-card">
-                <div class="meal-header">
-                    <div class="meal-title">Day 1: Garlic Herb Baked Cod with Roasted Vegetables</div>
-                    <div class="meal-subtitle">Prep: 10 min • Cook: 20 min • Serves: 2</div>
-                </div>
-
-                <div class="nutrition-grid">
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">285</div>
-                        <div class="nutrition-label">Calories</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">42g</div>
-                        <div class="nutrition-label">Protein</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">12g</div>
-                        <div class="nutrition-label">Carbs</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">8g</div>
-                        <div class="nutrition-label">Fat</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">4g</div>
-                        <div class="nutrition-label">Fiber</div>
-                    </div>
-                </div>
-
-                <div class="ingredients">
-                    <h4>Ingredients (for 2 servings):</h4>
-                    <ul>
-                        <li>cod fillets - 1 lb</li>
-                        <li>fresh parsley - 2 tbsp chopped</li>
-                        <li>fresh lemon - 1 whole</li>
-                        <li>garlic - 4 cloves minced</li>
-                        <li>cherry tomatoes - 1 cup halved</li>
-                        <li>zucchini - 1 medium sliced</li>
-                        <li>olive oil - 2 tbsp</li>
-                        <li>salt - 1 tsp</li>
-                        <li>black pepper - 1/2 tsp</li>
-                    </ul>
-                </div>
-
-                <div class="instructions">
-                    <h4>Instructions:</h4>
-                    <ol>
-                        <li>Preheat oven to 400°F</li>
-                        <li>Season cod with garlic, parsley, lemon juice, salt and pepper</li>
-                        <li>Toss vegetables with olive oil and seasonings</li>
-                        <li>Arrange vegetables on baking sheet, place cod on top</li>
-                        <li>Bake for 15-20 minutes until fish flakes easily</li>
-                    </ol>
-                </div>
-            </div>
-<div class="meal-card">
-                <div class="meal-header">
-                    <div class="meal-title">Day 2: Spicy Turkey and Black Bean Lettuce Wraps</div>
-                    <div class="meal-subtitle">Prep: 10 min • Cook: 15 min • Serves: 2</div>
-                </div>
-
-                <div class="nutrition-grid">
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">365</div>
-                        <div class="nutrition-label">Calories</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">41g</div>
-                        <div class="nutrition-label">Protein</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">28g</div>
-                        <div class="nutrition-label">Carbs</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">10g</div>
-                        <div class="nutrition-label">Fat</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">9g</div>
-                        <div class="nutrition-label">Fiber</div>
-                    </div>
-                </div>
-
-                <div class="ingredients">
-                    <h4>Ingredients (for 2 servings):</h4>
-                    <ul>
-                        <li>ground turkey - 1 lb</li>
-                        <li>black beans - 1 cup cooked</li>
-                        <li>butter lettuce - 1 head</li>
-                        <li>bell pepper - 1 diced</li>
-                        <li>red onion - 1/2 diced</li>
-                        <li>cumin - 1 tsp</li>
-                        <li>chili powder - 1 tsp</li>
-                        <li>lime - 1 whole</li>
-                        <li>cilantro - 1/4 cup chopped</li>
-                    </ul>
-                </div>
-
-                <div class="instructions">
-                    <h4>Instructions:</h4>
-                    <ol>
-                        <li>Brown turkey in large skillet over medium-high heat</li>
-                        <li>Add bell pepper and onion, cook until softened</li>
-                        <li>Stir in beans, cumin, and chili powder</li>
-                        <li>Cook for 5 minutes, squeeze in lime juice</li>
-                        <li>Serve in lettuce leaves, top with cilantro</li>
-                    </ol>
-                </div>
-            </div>
-<div class="meal-card">
-                <div class="meal-header">
-                    <div class="meal-title">Day 3: Mediterranean Chicken with Zucchini Noodles</div>
-                    <div class="meal-subtitle">Prep: 15 min • Cook: 15 min • Serves: 2</div>
-                </div>
-
-                <div class="nutrition-grid">
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">385</div>
-                        <div class="nutrition-label">Calories</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">45g</div>
-                        <div class="nutrition-label">Protein</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">15g</div>
-                        <div class="nutrition-label">Carbs</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">16g</div>
-                        <div class="nutrition-label">Fat</div>
-                    </div>
-                    <div class="nutrition-item">
-                        <div class="nutrition-value">5g</div>
-                        <div class="nutrition-label">Fiber</div>
-                    </div>
-                </div>
-
-                <div class="ingredients">
-                    <h4>Ingredients (for 2 servings):</h4>
-                    <ul>
-                        <li>chicken breast - 1.5 lbs</li>
-                        <li>zucchini - 3 large spiralized</li>
-                        <li>cherry tomatoes - 2 cups halved</li>
-                        <li>feta cheese - 1/4 cup crumbled</li>
-                        <li>garlic - 3 cloves minced</li>
-                        <li>oregano - 1 tsp dried</li>
-                        <li>olive oil - 2 tbsp</li>
-                        <li>lemon juice - 2 tbsp</li>
-                        <li>kalamata olives - 1/4 cup sliced</li>
-                    </ul>
-                </div>
-
-                <div class="instructions">
-                    <h4>Instructions:</h4>
-                    <ol>
-                        <li>Season chicken with oregano, salt, and pepper</li>
-                        <li>Grill chicken for 6-7 minutes per side until cooked through</li>
-                        <li>Sauté zucchini noodles with garlic in olive oil for 2-3 minutes</li>
-                        <li>Add cherry tomatoes and cook until just softened</li>
-                        <li>Slice chicken and serve over zucchini noodles</li>
-                        <li>Top with feta, olives, and lemon juice</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-
-        <div class="shopping-section">
-            <h2 class="shopping-title">🛒 Complete Shopping List</h2>
-            <p style="text-align: center; margin-bottom: 30px; opacity: 0.9; font-size: 16px;">
-           Organized by category with combined quantities.<br>
-           <strong>Click any ingredient to search for it on H-E-B's website!</strong>
-         </p>
-
-            <div class="category">
-                <h3 class="category-title">🥬 Produce</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=fresh%20parsley">
-                        <strong>fresh parsley</strong> - 2 tbsp chopped
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=fresh%20lemon">
-                        <strong>fresh lemon</strong> - 1 whole
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=garlic">
-                        <strong>garlic</strong> - 7 cloves minced
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=cherry%20tomatoes">
-                        <strong>cherry tomatoes</strong> - 1 cup halved + 2 cups halved
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=zucchini">
-                        <strong>zucchini</strong> - 1 medium sliced + 3 large spiralized
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=black%20pepper">
-                        <strong>black pepper</strong> - 1/2 tsp
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=butter%20lettuce">
-                        <strong>butter lettuce</strong> - 1 head
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=bell%20pepper">
-                        <strong>bell pepper</strong> - 1 diced
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=red%20onion">
-                        <strong>red onion</strong> - 1/2 diced
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=chili%20powder">
-                        <strong>chili powder</strong> - 1 tsp
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=lime">
-                        <strong>lime</strong> - 1 whole
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=cilantro">
-                        <strong>cilantro</strong> - 1/4 cup chopped
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=lemon%20juice">
-                        <strong>lemon juice</strong> - 2 tbsp
-                    </a>
-                </div>
-            </div>
-<div class="category">
-                <h3 class="category-title">🥩 Meat & Seafood</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=cod%20fillets">
-                        <strong>cod fillets</strong> - 1 lb
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=ground%20turkey">
-                        <strong>ground turkey</strong> - 1 lb
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=chicken%20breast">
-                        <strong>chicken breast</strong> - 1.5 lbs
-                    </a>
-                </div>
-            </div>
-<div class="category">
-                <h3 class="category-title">🥛 Dairy & Eggs</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=feta%20cheese">
-                        <strong>feta cheese</strong> - 1/4 cup crumbled
-                    </a>
-                </div>
-            </div>
-<div class="category">
-                <h3 class="category-title">🌾 Pantry Staples</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=black%20beans">
-                        <strong>black beans</strong> - 1 cup cooked
-                    </a>
-                </div>
-            </div>
-<div class="category">
-                <h3 class="category-title">🧂 Spices & Seasonings</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=olive%20oil">
-                        <strong>olive oil</strong> - 4 tbsp
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=salt">
-                        <strong>salt</strong> - 1 tsp
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=cumin">
-                        <strong>cumin</strong> - 1 tsp
-                    </a>
-                </div>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=oregano">
-                        <strong>oregano</strong> - 1 tsp dried
-                    </a>
-                </div>
-            </div>
-<div class="category">
-                <h3 class="category-title">📦 Other</h3>
-                <div class="ingredient-item">
-                    <a href="https://www.heb.com/search?esc=true&q=kalamata%20olives">
-                        <strong>kalamata olives</strong> - 1/4 cup sliced
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>🍽️ <strong>Easy Meal Planner</strong></p>
-            <p>Happy cooking! Each meal provides 40g+ protein and stays under 600 calories per serving.</p>
-            <p style="font-size: 12px; color: #999;">Nutritional information is approximate. Individual results may vary.</p>
-        </div>
-    </div>
+    </html>
 </body>
-</html>
-</body>
+
 </html>
