@@ -37,15 +37,15 @@ export type HEBResponse = HEBSuccessResponse | HEBErrorResponse;
  * of browser automation or when the scraping connector is blocked.
  */
 export class HEBOfflineConnector extends BaseConnector {
-  name = 'browse_heb_offline';
-  description = 'Generate HEB search links for ingredients without web scraping';
+  name = 'browse_heb';
+  description = 'Browse HEB website to find ingredients and create a shopping cart link';
   inputSchema: ConnectorInputSchema = {
     type: 'object',
     properties: {
       ingredients: {
         type: 'array',
         items: { type: 'string' },
-        description: 'List of ingredients to create search links for'
+        description: 'List of ingredients to search for on HEB'
       }
     },
     required: ['ingredients']
