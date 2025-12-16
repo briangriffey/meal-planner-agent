@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
 interface Preferences {
   emailRecipients: string[];
@@ -17,6 +18,7 @@ interface Preferences {
 }
 
 export default function PreferencesPage() {
+  const { data: session } = useSession();
   const [preferences, setPreferences] = useState<Preferences | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -81,6 +83,12 @@ export default function PreferencesPage() {
   };
 
   const removeEmail = (email: string) => {
+    // Prevent removing the user's own email address
+    if (session?.user?.email && email === session.user.email) {
+      setMessage({ type: 'error', text: 'You cannot remove your own email address' });
+      return;
+    }
+
     if (preferences) {
       setPreferences({
         ...preferences,
@@ -90,7 +98,7 @@ export default function PreferencesPage() {
   };
 
   const addRestriction = () => {
-    if (restrictionInput && preferences) {
+    if (restrictionInput && preferences && !preferences.dietaryRestrictions.includes(restrictionInput)) {
       setPreferences({
         ...preferences,
         dietaryRestrictions: [...preferences.dietaryRestrictions, restrictionInput],
@@ -279,18 +287,20 @@ export default function PreferencesPage() {
               </h3>
             </div>
             <div className="flex gap-2 mb-3">
-              <input
-                type="text"
-                placeholder="e.g., gluten-free, dairy-free"
+              <select
                 className="flex-1 border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
                 value={restrictionInput}
                 onChange={(e) => setRestrictionInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && addRestriction()}
-              />
+              >
+                <option value="">Select a dietary restriction...</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+              </select>
               <button
                 type="button"
                 onClick={addRestriction}
-                className="px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
+                disabled={!restrictionInput || preferences?.dietaryRestrictions.includes(restrictionInput)}
+                className="px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Add
               </button>

@@ -18,7 +18,6 @@ interface JobStatus {
 
 export default function GeneratePage() {
   const router = useRouter();
-  const [weekStartDate, setWeekStartDate] = useState('');
   const [loading, setLoading] = useState(false);
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null);
   const [error, setError] = useState('');
@@ -44,7 +43,7 @@ export default function GeneratePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          weekStartDate: weekStartDate || getNextMonday(),
+          weekStartDate: getNextMonday(),
         }),
       });
 
@@ -137,20 +136,9 @@ export default function GeneratePage() {
           </div>
           <form onSubmit={handleSubmit} className="px-6 py-8 sm:p-8 space-y-6">
             <div>
-              <label htmlFor="weekStartDate" className="block text-sm font-medium text-gray-700 mb-1">
-                Week Start Date
-              </label>
-              <p className="text-sm text-gray-600 mb-3">
-                Select the Monday that starts the week you want to plan for
+              <p className="text-sm text-gray-600">
+                This will generate a meal plan for the week starting {new Date(getNextMonday()).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.
               </p>
-              <input
-                type="date"
-                id="weekStartDate"
-                className="block w-full sm:w-auto border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
-                value={weekStartDate}
-                onChange={(e) => setWeekStartDate(e.target.value)}
-                placeholder={getNextMonday()}
-              />
             </div>
 
             {error && (

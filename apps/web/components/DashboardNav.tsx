@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 
@@ -30,9 +31,9 @@ export default function DashboardNav({ user }: DashboardNavProps) {
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
       </svg>
     )},
-    { name: 'Analytics', href: '/dashboard/analytics', icon: (
+    { name: 'History', href: '/dashboard/analytics', icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     )},
     { name: 'Preferences', href: '/dashboard/preferences', icon: (
@@ -57,10 +58,13 @@ export default function DashboardNav({ user }: DashboardNavProps) {
           <div className="flex items-center space-x-8">
             <Link href="/dashboard" className="flex items-center space-x-2">
               <div className="flex-shrink-0 flex items-center">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <Image
+                    src="/logo-themed.svg"
+                    alt="Meal Planner"
+                    width={40}
+                    height={40}
+                  />
                 </div>
                 <span className="ml-3 text-xl font-bold text-white">Meal Planner</span>
               </div>

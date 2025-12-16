@@ -72,10 +72,12 @@ export default async function Home() {
               Start Free Trial
             </Link>
             <Link
-              href="#how-it-works"
+              href="/example-meal-plan.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 border-2 border-primary text-primary-dark rounded-xl font-semibold text-lg hover:bg-primary hover:text-white transition-all duration-150"
             >
-              See How It Works
+              View Example
             </Link>
           </div>
         </div>
@@ -208,6 +210,76 @@ export default async function Home() {
                   <p className="text-gray-600">
                     Click the HEB links to add ingredients to your cart, then follow the simple recipes.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Example Section */}
+      <div className="py-16 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h3 className="text-4xl font-bold text-primary-dark mb-4">
+              See What You'll Get
+            </h3>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Check out a real example of what your weekly meal plan email will look like
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-primary-light/10 to-primary/10 rounded-2xl p-8 shadow-xl">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-1">
+                  <h4 className="text-2xl font-bold text-primary-dark mb-4">
+                    High-Protein Meal Plan Example
+                  </h4>
+                  <ul className="space-y-3 mb-6">
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-gray-700">3 complete dinner recipes with full instructions</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-gray-700">Detailed nutrition info for each meal</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-gray-700">Complete shopping list organized by category</span>
+                    </li>
+                    <li className="flex items-start">
+                      <svg className="w-6 h-6 text-accent mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-gray-700">Direct HEB search links for every ingredient</span>
+                    </li>
+                  </ul>
+                  <a
+                    href="/example-meal-plan.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-accent to-accent-dark text-white rounded-xl font-semibold text-lg hover:shadow-xl transition-all duration-150 transform hover:scale-105"
+                  >
+                    View Example Meal Plan
+                    <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+                <div className="flex-shrink-0">
+                  <div className="w-64 h-64 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center shadow-2xl">
+                    <svg className="w-32 h-32 text-white opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
