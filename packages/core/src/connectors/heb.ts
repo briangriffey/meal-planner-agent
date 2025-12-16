@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import { Browser, Page } from 'puppeteer';
 import { BaseConnector } from './base';
+import { ConnectorInputSchema } from '../types';
 
 // Add stealth plugin
 puppeteer.use(StealthPlugin());
@@ -47,6 +48,19 @@ interface PageCheck {
 
 export class HEBBrowsingConnector extends BaseConnector {
   name = 'browse_heb';
+  description = 'Browse HEB website to find ingredients and create a shopping cart link';
+  inputSchema: ConnectorInputSchema = {
+    type: 'object',
+    properties: {
+      ingredients: {
+        type: 'array',
+        items: { type: 'string' },
+        description: 'List of ingredients to search for on HEB'
+      }
+    },
+    required: ['ingredients']
+  };
+
   private browser: Browser | null = null;
   private page: Page | null = null;
   private searchBarSelector: string | null = null;

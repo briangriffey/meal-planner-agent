@@ -76,8 +76,16 @@ export interface EmailConfig {
 
 
 // Connector types
+export interface ConnectorInputSchema {
+  type: 'object';
+  properties: Record<string, any>;
+  required?: string[];
+}
+
 export interface Connector {
   name: string;
+  description: string;
+  inputSchema: ConnectorInputSchema;
   execute(params: any): Promise<any>;
 }
 
