@@ -391,7 +391,7 @@ export default function PreferencesPage() {
                 Schedule Settings
               </h3>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6">
               <div>
                 <label htmlFor="dayOfWeek" className="block text-sm font-medium text-gray-700 mb-1">
                   Day of Week
@@ -401,7 +401,7 @@ export default function PreferencesPage() {
                   className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
                   value={preferences.scheduleDayOfWeek}
                   onChange={(e) =>
-                    setPreferences({ ...preferences, scheduleDayOfWeek: parseInt(e.target.value) })
+                    setPreferences({ ...preferences, scheduleDayOfWeek: parseInt(e.target.value), scheduleHour: 0, scheduleMinute: 0 })
                   }
                 >
                   {daysOfWeek.map((day, index) => (
@@ -410,40 +410,9 @@ export default function PreferencesPage() {
                     </option>
                   ))}
                 </select>
-              </div>
-
-              <div>
-                <label htmlFor="hour" className="block text-sm font-medium text-gray-700 mb-1">
-                  Hour
-                </label>
-                <input
-                  type="number"
-                  id="hour"
-                  min="0"
-                  max="23"
-                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
-                  value={preferences.scheduleHour}
-                  onChange={(e) =>
-                    setPreferences({ ...preferences, scheduleHour: parseInt(e.target.value) })
-                  }
-                />
-              </div>
-
-              <div>
-                <label htmlFor="minute" className="block text-sm font-medium text-gray-700 mb-1">
-                  Minute
-                </label>
-                <input
-                  type="number"
-                  id="minute"
-                  min="0"
-                  max="59"
-                  className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
-                  value={preferences.scheduleMinute}
-                  onChange={(e) =>
-                    setPreferences({ ...preferences, scheduleMinute: parseInt(e.target.value) })
-                  }
-                />
+                <p className="mt-2 text-sm text-gray-500">
+                  Meal plans will be sent at midnight (12:00 AM) on the selected day
+                </p>
               </div>
             </div>
 

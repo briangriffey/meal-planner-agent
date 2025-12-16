@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -19,6 +20,14 @@ export default async function DashboardPage() {
       where: { userId: session.user.id },
     }),
   ]);
+
+  // Redirect new users to preferences page if they haven't filled them out yet
+  // Check if this is a new user (no meal plans and default email recipients only)
+  if (recentMealPlans.length === 0 && preferences &&
+      preferences.emailRecipients.length === 1 &&
+      preferences.emailRecipients[0] === session.user.email) {
+    redirect('/dashboard/preferences');
+  }
 
   const statusColors = {
     PENDING: 'bg-yellow-100 text-yellow-800 border border-yellow-200',
