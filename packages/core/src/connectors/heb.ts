@@ -10,6 +10,41 @@ export interface HEBBrowsingConfig {
   timeout?: number; // Optional timeout in milliseconds (default: 120000 = 2 minutes)
 }
 
+export interface HEBProductInfo {
+  name: string | null;
+  price: string | null;
+  link: string;
+}
+
+export interface HEBSearchResult {
+  searchedFor: string;
+  found: boolean;
+  product?: HEBProductInfo | null;
+  error?: string;
+}
+
+export interface HEBExecuteParams {
+  ingredients: string[];
+}
+
+export interface HEBSuccessResponse {
+  success: true;
+  results: HEBSearchResult[];
+  summary: string;
+}
+
+export interface HEBErrorResponse {
+  success: false;
+  error: string;
+}
+
+export type HEBResponse = HEBSuccessResponse | HEBErrorResponse;
+
+interface PageCheck {
+  hasError: boolean;
+  hasIncidentId: boolean;
+}
+
 export class HEBBrowsingConnector extends BaseConnector {
   name = 'browse_heb';
   private browser: Browser | null = null;
@@ -22,12 +57,12 @@ export class HEBBrowsingConnector extends BaseConnector {
     this.timeout = config.timeout || 120000; // 2 minutes default
   }
 
-  async execute(params: { ingredients: string[] }): Promise<any> {
-    const startTime = Date.now();
+  async execute(params: HEBExecuteParams): Promise<HEBResponse> {
+    const startTime: number = Date.now();
 
     try {
       // Check if we're approaching timeout
-      const checkTimeout = () => {
+      const checkTimeout = (): void => {
         if (Date.now() - startTime > this.timeout) {
           throw new Error(`HEB scraping timeout exceeded (${this.timeout}ms)`);
         }
@@ -57,7 +92,7 @@ export class HEBBrowsingConnector extends BaseConnector {
       });
 
       // Check if we got blocked
-      const homePageCheck = await this.page.evaluate(() => {
+      const homePageCheck: PageCheck = await this.page.evaluate(() => {
         const body = document.body.innerHTML;
         return {
           hasError: body.includes('errorCode'),
@@ -95,7 +130,7 @@ export class HEBBrowsingConnector extends BaseConnector {
         throw new Error('Could not find search bar on HEB home page');
       }
 
-      const results: any[] = [];
+      const results: HEBSearchResult[] = [];
 
       for (const ingredient of params.ingredients) {
         checkTimeout(); // Check before processing each ingredient
@@ -123,7 +158,7 @@ export class HEBBrowsingConnector extends BaseConnector {
           await new Promise(resolve => setTimeout(resolve, 3000));
 
           // Check if we got blocked
-          const pageCheck = await this.page.evaluate(() => {
+          const pageCheck: PageCheck = await this.page.evaluate(() => {
             const body = document.body.innerHTML;
             return {
               hasError: body.includes('errorCode'),
@@ -138,7 +173,7 @@ export class HEBBrowsingConnector extends BaseConnector {
           // Try to wait for product container
           await this.page.waitForSelector('[data-testid*="product"]', { timeout: 5000 }).catch(() => null);
 
-          const productInfo = await this.page.evaluate(() => {
+          const productInfo: HEBProductInfo | null = await this.page.evaluate(() => {
             // Look inside the product container for product links
             const productContainer = document.querySelector('[data-testid*="product"]');
             if (!productContainer) return null;
@@ -181,8 +216,8 @@ export class HEBBrowsingConnector extends BaseConnector {
       await this.browser.close();
       this.browser = null;
 
-      const foundCount = results.filter(r => r.found).length;
-      const totalCount = params.ingredients.length;
+      const foundCount: number = results.filter(r => r.found).length;
+      const totalCount: number = params.ingredients.length;
 
       // Throw an error if we couldn't find any items
       if (foundCount === 0 && totalCount > 0) {
