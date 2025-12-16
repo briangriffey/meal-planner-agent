@@ -1,6 +1,6 @@
 import { Job } from 'bullmq';
 import { PrismaClient } from '@meal-planner/database';
-import { MealPlannerAgentFactory, ConnectorRegistry, EmailConnector, HEBBrowsingConnector, WebSearchConnector, HEBOfflineConnector } from '@meal-planner/core';
+import { MealPlannerAgentFactory, ConnectorRegistry, EmailConnector, HEBBrowsingConnector, HEBOfflineConnector } from '@meal-planner/core';
 import { MealPlanJobData } from '../client';
 
 /**
@@ -67,7 +67,8 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
         const jobProgress = 20 + (percent / 100) * 70;
         await job.updateProgress(Math.round(jobProgress));
         console.log(`📊 ${Math.round(jobProgress)}%: ${message}`);
-      }
+      },
+      true // hebEnabled: false (use offline HEB connector for URL generation only)
     );
 
     console.log('🤖 Running meal planner agent...');

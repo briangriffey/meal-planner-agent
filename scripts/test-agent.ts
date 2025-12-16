@@ -18,8 +18,7 @@ import {
   MealPlannerAgentFactory,
   ConnectorRegistry,
   EmailConnector,
-  HEBBrowsingConnector,
-  WebSearchConnector,
+  HEBOfflineConnector,
   CLAUDE_MODEL
 } from '@meal-planner/core';
 
@@ -105,18 +104,10 @@ async function testAgent() {
     );
     connectorRegistry.register(emailConnector);
 
-    // HEB connector (if enabled)
-    if (prefs.hebEnabled) {
-      console.log('🛒 Enabling HEB integration...');
-      const hebConnector = new HEBBrowsingConnector({
-        timeout: 120000, // 2 minutes
-      });
-      connectorRegistry.register(hebConnector);
-    }
-
-    // Web search connector
-    const webSearchConnector = new WebSearchConnector();
-    connectorRegistry.register(webSearchConnector);
+    // HEB connector - always use offline for testing (generates search URLs only)
+    console.log('🛒 Using HEB offline connector (URL generation only)...');
+    const hebConnector = new HEBOfflineConnector();
+    connectorRegistry.register(hebConnector);
 
     console.log('✅ Connectors initialized\n');
 
@@ -139,7 +130,8 @@ async function testAgent() {
         const filled = Math.round((percent / 100) * barLength);
         const bar = '█'.repeat(filled) + '░'.repeat(barLength - filled);
         process.stdout.write(`\r[${bar}] ${percent.toFixed(0)}% - ${message}`);
-      }
+      },
+      false // hebEnabled: false (use offline HEB connector)
     );
 
     console.log('🚀 Starting meal plan generation...\n');
