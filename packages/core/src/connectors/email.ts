@@ -1,8 +1,6 @@
 import nodemailer from 'nodemailer';
 import * as fs from 'fs';
 import * as path from 'path';
-import { BaseConnector } from './base';
-import { ConnectorInputSchema } from '../types';
 
 export interface EmailConnectorConfig {
   user: string;
@@ -10,24 +8,12 @@ export interface EmailConnectorConfig {
   recipients: string[];
 }
 
-export class EmailConnector extends BaseConnector {
-  name = 'send_email';
-  description = 'Send an email with the meal plan to the recipient';
-  inputSchema: ConnectorInputSchema = {
-    type: 'object',
-    properties: {
-      subject: { type: 'string', description: 'Email subject line' },
-      body: { type: 'string', description: 'Email body content (HTML supported)' }
-    },
-    required: ['subject', 'body']
-  };
-
+export class EmailConnector {
   private transporter: nodemailer.Transporter | null;
   private config: EmailConnectorConfig;
   private testMode: boolean;
 
   constructor(config: EmailConnectorConfig, testMode: boolean = false) {
-    super();
     this.config = config;
     this.testMode = testMode;
 

@@ -1,5 +1,4 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { ConnectorRegistry } from '../connectors/base';
 import { EmailConnector } from '../connectors/email';
 import { MealPlannerAgentConfig, MealPlanGenerationResult, UserPreferences, Meal } from '../types';
 import { MealPlanPostProcessor } from '../services/meal-plan-post-processor';
@@ -58,7 +57,7 @@ const MEAL_PLAN_SCHEMA = {
 
 export class MealPlannerAgent {
   private client: Anthropic;
-  private connectorRegistry: ConnectorRegistry;
+  private emailConnector: EmailConnector;
   private mealHistory: MealPlannerAgentConfig['mealHistoryService'];
   private preferences: UserPreferences;
   private claudeModel: string;
@@ -67,11 +66,11 @@ export class MealPlannerAgent {
   private postProcessor: MealPlanPostProcessor;
   private emailRenderer: EmailTemplateRenderer;
 
-  constructor(config: MealPlannerAgentConfig & { hebEnabled?: boolean }) {
+  constructor(config: MealPlannerAgentConfig & { hebEnabled?: boolean; emailConnector: EmailConnector }) {
     this.client = new Anthropic({
       apiKey: config.anthropicApiKey
     });
-    this.connectorRegistry = config.connectorRegistry;
+    this.emailConnector = config.emailConnector;
     this.mealHistory = config.mealHistoryService;
     this.preferences = config.preferences;
     this.claudeModel = config.claudeModel || 'claude-sonnet-4-20250514';
@@ -147,12 +146,7 @@ export class MealPlannerAgent {
       }
 
       // Send email directly via EmailConnector
-      const emailConnector = this.connectorRegistry.get('send_email') as EmailConnector;
-      if (!emailConnector) {
-        throw new Error('Email connector not found');
-      }
-
-      const emailResult = await emailConnector.execute({
+      const emailResult = await this.emailConnector.execute({
         subject: `🍽️ Your High-Protein Dinner Meal Plan - ${weekLabel}`,
         body: emailHtml
       });

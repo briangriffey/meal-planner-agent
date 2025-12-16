@@ -1,6 +1,6 @@
 import { PrismaClient } from '@meal-planner/database';
 import { MealPlannerAgent } from './meal-planner';
-import { ConnectorRegistry } from '../connectors/base';
+import { EmailConnector } from '../connectors/email';
 import { DatabaseMealHistoryService } from '../services';
 import { UserPreferences } from '../types';
 
@@ -15,7 +15,7 @@ export class MealPlannerAgentFactory {
     userId: string,
     preferences: UserPreferences,
     prisma: PrismaClient,
-    connectorRegistry: ConnectorRegistry,
+    emailConnector: EmailConnector,
     anthropicApiKey: string,
     claudeModel?: string,
     onProgress?: (percent: number, message: string) => Promise<void>,
@@ -27,7 +27,7 @@ export class MealPlannerAgentFactory {
       anthropicApiKey,
       preferences,
       mealHistoryService,
-      connectorRegistry,
+      emailConnector,
       claudeModel,
       onProgress,
       hebEnabled: hebEnabled ?? false

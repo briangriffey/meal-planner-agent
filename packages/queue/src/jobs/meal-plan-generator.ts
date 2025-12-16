@@ -1,6 +1,6 @@
 import { Job } from 'bullmq';
 import { PrismaClient } from '@meal-planner/database';
-import { MealPlannerAgentFactory, ConnectorRegistry, EmailConnector } from '@meal-planner/core';
+import { MealPlannerAgentFactory, EmailConnector } from '@meal-planner/core';
 import { MealPlanJobData } from '../client';
 
 /**
@@ -28,9 +28,6 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
     // Progress reporting
     await job.updateProgress(10);
 
-    // Create connector registry
-    const connectorRegistry = new ConnectorRegistry();
-
     // Email connector - retrieve credentials from environment
     const emailConnector = new EmailConnector(
       {
@@ -40,11 +37,6 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
       },
       testMode || false
     );
-    connectorRegistry.register(emailConnector);
-
-    // Note: HEB connector is not registered in ConnectorRegistry because it's not
-    // retrieved by the agent. The agent uses hebEnabled flag to control whether
-    // MealPlanPostProcessor generates HEB search URLs.
 
     await job.updateProgress(20);
 
@@ -53,7 +45,7 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
       userId,
       preferences,
       prisma,
-      connectorRegistry,
+      emailConnector,
       process.env.ANTHROPIC_API_KEY!,
       claudeModel,
       async (percent: number, message: string) => {
@@ -62,7 +54,7 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
         await job.updateProgress(Math.round(jobProgress));
         console.log(`📊 ${Math.round(jobProgress)}%: ${message}`);
       },
-      true // hebEnabled: false (use offline HEB connector for URL generation only)
+      hebEnabled // hebEnabled controls whether MealPlanPostProcessor generates HEB search URLs
     );
 
     console.log('🤖 Running meal planner agent...');

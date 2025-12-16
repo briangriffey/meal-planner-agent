@@ -16,7 +16,6 @@ import { config } from 'dotenv';
 import { PrismaClient } from '@meal-planner/database';
 import {
   MealPlannerAgentFactory,
-  ConnectorRegistry,
   EmailConnector,
   CLAUDE_MODEL
 } from '@meal-planner/core';
@@ -89,9 +88,6 @@ async function testAgent() {
 
     console.log('🤖 Initializing agent...\n');
 
-    // Create connector registry
-    const connectorRegistry = new ConnectorRegistry();
-
     // Email connector (test mode - saves to file)
     const emailConnector = new EmailConnector(
       {
@@ -101,11 +97,6 @@ async function testAgent() {
       },
       true // Test mode - saves to TESTEMAIL.html
     );
-    connectorRegistry.register(emailConnector);
-
-    // Note: HEB connector is not registered in ConnectorRegistry because it's not
-    // retrieved by the agent. The agent uses hebEnabled flag in MealPlannerAgentFactory
-    // to control whether MealPlanPostProcessor generates HEB search URLs.
 
     console.log('✅ Email connector initialized\n');
 
@@ -120,7 +111,7 @@ async function testAgent() {
         dietaryRestrictions: prefs.dietaryRestrictions,
       },
       prisma,
-      connectorRegistry,
+      emailConnector,
       process.env.ANTHROPIC_API_KEY!,
       CLAUDE_MODEL,
       async (percent: number, message: string) => {

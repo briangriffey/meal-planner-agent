@@ -95,7 +95,6 @@ export interface MealPlannerAgentConfig {
   anthropicApiKey: string;
   preferences: UserPreferences;
   mealHistoryService: IMealHistoryService;
-  connectorRegistry: any; // ConnectorRegistry from '../connectors/base'
   claudeModel?: string;
   onProgress?: (percent: number, message: string) => Promise<void>;
 }
