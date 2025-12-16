@@ -86,35 +86,26 @@ export class DatabaseMealHistoryService implements IMealHistoryService {
   }
 
   /**
-   * Parse meal plan from agent response
-   * This is a simple parser - can be enhanced based on actual output format
+   * Parse meal plan from agent response (JSON format)
    */
   parseMealPlanFromResponse(response: string): MealRecord[] {
-    const meals: MealRecord[] = [];
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    try {
+      const data = JSON.parse(response);
 
-    // Simple regex-based parsing
-    // Looking for patterns like "## Monday\n**Meal Name**"
-    days.forEach(day => {
-      const dayRegex = new RegExp(`##\\s*${day}\\s*\\n\\*\\*([^*]+)\\*\\*`, 'i');
-      const match = response.match(dayRegex);
-
-      if (match && match[1]) {
-        const mealName = match[1].trim();
-
-        // Try to extract calories and protein
-        const caloriesMatch = response.match(new RegExp(`${day}[\\s\\S]{0,300}Calories?:\\s*(\\d+)`, 'i'));
-        const proteinMatch = response.match(new RegExp(`${day}[\\s\\S]{0,300}Protein:\\s*(\\d+)`, 'i'));
-
-        meals.push({
-          day,
-          name: mealName,
-          calories: caloriesMatch ? parseInt(caloriesMatch[1]) : undefined,
-          protein: proteinMatch ? parseInt(proteinMatch[1]) : undefined
-        });
+      if (!data.meals || !Array.isArray(data.meals)) {
+        console.warn('Invalid meal plan format: missing meals array');
+        return [];
       }
-    });
 
-    return meals;
+      return data.meals.map((meal: any) => ({
+        day: meal.day || 'Unknown',
+        name: meal.name || 'Unnamed Meal',
+        calories: meal.nutrition?.calories,
+        protein: meal.nutrition?.protein
+      }));
+    } catch (error) {
+      console.error('Failed to parse meal plan JSON:', error);
+      return [];
+    }
   }
 }

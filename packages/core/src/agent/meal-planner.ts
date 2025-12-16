@@ -97,22 +97,14 @@ export class MealPlannerAgent {
         await this.onProgress(10, 'Sending request to Claude API');
       }
 
-      // Single Claude API call with JSON schema
-      console.log('Calling Claude API with JSON schema...');
+      // Single Claude API call requesting JSON output
+      console.log('Calling Claude API for JSON meal plan...');
       const response = await this.client.messages.create({
         model: this.claudeModel,
         max_tokens: 8192,
         system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }],
-        response_format: {
-          type: 'json_schema',
-          json_schema: {
-            name: 'meal_plan',
-            schema: MEAL_PLAN_SCHEMA,
-            strict: true
-          }
-        }
-      } as any); // Type assertion needed until SDK supports response_format
+        messages: [{ role: 'user', content: userPrompt }]
+      });
 
       if (this.onProgress) {
         await this.onProgress(50, 'Received meal plan from Claude');
@@ -222,7 +214,22 @@ For each meal, provide:
 - Prep time and cook time estimates
 - Nutritional information per serving (calories, protein, carbs, fat, fiber)
 
-Output Format: Return valid JSON matching the provided schema.`;
+CRITICAL: You MUST respond with ONLY valid JSON. No markdown, no explanations, just pure JSON.
+Return a JSON object with this exact structure:
+{
+  "meals": [
+    {
+      "day": "Day 1",
+      "name": "Meal name",
+      "description": "2-3 sentences",
+      "ingredients": [{"item": "ingredient name", "amount": "quantity"}],
+      "instructions": ["step 1", "step 2"],
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "nutrition": {"calories": 450, "protein": 42, "carbs": 25, "fat": 18, "fiber": 8}
+    }
+  ]
+}`;
   }
 
   private async buildUserPrompt(): Promise<string> {
