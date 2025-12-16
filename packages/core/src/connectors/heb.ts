@@ -1,8 +1,13 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import { Browser, Page } from 'puppeteer';
-import { BaseConnector } from './base';
-import { ConnectorInputSchema } from '../types';
+import {
+  IHEBConnector,
+  HEBExecuteParams,
+  HEBResponse,
+  HEBSearchResult,
+  HEBProductInfo
+} from './heb.interface';
 
 // Add stealth plugin
 puppeteer.use(StealthPlugin());
@@ -11,63 +16,18 @@ export interface HEBBrowsingConfig {
   timeout?: number; // Optional timeout in milliseconds (default: 120000 = 2 minutes)
 }
 
-export interface HEBProductInfo {
-  name: string | null;
-  price: string | null;
-  link: string;
-}
-
-export interface HEBSearchResult {
-  searchedFor: string;
-  found: boolean;
-  product?: HEBProductInfo | null;
-  error?: string;
-}
-
-export interface HEBExecuteParams {
-  ingredients: string[];
-}
-
-export interface HEBSuccessResponse {
-  success: true;
-  results: HEBSearchResult[];
-  summary: string;
-}
-
-export interface HEBErrorResponse {
-  success: false;
-  error: string;
-}
-
-export type HEBResponse = HEBSuccessResponse | HEBErrorResponse;
-
 interface PageCheck {
   hasError: boolean;
   hasIncidentId: boolean;
 }
 
-export class HEBBrowsingConnector extends BaseConnector {
-  name = 'browse_heb';
-  description = 'Browse HEB website to find ingredients and create a shopping cart link';
-  inputSchema: ConnectorInputSchema = {
-    type: 'object',
-    properties: {
-      ingredients: {
-        type: 'array',
-        items: { type: 'string' },
-        description: 'List of ingredients to search for on HEB'
-      }
-    },
-    required: ['ingredients']
-  };
-
+export class HEBBrowsingConnector implements IHEBConnector {
   private browser: Browser | null = null;
   private page: Page | null = null;
   private searchBarSelector: string | null = null;
   private timeout: number;
 
   constructor(config: HEBBrowsingConfig = {}) {
-    super();
     this.timeout = config.timeout || 120000; // 2 minutes default
   }
 

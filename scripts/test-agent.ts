@@ -18,7 +18,6 @@ import {
   MealPlannerAgentFactory,
   ConnectorRegistry,
   EmailConnector,
-  HEBOfflineConnector,
   CLAUDE_MODEL
 } from '@meal-planner/core';
 
@@ -104,12 +103,11 @@ async function testAgent() {
     );
     connectorRegistry.register(emailConnector);
 
-    // HEB connector - always use offline for testing (generates search URLs only)
-    console.log('🛒 Using HEB offline connector (URL generation only)...');
-    const hebConnector = new HEBOfflineConnector();
-    connectorRegistry.register(hebConnector);
+    // Note: HEB connector is not registered in ConnectorRegistry because it's not
+    // retrieved by the agent. The agent uses hebEnabled flag in MealPlannerAgentFactory
+    // to control whether MealPlanPostProcessor generates HEB search URLs.
 
-    console.log('✅ Connectors initialized\n');
+    console.log('✅ Email connector initialized\n');
 
     // Create agent with progress callback
     const agent = MealPlannerAgentFactory.create(
@@ -131,7 +129,7 @@ async function testAgent() {
         const bar = '█'.repeat(filled) + '░'.repeat(barLength - filled);
         process.stdout.write(`\r[${bar}] ${percent.toFixed(0)}% - ${message}`);
       },
-      false // hebEnabled: false (use offline HEB connector)
+      prefs.hebEnabled // hebEnabled: controls whether HEB search URLs are included
     );
 
     console.log('🚀 Starting meal plan generation...\n');

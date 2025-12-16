@@ -1,6 +1,6 @@
 import { Job } from 'bullmq';
 import { PrismaClient } from '@meal-planner/database';
-import { MealPlannerAgentFactory, ConnectorRegistry, EmailConnector, HEBBrowsingConnector, HEBOfflineConnector } from '@meal-planner/core';
+import { MealPlannerAgentFactory, ConnectorRegistry, EmailConnector } from '@meal-planner/core';
 import { MealPlanJobData } from '../client';
 
 /**
@@ -42,15 +42,9 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
     );
     connectorRegistry.register(emailConnector);
 
-    // HEB connector (if enabled)
-    if (hebEnabled) {
-      const hebConnector = new HEBOfflineConnector();
-      connectorRegistry.register(hebConnector);
-    }
-
-    // Web search connector (placeholder)
-    // const webSearchConnector = new WebSearchConnector();
-    // connectorRegistry.register(webSearchConnector);
+    // Note: HEB connector is not registered in ConnectorRegistry because it's not
+    // retrieved by the agent. The agent uses hebEnabled flag to control whether
+    // MealPlanPostProcessor generates HEB search URLs.
 
     await job.updateProgress(20);
 
