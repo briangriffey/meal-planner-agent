@@ -68,7 +68,7 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
         await job.updateProgress(Math.round(jobProgress));
         console.log(`📊 ${Math.round(jobProgress)}%: ${message}`);
       },
-      false // hebEnabled: false (use offline HEB connector for URL generation only)
+      true // hebEnabled: false (use offline HEB connector for URL generation only)
     );
 
     console.log('🤖 Running meal planner agent...');
