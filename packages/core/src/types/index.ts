@@ -12,6 +12,7 @@ export interface DailyMeal {
 }
 
 export interface Meal {
+  day: string;
   name: string;
   description: string;
   ingredients: Ingredient[];

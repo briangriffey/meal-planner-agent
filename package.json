@@ -19,6 +19,7 @@
     "db:push": "pnpm --filter @meal-planner/database push",
     "db:seed": "pnpm --filter @meal-planner/database seed",
     "test:agent": "ts-node scripts/test-agent.ts",
+    "test:email": "ts-node scripts/test-email.ts",
     "docker:up": "docker-compose -f docker-compose.full.yml up --build",
     "docker:down": "docker-compose -f docker-compose.full.yml down -v"
   },

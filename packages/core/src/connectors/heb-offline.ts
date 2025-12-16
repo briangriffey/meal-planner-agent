@@ -1,56 +1,16 @@
-import { BaseConnector } from './base';
-import { ConnectorInputSchema } from '../types';
-
-export interface HEBProductInfo {
-  name: string | null;
-  price: string | null;
-  link: string;
-}
-
-export interface HEBSearchResult {
-  searchedFor: string;
-  found: boolean;
-  product?: HEBProductInfo | null;
-  error?: string;
-}
-
-export interface HEBExecuteParams {
-  ingredients: string[];
-}
-
-export interface HEBSuccessResponse {
-  success: true;
-  results: HEBSearchResult[];
-  summary: string;
-}
-
-export interface HEBErrorResponse {
-  success: false;
-  error: string;
-}
-
-export type HEBResponse = HEBSuccessResponse | HEBErrorResponse;
+import {
+  IHEBConnector,
+  HEBExecuteParams,
+  HEBResponse,
+  HEBSearchResult
+} from './heb.interface';
 
 /**
  * Offline HEB connector that generates search URLs without web scraping.
  * This is useful when you want to provide HEB search links without the overhead
  * of browser automation or when the scraping connector is blocked.
  */
-export class HEBOfflineConnector extends BaseConnector {
-  name = 'browse_heb';
-  description = 'Browse HEB website to find ingredients and create a shopping cart link';
-  inputSchema: ConnectorInputSchema = {
-    type: 'object',
-    properties: {
-      ingredients: {
-        type: 'array',
-        items: { type: 'string' },
-        description: 'List of ingredients to search for on HEB'
-      }
-    },
-    required: ['ingredients']
-  };
-
+export class HEBOfflineConnector implements IHEBConnector {
   async execute(params: HEBExecuteParams): Promise<HEBResponse> {
     try {
       const results: HEBSearchResult[] = params.ingredients.map(ingredient => {
