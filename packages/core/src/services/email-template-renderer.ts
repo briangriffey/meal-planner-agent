@@ -200,7 +200,7 @@ export class EmailTemplateRenderer {
             border-radius: 6px;
         }
         .ingredient-item {
-            background: ${BRAND_COLORS.lightGray};
+            background: ${BRAND_COLORS.white};
             padding: 15px;
             margin: 8px 0;
             border-radius: 8px;
@@ -208,17 +208,34 @@ export class EmailTemplateRenderer {
             min-height: 44px;
             display: flex;
             align-items: center;
+            transition: all 0.2s ease;
+        }
+        .ingredient-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transform: translateX(4px);
         }
         .ingredient-item a {
-            display: block;
-            color: ${BRAND_COLORS.accentTerracotta};
+            display: flex;
+            align-items: center;
+            color: ${BRAND_COLORS.textDark};
             text-decoration: none;
             font-size: 16px;
             line-height: 1.6;
             width: 100%;
         }
+        .ingredient-item a:after {
+            content: "→";
+            margin-left: auto;
+            padding-left: 10px;
+            color: ${BRAND_COLORS.accentTerracotta};
+            font-weight: bold;
+            font-size: 18px;
+        }
         .ingredient-item a:hover {
-            color: ${BRAND_COLORS.accentTerracottaDark};
+            color: ${BRAND_COLORS.primaryTealDark};
+        }
+        .ingredient-item a:hover:after {
+            color: ${BRAND_COLORS.primaryTeal};
         }
         .ingredient-item strong {
             color: ${BRAND_COLORS.textDark};
@@ -337,11 +354,18 @@ export class EmailTemplateRenderer {
   ): string {
     const categories = Object.keys(shoppingList);
 
+    const notice = includeHEBLinks
+      ? `<p style="text-align: center; margin-bottom: 30px; opacity: 0.9; font-size: 16px;">
+           Organized by category with combined quantities.<br>
+           <strong>Click any ingredient to search for it on H-E-B's website!</strong>
+         </p>`
+      : `<p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
+           Organized by category with combined quantities.
+         </p>`;
+
     return `<div class="shopping-section">
             <h2 class="shopping-title">🛒 Complete Shopping List</h2>
-            <p style="text-align: center; margin-bottom: 30px; opacity: 0.9;">
-                Organized by category with combined quantities${includeHEBLinks ? '. Tap ingredients to add to your HEB cart!' : '.'}
-            </p>
+            ${notice}
 
             ${categories.map(category => this.renderCategory(category, shoppingList[category], hebLinks, includeHEBLinks)).join('\n')}
         </div>`;
