@@ -18,7 +18,8 @@ export class MealPlannerAgentFactory {
     connectorRegistry: ConnectorRegistry,
     anthropicApiKey: string,
     claudeModel?: string,
-    onProgress?: (percent: number, message: string) => Promise<void>
+    onProgress?: (percent: number, message: string) => Promise<void>,
+    hebEnabled?: boolean
   ): MealPlannerAgent {
     const mealHistoryService = new DatabaseMealHistoryService(prisma, userId);
 
@@ -29,6 +30,7 @@ export class MealPlannerAgentFactory {
       connectorRegistry,
       claudeModel,
       onProgress,
+      hebEnabled: hebEnabled ?? false
     });
   }
 }

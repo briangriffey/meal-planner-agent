@@ -1,6 +1,60 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { ConnectorRegistry } from '../connectors/base';
-import { MealPlannerAgentConfig, MealPlanGenerationResult, UserPreferences } from '../types';
+import { EmailConnector } from '../connectors/email';
+import { MealPlannerAgentConfig, MealPlanGenerationResult, UserPreferences, Meal } from '../types';
+import { MealPlanPostProcessor } from '../services/meal-plan-post-processor';
+import { EmailTemplateRenderer } from '../services/email-template-renderer';
+
+// JSON schema for Claude's structured output
+const MEAL_PLAN_SCHEMA = {
+  type: 'object',
+  properties: {
+    meals: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          day: { type: 'string', description: 'Day identifier (e.g., "Day 1", "Monday")' },
+          name: { type: 'string', description: 'Meal name' },
+          description: { type: 'string', description: '2-3 sentences about flavor and appeal' },
+          ingredients: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                item: { type: 'string', description: 'Ingredient name' },
+                amount: { type: 'string', description: 'Quantity with units' }
+              },
+              required: ['item', 'amount']
+            },
+            description: 'List of ingredients with quantities'
+          },
+          instructions: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Step-by-step cooking instructions'
+          },
+          prepTime: { type: 'string', description: 'Preparation time (e.g., "15 min")' },
+          cookTime: { type: 'string', description: 'Cooking time (e.g., "25 min")' },
+          nutrition: {
+            type: 'object',
+            properties: {
+              calories: { type: 'number', description: 'Calories per serving' },
+              protein: { type: 'number', description: 'Protein in grams per serving' },
+              carbs: { type: 'number', description: 'Carbohydrates in grams per serving' },
+              fat: { type: 'number', description: 'Fat in grams per serving' },
+              fiber: { type: 'number', description: 'Fiber in grams per serving' }
+            },
+            required: ['calories', 'protein', 'carbs', 'fat', 'fiber'],
+            description: 'Nutritional information per serving'
+          }
+        },
+        required: ['day', 'name', 'description', 'ingredients', 'instructions', 'prepTime', 'cookTime', 'nutrition']
+      }
+    }
+  },
+  required: ['meals']
+};
 
 export class MealPlannerAgent {
   private client: Anthropic;
@@ -9,8 +63,11 @@ export class MealPlannerAgent {
   private preferences: UserPreferences;
   private claudeModel: string;
   private onProgress?: (percent: number, message: string) => Promise<void>;
+  private hebEnabled: boolean;
+  private postProcessor: MealPlanPostProcessor;
+  private emailRenderer: EmailTemplateRenderer;
 
-  constructor(config: MealPlannerAgentConfig) {
+  constructor(config: MealPlannerAgentConfig & { hebEnabled?: boolean }) {
     this.client = new Anthropic({
       apiKey: config.anthropicApiKey
     });
@@ -19,237 +76,168 @@ export class MealPlannerAgent {
     this.preferences = config.preferences;
     this.claudeModel = config.claudeModel || 'claude-sonnet-4-20250514';
     this.onProgress = config.onProgress;
+    this.hebEnabled = config.hebEnabled ?? false;
+    this.postProcessor = new MealPlanPostProcessor();
+    this.emailRenderer = new EmailTemplateRenderer();
   }
 
   async generateMealPlan(): Promise<MealPlanGenerationResult> {
-    console.log('Starting meal plan generation...');
+    console.log('Starting meal plan generation (optimized)...');
 
     if (this.onProgress) {
       await this.onProgress(0, 'Starting meal plan generation');
     }
 
-    const systemPrompt = this.buildSystemPrompt();
-    const userPrompt = await this.buildUserPrompt();
+    try {
+      // Build prompts
+      const systemPrompt = this.buildSystemPrompt();
+      const userPrompt = await this.buildUserPrompt();
 
-    if (this.onProgress) {
-      await this.onProgress(10, 'Building prompts');
-    }
-
-    let messages: Anthropic.MessageParam[] = [
-      { role: 'user', content: userPrompt }
-    ];
-
-    let continueLoop = true;
-    let iterationCount = 0;
-    const maxIterations = 10;
-    let finalResponse: string = '';
-    let emailSent = false;
-    let emailHtml: string | undefined;
-
-    while (continueLoop && iterationCount < maxIterations) {
-      iterationCount++;
-      console.log(`Agent iteration ${iterationCount}...`);
-
-      const progress = 10 + (iterationCount / maxIterations) * 70; // 10% to 80%
       if (this.onProgress) {
-        await this.onProgress(progress, `Agent iteration ${iterationCount}/${maxIterations}`);
+        await this.onProgress(10, 'Sending request to Claude API');
       }
 
+      // Single Claude API call with JSON schema
+      console.log('Calling Claude API with JSON schema...');
       const response = await this.client.messages.create({
         model: this.claudeModel,
-        max_tokens: 16384,
+        max_tokens: 8192,
         system: systemPrompt,
-        messages,
-        tools: this.connectorRegistry.getToolDefinitions()
-      });
-
-      console.log(`Stop reason: ${response.stop_reason}`);
-
-      // Capture text content for meal history parsing
-      for (const block of response.content) {
-        if (block.type === 'text') {
-          finalResponse += block.text + '\n';
-        }
-      }
-
-      if (response.stop_reason === 'end_turn') {
-        continueLoop = false;
-        console.log('Agent completed task');
-      } else if (response.stop_reason === 'tool_use') {
-        messages.push({ role: 'assistant', content: response.content });
-
-        const toolResults: Anthropic.ToolResultBlockParam[] = [];
-
-        for (const block of response.content) {
-          if (block.type === 'tool_use') {
-            console.log(`Executing tool: ${block.name}`);
-            const connector = this.connectorRegistry.get(block.name);
-
-            if (connector) {
-              try {
-                const result = await connector.execute(block.input);
-                console.log(`Tool result:`, result);
-
-                // Track if email was sent
-                if (block.name === 'send_email' && result.success) {
-                  emailSent = true;
-                  const input = block.input as { subject: string; body: string };
-                  if (input && 'body' in input) {
-                    emailHtml = input.body;
-                  }
-                }
-
-                toolResults.push({
-                  type: 'tool_result',
-                  tool_use_id: block.id,
-                  content: JSON.stringify(result)
-                });
-              } catch (error) {
-                console.error(`Error executing tool ${block.name}:`, error);
-                toolResults.push({
-                  type: 'tool_result',
-                  tool_use_id: block.id,
-                  content: JSON.stringify({
-                    success: false,
-                    error: error instanceof Error ? error.message : 'Unknown error'
-                  }),
-                  is_error: true
-                });
-              }
-            } else {
-              console.error(`Tool not found: ${block.name}`);
-              toolResults.push({
-                type: 'tool_result',
-                tool_use_id: block.id,
-                content: JSON.stringify({
-                  success: false,
-                  error: `Tool ${block.name} not found`
-                }),
-                is_error: true
-              });
-            }
+        messages: [{ role: 'user', content: userPrompt }],
+        response_format: {
+          type: 'json_schema',
+          json_schema: {
+            name: 'meal_plan',
+            schema: MEAL_PLAN_SCHEMA,
+            strict: true
           }
         }
+      } as any); // Type assertion needed until SDK supports response_format
 
-        messages.push({ role: 'user', content: toolResults });
-      } else {
-        continueLoop = false;
-        console.log('Agent stopped for unexpected reason:', response.stop_reason);
+      if (this.onProgress) {
+        await this.onProgress(50, 'Received meal plan from Claude');
       }
-    }
 
-    if (iterationCount >= maxIterations) {
-      console.warn('Agent reached maximum iterations');
-    }
+      // Parse JSON response
+      const textContent = response.content.find((block: any) => block.type === 'text');
+      if (!textContent || !('text' in textContent)) {
+        throw new Error('No text content in Claude response');
+      }
 
-    if (this.onProgress) {
-      await this.onProgress(85, 'Parsing meal plan and saving to history');
-    }
+      const mealPlanData = JSON.parse(textContent.text);
+      const meals: Meal[] = mealPlanData.meals;
 
-    // Save meal plan to history
-    let meals: any[] = [];
-    if (finalResponse) {
-      meals = this.mealHistory.parseMealPlanFromResponse(finalResponse);
-      if (meals.length > 0) {
-        await this.mealHistory.saveMealPlan(meals);
-        console.log(`📝 Saved ${meals.length} meals to history`);
+      console.log(`Received ${meals.length} meals from Claude`);
+
+      if (this.onProgress) {
+        await this.onProgress(60, 'Processing shopping list and HEB links');
+      }
+
+      // Post-process: aggregate ingredients, categorize, generate HEB links
+      const processedData = await this.postProcessor.process(meals, this.hebEnabled);
+
+      if (this.onProgress) {
+        await this.onProgress(75, 'Generating HTML email');
+      }
+
+      // Generate HTML email
+      const weekLabel = this.getWeekLabel();
+      const emailHtml = this.emailRenderer.render(processedData, {
+        weekLabel,
+        includeHEBLinks: this.hebEnabled,
+        servingsPerMeal: this.preferences.servingsPerMeal,
+        minProteinPerMeal: this.preferences.minProteinPerMeal,
+        maxCaloriesPerMeal: this.preferences.maxCaloriesPerMeal
+      });
+
+      if (this.onProgress) {
+        await this.onProgress(85, 'Sending email');
+      }
+
+      // Send email directly via EmailConnector
+      const emailConnector = this.connectorRegistry.get('send_email') as EmailConnector;
+      if (!emailConnector) {
+        throw new Error('Email connector not found');
+      }
+
+      const emailResult = await emailConnector.execute({
+        subject: `🍽️ Your High-Protein Dinner Meal Plan - ${weekLabel}`,
+        body: emailHtml
+      });
+
+      console.log('Email sent:', emailResult);
+
+      if (this.onProgress) {
+        await this.onProgress(95, 'Saving meal plan to history');
+      }
+
+      // Save meal plan to history
+      const mealRecords = this.mealHistory.parseMealPlanFromResponse(JSON.stringify(mealPlanData));
+      if (mealRecords.length > 0) {
+        await this.mealHistory.saveMealPlan(mealRecords);
+        console.log(`📝 Saved ${mealRecords.length} meals to history`);
       } else {
         console.warn('⚠️  Could not parse meals from response for history');
       }
+
+      if (this.onProgress) {
+        await this.onProgress(100, 'Meal plan generation complete');
+      }
+
+      console.log('Meal plan generation complete!');
+
+      return {
+        success: true,
+        meals: mealRecords,
+        emailSent: emailResult.success === true,
+        emailHtml,
+        iterationCount: 1 // Always 1 in optimized version
+      };
+    } catch (error) {
+      console.error('Error generating meal plan:', error);
+      return {
+        success: false,
+        emailSent: false,
+        iterationCount: 0,
+        error: error instanceof Error ? error.message : 'Unknown error'
+      };
     }
-
-    if (this.onProgress) {
-      await this.onProgress(100, 'Meal plan generation complete');
-    }
-
-    console.log('Meal plan generation complete!');
-
-    return {
-      success: true,
-      meals,
-      emailSent,
-      emailHtml,
-      iterationCount
-    };
   }
 
   private buildSystemPrompt(): string {
-    return `You are a meal planning assistant specialized in creating high-protein, low-calorie dinner plans.
+    return `You are a meal planning expert. Generate a weekly dinner meal plan based on user preferences.
 
-Your task is to:
-1. Generate a ${this.preferences.numberOfMeals}-day meal plan for dinners only
-2. Each meal should serve ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
-3. Each meal should meet these nutritional requirements (per serving):
-   - Minimum ${this.preferences.minProteinPerMeal}g of protein per serving
-   - Maximum ${this.preferences.maxCaloriesPerMeal} calories per serving
-   - Focus on whole foods, lean proteins, and vegetables
-4. Include detailed nutritional information for each meal (calories, protein, carbs, fat, fiber) - provide both per-serving and total
-5. Provide a complete ingredient list with amounts (for ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'serving' : 'servings'})
-6. Include clear cooking instructions
-7. Include prep time and cook time
+Requirements:
+- Create ${this.preferences.numberOfMeals} unique dinner recipes
+- Each meal serves ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
+- Meet nutritional targets: minimum ${this.preferences.minProteinPerMeal}g protein, maximum ${this.preferences.maxCaloriesPerMeal} calories per serving
+- Respect dietary restrictions: ${this.preferences.dietaryRestrictions.length > 0 ? this.preferences.dietaryRestrictions.join(', ') : 'none'}
+- Ensure variety (avoid recent meals if provided)
 
-After generating the meal plan, you should:
-1. Use the browse_heb tool to search for all unique ingredients on HEB website (if available)
-2. Create a consolidated shopping list by combining like ingredients across all meals
-   - Combine quantities for duplicate ingredients (e.g., if multiple meals use chicken breast, sum the total needed)
-   - Organize ingredients by category (proteins, vegetables, pantry items, etc.)
-   - Include HEB shopping links for each ingredient found on their website
-3. Format the meal plan and shopping list as an attractive, MOBILE-FRIENDLY HTML email
-   - Use responsive design with proper viewport meta tags and max-width: 600px for desktop
-   - Include the meal plan with all recipes
-   - Add a dedicated shopping list section at the end with combined ingredients
-   - Make ingredient names clickable links to add them to HEB cart
+For each meal, provide:
+- Name (clear, appetizing)
+- Description (2-3 sentences about flavor and appeal)
+- Ingredients with specific quantities (for ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'serving' : 'servings'})
+- Step-by-step cooking instructions
+- Prep time and cook time estimates
+- Nutritional information per serving (calories, protein, carbs, fat, fiber)
 
-   **BRAND COLORS - Use these consistently throughout the email:**
-   - Primary Teal: #3F9BA6 (use for headers, buttons, primary accents)
-   - Primary Teal Dark: #2A6B73 (use for gradients and hover states)
-   - Accent Terracotta: #A66A5D (use for secondary accents, links)
-   - Accent Terracotta Dark: #8B4F44 (use for gradients)
-   - Background: #f5f5f5 or white
-   - Text: #1f2937 (dark gray)
-
-   **Email Design Guidelines:**
-   - Use gradient backgrounds: linear-gradient(135deg, #3F9BA6, #2A6B73) for headers
-   - Apply rounded corners (border-radius: 8-12px) to cards and sections
-   - For buttons/CTAs: background with gradient from #3F9BA6 to #2A6B73, white text
-   - For links: color #A66A5D with hover effect
-   - Use card-style layouts with subtle shadows for each meal
-   - Add the "Easy Meal Planner" branding at the top with logo styling
-
-   - For the ingredient list specifically, use this mobile-friendly format:
-     <div style="background: #f9f9f9; padding: 15px; margin: 8px 0; border-radius: 8px; border-left: 4px solid #3F9BA6;">
-       <a href="[link]" style="display: block; color: #A66A5D; text-decoration: none; font-size: 16px; line-height: 1.6;">
-         <strong>Ingredient Name</strong> - Quantity
-       </a>
-     </div>
-   - Key requirements for ingredient list:
-     * Use larger font sizes (minimum 16px for body text, 18px for links)
-     * Add generous padding/spacing between items (at least 12-15px)
-     * Make clickable links full-width blocks for easy tapping (minimum 44px height)
-     * Use a single-column layout
-     * Add background colors or rounded borders to make items visually distinct and tappable
-     * Ensure adequate contrast for readability
-     * Use brand colors (#3F9BA6 for accents, #A66A5D for links)
-4. Use the send_email tool to send the complete email
-
-Make the meal plans varied, delicious, and practical for home cooking. Consider seasonal ingredients when possible.`;
+Output Format: Return valid JSON matching the provided schema.`;
   }
 
   private async buildUserPrompt(): Promise<string> {
-    const today = new Date();
-    const weekStart = new Date(today);
-    weekStart.setDate(today.getDate() + (7 - today.getDay()) % 7);
+    const weekLabel = this.getWeekLabel();
 
-    const weekString = `Week of ${weekStart.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
-
-    let prompt = `Create a dinner meal plan for ${weekString}.
+    let prompt = `Create a dinner meal plan for ${weekLabel}.
 
 Requirements:
-- High protein (minimum ${this.preferences.minProteinPerMeal}g per meal)
-- Low calorie (maximum ${this.preferences.maxCaloriesPerMeal} calories per meal)
+- High protein (minimum ${this.preferences.minProteinPerMeal}g per serving)
+- Low calorie (maximum ${this.preferences.maxCaloriesPerMeal} calories per serving)
 - ${this.preferences.numberOfMeals} different dinners
-- Include complete nutritional information
-- Include ingredient lists and cooking instructions`;
+- Each meal serves ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
+- Include complete nutritional information per serving
+- Include ingredient lists with quantities for ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'serving' : 'servings'}
+- Include step-by-step cooking instructions`;
 
     if (this.preferences.dietaryRestrictions.length > 0) {
       prompt += `\n- Dietary restrictions: ${this.preferences.dietaryRestrictions.join(', ')}`;
@@ -265,13 +253,14 @@ ${recentMeals.map((meal, i) => `${i + 1}. ${meal}`).join('\n')}
 Avoid repeating these exact meals or very similar variations. Aim for diverse proteins, cooking methods, and flavor profiles.`;
     }
 
-    prompt += `\n\nAfter creating the meal plan:
-1. Create a consolidated shopping list that combines all ingredients across all meals
-2. Organize the shopping list by category (proteins, vegetables, grains, dairy, pantry, etc.)
-3. Sum quantities for duplicate ingredients
-4. Search HEB for all ingredients and get shopping links
-5. Format everything as an attractive HTML email with the shopping list at the end, with clickable HEB links for each ingredient`;
-
     return prompt;
+  }
+
+  private getWeekLabel(): string {
+    const today = new Date();
+    const weekStart = new Date(today);
+    weekStart.setDate(today.getDate() + (7 - today.getDay()) % 7);
+
+    return `Week of ${weekStart.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
   }
 }
