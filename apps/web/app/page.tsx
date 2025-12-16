@@ -222,7 +222,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h3 className="text-4xl font-bold text-primary-dark mb-4">
-              See What You'll Get
+              See What You&apos;ll Get
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Check out a real example of what your weekly meal plan email will look like
