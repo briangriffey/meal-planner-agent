@@ -65,7 +65,9 @@ export class EmailConnector {
           filePath: outputPath,
           message: `Email content saved to ${outputPath}`
         };
+
       } else {
+
         const info = await this.transporter!.sendMail({
           from: this.config.user,
           to: this.config.recipients.join(', '),
@@ -81,6 +83,7 @@ export class EmailConnector {
         };
       }
     } catch (error) {
+      console.error('Failed to send email:', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error'
