@@ -10,9 +10,17 @@ export default async function PreferencesPage() {
     redirect('/login');
   }
 
-  const preferences = await prisma.userPreferences.findUnique({
-    where: { userId: session.user.id },
-  });
+  const [preferences, mealPlanCount] = await Promise.all([
+    prisma.userPreferences.findUnique({
+      where: { userId: session.user.id },
+    }),
+    prisma.mealPlan.count({
+      where: {
+        userId: session.user.id,
+        status: 'COMPLETED',
+      },
+    }),
+  ]);
 
   if (!preferences) {
     return (
@@ -29,6 +37,7 @@ export default async function PreferencesPage() {
     <PreferencesForm
       initialPreferences={preferences}
       userEmail={session.user.email || ''}
+      hasMealPlans={mealPlanCount > 0}
     />
   );
 }

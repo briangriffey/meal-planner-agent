@@ -25,15 +25,17 @@ interface Message {
 interface PreferencesFormProps {
   initialPreferences: Preferences;
   userEmail: string;
+  hasMealPlans: boolean;
 }
 
-export default function PreferencesForm({ initialPreferences, userEmail }: PreferencesFormProps) {
+export default function PreferencesForm({ initialPreferences, userEmail, hasMealPlans }: PreferencesFormProps) {
   const router = useRouter();
   const [preferences, setPreferences] = useState<Preferences>(initialPreferences);
   const [emailInput, setEmailInput] = useState('');
   const [restrictionInput, setRestrictionInput] = useState('');
   const [message, setMessage] = useState<Message | null>(null);
   const [saving, setSaving] = useState(false);
+  const [showGenerateModal, setShowGenerateModal] = useState(false);
 
   const daysOfWeek = [
     'Sunday',
@@ -113,6 +115,11 @@ export default function PreferencesForm({ initialPreferences, userEmail }: Prefe
         type: 'success',
         text: 'Preferences saved successfully',
       });
+
+      // Show modal if user doesn't have meal plans
+      if (!hasMealPlans) {
+        setShowGenerateModal(true);
+      }
 
       // Refresh the page to update server-side data
       router.refresh();
@@ -452,6 +459,51 @@ export default function PreferencesForm({ initialPreferences, userEmail }: Prefe
           </div>
         </div>
       </form>
+
+      {/* Generate Meal Plan Modal */}
+      {showGenerateModal && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          {/* Background overlay */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+            onClick={() => setShowGenerateModal(false)}
+          ></div>
+
+          {/* Modal */}
+          <div className="flex min-h-full items-center justify-center p-4">
+            <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary-light mb-4">
+                  <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  Ready to Generate Your First Meal Plan?
+                </h3>
+                <p className="text-sm text-gray-500 mb-6">
+                  Your preferences have been saved! Would you like to generate your first meal plan now?
+                </p>
+
+                <div className="flex gap-3 justify-center">
+                  <button
+                    onClick={() => setShowGenerateModal(false)}
+                    className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
+                  >
+                    Not Now
+                  </button>
+                  <button
+                    onClick={() => router.push('/dashboard/generate')}
+                    className="px-6 py-2 border border-transparent rounded-lg shadow-lg text-sm font-medium text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
+                  >
+                    Generate
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
