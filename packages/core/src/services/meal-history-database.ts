@@ -101,7 +101,14 @@ export class DatabaseMealHistoryService implements IMealHistoryService {
         day: meal.day || 'Unknown',
         name: meal.name || 'Unnamed Meal',
         calories: meal.nutrition?.calories,
-        protein: meal.nutrition?.protein
+        protein: meal.nutrition?.protein,
+        carbs: meal.nutrition?.carbs,
+        fat: meal.nutrition?.fat,
+        fiber: meal.nutrition?.fiber,
+        ingredients: meal.ingredients || [],
+        instructions: meal.instructions || [],
+        prepTime: meal.prepTime,
+        cookTime: meal.cookTime,
       }));
     } catch (error) {
       console.error('Failed to parse meal plan JSON:', error);

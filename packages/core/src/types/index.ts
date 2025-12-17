@@ -49,6 +49,13 @@ export interface MealRecord {
   name: string;
   calories?: number;
   protein?: number;
+  carbs?: number;
+  fat?: number;
+  fiber?: number;
+  ingredients?: string[];
+  instructions?: string[];
+  prepTime?: string;
+  cookTime?: string;
 }
 
 export interface MealPlanHistory {
