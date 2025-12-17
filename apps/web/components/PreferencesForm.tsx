@@ -101,7 +101,7 @@ export default function PreferencesForm({ initialPreferences, userEmail }: Prefe
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(preferences),
+        body: JSON.stringify({ ...preferences, scheduleEnabled: true }),
       });
 
       if (!response.ok) {
@@ -412,9 +412,10 @@ export default function PreferencesForm({ initialPreferences, userEmail }: Prefe
                     id="scheduleEnabled"
                     type="checkbox"
                     className="h-4 w-4 text-primary focus:ring-2 focus:ring-primary border-gray-300 rounded"
-                    checked={preferences.scheduleEnabled}
+                    checked={true}
+                    disabled={true}
                     onChange={(e) =>
-                      setPreferences({ ...preferences, scheduleEnabled: e.target.checked })
+                      setPreferences({ ...preferences, scheduleEnabled: true })
                     }
                   />
                   <label htmlFor="scheduleEnabled" className="ml-2 block text-sm text-gray-900">

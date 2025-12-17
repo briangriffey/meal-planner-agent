@@ -108,19 +108,22 @@ export default async function MealPlanDetailPage({
 
       <div className="grid grid-cols-1 gap-6">
         {meals.map((meal, index) => (
-          <div key={index} className="bg-white shadow rounded-lg overflow-hidden">
-            <div className="px-4 py-5 sm:px-6 bg-gray-50 border-b border-gray-200">
+          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+            <div className="px-6 py-5 bg-gradient-to-r from-primary-light to-primary border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  {meal.day}: {meal.name}
-                </h3>
-                <div className="flex space-x-4 text-sm text-gray-500">
+                <div>
+                  <h3 className="text-xl font-bold text-white">
+                    {meal.day}
+                  </h3>
+                  <p className="text-lg text-white/90 mt-1">{meal.name}</p>
+                </div>
+                <div className="flex space-x-4 text-sm text-white/90">
                   {meal.prepTime && <span>Prep: {meal.prepTime}</span>}
                   {meal.cookTime && <span>Cook: {meal.cookTime}</span>}
                 </div>
               </div>
             </div>
-            <div className="px-4 py-5 sm:p-6">
+            <div className="px-6 py-6">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
                 {meal.calories !== undefined && (
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
@@ -154,37 +157,45 @@ export default async function MealPlanDetailPage({
                 )}
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {meal.ingredients && meal.ingredients.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-3">Ingredients</h4>
-                    <ul className="space-y-2">
-                      {meal.ingredients.map((ingredient, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="flex-shrink-0 h-5 w-5 text-blue-500 mr-2">•</span>
-                          <span className="text-sm text-gray-700">{ingredient}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+              {meal.ingredients && meal.ingredients.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    Ingredients
+                  </h4>
+                  <ul className="space-y-2 bg-gray-50 rounded-lg p-4">
+                    {meal.ingredients.map((ingredient, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="flex-shrink-0 h-5 w-5 text-primary mr-3 mt-0.5">•</span>
+                        <span className="text-sm text-gray-700">{ingredient}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-                {meal.instructions && meal.instructions.length > 0 && (
-                  <div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-3">Instructions</h4>
-                    <ol className="space-y-2">
-                      {meal.instructions.map((instruction, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="flex-shrink-0 h-6 w-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-medium mr-3 mt-0.5">
-                            {i + 1}
-                          </span>
-                          <span className="text-sm text-gray-700 pt-0.5">{instruction}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                )}
-              </div>
+              {meal.instructions && meal.instructions.length > 0 && (
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                    <svg className="w-5 h-5 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Cooking Instructions
+                  </h4>
+                  <ol className="space-y-3 bg-gray-50 rounded-lg p-4">
+                    {meal.instructions.map((instruction, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="flex-shrink-0 h-6 w-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold mr-3 mt-0.5">
+                          {i + 1}
+                        </span>
+                        <span className="text-sm text-gray-700 pt-0.5">{instruction}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
             </div>
           </div>
         ))}
