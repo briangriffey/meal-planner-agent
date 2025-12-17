@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 
 interface Preferences {
   emailRecipients: string[];
@@ -18,7 +19,7 @@ interface Preferences {
 }
 
 export default function PreferencesPage() {
-  const { data: session } = useSession();
+  const { data: session } = useSession({ required: true, onUnauthenticated: () => redirect('/login') });
   const [preferences, setPreferences] = useState<Preferences | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -154,11 +155,10 @@ export default function PreferencesPage() {
 
       {message && (
         <div
-          className={`rounded-lg p-4 border ${
-            message.type === 'success'
-              ? 'bg-green-50 border-green-200'
-              : 'bg-red-50 border-red-200'
-          }`}
+          className={`rounded-lg p-4 border ${message.type === 'success'
+            ? 'bg-green-50 border-green-200'
+            : 'bg-red-50 border-red-200'
+            }`}
         >
           <div className="flex">
             <svg className={`h-5 w-5 ${message.type === 'success' ? 'text-green-400' : 'text-red-400'}`} viewBox="0 0 20 20" fill="currentColor">
