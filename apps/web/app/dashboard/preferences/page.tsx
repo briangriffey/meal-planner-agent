@@ -1,8 +1,5 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
 
 interface Preferences {
   emailRecipients: string[];
@@ -19,7 +16,7 @@ interface Preferences {
 }
 
 export default function PreferencesPage() {
-  const { data: session } = useSession({ required: true, onUnauthenticated: () => redirect('/login') });
+  const session = auth();
   const [preferences, setPreferences] = useState<Preferences | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
