@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@meal-planner/database'],
+  productionBrowserSourceMaps: true,
   experimental: {
     serverActions: {
       bodySizeLimit: '2mb',
