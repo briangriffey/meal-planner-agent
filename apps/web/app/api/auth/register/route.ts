@@ -48,7 +48,7 @@ export async function POST(request: Request) {
             maxCaloriesPerMeal: 600,
             dietaryRestrictions: [],
             hebEnabled: true,
-            scheduleEnabled: false,
+            // scheduleEnabled defaults to true from schema
           },
         },
       },
