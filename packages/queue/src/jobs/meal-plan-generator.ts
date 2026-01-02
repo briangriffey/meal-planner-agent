@@ -92,6 +92,13 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
             name: meal.name,
             calories: meal.calories,
             protein: meal.protein,
+            carbs: meal.carbs,
+            fat: meal.fat,
+            fiber: meal.fiber,
+            ingredients: meal.ingredients as any, // Array of strings
+            instructions: meal.instructions as any, // Array of strings
+            prepTime: meal.prepTime,
+            cookTime: meal.cookTime,
           },
         });
       }

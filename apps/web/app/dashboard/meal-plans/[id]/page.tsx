@@ -32,13 +32,20 @@ export default async function MealPlanDetailPage({
     where: {
       id: params.id,
     },
+    include: {
+      mealRecords: {
+        orderBy: {
+          createdAt: 'asc',
+        },
+      },
+    },
   });
 
   if (!mealPlan || mealPlan.userId !== session.user.id) {
     notFound();
   }
 
-  if (mealPlan.status !== 'COMPLETED' || !mealPlan.meals) {
+  if (mealPlan.status !== 'COMPLETED' || mealPlan.mealRecords.length === 0) {
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-gray-900">Meal Plan Not Ready</h2>
@@ -53,7 +60,19 @@ export default async function MealPlanDetailPage({
     );
   }
 
-  const meals = mealPlan.meals as unknown as Meal[];
+  const meals: Meal[] = mealPlan.mealRecords.map((record) => ({
+    day: record.day,
+    name: record.name,
+    calories: record.calories ?? undefined,
+    protein: record.protein ?? undefined,
+    carbs: record.carbs ?? undefined,
+    fat: record.fat ?? undefined,
+    fiber: record.fiber ?? undefined,
+    ingredients: record.ingredients as string[] | undefined,
+    instructions: record.instructions as string[] | undefined,
+    prepTime: record.prepTime ?? undefined,
+    cookTime: record.cookTime ?? undefined,
+  }));
 
   return (
     <div className="space-y-6">
