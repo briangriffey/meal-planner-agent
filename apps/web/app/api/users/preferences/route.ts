@@ -64,34 +64,30 @@ export async function PUT(request: Request) {
     const body = await request.json();
     const data = preferencesSchema.parse(body);
 
+    // Always enable schedules regardless of what the user sends
+    const updateData = {
+      ...data,
+      scheduleEnabled: true,
+    };
+
     const preferences = await prisma.userPreferences.update({
       where: { userId: session.user.id },
-      data,
+      data: updateData,
     });
 
-    // Check if schedule-related preferences were updated
-    const scheduleFieldsUpdated =
-      data.scheduleDayOfWeek !== undefined ||
-      data.scheduleHour !== undefined ||
-      data.scheduleMinute !== undefined ||
-      data.scheduleEnabled !== undefined;
-
-    if (scheduleFieldsUpdated) {
-      try {
-        // Update the scheduled job in the queue
-        await updateUserScheduledJob({
-          userId: session.user.id,
-          scheduleDayOfWeek: preferences.scheduleDayOfWeek,
-          scheduleHour: preferences.scheduleHour,
-          scheduleMinute: preferences.scheduleMinute,
-          scheduleEnabled: preferences.scheduleEnabled,
-        });
-        console.log(`✅ Updated scheduled job for user ${session.user.id}`);
-      } catch (queueError) {
-        // Log the error but don't fail the preference update
-        console.error('Error updating scheduled job:', queueError);
-        // You might want to return a warning to the user here
-      }
+    // Always update the scheduled job to ensure it's in sync
+    try {
+      await updateUserScheduledJob({
+        userId: session.user.id,
+        scheduleDayOfWeek: preferences.scheduleDayOfWeek,
+        scheduleHour: preferences.scheduleHour,
+        scheduleMinute: preferences.scheduleMinute,
+        scheduleEnabled: true, // Always enabled
+      });
+      console.log(`✅ Updated scheduled job for user ${session.user.id}`);
+    } catch (queueError) {
+      // Log the error but don't fail the preference update
+      console.error('Error updating scheduled job:', queueError);
     }
 
     return NextResponse.json(preferences);

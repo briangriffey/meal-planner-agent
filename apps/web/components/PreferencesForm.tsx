@@ -37,16 +37,6 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
   const [saving, setSaving] = useState(false);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
 
-  const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-
   const addEmail = () => {
     const email = emailInput.trim();
     if (email && !preferences.emailRecipients.includes(email)) {
@@ -140,7 +130,7 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
           Preferences
         </h2>
         <p className="mt-2 text-sm text-gray-600">
-          Manage your meal planning preferences and scheduling settings.
+          Manage your meal planning preferences. Meal plans are automatically generated weekly.
         </p>
       </div>
 
@@ -369,66 +359,6 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
                     </button>
                   </span>
                 ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary-dark to-primary rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-primary-dark">
-                  Schedule Settings
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label htmlFor="dayOfWeek" className="block text-sm font-medium text-gray-700 mb-1">
-                    Day of Week
-                  </label>
-                  <select
-                    id="dayOfWeek"
-                    className="block w-full border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
-                    value={preferences.scheduleDayOfWeek}
-                    onChange={(e) =>
-                      setPreferences({
-                        ...preferences,
-                        scheduleDayOfWeek: parseInt(e.target.value),
-                        scheduleHour: 0,
-                        scheduleMinute: 0,
-                      })
-                    }
-                  >
-                    {daysOfWeek.map((day, index) => (
-                      <option key={day} value={index}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Meal plans will be sent at midnight (12:00 AM) on the selected day
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <div className="flex items-center">
-                  <input
-                    id="scheduleEnabled"
-                    type="checkbox"
-                    className="h-4 w-4 text-primary focus:ring-2 focus:ring-primary border-gray-300 rounded"
-                    checked={true}
-                    disabled={true}
-                    onChange={(e) =>
-                      setPreferences({ ...preferences, scheduleEnabled: true })
-                    }
-                  />
-                  <label htmlFor="scheduleEnabled" className="ml-2 block text-sm text-gray-900">
-                    Enable automatic weekly meal plan generation
-                  </label>
-                </div>
               </div>
             </div>
           </div>
