@@ -4,6 +4,7 @@ import {
   enqueueMealPlanGeneration,
   getJobStatus,
   cancelJob,
+  updateUserScheduledJob,
   type MealPlanJobData,
 } from '@meal-planner/queue/src/client';
 
@@ -13,5 +14,6 @@ export {
   enqueueMealPlanGeneration,
   getJobStatus,
   cancelJob,
+  updateUserScheduledJob,
   type MealPlanJobData,
 };

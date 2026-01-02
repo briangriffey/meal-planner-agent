@@ -2,13 +2,15 @@
 
 import { Worker, Job } from 'bullmq';
 import { config } from 'dotenv';
+import { resolve } from 'path';
+import { PrismaClient } from '@meal-planner/database';
 import { getRedisConnection } from './config';
-import { QUEUE_NAMES, MealPlanJobData, ScheduledJobData } from './client';
+import { QUEUE_NAMES, MealPlanJobData, ScheduledJobData, setupScheduledJobs } from './client';
 import { processMealPlanGeneration } from './jobs/meal-plan-generator';
 import { processScheduledGeneration } from './jobs/scheduled-generator';
 
-// Load environment variables
-config();
+// Load environment variables from project root
+config({ path: resolve(__dirname, '../../../.env') });
 
 console.log('🚀 Starting BullMQ Workers...');
 
@@ -124,4 +126,29 @@ process.on('SIGINT', shutdown);
 console.log('✅ Workers started successfully');
 console.log(`   - Meal Plan Generation Worker: Concurrency ${mealPlanWorker.opts.concurrency}`);
 console.log(`   - Scheduled Generation Worker: Concurrency ${scheduledWorker.opts.concurrency}`);
+
+// Sync all scheduled jobs on startup
+(async () => {
+  console.log('\n🔄 Syncing scheduled jobs...');
+  const prisma = new PrismaClient();
+
+  try {
+    const users = await prisma.userPreferences.findMany({
+      select: {
+        userId: true,
+        scheduleDayOfWeek: true,
+        scheduleHour: true,
+        scheduleMinute: true,
+        scheduleEnabled: true,
+      },
+    });
+
+    await setupScheduledJobs(users);
+  } catch (error) {
+    console.error('❌ Error syncing scheduled jobs:', error);
+  } finally {
+    await prisma.$disconnect();
+  }
+})();
+
 console.log('\n👂 Listening for jobs...\n');

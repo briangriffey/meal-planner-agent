@@ -5,6 +5,7 @@ export {
   enqueueMealPlanGeneration,
   getJobStatus,
   cancelJob,
+  updateUserScheduledJob,
   setupScheduledJobs,
   closeQueues,
   QUEUE_NAMES,

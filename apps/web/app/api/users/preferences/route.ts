@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
+import { updateUserScheduledJob } from '@meal-planner/queue';
 
 const preferencesSchema = z.object({
   emailRecipients: z.array(z.string().email()).optional(),
@@ -11,6 +12,10 @@ const preferencesSchema = z.object({
   maxCaloriesPerMeal: z.number().int().min(0).optional(),
   dietaryRestrictions: z.array(z.string()).optional(),
   hebEnabled: z.boolean().optional(),
+  scheduleDayOfWeek: z.number().int().min(0).max(6).optional(),
+  scheduleHour: z.number().int().min(0).max(23).optional(),
+  scheduleMinute: z.number().int().min(0).max(59).optional(),
+  scheduleEnabled: z.boolean().optional(),
 });
 
 /**
@@ -63,6 +68,31 @@ export async function PUT(request: Request) {
       where: { userId: session.user.id },
       data,
     });
+
+    // Check if schedule-related preferences were updated
+    const scheduleFieldsUpdated =
+      data.scheduleDayOfWeek !== undefined ||
+      data.scheduleHour !== undefined ||
+      data.scheduleMinute !== undefined ||
+      data.scheduleEnabled !== undefined;
+
+    if (scheduleFieldsUpdated) {
+      try {
+        // Update the scheduled job in the queue
+        await updateUserScheduledJob({
+          userId: session.user.id,
+          scheduleDayOfWeek: preferences.scheduleDayOfWeek,
+          scheduleHour: preferences.scheduleHour,
+          scheduleMinute: preferences.scheduleMinute,
+          scheduleEnabled: preferences.scheduleEnabled,
+        });
+        console.log(`✅ Updated scheduled job for user ${session.user.id}`);
+      } catch (queueError) {
+        // Log the error but don't fail the preference update
+        console.error('Error updating scheduled job:', queueError);
+        // You might want to return a warning to the user here
+      }
+    }
 
     return NextResponse.json(preferences);
   } catch (error) {
