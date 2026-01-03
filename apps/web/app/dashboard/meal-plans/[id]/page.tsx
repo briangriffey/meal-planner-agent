@@ -3,6 +3,11 @@ import { prisma } from '@/lib/db';
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 
+interface Ingredient {
+  item: string;
+  amount: string;
+}
+
 interface Meal {
   day: string;
   name: string;
@@ -11,7 +16,7 @@ interface Meal {
   carbs?: number;
   fat?: number;
   fiber?: number;
-  ingredients?: string[];
+  ingredients?: Ingredient[];
   instructions?: string[];
   prepTime?: string;
   cookTime?: string;
@@ -68,7 +73,7 @@ export default async function MealPlanDetailPage({
     carbs: record.carbs ?? undefined,
     fat: record.fat ?? undefined,
     fiber: record.fiber ?? undefined,
-    ingredients: record.ingredients as string[] | undefined,
+    ingredients: record.ingredients as Ingredient[] | undefined,
     instructions: record.instructions as string[] | undefined,
     prepTime: record.prepTime ?? undefined,
     cookTime: record.cookTime ?? undefined,
@@ -188,7 +193,9 @@ export default async function MealPlanDetailPage({
                     {meal.ingredients.map((ingredient, i) => (
                       <li key={i} className="flex items-start">
                         <span className="flex-shrink-0 h-5 w-5 text-primary mr-3 mt-0.5">•</span>
-                        <span className="text-sm text-gray-700">{ingredient}</span>
+                        <span className="text-sm text-gray-700">
+                          {ingredient.amount} {ingredient.item}
+                        </span>
                       </li>
                     ))}
                   </ul>
