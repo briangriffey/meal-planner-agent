@@ -25,13 +25,18 @@ export class DatabaseMealHistoryService implements IMealHistoryService {
       },
       orderBy: { generatedAt: 'desc' },
       take: count,
-      select: { meals: true },
+      include: {
+        mealRecords: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
 
     const meals: string[] = [];
     for (const plan of recentPlans) {
-      const planMeals = plan.meals as any as MealRecord[];
-      meals.push(...planMeals.map(m => m.name));
+      meals.push(...plan.mealRecords.map(m => m.name));
     }
 
     return meals;
@@ -59,9 +64,16 @@ export class DatabaseMealHistoryService implements IMealHistoryService {
       },
       orderBy: { generatedAt: 'desc' },
       take: weekCount,
-      select: {
-        generatedAt: true,
-        meals: true,
+      include: {
+        mealRecords: {
+          select: {
+            day: true,
+            name: true,
+          },
+          orderBy: {
+            createdAt: 'asc',
+          },
+        },
       },
     });
 
@@ -71,12 +83,11 @@ export class DatabaseMealHistoryService implements IMealHistoryService {
 
     let summary = `Recent meal history (last ${recentPlans.length} weeks):\n\n`;
 
-    recentPlans.forEach((plan: any, index: number) => {
-      const meals = plan.meals as any as MealRecord[];
+    recentPlans.forEach((plan, index: number) => {
       const date = plan.generatedAt.toISOString().split('T')[0];
 
       summary += `Week ${index + 1} (${date}):\n`;
-      meals.forEach((meal: MealRecord) => {
+      plan.mealRecords.forEach((meal) => {
         summary += `  - ${meal.day}: ${meal.name}\n`;
       });
       summary += '\n';

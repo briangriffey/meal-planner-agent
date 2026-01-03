@@ -71,7 +71,6 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
       where: { id: mealPlanId },
       data: {
         status: 'COMPLETED',
-        meals: result.meals as any,
         emailHtml: result.emailHtml,
         emailSent: result.emailSent,
         emailSentAt: result.emailSent ? new Date() : null,

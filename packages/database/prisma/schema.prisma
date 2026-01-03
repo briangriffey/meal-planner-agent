@@ -131,8 +131,7 @@ model MealPlan {
   jobCompletedAt DateTime?
   jobError      String?   @db.Text
 
-  // Generated content (stored as JSON)
-  meals     Json? // Array of meal objects
+  // Email tracking
   emailSent Boolean @default(false)
   emailSentAt DateTime?
   emailHtml String? @db.Text
