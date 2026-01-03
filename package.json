@@ -20,6 +20,14 @@
     "db:seed": "pnpm --filter @meal-planner/database seed",
     "test:agent": "ts-node scripts/test-agent.ts",
     "test:email": "ts-node scripts/test-email.ts --send",
+    "test:setup": "bash scripts/test-setup.sh",
+    "test:teardown": "bash scripts/test-teardown.sh",
+    "test:integration": "bash scripts/run-integration-tests.sh",
+    "test:docker:up": "docker-compose -f docker-compose.test.yml up -d",
+    "test:docker:down": "docker-compose -f docker-compose.test.yml down -v",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
     "enable-schedules": "ts-node scripts/enable-schedules.ts",
     "docker:up": "docker-compose -f docker-compose.full.yml up --build",
     "docker:down": "docker-compose -f docker-compose.full.yml down -v"
@@ -34,6 +42,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/node": "^22.10.2",
     "dotenv": "^16.4.7",
     "ts-node": "^10.9.2",

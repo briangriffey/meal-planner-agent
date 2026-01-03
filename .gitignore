@@ -8,3 +8,9 @@ config/users.json
 TESTEMAIL.html
 data/meal-history.json
 data/users/
+
+# bv (beads viewer) local config and caches
+.bv/
+
+# Claude Code local config and caches
+.claude/
