@@ -73,8 +73,8 @@ export default async function MealPlanDetailPage({
     carbs: record.carbs ?? undefined,
     fat: record.fat ?? undefined,
     fiber: record.fiber ?? undefined,
-    ingredients: record.ingredients as Ingredient[] | undefined,
-    instructions: record.instructions as string[] | undefined,
+    ingredients: (record.ingredients as unknown as Ingredient[]) ?? undefined,
+    instructions: (record.instructions as unknown as string[]) ?? undefined,
     prepTime: record.prepTime ?? undefined,
     cookTime: record.cookTime ?? undefined,
   }));
