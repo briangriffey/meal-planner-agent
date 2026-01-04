@@ -484,8 +484,8 @@ test.describe('Authentication Flows', () => {
       // Try to access protected route
       await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
 
-      // Should redirect to login
-      await expect(page).toHaveURL(ROUTES.login);
+      // Should redirect to login (may have query params like ?callbackUrl)
+      expect(page.url()).toMatch(/\/login/);
     });
   });
 
@@ -503,8 +503,8 @@ test.describe('Authentication Flows', () => {
       // Try to access dashboard
       await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
 
-      // Should redirect to login
-      await expect(page).toHaveURL(ROUTES.login);
+      // Should redirect to login (may have query params like ?callbackUrl)
+      expect(page.url()).toMatch(/\/login/);
     });
 
     test('should redirect to login when accessing preferences without authentication', async ({
@@ -516,8 +516,8 @@ test.describe('Authentication Flows', () => {
       // Try to access preferences
       await page.goto(ROUTES.preferences, { timeout: TIMEOUTS.navigation });
 
-      // Should redirect to login
-      await expect(page).toHaveURL(ROUTES.login);
+      // Should redirect to login (may have query params like ?callbackUrl)
+      expect(page.url()).toMatch(/\/login/);
     });
 
     test('should redirect to login when accessing meal plans without authentication', async ({
@@ -529,8 +529,8 @@ test.describe('Authentication Flows', () => {
       // Try to access meal plans
       await page.goto(ROUTES.mealPlans, { timeout: TIMEOUTS.navigation });
 
-      // Should redirect to login
-      await expect(page).toHaveURL(ROUTES.login);
+      // Should redirect to login (may have query params like ?callbackUrl)
+      expect(page.url()).toMatch(/\/login/);
     });
 
     test('should allow access to public routes without authentication', async ({

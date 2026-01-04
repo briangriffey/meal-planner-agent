@@ -421,9 +421,9 @@ test.describe('Dashboard Navigation', () => {
       // Try to access dashboard
       await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
 
-      // Should redirect to login
-      await page.waitForURL(ROUTES.login, { timeout: TIMEOUTS.navigation });
-      await expect(page).toHaveURL(ROUTES.login);
+      // Should redirect to login (may have query params like ?callbackUrl)
+      await page.waitForURL(/\/login/, { timeout: TIMEOUTS.navigation });
+      expect(page.url()).toMatch(/\/login/);
     });
 
     test('should allow access to dashboard when authenticated', async ({
