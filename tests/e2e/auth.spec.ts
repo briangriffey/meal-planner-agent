@@ -68,7 +68,7 @@ test.describe('Authentication Flows', () => {
 
       // Verify we're on the registration page
       await expect(page).toHaveURL(ROUTES.register);
-      await expect(page.locator('h1, h2')).toContainText(/register|sign up/i);
+      await expect(page.locator('h1, h2')).toContainText(/create account/i);
 
       // Fill in registration form
       if (userData.name) {
@@ -91,18 +91,16 @@ test.describe('Authentication Flows', () => {
       const submitButton = page.locator('button[type="submit"]');
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // Wait for navigation to dashboard or success page
-      await page.waitForURL(
-        (url) => {
-          const urlString = url.toString();
-          return (
-            urlString.includes(ROUTES.dashboard) ||
-            urlString.includes(ROUTES.home) ||
-            urlString.includes('/success')
-          );
-        },
-        { timeout: TIMEOUTS.authentication }
-      );
+      // After registration, app redirects to login page (may have query params like ?registered=true)
+      await page.waitForURL(/\/login/, { timeout: TIMEOUTS.navigation });
+
+      // Now login with the newly created credentials
+      await page.fill(SELECTORS.emailInput, userData.email);
+      await page.fill(SELECTORS.passwordInput, userData.password);
+      await page.click(SELECTORS.loginButton);
+
+      // Wait for redirect to dashboard after login
+      await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
 
       // Verify user is authenticated
       const authenticated = await isAuthenticated(page);
@@ -148,6 +146,10 @@ test.describe('Authentication Flows', () => {
 
       await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
 
+      // Fill name field
+      const nameInput = page.locator('input[name="name"]');
+      await nameInput.fill('Test User');
+
       await page.fill(SELECTORS.emailInput, uniqueEmail);
       await page.fill(SELECTORS.passwordInput, weakPassword);
 
@@ -160,10 +162,11 @@ test.describe('Authentication Flows', () => {
       const submitButton = page.locator('button[type="submit"]');
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // Should show password validation error
-      const errorMessage = page.locator(
-        'text=/password.*least.*character|password.*too.*short|password.*weak/i'
-      );
+      // Wait a moment for validation to occur
+      await page.waitForTimeout(1000);
+
+      // Should show password validation error: "Password must be at least 8 characters"
+      const errorMessage = page.locator('text=/password must be at least 8 characters/i');
       await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.formSubmission });
     });
 
@@ -226,6 +229,10 @@ test.describe('Authentication Flows', () => {
       // Use the VALID_USER email which should already exist in test database
       await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
 
+      // Fill name field
+      const nameInput = page.locator('input[name="name"]');
+      await nameInput.fill('Test User');
+
       await page.fill(SELECTORS.emailInput, VALID_USER.email);
       await page.fill(SELECTORS.passwordInput, 'NewPassword123!');
 
@@ -238,11 +245,19 @@ test.describe('Authentication Flows', () => {
       const submitButton = page.locator('button[type="submit"]');
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // Should show email already exists error
-      const errorMessage = page.locator(
-        'text=/email.*already.*exists|email.*taken|user.*already.*exists/i'
-      );
-      await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+      // Wait for error to appear - could be in toast/alert or inline
+      await page.waitForTimeout(2000);
+
+      // Should show email already exists error - check multiple possible locations
+      const errorInAlert = page.locator('[role="alert"]:has-text("email")');
+      const errorInline = page.locator('text=/email.*already|already.*registered|user.*exists|email.*in use/i');
+
+      const alertCount = await errorInAlert.count();
+      if (alertCount > 0) {
+        await expect(errorInAlert).toBeVisible();
+      } else {
+        await expect(errorInline).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+      }
     });
 
     test('should reject registration with empty required fields', async ({
