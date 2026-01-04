@@ -31,17 +31,14 @@ import {
 
 test.describe('Preferences Management', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to application
-    await page.goto(ROUTES.home);
+    // Authenticate user before accessing preferences
+    await page.goto(ROUTES.login);
+    await page.fill(SELECTORS.emailInput, VALID_USER.email);
+    await page.fill(SELECTORS.passwordInput, VALID_USER.password);
+    await page.click(SELECTORS.loginButton);
 
-    // Authenticate (assumes auth is required)
-    // TODO: Replace with actual authentication flow once implemented
-    // For now, we'll assume the user is already authenticated
-    // await page.goto(ROUTES.login);
-    // await page.fill(SELECTORS.emailInput, VALID_USER.email);
-    // await page.fill(SELECTORS.passwordInput, VALID_USER.password);
-    // await page.click(SELECTORS.loginButton);
-    // await page.waitForURL(ROUTES.dashboard, { timeout: TIMEOUTS.authentication });
+    // Wait for successful login (redirects to dashboard)
+    await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
 
     // Navigate to preferences page
     await page.goto(ROUTES.preferences);
@@ -52,22 +49,22 @@ test.describe('Preferences Management', () => {
   // ============================================================================
 
   test('should load current user preferences', async ({ page }) => {
-    // Verify page loaded
-    await expect(page.locator('h1')).toContainText(/preferences/i);
+    // Verify page loaded (heading is h2, not h1)
+    await expect(page.locator('h2')).toContainText(/preferences/i);
 
-    // Verify form fields are populated
-    const mealsPerDayInput = page.locator(SELECTORS.mealsPerDayInput);
-    await expect(mealsPerDayInput).toBeVisible();
+    // Verify form fields are populated - using accessible names
+    const mealsPerWeekInput = page.getByRole('spinbutton', { name: /number of meals per week/i });
+    await expect(mealsPerWeekInput).toBeVisible();
 
-    const daysPerPlanInput = page.locator(SELECTORS.daysPerPlanInput);
-    await expect(daysPerPlanInput).toBeVisible();
+    const servingsPerMealInput = page.getByRole('spinbutton', { name: /servings per meal/i });
+    await expect(servingsPerMealInput).toBeVisible();
 
     // Verify fields have values (should load from database)
-    const mealsPerDay = await mealsPerDayInput.inputValue();
-    expect(Number(mealsPerDay)).toBeGreaterThan(0);
+    const mealsPerWeek = await mealsPerWeekInput.inputValue();
+    expect(Number(mealsPerWeek)).toBeGreaterThan(0);
 
-    const daysPerPlan = await daysPerPlanInput.inputValue();
-    expect(Number(daysPerPlan)).toBeGreaterThan(0);
+    const servingsPerMeal = await servingsPerMealInput.inputValue();
+    expect(Number(servingsPerMeal)).toBeGreaterThan(0);
   });
 
   test('should display default preferences for new users', async ({ page }) => {
