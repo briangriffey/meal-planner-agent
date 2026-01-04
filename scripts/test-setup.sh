@@ -121,13 +121,15 @@ success "docker-compose.test.yml found"
 
 # Check if .env.test exists
 if [ ! -f ".env.test" ]; then
-  warning ".env.test not found, using .env.example as template"
-  if [ -f ".env.example" ]; then
+  warning ".env.test not found, creating from template"
+  if [ -f ".env.test.example" ]; then
+    cp .env.test.example .env.test
+    info "Created .env.test from .env.test.example"
+  elif [ -f ".env.example" ]; then
     cp .env.example .env.test
     info "Created .env.test from .env.example"
-    info "Please review and update .env.test with test-specific values"
   else
-    error_exit ".env.example not found, cannot create .env.test"
+    error_exit "Neither .env.test.example nor .env.example found"
   fi
 fi
 success ".env.test found"
@@ -193,25 +195,21 @@ wait_for_service "PostgreSQL" "docker exec meal-planner-db-test pg_isready -U me
 # Wait for Redis
 wait_for_service "Redis" "docker exec meal-planner-redis-test redis-cli ping"
 
+# Wait for Web app (check if container is healthy)
+wait_for_service "Web Application" "docker exec meal-planner-web-test node -e \"require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })\""
+
+# Wait for Worker (check if container is running)
+wait_for_service "Worker" "docker exec meal-planner-worker-test pgrep -f worker"
+
 success "All services are healthy"
 
 # ============================================================================
-# Step 4: Run database migrations
+# Step 4: Run database migrations (done automatically in web container)
 # ============================================================================
 echo ""
-echo -e "${YELLOW}Step 4: Running database migrations...${NC}"
-
-# Set DATABASE_URL for migrations
-export DATABASE_URL="postgresql://mealplanner:test@localhost:5433/meal_planner_test"
-
-# Run migrations
-if command_exists pnpm; then
-  info "Running Prisma migrations..."
-  pnpm db:migrate:deploy || error_exit "Failed to run database migrations"
-  success "Database migrations completed"
-else
-  error_exit "pnpm is not installed. Please install pnpm first."
-fi
+echo -e "${YELLOW}Step 4: Database migrations...${NC}"
+info "Migrations run automatically in web container on startup"
+success "Database migrations completed"
 
 # ============================================================================
 # Step 5: Seed database with test fixtures
@@ -219,10 +217,16 @@ fi
 echo ""
 echo -e "${YELLOW}Step 5: Seeding database with test fixtures...${NC}"
 
-info "Running database seed script..."
-pnpm db:seed || error_exit "Failed to seed database"
+# Set DATABASE_URL for seeding
+export DATABASE_URL="postgresql://mealplanner:test@localhost:5433/meal_planner_test"
 
-success "Database seeded successfully"
+info "Running database seed script..."
+if command_exists pnpm; then
+  pnpm db:seed || error_exit "Failed to seed database"
+  success "Database seeded successfully"
+else
+  error_exit "pnpm is not installed. Please install pnpm first."
+fi
 
 # ============================================================================
 # Step 6: Verify all services are responding
@@ -242,6 +246,22 @@ docker exec meal-planner-redis-test redis-cli GET test_key >/dev/null || error_e
 docker exec meal-planner-redis-test redis-cli DEL test_key >/dev/null
 success "Redis is responding"
 
+# Test Web app health endpoint
+info "Testing Web application..."
+if curl -f http://localhost:3001/api/health >/dev/null 2>&1; then
+  success "Web application is responding"
+else
+  error_exit "Web application health check failed"
+fi
+
+# Test Worker process
+info "Testing Worker process..."
+if docker exec meal-planner-worker-test pgrep -f worker >/dev/null 2>&1; then
+  success "Worker process is running"
+else
+  error_exit "Worker process check failed"
+fi
+
 # ============================================================================
 # Step 7: Output test environment information
 # ============================================================================
@@ -250,23 +270,24 @@ echo "=================================================="
 echo -e "${GREEN}✓ Test environment setup complete!${NC}"
 echo "=================================================="
 echo ""
-echo -e "${BLUE}Test Infrastructure:${NC}"
+echo -e "${BLUE}Test Environment URLs:${NC}"
+echo "  Web Application:    http://localhost:3001"
+echo "  API Health Check:   http://localhost:3001/api/health"
 echo "  Database (psql):    postgresql://mealplanner:test@localhost:5433/meal_planner_test"
 echo "  Redis:              redis://localhost:6380"
 echo ""
 echo -e "${BLUE}Test Credentials (in fixtures):${NC}"
-echo "  Email:              brian@test.com"
+echo "  Email:              test1@example.com"
 echo "  Password:           Password123!"
 echo ""
 echo -e "${BLUE}Docker Containers:${NC}"
 docker-compose -f docker-compose.test.yml ps
 echo ""
 echo -e "${BLUE}Next Steps:${NC}"
-echo "  1. Start web app:        pnpm dev (in separate terminal)"
-echo "  2. Run E2E tests:        pnpm test:e2e"
-echo "  3. Run integration tests: pnpm test:integration"
-echo "  4. View logs:            docker-compose -f docker-compose.test.yml logs -f"
-echo "  5. Teardown:             ./scripts/test-teardown.sh"
+echo "  1. Run E2E tests:        pnpm test:e2e"
+echo "  2. Run integration tests: pnpm test:integration"
+echo "  3. View logs:            docker-compose -f docker-compose.test.yml logs -f [service-name]"
+echo "  4. Teardown:             ./scripts/test-teardown.sh"
 echo ""
 echo -e "${GREEN}Environment is ready for testing!${NC}"
 echo ""

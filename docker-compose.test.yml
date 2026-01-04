@@ -34,6 +34,60 @@ services:
       timeout: 3s
       retries: 5
 
+  # Web application for testing
+  web-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: meal-planner-web-test
+    restart: unless-stopped
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      redis-test:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://mealplanner:test@postgres-test:5432/meal_planner_test
+      - REDIS_URL=redis://redis-test:6379
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - NEXTAUTH_URL=http://localhost:3001
+      - NEXTAUTH_SECRET=test-secret-key-for-testing-only-not-secure
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    env_file:
+      - .env.test
+    ports:
+      - "3001:3000"  # Map host 3001 to container 3000
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); })"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+  # Worker for testing
+  worker-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: meal-planner-worker-test
+    restart: unless-stopped
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      redis-test:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://mealplanner:test@postgres-test:5432/meal_planner_test
+      - REDIS_URL=redis://redis-test:6379
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+    env_file:
+      - .env.test
+
 volumes:
   postgres_test_data:
     driver: local
