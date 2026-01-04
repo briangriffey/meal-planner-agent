@@ -1,12 +1,13 @@
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function MealPlansPage() {
   const session = await auth();
 
   if (!session) {
-    return null;
+    redirect('/login');
   }
 
   const mealPlans = await prisma.mealPlan.findMany({
@@ -104,9 +105,8 @@ export default async function MealPlansPage() {
                     </div>
                     <div className="ml-4 flex items-center space-x-4">
                       <span
-                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                          statusColors[plan.status as keyof typeof statusColors]
-                        }`}
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColors[plan.status as keyof typeof statusColors]
+                          }`}
                       >
                         {plan.status}
                       </span>

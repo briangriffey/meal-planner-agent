@@ -336,8 +336,8 @@ test.describe('Dashboard Navigation', () => {
           // Wait for meal plan detail page
           await page.waitForURL(/\/meal-plans\//, { timeout: TIMEOUTS.navigation });
 
-          // Should show meal information
-          const mealContent = page.locator('text=/meal|day|breakfast|lunch|dinner/i');
+          // Should show meal information (use first() to avoid strict mode violation)
+          const mealContent = page.locator('text=/meal|day|breakfast|lunch|dinner/i').first();
           await expect(mealContent).toBeVisible({ timeout: TIMEOUTS.apiResponse });
         } else {
           test.skip();

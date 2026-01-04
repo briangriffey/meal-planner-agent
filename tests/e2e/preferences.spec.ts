@@ -69,6 +69,36 @@ async function dismissGenerateModal(page: any) {
   }
 }
 
+/**
+ * Waits for save confirmation after submitting preferences
+ *
+ * After saving preferences, the UI shows EITHER:
+ * 1. A success banner (if user has meal plans): "Preferences saved successfully"
+ * 2. A modal (if user has NO meal plans): "Your preferences have been saved!"
+ *
+ * This function waits for either confirmation and dismisses the modal if it appears.
+ *
+ * @param page - Playwright page object
+ */
+async function waitForSaveConfirmation(page: any) {
+  // Wait for either the success banner or the modal
+  const successBanner = page.locator('text=/preferences saved successfully/i');
+  const successModal = page.locator('text=/your preferences have been saved/i');
+
+  // Wait for either one to appear
+  await Promise.race([
+    expect(successBanner).toBeVisible({ timeout: TIMEOUTS.formSubmission }),
+    expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission }),
+  ]);
+
+  // If modal appeared, close it
+  const modalVisible = await successModal.isVisible().catch(() => false);
+  if (modalVisible) {
+    await page.locator(NOT_NOW_BUTTON).click();
+    await expect(successModal).not.toBeVisible();
+  }
+}
+
 // ============================================================================
 // Setup and Authentication
 // ============================================================================
@@ -306,13 +336,8 @@ test.describe('Preferences Management', () => {
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success modal to appear
-    const successModal = page.locator('text=/your preferences have been saved/i');
-    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
-
-    // Close the modal by clicking "Not Now"
-    await page.locator('button:has-text("Not Now")').click();
-    await expect(successModal).not.toBeVisible();
+    // Wait for save confirmation (banner or modal)
+    await waitForSaveConfirmation(page);
 
     // Reload and verify all are still checked
     await page.reload();
@@ -348,13 +373,8 @@ test.describe('Preferences Management', () => {
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success modal to appear
-    const successModal = page.locator('text=/your preferences have been saved/i');
-    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
-
-    // Close the modal by clicking "Not Now"
-    await page.locator('button:has-text("Not Now")').click();
-    await expect(successModal).not.toBeVisible();
+    // Wait for save confirmation (banner or modal)
+    await waitForSaveConfirmation(page);
 
     // Reload and verify
     await page.reload();
@@ -417,13 +437,8 @@ test.describe('Preferences Management', () => {
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success modal to appear
-    const successModal = page.locator('text=/your preferences have been saved/i');
-    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
-
-    // Close the modal by clicking "Not Now"
-    await page.locator('button:has-text("Not Now")').click();
-    await expect(successModal).not.toBeVisible();
+    // Wait for save confirmation (banner or modal)
+    await waitForSaveConfirmation(page);
 
     // Reload and verify all emails persist
     await page.reload();
@@ -533,13 +548,8 @@ test.describe('Preferences Management', () => {
     // Save all at once
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success modal to appear
-    const successModal = page.locator('text=/your preferences have been saved/i');
-    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
-
-    // Close the modal by clicking "Not Now"
-    await page.locator('button:has-text("Not Now")').click();
-    await expect(successModal).not.toBeVisible();
+    // Wait for save confirmation (banner or modal)
+    await waitForSaveConfirmation(page);
 
     // Reload and verify all changes persisted
     await page.reload();
