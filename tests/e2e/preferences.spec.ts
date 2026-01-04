@@ -389,15 +389,15 @@ test.describe('Preferences Management', () => {
   // ============================================================================
 
   test('should save all preferences together', async ({ page }) => {
-    const mealsPerDayInput = page.locator(SELECTORS.mealsPerDayInput);
-    const daysPerPlanInput = page.locator(SELECTORS.daysPerPlanInput);
+    const mealsPerWeekInput = page.getByRole('spinbutton', { name: /number of meals per week/i });
+    const servingsPerMealInput = page.getByRole('spinbutton', { name: /servings per meal/i });
 
     // Update multiple settings
-    await mealsPerDayInput.clear();
-    await mealsPerDayInput.fill(String(PREFERENCE_UPDATES.fullUpdate.mealsPerDay));
+    await mealsPerWeekInput.clear();
+    await mealsPerWeekInput.fill('5');
 
-    await daysPerPlanInput.clear();
-    await daysPerPlanInput.fill(String(PREFERENCE_UPDATES.fullUpdate.daysPerPlan));
+    await servingsPerMealInput.clear();
+    await servingsPerMealInput.fill('3');
 
     // Add dietary restriction
     const veganCheckbox = page.locator('input[type="checkbox"][value="vegan"]');
@@ -443,9 +443,9 @@ test.describe('Preferences Management', () => {
     const saveButton = page.locator(SELECTORS.savePreferencesButton);
 
     // Make a change
-    const mealsPerDayInput = page.locator(SELECTORS.mealsPerDayInput);
-    await mealsPerDayInput.clear();
-    await mealsPerDayInput.fill('4');
+    const mealsPerWeekInput = page.getByRole('spinbutton', { name: /number of meals per week/i });
+    await mealsPerWeekInput.clear();
+    await mealsPerWeekInput.fill('4');
 
     // Click save
     await saveButton.click();
@@ -514,9 +514,9 @@ test.describe('Preferences Management', () => {
     });
 
     // Make a change
-    const mealsPerDayInput = page.locator(SELECTORS.mealsPerDayInput);
-    await mealsPerDayInput.clear();
-    await mealsPerDayInput.fill('4');
+    const mealsPerWeekInput = page.getByRole('spinbutton', { name: /number of meals per week/i });
+    await mealsPerWeekInput.clear();
+    await mealsPerWeekInput.fill('4');
 
     // Try to save
     await page.click(SELECTORS.savePreferencesButton);
