@@ -358,10 +358,14 @@ export async function loginWithSession(
   // Navigate to home page first
   await page.goto(ROUTES.home, { timeout: TIMEOUTS.navigation });
 
-  // Set session storage
+  // Set session storage with error handling
   await page.evaluate((data) => {
-    for (const [key, value] of Object.entries(data)) {
-      sessionStorage.setItem(key, JSON.stringify(value));
+    try {
+      for (const [key, value] of Object.entries(data)) {
+        sessionStorage.setItem(key, JSON.stringify(value));
+      }
+    } catch (e) {
+      console.error('Failed to set session storage:', e);
     }
   }, sessionData);
 
@@ -386,14 +390,41 @@ export async function loginWithSession(
  * });
  */
 export async function clearSession(page: Page): Promise<void> {
-  await page.evaluate(() => {
-    sessionStorage.clear();
-    localStorage.clear();
-  });
+  try {
+    // Navigate to a valid page first if we're on about:blank or an invalid origin
+    const currentUrl = page.url();
+    if (!currentUrl || currentUrl === 'about:blank' || currentUrl === '') {
+      await page.goto(ROUTES.home, { timeout: TIMEOUTS.navigation }).catch(() => {
+        // Ignore navigation errors
+      });
+    }
+
+    // Try to clear storage, but don't fail if we can't access it
+    await page.evaluate(() => {
+      try {
+        sessionStorage.clear();
+      } catch (e) {
+        // Ignore - sessionStorage might not be accessible
+      }
+      try {
+        localStorage.clear();
+      } catch (e) {
+        // Ignore - localStorage might not be accessible
+      }
+    }).catch(() => {
+      // Ignore evaluation errors
+    });
+  } catch (e) {
+    // Ignore all errors during session clearing
+  }
 
   // Clear cookies as well
-  const context = page.context();
-  await context.clearCookies();
+  try {
+    const context = page.context();
+    await context.clearCookies();
+  } catch (e) {
+    // Ignore cookie clearing errors
+  }
 }
 
 // ============================================================================
