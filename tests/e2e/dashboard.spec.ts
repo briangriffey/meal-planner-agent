@@ -22,32 +22,61 @@ import {
 } from './helpers/fixtures';
 
 // ============================================================================
+// Local Test Constants - Consolidated Selectors
+// ============================================================================
+
+// Page heading selectors
+const PAGE_HEADING = 'h1, h2';
+
+// Navigation selectors
+const DASHBOARD_NAV_LINK = 'a[href="/dashboard"]';
+const PREFERENCES_NAV_LINK = 'a[href*="/preferences"]';
+const GENERATE_LINK = 'a[href*="/generate"]';
+
+// Dashboard content selectors
+const NAVIGATION_ELEMENT = 'nav';
+
+// ============================================================================
 // Setup and Teardown
 // ============================================================================
 
 test.describe('Dashboard Navigation', () => {
+  /**
+   * Before Each Test: Authentication and Navigation
+   *
+   * All dashboard tests require authentication. This hook:
+   * 1. Clears any existing session for test isolation
+   * 2. Logs in the test user
+   * 3. Verifies user is on a dashboard route
+   *
+   * IMPORTANT: After login, the app may redirect to /dashboard/preferences
+   * instead of /dashboard if the user hasn't completed their preferences.
+   * This is expected behavior - tests should handle both scenarios.
+   */
   test.beforeEach(async ({ page }) => {
-    // Clear session before each test
+    // STEP 1: Clear any existing session for test isolation
     await clearSession(page);
 
-    // Login before each test since dashboard requires authentication
+    // STEP 2: Login as valid test user
     await login(page, VALID_USER.email, VALID_USER.password);
 
-    // After login, user may be on /dashboard or /dashboard/preferences
-    // If they're a known user with preferences → /dashboard
-    // If they're a new user or missing preferences → /dashboard/preferences
-    // Just verify we're authenticated and on a dashboard route
+    // STEP 3: Verify user is authenticated and on a dashboard route
+    // SUCCESS: URL contains /dashboard (may be /dashboard or /dashboard/preferences)
+    // - Known users with complete preferences → /dashboard
+    // - New users or users with incomplete preferences → /dashboard/preferences
     expect(page.url()).toMatch(/\/dashboard/);
   });
 
   test.afterEach(async ({ page }) => {
-    // Clean up session after tests
+    // Clean up session after each test
     await clearSession(page);
   });
 
   // ============================================================================
   // Dashboard Loading and Display
   // ============================================================================
+  // PURPOSE: Verify dashboard page loads correctly with user-specific content
+  // SUCCESS: Page displays appropriate heading and navigation elements
 
   test.describe('Dashboard Loading and Display', () => {
     test('should load dashboard with correct heading', async ({ page }) => {

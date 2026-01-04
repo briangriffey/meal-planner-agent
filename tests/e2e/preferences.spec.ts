@@ -26,12 +26,42 @@ import {
 } from './helpers/fixtures';
 
 // ============================================================================
-// Setup and Authentication
+// Local Test Constants - Consolidated Selectors
 // ============================================================================
 
-// Helper function to dismiss the "Ready to Generate" modal if it appears
+// Page heading selector
+const PAGE_HEADING = 'h2';
+
+// Accessible form input selectors (using role and name for better accessibility testing)
+const MEALS_PER_WEEK_INPUT = { role: 'spinbutton', name: /number of meals per week/i };
+const SERVINGS_PER_MEAL_INPUT = { role: 'spinbutton', name: /servings per meal/i };
+
+// Email input selectors
+const EMAIL_INPUT_FIELD = 'input[placeholder="email@example.com"]';
+const EMAIL_ADD_BUTTON_INDEX = 1; // Second "Add" button (first is for dietary restrictions)
+
+// Modal and button selectors
+const NOT_NOW_BUTTON = 'button:has-text("Not Now")';
+const DIETARY_RESTRICTION_ADD_BUTTON_INDEX = 0; // First "Add" button
+const VEGAN_CHECKBOX = 'input[type="checkbox"][value="vegan"]';
+
+// Success modal text pattern
+const SUCCESS_MODAL_TEXT = 'text=/your preferences have been saved/i';
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+/**
+ * Dismisses the "Ready to Generate Your First Meal Plan?" modal if it appears
+ *
+ * This modal can appear at any time when a user hasn't generated a meal plan yet.
+ * We need to dismiss it before interacting with the preferences form.
+ *
+ * @param page - Playwright page object
+ */
 async function dismissGenerateModal(page: any) {
-  const modalNotNowButton = page.locator('button:has-text("Not Now")');
+  const modalNotNowButton = page.locator(NOT_NOW_BUTTON);
   const modalVisible = await modalNotNowButton.isVisible({ timeout: 1000 }).catch(() => false);
   if (modalVisible) {
     await modalNotNowButton.click();
@@ -39,40 +69,74 @@ async function dismissGenerateModal(page: any) {
   }
 }
 
+// ============================================================================
+// Setup and Authentication
+// ============================================================================
+
 test.describe('Preferences Management', () => {
+  /**
+   * Before Each Test: Authentication and Navigation
+   *
+   * All preferences tests require authentication. This hook:
+   * 1. Logs in the test user
+   * 2. Navigates to the preferences page
+   * 3. Dismisses any modal dialogs that may appear
+   *
+   * Note: After login, the app may redirect to /dashboard/preferences instead of /dashboard
+   * if the user hasn't completed their preferences yet.
+   */
   test.beforeEach(async ({ page }) => {
-    // Authenticate user before accessing preferences
+    // STEP 1: Login as valid test user
     await page.goto(ROUTES.login);
     await page.fill(SELECTORS.emailInput, VALID_USER.email);
     await page.fill(SELECTORS.passwordInput, VALID_USER.password);
     await page.click(SELECTORS.loginButton);
 
-    // Wait for successful login (redirects to dashboard)
+    // STEP 2: Wait for successful login (redirects to dashboard or preferences)
     await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
 
-    // Navigate to preferences page
+    // STEP 3: Navigate to preferences page
     await page.goto(ROUTES.preferences);
 
-    // Close the "Ready to Generate Your First Meal Plan?" modal if it appears
+    // STEP 4: Dismiss "Ready to Generate Your First Meal Plan?" modal if it appears
+    // This modal can appear when the user hasn't generated a meal plan yet
     await dismissGenerateModal(page);
   });
 
   // ============================================================================
   // Load Current Preferences
   // ============================================================================
+  // PURPOSE: Verify preferences page loads and displays existing user settings
+  // SUCCESS: Form is populated with user's current preferences from database
 
+  /**
+   * Test: Preferences page loads with user data
+   *
+   * Steps:
+   * 1. Verify page heading is displayed
+   * 2. Verify all form fields are visible
+   * 3. Verify fields contain valid data (not empty/zero)
+   *
+   * Success Criteria:
+   * - Page heading shows "Preferences"
+   * - Meals per week and servings per meal inputs are visible
+   * - Field values are greater than 0 (loaded from database)
+   */
   test('should load current user preferences', async ({ page }) => {
-    // Verify page loaded (heading is h2, not h1)
-    await expect(page.locator('h2')).toContainText(/preferences/i);
+    // STEP 1: Verify page loaded correctly
+    // SUCCESS: H2 heading contains "Preferences"
+    await expect(page.locator(PAGE_HEADING)).toContainText(/preferences/i);
 
-    // Verify form fields are populated - using accessible names
-    const mealsPerWeekInput = page.getByRole('spinbutton', { name: /number of meals per week/i });
+    // STEP 2: Verify form fields are visible
+    // Using accessible role selectors for better accessibility testing
+    const mealsPerWeekInput = page.getByRole(MEALS_PER_WEEK_INPUT.role as any, { name: MEALS_PER_WEEK_INPUT.name });
     await expect(mealsPerWeekInput).toBeVisible();
 
-    const servingsPerMealInput = page.getByRole('spinbutton', { name: /servings per meal/i });
+    const servingsPerMealInput = page.getByRole(SERVINGS_PER_MEAL_INPUT.role as any, { name: SERVINGS_PER_MEAL_INPUT.name });
     await expect(servingsPerMealInput).toBeVisible();
 
-    // Verify fields have values (should load from database)
+    // STEP 3: Verify fields have values loaded from database
+    // SUCCESS: Values are greater than 0 (valid preferences exist)
     const mealsPerWeek = await mealsPerWeekInput.inputValue();
     expect(Number(mealsPerWeek)).toBeGreaterThan(0);
 

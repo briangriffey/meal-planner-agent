@@ -32,6 +32,25 @@ import {
 } from './helpers/fixtures';
 
 // ============================================================================
+// Local Test Constants - Consolidated Selectors
+// ============================================================================
+
+// Form field selectors
+const NAME_INPUT = 'input[name="name"]';
+const CONFIRM_PASSWORD_INPUT = 'input[name="confirmPassword"], input[name="confirm-password"]';
+const SUBMIT_BUTTON = 'button[type="submit"]';
+
+// Page heading selector
+const PAGE_HEADING = 'h1, h2';
+
+// Error message patterns
+const PASSWORD_MIN_LENGTH_ERROR = 'text=/password must be at least 8 characters/i';
+const PASSWORD_MISMATCH_ERROR = 'text=/password.*match|password.*same|confirm.*password/i';
+const INVALID_EMAIL_ERROR = 'text=/invalid.*email|valid.*email.*address|email.*format/i';
+const EMAIL_EXISTS_ERROR = 'text=/email.*already|already.*registered|user.*exists|email.*in use/i';
+const INVALID_CREDENTIALS_ERROR = 'text=/invalid email or password/i';
+
+// ============================================================================
 // Setup and Teardown
 // ============================================================================
 
@@ -49,12 +68,31 @@ test.describe('Authentication Flows', () => {
   // ============================================================================
   // User Registration - Valid Cases
   // ============================================================================
+  // PURPOSE: Verify users can successfully create new accounts with valid data
+  // SUCCESS: User is registered, redirected to login, and can authenticate
 
   test.describe('User Registration - Valid Cases', () => {
+    /**
+     * Test: Complete registration flow with valid credentials
+     *
+     * Steps:
+     * 1. Navigate to registration page
+     * 2. Fill in all required fields (name, email, password, confirm password)
+     * 3. Submit the registration form
+     * 4. Verify redirect to login page
+     * 5. Login with newly created credentials
+     * 6. Verify successful authentication
+     *
+     * Success Criteria:
+     * - Registration form accepts valid data
+     * - App redirects to login page after registration
+     * - New user can login with created credentials
+     * - User is authenticated and on dashboard after login
+     */
     test('should successfully register a new user with valid data', async ({
       page,
     }) => {
-      // Generate unique email to avoid conflicts
+      // STEP 1: Generate unique email to avoid conflicts with existing test data
       const uniqueEmail = `test-${Date.now()}@example.com`;
       const userData = {
         name: 'New Test User',
@@ -63,16 +101,17 @@ test.describe('Authentication Flows', () => {
         confirmPassword: 'StrongPassword123!',
       };
 
-      // Navigate to registration page
+      // STEP 2: Navigate to registration page
       await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
 
-      // Verify we're on the registration page
+      // STEP 3: Verify we landed on the correct page
+      // SUCCESS: URL matches registration route and heading shows "Create Account"
       await expect(page).toHaveURL(ROUTES.register);
-      await expect(page.locator('h1, h2')).toContainText(/create account/i);
+      await expect(page.locator(PAGE_HEADING)).toContainText(/create account/i);
 
-      // Fill in registration form
+      // STEP 4: Fill in registration form fields
       if (userData.name) {
-        const nameInput = page.locator('input[name="name"]');
+        const nameInput = page.locator(NAME_INPUT);
         await nameInput.waitFor({ state: 'visible', timeout: TIMEOUTS.formSubmission });
         await nameInput.fill(userData.name);
       }
@@ -80,29 +119,32 @@ test.describe('Authentication Flows', () => {
       await page.fill(SELECTORS.emailInput, userData.email);
       await page.fill(SELECTORS.passwordInput, userData.password);
 
-      // Handle confirm password field if present
-      const confirmPasswordInput = page.locator('input[name="confirmPassword"], input[name="confirm-password"]');
+      // Handle confirm password field if present (may be optional in some forms)
+      const confirmPasswordInput = page.locator(CONFIRM_PASSWORD_INPUT);
       const confirmPasswordExists = await confirmPasswordInput.count() > 0;
       if (confirmPasswordExists && userData.confirmPassword) {
         await confirmPasswordInput.fill(userData.confirmPassword);
       }
 
-      // Submit the form
-      const submitButton = page.locator('button[type="submit"]');
+      // STEP 5: Submit the registration form
+      const submitButton = page.locator(SUBMIT_BUTTON);
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // After registration, app redirects to login page (may have query params like ?registered=true)
+      // STEP 6: Verify redirect to login page after successful registration
+      // SUCCESS: App redirects to /login (may include query params like ?registered=true)
       await page.waitForURL(/\/login/, { timeout: TIMEOUTS.navigation });
 
-      // Now login with the newly created credentials
+      // STEP 7: Login with the newly created credentials to verify account was created
       await page.fill(SELECTORS.emailInput, userData.email);
       await page.fill(SELECTORS.passwordInput, userData.password);
       await page.click(SELECTORS.loginButton);
 
-      // Wait for redirect to dashboard after login
+      // STEP 8: Verify successful login
+      // SUCCESS: User is redirected to dashboard route
       await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
 
-      // Verify user is authenticated
+      // STEP 9: Verify user is authenticated
+      // SUCCESS: isAuthenticated returns true
       const authenticated = await isAuthenticated(page);
       expect(authenticated).toBe(true);
     });
@@ -138,35 +180,55 @@ test.describe('Authentication Flows', () => {
   // ============================================================================
   // User Registration - Validation Errors
   // ============================================================================
+  // PURPOSE: Verify registration form validates input and shows helpful error messages
+  // SUCCESS: Invalid data is rejected with clear error messages
 
   test.describe('User Registration - Validation Errors', () => {
+    /**
+     * Test: Password length validation
+     *
+     * Steps:
+     * 1. Navigate to registration page
+     * 2. Enter a password that is too short (< 8 characters)
+     * 3. Submit the form
+     * 4. Verify error message appears
+     *
+     * Success Criteria:
+     * - Form rejects short passwords
+     * - Error message "Password must be at least 8 characters" is displayed
+     * - User remains on registration page
+     */
     test('should reject registration with weak password', async ({ page }) => {
+      // STEP 1: Prepare test data with a password that's too short
       const uniqueEmail = `test-weak-${Date.now()}@example.com`;
-      const weakPassword = '123'; // Too short and simple
+      const weakPassword = '123'; // Only 3 characters - fails minimum length requirement
 
+      // STEP 2: Navigate to registration page
       await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
 
-      // Fill name field
-      const nameInput = page.locator('input[name="name"]');
+      // STEP 3: Fill in registration form with invalid password
+      const nameInput = page.locator(NAME_INPUT);
       await nameInput.fill('Test User');
 
       await page.fill(SELECTORS.emailInput, uniqueEmail);
       await page.fill(SELECTORS.passwordInput, weakPassword);
 
-      const confirmPasswordInput = page.locator('input[name="confirmPassword"], input[name="confirm-password"]');
+      const confirmPasswordInput = page.locator(CONFIRM_PASSWORD_INPUT);
       const confirmPasswordExists = await confirmPasswordInput.count() > 0;
       if (confirmPasswordExists) {
         await confirmPasswordInput.fill(weakPassword);
       }
 
-      const submitButton = page.locator('button[type="submit"]');
+      // STEP 4: Submit the form
+      const submitButton = page.locator(SUBMIT_BUTTON);
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // Wait a moment for validation to occur
+      // STEP 5: Wait for validation to trigger
       await page.waitForTimeout(1000);
 
-      // Should show password validation error: "Password must be at least 8 characters"
-      const errorMessage = page.locator('text=/password must be at least 8 characters/i');
+      // STEP 6: Verify password validation error appears
+      // SUCCESS: Error message "Password must be at least 8 characters" is visible
+      const errorMessage = page.locator(PASSWORD_MIN_LENGTH_ERROR);
       await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.formSubmission });
     });
 
