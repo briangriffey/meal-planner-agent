@@ -33,8 +33,8 @@ test.describe('Dashboard Navigation', () => {
     // Login before each test since dashboard requires authentication
     await login(page, VALID_USER.email, VALID_USER.password);
 
-    // Verify we're on a dashboard route
-    expect(page.url()).toMatch(/\/dashboard/);
+    // Navigate explicitly to the main dashboard page (login may redirect to preferences)
+    await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
   });
 
   test.afterEach(async ({ page }) => {
