@@ -561,25 +561,30 @@ test.describe('Authentication Flows', () => {
     test('should enforce minimum password length', async ({ page }) => {
       await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
 
+      // Fill name field
+      const nameInput = page.locator('input[name="name"]');
+      await nameInput.fill('Test User');
+
       // Try password that's too short
       await page.fill(SELECTORS.emailInput, `test-${Date.now()}@example.com`);
       await page.fill(SELECTORS.passwordInput, '12345'); // Less than 8 characters
 
-      // Trigger validation
-      await page.locator(SELECTORS.passwordInput).blur();
+      const confirmPasswordInput = page.locator('input[name="confirmPassword"], input[name="confirm-password"]');
+      const confirmPasswordExists = await confirmPasswordInput.count() > 0;
+      if (confirmPasswordExists) {
+        await confirmPasswordInput.fill('12345');
+      }
 
-      // Should show error or mark field as invalid
-      const errorMessage = page.locator(
-        'text=/password.*least.*8|password.*too.*short/i'
-      );
-      const errorVisible = await errorMessage.isVisible().catch(() => false);
+      // Click submit to trigger validation
+      const submitButton = page.locator('button[type="submit"]');
+      await submitButton.click();
 
-      const passwordInput = page.locator(SELECTORS.passwordInput);
-      const isInvalid = await passwordInput.evaluate(
-        (el: HTMLInputElement) => !el.validity.valid
-      );
+      // Wait for validation message
+      await page.waitForTimeout(1000);
 
-      expect(errorVisible || isInvalid).toBe(true);
+      // Should show error message: "Password must be at least 8 characters"
+      const errorMessage = page.locator('text=/password must be at least 8 characters/i');
+      await expect(errorMessage).toBeVisible({ timeout: 5000 });
     });
 
     test('should accept password meeting all requirements', async ({ page }) => {
