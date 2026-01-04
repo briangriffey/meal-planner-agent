@@ -4,13 +4,12 @@
 # Test Setup Script
 # ============================================================================
 # This script sets up the complete test environment:
-# 1. Starts Docker services (PostgreSQL, Redis, Web, Worker)
+# 1. Starts Docker services (PostgreSQL, Redis)
 # 2. Waits for all services to be healthy
 # 3. Runs database migrations
 # 4. Seeds the database with test fixtures
 # 5. Verifies all services are responding
-# 6. Runs smoke tests
-# 7. Outputs test environment URLs
+# 6. Outputs test environment URLs
 
 set -e  # Exit on error
 
@@ -133,6 +132,39 @@ if [ ! -f ".env.test" ]; then
 fi
 success ".env.test found"
 
+# Copy credentials from .env if they're not set in .env.test
+if [ -f ".env" ]; then
+  info "Checking .env.test credentials..."
+
+  # Check if ANTHROPIC_API_KEY needs to be copied
+  if grep -q 'ANTHROPIC_API_KEY="your-anthropic-api-key-here"' .env.test; then
+    ANTHROPIC_KEY=$(grep ANTHROPIC_API_KEY .env | cut -d '=' -f2-)
+    if [ -n "$ANTHROPIC_KEY" ] && [ "$ANTHROPIC_KEY" != '""' ]; then
+      # Use sed to replace the value (macOS compatible)
+      sed -i.bak 's|ANTHROPIC_API_KEY="your-anthropic-api-key-here"|ANTHROPIC_API_KEY='"$ANTHROPIC_KEY"'|' .env.test && rm .env.test.bak
+      info "Copied ANTHROPIC_API_KEY from .env"
+    fi
+  fi
+
+  # Check if GMAIL_USER needs to be copied
+  if grep -q 'GMAIL_USER="your-email@gmail.com"' .env.test; then
+    GMAIL_USER_VAL=$(grep GMAIL_USER .env | cut -d '=' -f2-)
+    if [ -n "$GMAIL_USER_VAL" ] && [ "$GMAIL_USER_VAL" != '""' ]; then
+      sed -i.bak 's|GMAIL_USER="your-email@gmail.com"|GMAIL_USER='"$GMAIL_USER_VAL"'|' .env.test && rm .env.test.bak
+      info "Copied GMAIL_USER from .env"
+    fi
+  fi
+
+  # Check if GMAIL_APP_PASSWORD needs to be copied
+  if grep -q 'GMAIL_APP_PASSWORD="your-app-password-here"' .env.test; then
+    GMAIL_PASS=$(grep GMAIL_APP_PASSWORD .env | cut -d '=' -f2-)
+    if [ -n "$GMAIL_PASS" ] && [ "$GMAIL_PASS" != '""' ]; then
+      sed -i.bak 's|GMAIL_APP_PASSWORD="your-app-password-here"|GMAIL_APP_PASSWORD='"$GMAIL_PASS"'|' .env.test && rm .env.test.bak
+      info "Copied GMAIL_APP_PASSWORD from .env"
+    fi
+  fi
+fi
+
 # ============================================================================
 # Step 2: Start Docker Compose services
 # ============================================================================
@@ -160,9 +192,6 @@ wait_for_service "PostgreSQL" "docker exec meal-planner-db-test pg_isready -U me
 
 # Wait for Redis
 wait_for_service "Redis" "docker exec meal-planner-redis-test redis-cli ping"
-
-# Wait for Web app (check if port is responding)
-wait_for_service "Web Application" "curl -f http://localhost:3001/api/health"
 
 success "All services are healthy"
 
@@ -213,51 +242,19 @@ docker exec meal-planner-redis-test redis-cli GET test_key >/dev/null || error_e
 docker exec meal-planner-redis-test redis-cli DEL test_key >/dev/null
 success "Redis is responding"
 
-# Test Web app health endpoint
-info "Testing Web application..."
-if curl -f http://localhost:3001/api/health >/dev/null 2>&1; then
-  success "Web application is responding"
-else
-  error_exit "Web application health check failed"
-fi
-
 # ============================================================================
-# Step 7: Run smoke tests
-# ============================================================================
-echo ""
-echo -e "${YELLOW}Step 7: Running smoke tests...${NC}"
-
-# Run web smoke test
-if [ -f "scripts/smoke-test-web.sh" ]; then
-  info "Running web smoke test..."
-  bash scripts/smoke-test-web.sh || warning "Web smoke test failed (non-critical)"
-else
-  warning "scripts/smoke-test-web.sh not found, skipping web smoke test"
-fi
-
-# Run worker smoke test
-if [ -f "scripts/smoke-test-worker.sh" ]; then
-  info "Running worker smoke test..."
-  bash scripts/smoke-test-worker.sh || warning "Worker smoke test failed (non-critical)"
-else
-  warning "scripts/smoke-test-worker.sh not found, skipping worker smoke test"
-fi
-
-# ============================================================================
-# Step 8: Output test environment information
+# Step 7: Output test environment information
 # ============================================================================
 echo ""
 echo "=================================================="
 echo -e "${GREEN}✓ Test environment setup complete!${NC}"
 echo "=================================================="
 echo ""
-echo -e "${BLUE}Test Environment URLs:${NC}"
-echo "  Web Application:    http://localhost:3001"
-echo "  API Health Check:   http://localhost:3001/api/health"
+echo -e "${BLUE}Test Infrastructure:${NC}"
 echo "  Database (psql):    postgresql://mealplanner:test@localhost:5433/meal_planner_test"
 echo "  Redis:              redis://localhost:6380"
 echo ""
-echo -e "${BLUE}Test Credentials:${NC}"
+echo -e "${BLUE}Test Credentials (in fixtures):${NC}"
 echo "  Email:              brian@test.com"
 echo "  Password:           Password123!"
 echo ""
@@ -265,10 +262,11 @@ echo -e "${BLUE}Docker Containers:${NC}"
 docker-compose -f docker-compose.test.yml ps
 echo ""
 echo -e "${BLUE}Next Steps:${NC}"
-echo "  1. Run E2E tests:        pnpm test:e2e"
-echo "  2. Run integration tests: pnpm test:integration"
-echo "  3. View logs:            docker-compose -f docker-compose.test.yml logs -f"
-echo "  4. Teardown:             ./scripts/test-teardown.sh"
+echo "  1. Start web app:        pnpm dev (in separate terminal)"
+echo "  2. Run E2E tests:        pnpm test:e2e"
+echo "  3. Run integration tests: pnpm test:integration"
+echo "  4. View logs:            docker-compose -f docker-compose.test.yml logs -f"
+echo "  5. Teardown:             ./scripts/test-teardown.sh"
 echo ""
 echo -e "${GREEN}Environment is ready for testing!${NC}"
 echo ""

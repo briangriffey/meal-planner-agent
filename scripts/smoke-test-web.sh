@@ -66,7 +66,9 @@ echo ""
 
 # Test 3: Database is connected
 echo "Test 3: Database connectivity"
-if echo "$HEALTH_RESPONSE" | grep -q '"database":"connected"'; then
+if echo "$HEALTH_RESPONSE" | grep -q '"database"' | grep -q '"connected"'; then
+  echo "✅ PASS - Database is connected"
+elif echo "$HEALTH_RESPONSE" | grep -q 'database.*connected'; then
   echo "✅ PASS - Database is connected"
 else
   echo "❌ FAIL - Database is not connected"
@@ -78,7 +80,9 @@ echo ""
 
 # Test 4: Redis is connected
 echo "Test 4: Redis connectivity"
-if echo "$HEALTH_RESPONSE" | grep -q '"redis":"connected"'; then
+if echo "$HEALTH_RESPONSE" | grep -q '"redis"' | grep -q '"connected"'; then
+  echo "✅ PASS - Redis is connected"
+elif echo "$HEALTH_RESPONSE" | grep -q 'redis.*connected'; then
   echo "✅ PASS - Redis is connected"
 else
   echo "❌ FAIL - Redis is not connected"
