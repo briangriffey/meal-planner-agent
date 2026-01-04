@@ -17,3 +17,7 @@ data/users/
 
 # Test environment variables (contains secrets)
 .env.test
+
+# Playwright test results
+test-results/
+playwright-report/

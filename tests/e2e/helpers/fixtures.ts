@@ -255,12 +255,14 @@ export const TIMEOUTS = {
  */
 export const ROUTES = {
   home: '/',
-  login: '/auth/signin',
-  register: '/auth/signup',
+  login: '/login',
+  register: '/register',
   dashboard: '/dashboard',
-  preferences: '/preferences',
-  mealPlans: '/meal-plans',
-  mealPlanDetail: (id: string) => `/meal-plans/${id}`,
+  preferences: '/dashboard/preferences',
+  mealPlans: '/dashboard/meal-plans',
+  mealPlanDetail: (id: string) => `/dashboard/meal-plans/${id}`,
+  generate: '/dashboard/generate',
+  analytics: '/dashboard/analytics',
 } as const;
 
 // ============================================================================
