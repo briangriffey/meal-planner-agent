@@ -291,16 +291,25 @@ test.describe('Preferences Management', () => {
     // Reload and verify
     await page.reload();
 
-    // Email should still be in list
-    await expect(page.locator(`text=${VALID_EMAILS[0]}`)).toBeVisible();
+    // Close modal if it appears after reload
+    const modalAfterReload = page.locator('button:has-text("Not Now")');
+    if (await modalAfterReload.isVisible({ timeout: 2000 }).catch(() => false)) {
+      await modalAfterReload.click();
+    }
+
+    // Email should still be in list (use first() to avoid strict mode)
+    await expect(page.locator(`text=${VALID_EMAILS[0]}`).first()).toBeVisible();
   });
 
   test('should remove email recipient', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
+
+    // Scroll to email section
+    await emailInput.scrollIntoViewIfNeeded();
 
     // First, add an email
     await emailInput.fill(VALID_EMAILS[0]);
-    await page.click(SELECTORS.addEmailButton);
+    await page.locator('button:has-text("Add")').nth(1).click();
 
     // Find and click remove button for this email
     const emailItem = page.locator(`text=${VALID_EMAILS[0]}`).locator('..');
@@ -315,22 +324,29 @@ test.describe('Preferences Management', () => {
       // Save preferences
       await page.click(SELECTORS.savePreferencesButton);
 
-      // Wait for success
-      await expect(page.locator('[role="alert"]'))
-        .toContainText(/saved|success/i, { timeout: TIMEOUTS.formSubmission });
+      // Wait for success modal to appear
+      const successModal = page.locator('text=/your preferences have been saved/i');
+      await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+
+      // Close the modal by clicking "Not Now"
+      await page.locator('button:has-text("Not Now")').click();
+      await expect(successModal).not.toBeVisible();
     }
   });
 
   test('should handle multiple email recipients', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
+
+    // Scroll to email section
+    await emailInput.scrollIntoViewIfNeeded();
 
     // Add multiple emails
     for (const email of VALID_EMAILS) {
       await emailInput.fill(email);
-      await page.click(SELECTORS.addEmailButton);
+      await page.locator('button:has-text("Add")').nth(1).click();
 
-      // Verify email appears
-      await expect(page.locator(`text=${email}`)).toBeVisible();
+      // Verify email appears (use first() to avoid strict mode)
+      await expect(page.locator(`text=${email}`).first()).toBeVisible();
     }
 
     // Save preferences
@@ -347,8 +363,14 @@ test.describe('Preferences Management', () => {
     // Reload and verify all emails persist
     await page.reload();
 
+    // Close modal if it appears after reload
+    const modalAfterReload = page.locator('button:has-text("Not Now")');
+    if (await modalAfterReload.isVisible({ timeout: 2000 }).catch(() => false)) {
+      await modalAfterReload.click();
+    }
+
     for (const email of VALID_EMAILS) {
-      await expect(page.locator(`text=${email}`)).toBeVisible();
+      await expect(page.locator(`text=${email}`).first()).toBeVisible();
     }
   });
 
@@ -357,13 +379,16 @@ test.describe('Preferences Management', () => {
   // ============================================================================
 
   test('should validate email format', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
+
+    // Scroll to email section
+    await emailInput.scrollIntoViewIfNeeded();
 
     // Try adding invalid emails
     for (const invalidEmail of INVALID_EMAILS) {
       await emailInput.clear();
       await emailInput.fill(invalidEmail);
-      await page.click(SELECTORS.addEmailButton);
+      await page.locator('button:has-text("Add")').nth(1).click();
 
       // Should show validation error
       await expect(page.locator('[role="alert"]'))
@@ -375,30 +400,36 @@ test.describe('Preferences Management', () => {
   });
 
   test('should accept valid email formats', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
+
+    // Scroll to email section
+    await emailInput.scrollIntoViewIfNeeded();
 
     // Try adding valid emails
     for (const validEmail of VALID_EMAILS) {
       await emailInput.clear();
       await emailInput.fill(validEmail);
-      await page.click(SELECTORS.addEmailButton);
+      await page.locator('button:has-text("Add")').nth(1).click();
 
-      // Should be added successfully
-      await expect(page.locator(`text=${validEmail}`)).toBeVisible();
+      // Should be added successfully (use first() to avoid strict mode)
+      await expect(page.locator(`text=${validEmail}`).first()).toBeVisible();
     }
   });
 
   test('should prevent duplicate email addresses', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
     const testEmail = VALID_EMAILS[0];
+
+    // Scroll to email section
+    await emailInput.scrollIntoViewIfNeeded();
 
     // Add email once
     await emailInput.fill(testEmail);
-    await page.click(SELECTORS.addEmailButton);
+    await page.locator('button:has-text("Add")').nth(1).click();
 
     // Try to add same email again
     await emailInput.fill(testEmail);
-    await page.click(SELECTORS.addEmailButton);
+    await page.locator('button:has-text("Add")').nth(1).click();
 
     // Should show error or prevent addition
     await expect(page.locator('[role="alert"]'))
