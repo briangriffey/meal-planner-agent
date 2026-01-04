@@ -10,6 +10,7 @@
  */
 
 import { test, expect } from '@playwright/test';
+import { login, clearSession } from './helpers/auth';
 import {
   VALID_USER,
   TIMEOUTS,
@@ -24,17 +25,19 @@ import {
 
 test.describe('Meal Plan Generation', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to application
-    await page.goto(ROUTES.home);
+    // Clear any existing session
+    await clearSession(page);
 
-    // Authenticate (assumes auth is required)
-    // TODO: Replace with actual authentication flow once implemented
-    // For now, we'll assume the user is already authenticated or skip this
-    // await page.goto(ROUTES.login);
-    // await page.fill(SELECTORS.emailInput, VALID_USER.email);
-    // await page.fill(SELECTORS.passwordInput, VALID_USER.password);
-    // await page.click(SELECTORS.loginButton);
-    // await page.waitForURL(ROUTES.dashboard, { timeout: TIMEOUTS.authentication });
+    // Login as valid user
+    await login(page, VALID_USER.email, VALID_USER.password);
+
+    // Should be on dashboard after login (may redirect to /dashboard/preferences)
+    expect(page.url()).toMatch(/\/dashboard/);
+  });
+
+  test.afterEach(async ({ page }) => {
+    // Clean up session after tests
+    await clearSession(page);
   });
 
   // ============================================================================
@@ -42,11 +45,10 @@ test.describe('Meal Plan Generation', () => {
   // ============================================================================
 
   test('should successfully generate a meal plan', async ({ page }) => {
-    // Navigate to dashboard or meal plan generation page
-    await page.goto(ROUTES.dashboard);
-
-    // Click generate button
-    await page.click(SELECTORS.generateButton);
+    // After login, user is on dashboard (may be /dashboard/preferences)
+    // Click the Generate link in the navigation
+    const generateLink = page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first();
+    await generateLink.click();
 
     // Verify generation started
     await expect(page.locator(SELECTORS.statusMessage))
@@ -98,7 +100,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Verify progress bar starts at 0 or low percentage
     const progressBar = page.locator(SELECTORS.progressBar);
@@ -139,7 +141,7 @@ test.describe('Meal Plan Generation', () => {
     });
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Wait for completion
     await expect(page.locator(SELECTORS.statusMessage))
@@ -157,7 +159,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Track which steps complete
     const completedSteps: string[] = [];
@@ -200,7 +202,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Wait for completion
     await expect(page.locator(SELECTORS.statusMessage))
@@ -235,7 +237,7 @@ test.describe('Meal Plan Generation', () => {
     });
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Should show error message
     await expect(page.locator('[role="alert"]'))
@@ -245,8 +247,9 @@ test.describe('Meal Plan Generation', () => {
     await expect(page.locator('[role="alert"]'))
       .toContainText(/error|fail/i);
 
-    // User should still be able to retry
-    await expect(page.locator(SELECTORS.generateButton)).toBeEnabled();
+    // User should still be able to retry - check Generate link is available
+    const generateLink = page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first();
+    await expect(generateLink).toBeVisible();
   });
 
   test('should handle network timeouts', async ({ page }) => {
@@ -261,7 +264,7 @@ test.describe('Meal Plan Generation', () => {
     });
 
     // Start generation
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Should show timeout or error message
     await expect(page.locator('[role="alert"]'))
@@ -276,7 +279,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Generate meal plan
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
 
     // Wait for completion and redirect
     await page.waitForURL(/\/meal-plans\/[a-z0-9-]+/, {
@@ -316,7 +319,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Generate first meal plan
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
     await page.waitForURL(/\/meal-plans\/[a-z0-9-]+/, {
       timeout: TIMEOUTS.mealPlanGeneration,
     });
@@ -327,7 +330,7 @@ test.describe('Meal Plan Generation', () => {
     await page.goto(ROUTES.dashboard);
 
     // Generate second meal plan
-    await page.click(SELECTORS.generateButton);
+    await page.locator('nav a:has-text("Generate"), a[href*="/generate"]').first().click();
     await page.waitForURL(/\/meal-plans\/[a-z0-9-]+/, {
       timeout: TIMEOUTS.mealPlanGeneration,
     });
