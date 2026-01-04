@@ -296,7 +296,7 @@ test.describe('Authentication Flows', () => {
 
       // Verify we're on the login page
       await expect(page).toHaveURL(ROUTES.login);
-      await expect(page.locator('h1, h2')).toContainText(/login|sign in/i);
+      await expect(page.locator('h1, h2')).toContainText(/welcome back/i);
 
       // Fill in credentials
       await page.fill(SELECTORS.emailInput, VALID_USER.email);
@@ -344,9 +344,7 @@ test.describe('Authentication Flows', () => {
       await page.click(SELECTORS.loginButton, { timeout: TIMEOUTS.formSubmission });
 
       // Should show error message
-      const errorMessage = page.locator(
-        'text=/invalid.*credentials|incorrect.*email.*password|login.*failed/i'
-      );
+      const errorMessage = page.locator('text=/invalid email or password/i');
       await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.authentication });
 
       // Should still be on login page
@@ -361,9 +359,7 @@ test.describe('Authentication Flows', () => {
       await page.click(SELECTORS.loginButton, { timeout: TIMEOUTS.formSubmission });
 
       // Should show error message
-      const errorMessage = page.locator(
-        'text=/invalid.*credentials|incorrect.*email.*password|login.*failed/i'
-      );
+      const errorMessage = page.locator('text=/invalid email or password/i');
       await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.authentication });
 
       // Should still be on login page
