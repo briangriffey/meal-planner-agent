@@ -1,5 +1,22 @@
 [
   {
+    "id": "pref-fixture-e2e",
+    "userId": "fixture-user-e2e",
+    "mealCount": 7,
+    "servingSize": 2,
+    "preferredProteins": ["chicken", "fish", "turkey"],
+    "dietaryRestrictions": [],
+    "targetCaloriesPerMeal": 600,
+    "targetProteinGramsPerMeal": 40,
+    "enableHEB": true,
+    "emailRecipients": ["test@example.com"],
+    "scheduleEnabled": true,
+    "scheduleDay": 0,
+    "scheduleTime": "09:00",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
     "id": "pref-fixture-001",
     "userId": "fixture-user-001",
     "mealCount": 7,

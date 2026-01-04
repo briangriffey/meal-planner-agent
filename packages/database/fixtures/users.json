@@ -1,5 +1,15 @@
 [
   {
+    "id": "fixture-user-e2e",
+    "email": "test@example.com",
+    "name": "Test User",
+    "emailVerified": "2025-01-01T00:00:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$PmwTB1vbOgQgkSxUprEfhOnlNgp9gZZ7c1nP6eYzBdRbjPxACf6y.",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-01T00:00:00.000Z"
+  },
+  {
     "id": "fixture-user-001",
     "email": "test1@example.com",
     "name": "Test User One",
