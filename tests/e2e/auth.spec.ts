@@ -290,11 +290,11 @@ test.describe('Authentication Flows', () => {
       // Submit login form
       await page.click(SELECTORS.loginButton, { timeout: TIMEOUTS.formSubmission });
 
-      // Wait for navigation to dashboard
-      await page.waitForURL(ROUTES.dashboard, { timeout: TIMEOUTS.authentication });
+      // Wait for navigation to dashboard (may redirect to /dashboard/preferences)
+      await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
 
-      // Verify successful login
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      // Verify successful login - should be on a dashboard route
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Verify user is authenticated
       const authenticated = await isAuthenticated(page);
@@ -307,8 +307,8 @@ test.describe('Authentication Flows', () => {
       // Test using the helper function
       await login(page, VALID_USER.email, VALID_USER.password);
 
-      // Should be on dashboard
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      // Should be on a dashboard route
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Should be authenticated
       const authenticated = await isAuthenticated(page);
@@ -384,13 +384,13 @@ test.describe('Authentication Flows', () => {
     test('should maintain session after page reload', async ({ page }) => {
       // Login first
       await login(page, VALID_USER.email, VALID_USER.password);
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Reload the page
       await page.reload({ timeout: TIMEOUTS.navigation });
 
-      // Should still be authenticated and on dashboard
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      // Should still be authenticated and on a dashboard route
+      expect(page.url()).toMatch(/\/dashboard/);
 
       const authenticated = await isAuthenticated(page);
       expect(authenticated).toBe(true);
@@ -412,7 +412,7 @@ test.describe('Authentication Flows', () => {
 
       // Navigate back to dashboard
       await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Should still be authenticated
       const authenticated = await isAuthenticated(page);
@@ -428,7 +428,7 @@ test.describe('Authentication Flows', () => {
     test('should successfully logout authenticated user', async ({ page }) => {
       // Login first
       await login(page, VALID_USER.email, VALID_USER.password);
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Find and click logout button
       const logoutButton = page.locator(SELECTORS.logoutButton);

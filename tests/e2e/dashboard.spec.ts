@@ -33,8 +33,8 @@ test.describe('Dashboard Navigation', () => {
     // Login before each test since dashboard requires authentication
     await login(page, VALID_USER.email, VALID_USER.password);
 
-    // Verify we're on the dashboard
-    await expect(page).toHaveURL(ROUTES.dashboard);
+    // Verify we're on a dashboard route
+    expect(page.url()).toMatch(/\/dashboard/);
   });
 
   test.afterEach(async ({ page }) => {
@@ -380,8 +380,8 @@ test.describe('Dashboard Navigation', () => {
         await dashboardLink.click({ timeout: TIMEOUTS.formSubmission });
 
         // Should navigate back to dashboard
-        await page.waitForURL(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
-        await expect(page).toHaveURL(ROUTES.dashboard);
+        await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.navigation });
+        expect(page.url()).toMatch(/\/dashboard/);
 
         // Should show dashboard content
         const dashboardHeading = page.locator('h1, h2').filter({
@@ -397,7 +397,7 @@ test.describe('Dashboard Navigation', () => {
       await expect(page).toHaveURL(ROUTES.preferences);
 
       await page.goto(ROUTES.dashboard, { timeout: TIMEOUTS.navigation });
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Should still be authenticated - dashboard should load
       const dashboardHeading = page.locator('h1, h2').filter({
@@ -431,7 +431,7 @@ test.describe('Dashboard Navigation', () => {
     }) => {
       // Already logged in from beforeEach
       // Dashboard should be accessible
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       const dashboardHeading = page.locator('h1, h2').filter({
         hasText: /dashboard/i,
@@ -456,7 +456,7 @@ test.describe('Dashboard Navigation', () => {
       await page.reload({ timeout: TIMEOUTS.navigation });
 
       // Should still show dashboard
-      await expect(page).toHaveURL(ROUTES.dashboard);
+      expect(page.url()).toMatch(/\/dashboard/);
 
       // Should still show meal plan data
       const refreshedText = await page

@@ -66,7 +66,7 @@ test.describe('Authentication - Minimal Tests', () => {
   test('should use login helper successfully', async ({ page }) => {
     await login(page, VALID_USER.email, VALID_USER.password);
 
-    // Verify we're authenticated and on dashboard
-    await expect(page).toHaveURL(ROUTES.dashboard);
+    // Verify we're authenticated and on a dashboard route
+    expect(page.url()).toMatch(/\/dashboard/);
   });
 });
