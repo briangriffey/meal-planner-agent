@@ -42,6 +42,15 @@ test.describe('Preferences Management', () => {
 
     // Navigate to preferences page
     await page.goto(ROUTES.preferences);
+
+    // Close the "Ready to Generate Your First Meal Plan?" modal if it appears
+    const modalNotNowButton = page.locator('button:has-text("Not Now")');
+    const modalVisible = await modalNotNowButton.isVisible({ timeout: 2000 }).catch(() => false);
+    if (modalVisible) {
+      await modalNotNowButton.click();
+      // Wait for modal to disappear
+      await expect(modalNotNowButton).not.toBeVisible({ timeout: 2000 });
+    }
   });
 
   // ============================================================================
@@ -229,9 +238,13 @@ test.describe('Preferences Management', () => {
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success
-    await expect(page.locator('[role="alert"]'))
-      .toContainText(/saved|success/i, { timeout: TIMEOUTS.formSubmission });
+    // Wait for success modal to appear
+    const successModal = page.locator('text=/your preferences have been saved/i');
+    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+
+    // Close the modal by clicking "Not Now"
+    await page.locator('button:has-text("Not Now")').click();
+    await expect(successModal).not.toBeVisible();
 
     // Reload and verify all are still checked
     await page.reload();
@@ -249,23 +262,31 @@ test.describe('Preferences Management', () => {
   // ============================================================================
 
   test('should add email recipient', async ({ page }) => {
-    const emailInput = page.locator(SELECTORS.emailRecipientsInput);
+    // Find email input by placeholder instead of name attribute
+    const emailInput = page.locator('input[placeholder="email@example.com"]');
+
+    // Scroll to email section and wait for input to be visible
+    await emailInput.scrollIntoViewIfNeeded();
 
     // Enter valid email
     await emailInput.fill(VALID_EMAILS[0]);
 
-    // Click add button
-    await page.click(SELECTORS.addEmailButton);
+    // Click the second "Add" button (for email, not dietary restrictions)
+    await page.locator('button:has-text("Add")').nth(1).click();
 
-    // Verify email appears in list
-    await expect(page.locator(`text=${VALID_EMAILS[0]}`)).toBeVisible();
+    // Verify email appears in list (use first() to avoid strict mode violation)
+    await expect(page.locator(`text=${VALID_EMAILS[0]}`).first()).toBeVisible();
 
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success
-    await expect(page.locator('[role="alert"]'))
-      .toContainText(/saved|success/i, { timeout: TIMEOUTS.formSubmission });
+    // Wait for success modal to appear
+    const successModal = page.locator('text=/your preferences have been saved/i');
+    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+
+    // Close the modal by clicking "Not Now"
+    await page.locator('button:has-text("Not Now")').click();
+    await expect(successModal).not.toBeVisible();
 
     // Reload and verify
     await page.reload();
@@ -315,9 +336,13 @@ test.describe('Preferences Management', () => {
     // Save preferences
     await page.click(SELECTORS.savePreferencesButton);
 
-    // Wait for success
-    await expect(page.locator('[role="alert"]'))
-      .toContainText(/saved|success/i, { timeout: TIMEOUTS.formSubmission });
+    // Wait for success modal to appear
+    const successModal = page.locator('text=/your preferences have been saved/i');
+    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+
+    // Close the modal by clicking "Not Now"
+    await page.locator('button:has-text("Not Now")').click();
+    await expect(successModal).not.toBeVisible();
 
     // Reload and verify all emails persist
     await page.reload();
