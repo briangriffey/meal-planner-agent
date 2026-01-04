@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database for testing (isolated from development)
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: meal-planner-db-test
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mealplanner
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: meal_planner_test
+    ports:
+      - "5433:5432"  # Different port than dev
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mealplanner"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis for BullMQ job queue testing (isolated from development)
+  redis-test:
+    image: redis:7-alpine
+    container_name: meal-planner-redis-test
+    restart: unless-stopped
+    ports:
+      - "6380:6379"  # Different port than dev
+    volumes:
+      - redis_test_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Web application for testing
+  web-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: meal-planner-web-test
+    restart: unless-stopped
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      redis-test:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://mealplanner:test@postgres-test:5432/meal_planner_test
+      - REDIS_URL=redis://redis-test:6379
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+      - NEXTAUTH_URL=http://localhost:3001
+      - NEXTAUTH_SECRET=test-secret-key-for-testing-only-not-secure
+    env_file:
+      - .env.test
+    ports:
+      - "3001:3000"  # Different port than dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: pnpm dev
+
+  # Worker for testing
+  worker-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: meal-planner-worker-test
+    restart: unless-stopped
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      redis-test:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=test
+      - DATABASE_URL=postgresql://mealplanner:test@postgres-test:5432/meal_planner_test
+      - REDIS_URL=redis://redis-test:6379
+      - REDIS_HOST=redis-test
+      - REDIS_PORT=6379
+    env_file:
+      - .env.test
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: pnpm worker
+
+volumes:
+  postgres_test_data:
+    driver: local
+  redis_test_data:
+    driver: local

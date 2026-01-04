@@ -1,1 +1,7114 @@
-[]
+[
+  {
+    "id": "meal-record-001",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-002",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-003",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-004",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-005",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-006",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-007",
+    "mealPlanId": "plan-fixture-001",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-008",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-009",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-010",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-011",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-012",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-013",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-014",
+    "mealPlanId": "plan-fixture-002",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-015",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-016",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-017",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-018",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-019",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-020",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-021",
+    "mealPlanId": "plan-fixture-003",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-022",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-023",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-024",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-025",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-026",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-027",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-028",
+    "mealPlanId": "plan-fixture-004",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-029",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-030",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-031",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-032",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-033",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-034",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-035",
+    "mealPlanId": "plan-fixture-005",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-036",
+    "mealPlanId": "plan-fixture-006",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-037",
+    "mealPlanId": "plan-fixture-006",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-038",
+    "mealPlanId": "plan-fixture-006",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-039",
+    "mealPlanId": "plan-fixture-006",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-040",
+    "mealPlanId": "plan-fixture-006",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-041",
+    "mealPlanId": "plan-fixture-007",
+    "dayNumber": 1,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-042",
+    "mealPlanId": "plan-fixture-007",
+    "dayNumber": 2,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-043",
+    "mealPlanId": "plan-fixture-007",
+    "dayNumber": 3,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-044",
+    "mealPlanId": "plan-fixture-007",
+    "dayNumber": 4,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-045",
+    "mealPlanId": "plan-fixture-007",
+    "dayNumber": 5,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-046",
+    "mealPlanId": "plan-fixture-008",
+    "dayNumber": 1,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-047",
+    "mealPlanId": "plan-fixture-008",
+    "dayNumber": 2,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-048",
+    "mealPlanId": "plan-fixture-008",
+    "dayNumber": 3,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-049",
+    "mealPlanId": "plan-fixture-008",
+    "dayNumber": 4,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-050",
+    "mealPlanId": "plan-fixture-008",
+    "dayNumber": 5,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-051",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 1,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-052",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 2,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-053",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 3,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-054",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 4,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-055",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 5,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-056",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 6,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-057",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 7,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-058",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 8,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-059",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 9,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-060",
+    "mealPlanId": "plan-fixture-009",
+    "dayNumber": 10,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-061",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 1,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-062",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 2,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-063",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 3,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-064",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 4,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-065",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 5,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-066",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 6,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-067",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 7,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-068",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 8,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-069",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 9,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-070",
+    "mealPlanId": "plan-fixture-010",
+    "dayNumber": 10,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-071",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-072",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 2,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-073",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-074",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 4,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-075",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 5,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-076",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 6,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-077",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 7,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-078",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 8,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-079",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 9,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-080",
+    "mealPlanId": "plan-fixture-011",
+    "dayNumber": 10,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-081",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 1,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-082",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 2,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-083",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 3,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-084",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 4,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-085",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 5,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-086",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 6,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-087",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 7,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-088",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 8,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-089",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 9,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-090",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 10,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-091",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 11,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-092",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 12,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-093",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 13,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-094",
+    "mealPlanId": "plan-fixture-012",
+    "dayNumber": 14,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-095",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 1,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-096",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 2,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-097",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 3,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-098",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 4,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-099",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 5,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-100",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 6,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-101",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 7,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-102",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 8,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-103",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 9,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-104",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 10,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-105",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 11,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-106",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 12,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-107",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 13,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-108",
+    "mealPlanId": "plan-fixture-013",
+    "dayNumber": 14,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-109",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 1,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-110",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 2,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-111",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 3,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-112",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 4,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-113",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 5,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-114",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 6,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-115",
+    "mealPlanId": "plan-fixture-014",
+    "dayNumber": 7,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-116",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 1,
+    "data": {
+      "name": "Beef Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "sirloin steak",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1.5 cups"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "snap peas",
+          "amount": "1 cup"
+        },
+        {
+          "item": "carrots",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tbsp minced"
+        },
+        {
+          "item": "sesame oil",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package directions.",
+        "Slice beef into thin strips against the grain.",
+        "Heat sesame oil in wok over high heat.",
+        "Stir-fry beef for 3-4 minutes until browned, remove.",
+        "Add vegetables and stir-fry for 5-6 minutes.",
+        "Return beef to pan with soy sauce and ginger.",
+        "Cook for 2 more minutes, tossing to combine.",
+        "Serve over brown rice."
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 44,
+        "carbs": 42,
+        "fat": 14,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-117",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 2,
+    "data": {
+      "name": "Baked Tofu Buddha Bowl",
+      "ingredients": [
+        {
+          "item": "firm tofu",
+          "amount": "14 oz"
+        },
+        {
+          "item": "sweet potato",
+          "amount": "2 medium"
+        },
+        {
+          "item": "kale",
+          "amount": "2 cups chopped"
+        },
+        {
+          "item": "chickpeas",
+          "amount": "1 can"
+        },
+        {
+          "item": "tahini",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "lemon juice",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        }
+      ],
+      "instructions": [
+        "Press tofu and cut into cubes, toss with soy sauce.",
+        "Dice sweet potatoes and drain chickpeas.",
+        "Roast tofu, sweet potatoes, and chickpeas at 400\u00b0F for 25 minutes.",
+        "Cook quinoa according to package directions.",
+        "Massage kale with olive oil until softened.",
+        "Make tahini dressing with tahini, lemon juice, and water.",
+        "Assemble bowls with quinoa, kale, roasted vegetables, and tofu.",
+        "Drizzle with tahini dressing."
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 22,
+        "carbs": 58,
+        "fat": 16,
+        "fiber": 12
+      },
+      "prepTime": 20,
+      "cookTime": 30,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-118",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 3,
+    "data": {
+      "name": "Lemon Herb Chicken Thighs",
+      "ingredients": [
+        {
+          "item": "chicken thighs",
+          "amount": "2 lbs"
+        },
+        {
+          "item": "baby potatoes",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "lemon",
+          "amount": "2 medium"
+        },
+        {
+          "item": "fresh rosemary",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "6 cloves"
+        },
+        {
+          "item": "olive oil",
+          "amount": "3 tbsp"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Halve baby potatoes and toss with olive oil, salt, and pepper.",
+        "Season chicken with lemon zest, rosemary, and minced garlic.",
+        "Arrange chicken and potatoes on a baking sheet.",
+        "Roast for 35-40 minutes until chicken is cooked through.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 510,
+        "protein": 38,
+        "carbs": 32,
+        "fat": 24,
+        "fiber": 4
+      },
+      "prepTime": 15,
+      "cookTime": 40,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-119",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 4,
+    "data": {
+      "name": "Shrimp Tacos with Cabbage Slaw",
+      "ingredients": [
+        {
+          "item": "large shrimp",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "corn tortillas",
+          "amount": "12 small"
+        },
+        {
+          "item": "red cabbage",
+          "amount": "2 cups shredded"
+        },
+        {
+          "item": "lime",
+          "amount": "2 medium"
+        },
+        {
+          "item": "cilantro",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "avocado",
+          "amount": "2 medium"
+        },
+        {
+          "item": "chili powder",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Season shrimp with chili powder, cumin, and lime juice.",
+        "Make slaw by mixing cabbage, lime juice, and cilantro.",
+        "Saut\u00e9 shrimp in hot skillet for 2-3 minutes per side.",
+        "Warm tortillas in a separate pan.",
+        "Mash avocado with lime juice for guacamole.",
+        "Assemble tacos with shrimp, slaw, and guacamole."
+      ],
+      "nutrition": {
+        "calories": 440,
+        "protein": 36,
+        "carbs": 38,
+        "fat": 16,
+        "fiber": 10
+      },
+      "prepTime": 20,
+      "cookTime": 10,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-120",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 5,
+    "data": {
+      "name": "Grilled Chicken Breast with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "broccoli florets",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "2 medium"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "3 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 medium"
+        },
+        {
+          "item": "salt and pepper",
+          "amount": "to taste"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425\u00b0F.",
+        "Season chicken breasts with salt, pepper, and minced garlic.",
+        "Heat olive oil in oven-safe skillet over medium-high heat.",
+        "Sear chicken for 3-4 minutes per side until golden brown.",
+        "Add broccoli and peppers to the skillet around the chicken.",
+        "Transfer skillet to oven and roast for 15-20 minutes.",
+        "Check chicken reaches internal temperature of 165\u00b0F.",
+        "Squeeze fresh lemon juice over chicken before serving."
+      ],
+      "nutrition": {
+        "calories": 420,
+        "protein": 45,
+        "carbs": 18,
+        "fat": 16,
+        "fiber": 5
+      },
+      "prepTime": 15,
+      "cookTime": 30,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-121",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 6,
+    "data": {
+      "name": "Honey Garlic Salmon with Quinoa",
+      "ingredients": [
+        {
+          "item": "salmon fillets",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup"
+        },
+        {
+          "item": "honey",
+          "amount": "3 tbsp"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "4 cloves"
+        },
+        {
+          "item": "green beans",
+          "amount": "2 cups"
+        },
+        {
+          "item": "sesame seeds",
+          "amount": "1 tbsp"
+        }
+      ],
+      "instructions": [
+        "Cook quinoa according to package directions.",
+        "Mix honey, soy sauce, and minced garlic in a bowl.",
+        "Brush salmon fillets with honey-garlic mixture.",
+        "Bake salmon at 400\u00b0F for 12-15 minutes.",
+        "Steam green beans for 5-7 minutes until tender-crisp.",
+        "Serve salmon over quinoa with green beans on the side.",
+        "Garnish with sesame seeds."
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 45,
+        "fat": 18,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-record-122",
+    "mealPlanId": "plan-fixture-015",
+    "dayNumber": 7,
+    "data": {
+      "name": "Turkey Meatballs with Marinara",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "1.5 lbs"
+        },
+        {
+          "item": "breadcrumbs",
+          "amount": "1/2 cup"
+        },
+        {
+          "item": "egg",
+          "amount": "1 large"
+        },
+        {
+          "item": "marinara sauce",
+          "amount": "2 cups"
+        },
+        {
+          "item": "zucchini",
+          "amount": "4 medium"
+        },
+        {
+          "item": "parmesan cheese",
+          "amount": "1/4 cup"
+        },
+        {
+          "item": "Italian seasoning",
+          "amount": "2 tsp"
+        }
+      ],
+      "instructions": [
+        "Mix ground turkey, breadcrumbs, egg, and Italian seasoning.",
+        "Form mixture into 16-20 meatballs.",
+        "Brown meatballs in skillet over medium heat.",
+        "Add marinara sauce and simmer for 15 minutes.",
+        "Spiralize zucchini into noodles.",
+        "Saut\u00e9 zucchini noodles for 2-3 minutes until tender.",
+        "Serve meatballs and sauce over zucchini noodles.",
+        "Top with parmesan cheese."
+      ],
+      "nutrition": {
+        "calories": 380,
+        "protein": 38,
+        "carbs": 22,
+        "fat": 14,
+        "fiber": 4
+      },
+      "prepTime": 20,
+      "cookTime": 25,
+      "hebAvailable": false
+    },
+    "createdAt": "2025-01-01T10:00:00.000Z"
+  }
+]

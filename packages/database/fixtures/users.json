@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "id": "fixture-user-001",
+    "email": "test1@example.com",
+    "name": "Test User One",
+    "emailVerified": "2023-01-15T10:00:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$YlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK",
+    "createdAt": "2023-01-15T10:00:00.000Z",
+    "updatedAt": "2023-01-15T10:00:00.000Z"
+  },
+  {
+    "id": "fixture-user-002",
+    "email": "test2@example.com",
+    "name": "Test User Two",
+    "emailVerified": "2023-06-20T14:30:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$YlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK",
+    "createdAt": "2023-06-20T14:30:00.000Z",
+    "updatedAt": "2023-06-20T14:30:00.000Z"
+  },
+  {
+    "id": "fixture-user-003",
+    "email": "test3@example.com",
+    "name": "Test User Three",
+    "emailVerified": "2024-03-10T08:00:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$YlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK",
+    "createdAt": "2024-03-10T08:00:00.000Z",
+    "updatedAt": "2024-03-10T08:00:00.000Z"
+  },
+  {
+    "id": "fixture-user-004",
+    "email": "test4@example.com",
+    "name": "Test User Four",
+    "emailVerified": "2025-11-01T09:00:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$YlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK",
+    "createdAt": "2025-11-01T09:00:00.000Z",
+    "updatedAt": "2025-11-01T09:00:00.000Z"
+  },
+  {
+    "id": "fixture-user-005",
+    "email": "test5@example.com",
+    "name": "Edge Case User",
+    "emailVerified": "2025-12-28T12:00:00.000Z",
+    "image": null,
+    "hashedPassword": "$2a$10$YlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK3kX5Z1nN0ZqOYlHWZ9Y0oK",
+    "createdAt": "2025-12-28T12:00:00.000Z",
+    "updatedAt": "2025-12-28T12:00:00.000Z"
+  }
+]
