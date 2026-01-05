@@ -14,11 +14,16 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get('token');
 
+    // Get the actual origin from the request headers to ensure correct redirect in production
+    const origin = request.headers.get('x-forwarded-proto') && request.headers.get('x-forwarded-host')
+      ? `${request.headers.get('x-forwarded-proto')}://${request.headers.get('x-forwarded-host')}`
+      : new URL(request.url).origin;
+
     // Missing token
     if (!token) {
       console.log('Verification failed: Missing token');
       return NextResponse.redirect(
-        new URL('/login?error=invalid_token', request.url)
+        new URL('/login?error=invalid_token', origin)
       );
     }
 
@@ -31,7 +36,7 @@ export async function GET(request: NextRequest) {
     if (!verificationToken) {
       console.log('Verification failed: Invalid token');
       return NextResponse.redirect(
-        new URL('/login?error=invalid_token', request.url)
+        new URL('/login?error=invalid_token', origin)
       );
     }
 
@@ -46,7 +51,7 @@ export async function GET(request: NextRequest) {
       });
 
       return NextResponse.redirect(
-        new URL('/login?error=expired_token', request.url)
+        new URL('/login?error=expired_token', origin)
       );
     }
 
@@ -65,7 +70,7 @@ export async function GET(request: NextRequest) {
       });
 
       return NextResponse.redirect(
-        new URL('/login?error=user_not_found', request.url)
+        new URL('/login?error=user_not_found', origin)
       );
     }
 
@@ -79,7 +84,7 @@ export async function GET(request: NextRequest) {
       });
 
       return NextResponse.redirect(
-        new URL('/login?success=already_verified', request.url)
+        new URL('/login?success=already_verified', origin)
       );
     }
 
@@ -98,15 +103,20 @@ export async function GET(request: NextRequest) {
 
     // Redirect to login with success message
     return NextResponse.redirect(
-      new URL('/login?success=verified', request.url)
+      new URL('/login?success=verified', origin)
     );
 
   } catch (error) {
     console.error('Error during email verification:', error);
 
+    // Get origin for error redirect
+    const origin = request.headers.get('x-forwarded-proto') && request.headers.get('x-forwarded-host')
+      ? `${request.headers.get('x-forwarded-proto')}://${request.headers.get('x-forwarded-host')}`
+      : new URL(request.url).origin;
+
     // Generic error redirect
     return NextResponse.redirect(
-      new URL('/login?error=verification_failed', request.url)
+      new URL('/login?error=verification_failed', origin)
     );
   }
 }
