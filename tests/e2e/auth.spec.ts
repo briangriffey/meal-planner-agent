@@ -16,6 +16,7 @@ import { test, expect } from '@playwright/test';
 import {
   login,
   register,
+  registerWithoutVerification,
   logout,
   clearSession,
   isAuthenticated,
@@ -75,21 +76,23 @@ test.describe('Authentication Flows', () => {
     /**
      * Test: Complete registration flow with valid credentials
      *
+     * UPDATED FOR EMAIL VERIFICATION:
+     * Registration no longer auto-logs users in. They must verify their email first.
+     *
      * Steps:
      * 1. Navigate to registration page
      * 2. Fill in all required fields (name, email, password, confirm password)
      * 3. Submit the registration form
-     * 4. Verify redirect to login page
-     * 5. Login with newly created credentials
-     * 6. Verify successful authentication
+     * 4. Verify "Check Your Email" success message appears
+     * 5. Verify email is displayed on success screen
      *
      * Success Criteria:
      * - Registration form accepts valid data
-     * - App redirects to login page after registration
-     * - New user can login with created credentials
-     * - User is authenticated and on dashboard after login
+     * - App shows "Check Your Email" message after registration
+     * - User's email is displayed for confirmation
+     * - User is NOT automatically logged in
      */
-    test('should successfully register a new user with valid data', async ({
+    test('should successfully register a new user and show verification message', async ({
       page,
     }) => {
       // STEP 1: Generate unique email to avoid conflicts with existing test data
@@ -130,23 +133,20 @@ test.describe('Authentication Flows', () => {
       const submitButton = page.locator(SUBMIT_BUTTON);
       await submitButton.click({ timeout: TIMEOUTS.formSubmission });
 
-      // STEP 6: Verify redirect to login page after successful registration
-      // SUCCESS: App redirects to /login (may include query params like ?registered=true)
-      await page.waitForURL(/\/login/, { timeout: TIMEOUTS.navigation });
+      // STEP 6: Verify "Check Your Email" success message appears
+      // SUCCESS: Message tells user to check their email for verification link
+      const successMessage = page.locator('text=/check your email/i');
+      await expect(successMessage).toBeVisible({ timeout: TIMEOUTS.formSubmission });
 
-      // STEP 7: Login with the newly created credentials to verify account was created
-      await page.fill(SELECTORS.emailInput, userData.email);
-      await page.fill(SELECTORS.passwordInput, userData.password);
-      await page.click(SELECTORS.loginButton);
+      // STEP 7: Verify email is shown on success page
+      // SUCCESS: User's email is displayed so they know where to look
+      const emailDisplay = page.locator(`text=${uniqueEmail}`);
+      await expect(emailDisplay).toBeVisible();
 
-      // STEP 8: Verify successful login
-      // SUCCESS: User is redirected to dashboard route
-      await page.waitForURL(/\/dashboard/, { timeout: TIMEOUTS.authentication });
-
-      // STEP 9: Verify user is authenticated
-      // SUCCESS: isAuthenticated returns true
-      const authenticated = await isAuthenticated(page);
-      expect(authenticated).toBe(true);
+      // STEP 8: Verify user is NOT automatically logged in
+      // SUCCESS: User should still be on registration page or success screen, not dashboard
+      const currentUrl = page.url();
+      expect(currentUrl).not.toMatch(/\/dashboard/);
     });
 
     test('should accept strong passwords with special characters', async ({
@@ -446,6 +446,62 @@ test.describe('Authentication Flows', () => {
       );
 
       expect(emailRequired || passwordRequired).toBe(true);
+    });
+  });
+
+  // ============================================================================
+  // Email Verification - Unverified User Login
+  // ============================================================================
+
+  test.describe('Email Verification', () => {
+    /**
+     * Test: Block unverified user from logging in
+     *
+     * Steps:
+     * 1. Register a new user (creates unverified account)
+     * 2. Try to login with the unverified account
+     * 3. Verify login is blocked with verification error
+     * 4. Verify resend verification link is shown
+     *
+     * Success Criteria:
+     * - Registration succeeds and shows "Check Your Email"
+     * - Login attempt is blocked
+     * - Error message indicates email verification is required
+     * - Link to resend verification email is present
+     */
+    test('should block unverified user from logging in', async ({ page }) => {
+      // STEP 1: Register a new user (unverified)
+      const uniqueEmail = `unverified-${Date.now()}@example.com`;
+      const password = 'TestPassword123!';
+
+      await registerWithoutVerification(page, {
+        email: uniqueEmail,
+        password: password,
+        confirmPassword: password,
+        name: 'Unverified User',
+      });
+
+      // STEP 2: Navigate to login page
+      await page.goto(ROUTES.login, { timeout: TIMEOUTS.navigation });
+
+      // STEP 3: Try to login with unverified account
+      await page.fill(SELECTORS.emailInput, uniqueEmail);
+      await page.fill(SELECTORS.passwordInput, password);
+      await page.click(SELECTORS.loginButton, { timeout: TIMEOUTS.formSubmission });
+
+      // STEP 4: Verify login is blocked with verification error
+      // SUCCESS: Error message indicates email must be verified
+      const errorMessage = page.locator('text=/verify your email/i');
+      await expect(errorMessage).toBeVisible({ timeout: TIMEOUTS.authentication });
+
+      // STEP 5: Verify resend verification link is shown
+      // SUCCESS: User can easily request a new verification email
+      const resendLink = page.locator(`a[href="${ROUTES.resendVerification}"]`);
+      await expect(resendLink).toBeVisible();
+
+      // STEP 6: Verify user is still on login page
+      // SUCCESS: User didn't get logged in
+      await expect(page).toHaveURL(ROUTES.login);
     });
   });
 

@@ -12,6 +12,51 @@ An AI-powered meal planning web application that uses Claude AI to generate pers
 - **Email Delivery**: Automatically sends formatted meal plans via email
 - **HEB Integration**: Optional integration to browse HEB website for ingredients
 - **Automated Scheduling**: Configure automatic weekly meal plan generation
+- **Email Verification**: Secure email verification for new user accounts
+
+## Email Verification
+
+New users must verify their email address before logging in to ensure account security and valid email addresses.
+
+### Verification Flow
+
+1. **Registration**: User creates account with email, password, and name
+2. **Verification Email**: System automatically sends email with verification link (24-hour expiry)
+3. **Email Verification**: User clicks link in email to verify their account
+4. **Login**: User can now log in with their credentials
+
+### Key Points
+
+- Verification tokens expire after 24 hours
+- Users cannot log in until email is verified
+- Verification emails can be resent from the login page
+- Existing users (created before verification was enabled) are automatically verified
+
+### For Users
+
+- Check your spam folder if you don't receive the verification email
+- Click "Resend Verification Email" from the login page if needed
+- Verification link expires in 24 hours - request a new one if expired
+
+### For Developers
+
+Email verification requires proper email configuration in `.env`:
+
+```env
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
+NEXTAUTH_URL=http://localhost:3000  # or your production URL
+```
+
+**Resending Verification:**
+
+Users can resend verification emails at: `/resend-verification`
+
+**API Endpoints:**
+
+- `POST /api/auth/register` - Creates user and sends verification email
+- `GET /api/auth/verify-email?token=xxx` - Verifies email with token
+- `POST /api/auth/resend-verification` - Resends verification email
 
 ## Architecture
 
@@ -100,6 +145,9 @@ Open http://localhost:3000 in your browser and create an account!
 2. Click "Create an account"
 3. Fill in your email, password, and name
 4. Submit to create your account
+5. Check your email for the verification link
+6. Click the verification link to verify your email
+7. Return to the login page and sign in
 
 ### Configure Preferences
 

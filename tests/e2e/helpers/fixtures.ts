@@ -257,6 +257,7 @@ export const ROUTES = {
   home: '/',
   login: '/login',
   register: '/register',
+  resendVerification: '/resend-verification',
   dashboard: '/dashboard',
   preferences: '/dashboard/preferences',
   mealPlans: '/dashboard/meal-plans',
@@ -314,6 +315,9 @@ export const ERROR_MESSAGES = {
   passwordMismatch: 'Passwords do not match',
   emailExists: 'Email already exists',
   requiredField: 'This field is required',
+  emailNotVerified: 'Please verify your email',
+  expiredToken: 'Verification link expired',
+  invalidToken: 'Invalid verification link',
 } as const;
 
 // ============================================================================
@@ -329,4 +333,6 @@ export const SUCCESS_MESSAGES = {
   preferencesSaved: 'Preferences saved successfully',
   mealPlanGenerated: 'Meal plan generated successfully',
   emailSent: 'Email sent successfully',
+  emailVerified: 'Email verified successfully',
+  checkYourEmail: 'Check your email',
 } as const;

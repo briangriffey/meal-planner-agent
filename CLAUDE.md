@@ -543,6 +543,81 @@ User Request → Next.js API Route → BullMQ Queue → Worker
 
 **Important**: `meal_records` is the source of truth for meal data, not the deprecated `meals` JSON field.
 
+### Authentication Flow
+
+The application uses NextAuth.js v4.24.13 with email verification for secure user authentication.
+
+**Complete Flow:**
+
+1. **Registration** (`POST /api/auth/register`):
+   - Validates input: email (unique), password (min 8 chars), optional name
+   - Hashes password with bcryptjs (10 rounds)
+   - Creates user with `emailVerified: null`
+   - Generates cryptographically secure verification token (24-hour expiry)
+   - Stores token in `VerificationToken` table
+   - Sends verification email via `EmailConnector`
+   - Returns success with `requiresVerification: true`
+
+2. **Email Verification** (`GET /api/auth/verify-email?token=xxx`):
+   - Validates token exists and not expired
+   - Checks `VerificationToken.expires < new Date()`
+   - Updates `User.emailVerified` to current timestamp
+   - Deletes used token
+   - Redirects to login with query params: `success=verified` or `error=expired_token`
+
+3. **Login** (NextAuth `authorize` function in `/apps/web/lib/auth.ts`):
+   - Validates email and password
+   - Checks `user.emailVerified` field
+   - **Blocks login if emailVerified is null** (throws `EMAIL_NOT_VERIFIED` error)
+   - Returns user object if verified
+   - NextAuth creates JWT session token
+
+4. **Resend Verification** (`POST /api/auth/resend-verification`):
+   - Validates email input
+   - Deletes old tokens for this email
+   - Generates new 24-hour token
+   - Sends new verification email
+   - **Security**: Returns generic message (doesn't reveal if email exists)
+
+**Database Models:**
+
+- `User.emailVerified`: `DateTime?` - Timestamp of email verification (null = unverified)
+- `VerificationToken`: Stores tokens with 24-hour expiry
+  - `identifier`: Email address
+  - `token`: Cryptographically secure random string
+  - `expires`: Expiration timestamp
+
+**Key Files:**
+
+- `/apps/web/lib/auth.ts` - NextAuth configuration, blocks unverified users
+- `/apps/web/app/api/auth/register/route.ts` - Registration + token generation
+- `/apps/web/app/api/auth/verify-email/route.ts` - Email verification handler
+- `/apps/web/app/api/auth/resend-verification/route.ts` - Resend verification
+- `/apps/web/lib/email/verification.ts` - Email template and sending logic
+- `/packages/core/src/connectors/email.ts` - SMTP email connector
+
+**Security Features:**
+
+- Cryptographically secure tokens (`crypto.randomBytes(32)`)
+- 24-hour token expiration
+- Tokens deleted after use
+- Email enumeration protection (resend endpoint doesn't reveal if email exists)
+- Password validation before verification check (timing attack prevention)
+
+**Migration:**
+
+Existing users created before email verification was enabled are automatically verified via migration:
+```sql
+UPDATE users SET emailVerified = NOW() WHERE emailVerified IS NULL;
+```
+
+**Testing Considerations:**
+
+- E2E tests use fixture users (auto-verified)
+- Registration tests expect success message, not auto-login
+- Unverified users cannot log in (test with fresh registrations)
+- Full email verification flow requires email infrastructure (skip in E2E)
+
 ---
 
 ## Testing Infrastructure

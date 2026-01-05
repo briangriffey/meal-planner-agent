@@ -14,6 +14,8 @@ export default function RegisterPage() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +53,9 @@ export default function RegisterPage() {
         return;
       }
 
-      router.push('/login?registered=true');
+      // Show success state instead of redirecting
+      setRegistrationSuccess(true);
+      setUserEmail(formData.email);
     } catch (err) {
       setError('An error occurred. Please try again.');
     } finally {
@@ -84,7 +88,32 @@ export default function RegisterPage() {
             </p>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          {registrationSuccess ? (
+            <div className="rounded-lg bg-green-50 border border-green-200 p-6">
+              <div className="text-center">
+                <svg className="mx-auto h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="mt-4 text-lg font-medium text-green-900">Check Your Email!</h3>
+                <p className="mt-2 text-sm text-green-700">
+                  We sent a verification link to <strong>{userEmail}</strong>
+                </p>
+                <p className="mt-2 text-sm text-green-700">
+                  Click the link in the email to verify your account and start using Meal Planner.
+                </p>
+                <div className="mt-6 flex justify-center items-center gap-2 text-sm">
+                  <Link href="/login" className="font-medium text-primary hover:text-primary-dark transition-colors">
+                    Return to Login
+                  </Link>
+                  <span className="text-gray-400">•</span>
+                  <Link href="/resend-verification" className="font-medium text-primary hover:text-primary-dark transition-colors">
+                    Resend Verification Email
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -183,7 +212,9 @@ export default function RegisterPage() {
               )}
             </button>
           </form>
+          )}
 
+          {!registrationSuccess && (
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{' '}
@@ -192,6 +223,7 @@ export default function RegisterPage() {
               </Link>
             </p>
           </div>
+          )}
         </div>
       </div>
     </div>

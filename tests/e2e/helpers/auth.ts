@@ -430,12 +430,73 @@ export async function clearSession(page: Page): Promise<void> {
 }
 
 // ============================================================================
+// Register Without Verification (for testing)
+// ============================================================================
+
+/**
+ * Register a new user and wait for "check email" message (doesn't log in)
+ *
+ * This is the new expected flow after email verification was implemented.
+ * Users no longer auto-login after registration.
+ *
+ * @param page - Playwright page object
+ * @param userData - User registration data
+ * @param options - Optional authentication options
+ *
+ * @example
+ * await registerWithoutVerification(page, {
+ *   email: 'test@example.com',
+ *   password: 'SecurePass123!',
+ *   name: 'Test User'
+ * });
+ * // User is registered but NOT logged in
+ * // Page shows "Check your email" message
+ */
+export async function registerWithoutVerification(
+  page: Page,
+  userData: UserRegistrationData,
+  options: AuthOptions = {}
+): Promise<void> {
+  const { timeout = TIMEOUTS.authentication } = options;
+
+  // Navigate to registration page if not already there
+  const currentUrl = page.url();
+  if (!currentUrl.includes(ROUTES.register)) {
+    await page.goto(ROUTES.register, { timeout: TIMEOUTS.navigation });
+  }
+
+  // Fill in registration form
+  if (userData.name) {
+    const nameInput = page.locator('input[name="name"]');
+    await nameInput.fill(userData.name, { timeout });
+  }
+
+  await page.fill(SELECTORS.emailInput, userData.email, { timeout });
+  await page.fill(SELECTORS.passwordInput, userData.password, { timeout });
+
+  // Handle confirm password field if provided
+  if (userData.confirmPassword) {
+    const confirmPasswordInput = page.locator('input[name="confirmPassword"]');
+    await confirmPasswordInput.fill(userData.confirmPassword, { timeout });
+  }
+
+  // Submit registration form
+  const submitButton = page.locator('button[type="submit"]');
+  await submitButton.click({ timeout });
+
+  // Wait for success message (NOT redirect to login)
+  const successMessage = page.locator('text=/check your email/i');
+  await successMessage.waitFor({ state: 'visible', timeout: TIMEOUTS.formSubmission });
+}
+
+// ============================================================================
 // Export all helpers
 // ============================================================================
 
 export default {
   login,
   register,
+  registerWithoutVerification,
   logout,
   getAuthenticatedPage,
   isAuthenticated,
