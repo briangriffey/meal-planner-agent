@@ -36,6 +36,8 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
   const [message, setMessage] = useState<Message | null>(null);
   const [saving, setSaving] = useState(false);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState(false);
 
   const addEmail = () => {
     const email = emailInput.trim();
@@ -82,6 +84,64 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
     });
   };
 
+  const triggerMealPlanGeneration = async () => {
+    setIsGenerating(true);
+    setGenerationError(false);
+
+    try {
+      // Calculate date range
+      const today = new Date();
+      const startDate = new Date(today);
+
+      // Calculate end date based on scheduleDayOfWeek
+      const todayDayOfWeek = today.getDay();
+      const scheduledDay = preferences.scheduleDayOfWeek;
+
+      let daysUntilScheduled;
+      if (scheduledDay > todayDayOfWeek) {
+        // Scheduled day is later this week
+        daysUntilScheduled = scheduledDay - todayDayOfWeek;
+      } else if (scheduledDay < todayDayOfWeek) {
+        // Scheduled day is next week
+        daysUntilScheduled = 7 - todayDayOfWeek + scheduledDay;
+      } else {
+        // Scheduled day is today - generate for full week until next occurrence
+        daysUntilScheduled = 7;
+      }
+
+      // End date is day before scheduled day
+      const endDate = new Date(today);
+      endDate.setDate(today.getDate() + daysUntilScheduled - 1);
+
+      // Format dates as YYYY-MM-DD for API
+      const weekStartDate = startDate.toISOString().split('T')[0];
+
+      // Call generation API
+      const response = await fetch('/api/meal-plans/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          weekStartDate,
+          sendEmail: true
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Generation failed');
+      }
+
+      // Success - modal will be shown
+      setShowGenerateModal(true);
+
+    } catch (error) {
+      console.error('Failed to trigger meal plan generation:', error);
+      // Silent fail - don't block user experience
+      setGenerationError(true);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
@@ -106,9 +166,9 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
         text: 'Preferences saved successfully',
       });
 
-      // Show modal if user doesn't have meal plans
+      // Automatically generate meal plan if user doesn't have any
       if (!hasMealPlans) {
-        setShowGenerateModal(true);
+        await triggerMealPlanGeneration();
       }
 
       // Refresh the page to update server-side data
@@ -394,39 +454,43 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
       {showGenerateModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
           {/* Background overlay */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
-            onClick={() => setShowGenerateModal(false)}
-          ></div>
+          <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
 
           {/* Modal */}
           <div className="flex min-h-full items-center justify-center p-4">
             <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full p-6">
               <div className="text-center">
-                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary-light mb-4">
-                  <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                </div>
+                {/* Success Icon or Spinner */}
+                {isGenerating ? (
+                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary-light mb-4">
+                    <svg className="animate-spin h-6 w-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </div>
+                ) : (
+                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary-light mb-4">
+                    <svg className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                )}
+
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  Ready to Generate Your First Meal Plan?
+                  Generating Your First Meal Plan!
                 </h3>
+
                 <p className="text-sm text-gray-500 mb-6">
-                  Your preferences have been saved! Would you like to generate your first meal plan now?
+                  We&apos;re creating your personalized meal plan based on your preferences.
+                  You&apos;ll receive it via email shortly.
                 </p>
 
-                <div className="flex gap-3 justify-center">
+                <div className="flex justify-center">
                   <button
-                    onClick={() => setShowGenerateModal(false)}
-                    className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
-                  >
-                    Not Now
-                  </button>
-                  <button
-                    onClick={() => router.push('/dashboard/generate')}
+                    onClick={() => router.push('/dashboard')}
                     className="px-6 py-2 border border-transparent rounded-lg shadow-lg text-sm font-medium text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
                   >
-                    Generate
+                    Go to Dashboard
                   </button>
                 </div>
               </div>

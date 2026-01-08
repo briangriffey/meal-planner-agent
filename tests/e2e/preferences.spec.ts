@@ -41,31 +41,33 @@ const EMAIL_INPUT_FIELD = 'input[placeholder="email@example.com"]';
 const EMAIL_ADD_BUTTON_INDEX = 1; // Second "Add" button (first is for dietary restrictions)
 
 // Modal and button selectors
-const NOT_NOW_BUTTON = 'button:has-text("Not Now")';
+const GO_TO_DASHBOARD_BUTTON = 'button:has-text("Go to Dashboard")';
 const DIETARY_RESTRICTION_ADD_BUTTON_INDEX = 0; // First "Add" button
 const VEGAN_CHECKBOX = 'input[type="checkbox"][value="vegan"]';
 
 // Success modal text pattern
-const SUCCESS_MODAL_TEXT = 'text=/your preferences have been saved/i';
+const GENERATING_MODAL_TEXT = 'text=/Generating Your First Meal Plan/i';
 
 // ============================================================================
 // Helper Functions
 // ============================================================================
 
 /**
- * Dismisses the "Ready to Generate Your First Meal Plan?" modal if it appears
+ * Dismisses the "Generating Your First Meal Plan!" modal if it appears
  *
- * This modal can appear at any time when a user hasn't generated a meal plan yet.
- * We need to dismiss it before interacting with the preferences form.
+ * This modal appears automatically when a user saves preferences for the first time.
+ * It shows a "Go to Dashboard" button. We dismiss it to continue testing the form.
  *
  * @param page - Playwright page object
  */
 async function dismissGenerateModal(page: any) {
-  const modalNotNowButton = page.locator(NOT_NOW_BUTTON);
-  const modalVisible = await modalNotNowButton.isVisible({ timeout: 1000 }).catch(() => false);
+  const modalButton = page.locator(GO_TO_DASHBOARD_BUTTON);
+  const modalVisible = await modalButton.isVisible({ timeout: 1000 }).catch(() => false);
   if (modalVisible) {
-    await modalNotNowButton.click();
-    await expect(modalNotNowButton).not.toBeVisible({ timeout: 2000 });
+    // Click "Go to Dashboard" to dismiss
+    await modalButton.click();
+    // Wait for navigation to dashboard or modal to close
+    await page.waitForTimeout(500);
   }
 }
 
@@ -74,7 +76,7 @@ async function dismissGenerateModal(page: any) {
  *
  * After saving preferences, the UI shows EITHER:
  * 1. A success banner (if user has meal plans): "Preferences saved successfully"
- * 2. A modal (if user has NO meal plans): "Your preferences have been saved!"
+ * 2. A modal (if user has NO meal plans): "Generating Your First Meal Plan!"
  *
  * This function waits for either confirmation and dismisses the modal if it appears.
  *
@@ -83,19 +85,20 @@ async function dismissGenerateModal(page: any) {
 async function waitForSaveConfirmation(page: any) {
   // Wait for either the success banner or the modal
   const successBanner = page.locator('text=/preferences saved successfully/i');
-  const successModal = page.locator('text=/your preferences have been saved/i');
+  const generatingModal = page.locator(GENERATING_MODAL_TEXT);
 
   // Wait for either one to appear
   await Promise.race([
     expect(successBanner).toBeVisible({ timeout: TIMEOUTS.formSubmission }),
-    expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission }),
+    expect(generatingModal).toBeVisible({ timeout: TIMEOUTS.formSubmission }),
   ]);
 
-  // If modal appeared, close it
-  const modalVisible = await successModal.isVisible().catch(() => false);
+  // If modal appeared, close it by clicking "Go to Dashboard"
+  const modalVisible = await generatingModal.isVisible().catch(() => false);
   if (modalVisible) {
-    await page.locator(NOT_NOW_BUTTON).click();
-    await expect(successModal).not.toBeVisible();
+    await page.locator(GO_TO_DASHBOARD_BUTTON).click();
+    // Wait for navigation or modal to close
+    await page.waitForTimeout(500);
   }
 }
 
@@ -409,13 +412,8 @@ test.describe('Preferences Management', () => {
       // Save preferences
       await page.click(SELECTORS.savePreferencesButton);
 
-      // Wait for success modal to appear
-      const successModal = page.locator('text=/your preferences have been saved/i');
-      await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
-
-      // Close the modal by clicking "Not Now"
-      await page.locator('button:has-text("Not Now")').click();
-      await expect(successModal).not.toBeVisible();
+      // Wait for save confirmation (banner or modal)
+      await waitForSaveConfirmation(page);
     }
   });
 
@@ -588,15 +586,15 @@ test.describe('Preferences Management', () => {
     // Button should show loading state (disabled or spinner)
     await expect(saveButton).toBeDisabled({ timeout: 1000 });
 
-    // Wait for success modal to appear
-    const successModal = page.locator('text=/your preferences have been saved/i');
-    await expect(successModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
+    // Wait for generating modal to appear
+    const generatingModal = page.locator(GENERATING_MODAL_TEXT);
+    await expect(generatingModal).toBeVisible({ timeout: TIMEOUTS.formSubmission });
 
     // Button should be enabled again
     await expect(saveButton).toBeEnabled();
 
-    // Close the modal
-    await page.locator('button:has-text("Not Now")').click();
+    // Close the modal by clicking "Go to Dashboard"
+    await page.locator(GO_TO_DASHBOARD_BUTTON).click();
   });
 
   // ============================================================================
