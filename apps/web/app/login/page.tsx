@@ -16,6 +16,7 @@ function LoginForm() {
 
   const verificationStatus = searchParams.get('success');
   const verificationError = searchParams.get('error');
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ function LoginForm() {
           setError('Invalid email or password');
         }
       } else {
-        router.push('/dashboard');
+        router.push(callbackUrl);
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
