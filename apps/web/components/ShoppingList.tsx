@@ -152,6 +152,17 @@ export default function ShoppingList({
     }
   };
 
+  const handlePrint = () => {
+    try {
+      // Open print page in new window
+      const printUrl = `/dashboard/meal-plans/${mealPlanId}/shopping-list/print`;
+      window.open(printUrl, '_blank');
+    } catch (error) {
+      console.error('Failed to open print page:', error);
+      showMessage('error', 'Failed to open print page');
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header with toggle */}
@@ -224,6 +235,7 @@ export default function ShoppingList({
         </button>
 
         <button
+          onClick={handlePrint}
           className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-150"
           aria-label="Print shopping list"
         >
