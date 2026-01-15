@@ -43,6 +43,31 @@ export default function ShoppingList({
     setTimeout(() => setMessage(null), 3000);
   };
 
+  const handleCopy = async () => {
+    try {
+      // Format ingredients as plain text
+      let text = 'Shopping List\n\n';
+
+      Object.entries(categorizedIngredients).forEach(([category, items]) => {
+        if (showCategories) {
+          text += `${category}\n`;
+          text += '-'.repeat(category.length) + '\n';
+        }
+        items.forEach((ingredient) => {
+          text += `☐ ${ingredient.amount} ${ingredient.item}\n`;
+        });
+        text += '\n';
+      });
+
+      // Copy to clipboard
+      await navigator.clipboard.writeText(text.trim());
+      showMessage('success', 'Shopping list copied to clipboard');
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      showMessage('error', 'Failed to copy to clipboard');
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header with toggle */}
@@ -80,6 +105,7 @@ export default function ShoppingList({
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3">
         <button
+          onClick={handleCopy}
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark shadow-lg hover:shadow-xl transition-all duration-150"
           aria-label="Copy to clipboard"
         >
