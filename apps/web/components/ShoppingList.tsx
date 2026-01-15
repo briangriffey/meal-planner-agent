@@ -111,6 +111,47 @@ export default function ShoppingList({
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      // Call API to generate and download text file
+      const response = await fetch(`/api/meal-plans/${mealPlanId}/shopping-list`);
+
+      if (!response.ok) {
+        throw new Error('Failed to download shopping list');
+      }
+
+      // Get the blob from the response
+      const blob = await response.blob();
+
+      // Extract filename from Content-Disposition header or use default
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let filename = 'shopping-list.txt';
+      if (contentDisposition) {
+        const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+        if (filenameMatch) {
+          filename = filenameMatch[1];
+        }
+      }
+
+      // Create a download link and trigger download
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      showMessage('success', 'Shopping list downloaded successfully');
+    } catch (error) {
+      console.error('Failed to download shopping list:', error);
+      showMessage('error', 'Failed to download shopping list');
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header with toggle */}
@@ -172,6 +213,7 @@ export default function ShoppingList({
         )}
 
         <button
+          onClick={handleDownload}
           className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-150"
           aria-label="Download as text file"
         >
