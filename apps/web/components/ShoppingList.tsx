@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { AggregatedIngredient, CategorizedShoppingList } from '@/lib/shopping-list-utils';
 import { groupByCategory } from '@/lib/shopping-list-utils';
 
@@ -23,6 +23,12 @@ export default function ShoppingList({
   const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
   const [message, setMessage] = useState<Message | null>(null);
   const [showCategories, setShowCategories] = useState(true);
+  const [canShare, setCanShare] = useState(false);
+
+  // Check if Web Share API is available
+  useEffect(() => {
+    setCanShare(typeof navigator !== 'undefined' && 'share' in navigator);
+  }, []);
 
   const categorizedIngredients = showCategories
     ? groupByCategory(ingredients)
@@ -65,6 +71,43 @@ export default function ShoppingList({
     } catch (error) {
       console.error('Failed to copy to clipboard:', error);
       showMessage('error', 'Failed to copy to clipboard');
+    }
+  };
+
+  const handleShare = async () => {
+    try {
+      // Format ingredients as plain text
+      let text = 'Shopping List\n\n';
+
+      Object.entries(categorizedIngredients).forEach(([category, items]) => {
+        if (showCategories) {
+          text += `${category}\n`;
+          text += '-'.repeat(category.length) + '\n';
+        }
+        items.forEach((ingredient) => {
+          text += `☐ ${ingredient.amount} ${ingredient.item}\n`;
+        });
+        text += '\n';
+      });
+
+      // Prepare share data
+      const title = weekStartDate
+        ? `Shopping List - Week of ${weekStartDate}`
+        : 'Shopping List';
+
+      await navigator.share({
+        title,
+        text: text.trim()
+      });
+
+      showMessage('success', 'Shopping list shared successfully');
+    } catch (error) {
+      // User cancelled share or share failed
+      // AbortError is thrown when user cancels, so we don't show error for that
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('Failed to share:', error);
+        showMessage('error', 'Failed to share shopping list');
+      }
     }
   };
 
@@ -115,15 +158,18 @@ export default function ShoppingList({
           Copy
         </button>
 
-        <button
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent shadow-lg hover:shadow-xl transition-all duration-150"
-          aria-label="Share shopping list"
-        >
-          <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-          </svg>
-          Share
-        </button>
+        {canShare && (
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-accent to-accent/90 hover:from-accent/90 hover:to-accent shadow-lg hover:shadow-xl transition-all duration-150"
+            aria-label="Share shopping list"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+            Share
+          </button>
+        )}
 
         <button
           className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-150"
