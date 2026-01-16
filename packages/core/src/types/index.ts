@@ -104,6 +104,16 @@ export interface MealPlannerAgentConfig {
   mealHistoryService: IMealHistoryService;
   claudeModel?: string;
   onProgress?: (percent: number, message: string) => Promise<void>;
+  householdMembers?: Array<{
+    userId: string;
+    name: string | null;
+    email: string;
+    preferences: {
+      dietaryRestrictions: string[];
+      minProteinPerMeal: number | null;
+      maxCaloriesPerMeal: number | null;
+    };
+  }>;
 }
 
 // Meal history service interface
@@ -141,3 +151,50 @@ export interface MealPlanGenerationResult {
 
 // ConnectorRegistry is exported from connectors/base.ts
 // It's available via: import { ConnectorRegistry } from '@meal-planner/core'
+
+// ============================================================================
+// Household Management Types
+// ============================================================================
+
+export enum HouseholdRole {
+  OWNER = 'OWNER',
+  MEMBER = 'MEMBER',
+}
+
+export interface Household {
+  id: string;
+  name: string;
+  ownerId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface HouseholdMember {
+  id: string;
+  householdId: string;
+  userId: string;
+  role: HouseholdRole;
+  joinedAt: Date;
+}
+
+export interface MemberPreferences {
+  id: string;
+  householdMemberId: string;
+  dietaryRestrictions: string[];
+  minProteinPerMeal?: number;
+  maxCaloriesPerMeal?: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface HouseholdInvitation {
+  id: string;
+  householdId: string;
+  inviterUserId: string;
+  email: string;
+  token: string;
+  expiresAt: Date;
+  acceptedAt?: Date;
+  acceptedByUserId?: string;
+  createdAt: Date;
+}

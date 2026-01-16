@@ -2,7 +2,7 @@ import { PrismaClient } from '@meal-planner/database';
 import { MealPlannerAgent } from './meal-planner';
 import { EmailConnector } from '../connectors/email';
 import { DatabaseMealHistoryService } from '../services';
-import { UserPreferences } from '../types';
+import { UserPreferences, MealPlannerAgentConfig } from '../types';
 
 /**
  * Factory for creating MealPlannerAgent instances
@@ -19,7 +19,8 @@ export class MealPlannerAgentFactory {
     anthropicApiKey: string,
     claudeModel?: string,
     onProgress?: (percent: number, message: string) => Promise<void>,
-    hebEnabled?: boolean
+    hebEnabled?: boolean,
+    householdMembers?: MealPlannerAgentConfig['householdMembers']
   ): MealPlannerAgent {
     const mealHistoryService = new DatabaseMealHistoryService(prisma, userId);
 
@@ -30,7 +31,8 @@ export class MealPlannerAgentFactory {
       emailConnector,
       claudeModel,
       onProgress,
-      hebEnabled: hebEnabled ?? false
+      hebEnabled: hebEnabled ?? false,
+      householdMembers
     });
   }
 }

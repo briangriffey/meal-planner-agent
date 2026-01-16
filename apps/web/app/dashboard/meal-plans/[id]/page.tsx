@@ -43,6 +43,16 @@ export default async function MealPlanDetailPage({
           createdAt: 'asc',
         },
       },
+      household: {
+        include: {
+          members: {
+            include: {
+              user: true,
+              preferences: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -143,6 +153,31 @@ export default async function MealPlanDetailPage({
               <p className="text-sm text-green-800">
                 Email sent on {new Date(mealPlan.emailSentAt!).toLocaleDateString()}
               </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {mealPlan.household && mealPlan.household.members && mealPlan.household.members.length > 0 && (
+        <div className="rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border border-blue-200">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <div className="ml-3 flex-1">
+              <h3 className="text-sm font-semibold text-blue-900">
+                Household Plan: {mealPlan.household.name}
+              </h3>
+              <p className="mt-1 text-sm text-blue-800">
+                Planning for: {mealPlan.household.members.map(member => member.user.name || member.user.email).join(', ')}
+              </p>
+              {mealPlan.household.members.length > 1 && (
+                <p className="mt-1 text-xs text-blue-700">
+                  {mealPlan.household.members.length} household members • Respecting individual dietary needs
+                </p>
+              )}
             </div>
           </div>
         </div>
