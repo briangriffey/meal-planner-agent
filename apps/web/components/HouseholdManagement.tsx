@@ -34,8 +34,8 @@ interface HouseholdInvitation {
     name: string | null;
     email: string;
   };
-  createdAt: string;
-  expiresAt: string;
+  createdAt: Date;
+  expiresAt: Date;
 }
 
 interface Household {
@@ -158,16 +158,14 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
 
         {message && (
           <div
-            className={`rounded-lg p-4 border ${
-              message.type === 'success'
+            className={`rounded-lg p-4 border ${message.type === 'success'
                 ? 'bg-green-50 border-green-200'
                 : 'bg-red-50 border-red-200'
-            }`}
+              }`}
           >
             <p
-              className={`text-sm ${
-                message.type === 'success' ? 'text-green-800' : 'text-red-800'
-              }`}
+              className={`text-sm ${message.type === 'success' ? 'text-green-800' : 'text-red-800'
+                }`}
             >
               {message.text}
             </p>
@@ -237,16 +235,14 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
 
       {message && (
         <div
-          className={`rounded-lg p-4 border ${
-            message.type === 'success'
+          className={`rounded-lg p-4 border ${message.type === 'success'
               ? 'bg-green-50 border-green-200'
               : 'bg-red-50 border-red-200'
-          }`}
+            }`}
         >
           <p
-            className={`text-sm ${
-              message.type === 'success' ? 'text-green-800' : 'text-red-800'
-            }`}
+            className={`text-sm ${message.type === 'success' ? 'text-green-800' : 'text-red-800'
+              }`}
           >
             {message.text}
           </p>
