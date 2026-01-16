@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import HouseholdMemberCard from './HouseholdMemberCard';
+import MemberPreferencesForm from './MemberPreferencesForm';
 
 interface User {
   id: string;
@@ -63,6 +65,7 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
   const [isCreating, setIsCreating] = useState(false);
   const [isInviting, setIsInviting] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
+  const [editingMember, setEditingMember] = useState<HouseholdMember | null>(null);
 
   // For simplicity, we'll work with the first household
   // In a more complex app, you might allow multiple households
@@ -141,6 +144,41 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
       });
     } finally {
       setIsInviting(false);
+    }
+  };
+
+  const removeMember = async (memberId: string) => {
+    if (!household) return;
+    if (!confirm('Are you sure you want to remove this member from the household?')) {
+      return;
+    }
+
+    setMessage(null);
+
+    try {
+      const response = await fetch(
+        `/api/households/${household.id}/members/${memberId}`,
+        {
+          method: 'DELETE',
+        }
+      );
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to remove member');
+      }
+
+      setMessage({
+        type: 'success',
+        text: 'Member removed successfully',
+      });
+
+      router.refresh();
+    } catch (error) {
+      setMessage({
+        type: 'error',
+        text: error instanceof Error ? error.message : 'An error occurred',
+      });
     }
   };
 
@@ -263,50 +301,15 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
 
         <div className="space-y-4">
           {household.members.map((member) => (
-            <div
+            <HouseholdMemberCard
               key={member.id}
-              className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-primary-light transition-colors"
-            >
-              <div className="flex-1">
-                <div className="flex items-center gap-3">
-                  <div>
-                    <p className="font-medium text-gray-900">
-                      {member.user.name || member.user.email}
-                      {member.userId === userId && (
-                        <span className="ml-2 text-xs text-gray-500">(You)</span>
-                      )}
-                    </p>
-                    <p className="text-sm text-gray-600">{member.user.email}</p>
-                  </div>
-                  <span
-                    className={`text-xs px-2 py-1 rounded-full ${
-                      member.role === 'OWNER'
-                        ? 'bg-purple-100 text-purple-800'
-                        : 'bg-blue-100 text-blue-800'
-                    }`}
-                  >
-                    {member.role}
-                  </span>
-                </div>
-
-                {member.preferences && (
-                  <div className="mt-2 text-sm text-gray-600">
-                    {member.preferences.dietaryRestrictions.length > 0 && (
-                      <p>
-                        Dietary restrictions:{' '}
-                        {member.preferences.dietaryRestrictions.join(', ')}
-                      </p>
-                    )}
-                    {member.preferences.minProteinPerMeal && (
-                      <p>Min protein: {member.preferences.minProteinPerMeal}g</p>
-                    )}
-                    {member.preferences.maxCaloriesPerMeal && (
-                      <p>Max calories: {member.preferences.maxCaloriesPerMeal}</p>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
+              member={member}
+              householdId={household.id}
+              currentUserId={userId}
+              isOwner={isOwner}
+              onEditPreferences={setEditingMember}
+              onRemoveMember={removeMember}
+            />
           ))}
         </div>
       </div>
@@ -384,6 +387,15 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
             </form>
           </div>
         </div>
+      )}
+
+      {/* Member Preferences Modal */}
+      {editingMember && (
+        <MemberPreferencesForm
+          member={editingMember}
+          householdId={household.id}
+          onClose={() => setEditingMember(null)}
+        />
       )}
     </div>
   );
