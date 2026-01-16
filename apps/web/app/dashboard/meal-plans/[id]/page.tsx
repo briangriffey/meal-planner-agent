@@ -111,6 +111,27 @@ export default async function MealPlanDetailPage({
             Generated on {new Date(mealPlan.generatedAt).toLocaleDateString()} using {mealPlan.claudeModel || 'Claude AI'}
           </p>
         </div>
+        <div className="mt-4 flex md:mt-0 md:ml-4">
+          <Link
+            href={`/dashboard/meal-plans/${params.id}/shopping-list`}
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-lg text-sm font-medium text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
+          >
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+              />
+            </svg>
+            Shopping List
+          </Link>
+        </div>
       </div>
 
       {mealPlan.emailSent && (
