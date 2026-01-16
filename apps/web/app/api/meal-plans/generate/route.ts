@@ -36,6 +36,83 @@ export async function POST(request: Request) {
       );
     }
 
+    // Check if user belongs to a household
+    const householdMember = await prisma.householdMember.findFirst({
+      where: { userId: session.user.id },
+      include: {
+        household: {
+          include: {
+            members: {
+              include: {
+                user: true,
+                preferences: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Prepare household context if user is in a household
+    let householdId: string | undefined;
+    let householdMembers:
+      | Array<{
+          userId: string;
+          name: string | null;
+          email: string;
+          preferences: {
+            dietaryRestrictions: string[];
+            minProteinPerMeal: number | null;
+            maxCaloriesPerMeal: number | null;
+          };
+        }>
+      | undefined;
+    let aggregatedDietaryRestrictions = userPreferences.dietaryRestrictions;
+    let aggregatedMinProtein = userPreferences.minProteinPerMeal;
+    let aggregatedMaxCalories = userPreferences.maxCaloriesPerMeal;
+
+    if (householdMember?.household) {
+      householdId = householdMember.household.id;
+
+      // Build household members array with preferences
+      householdMembers = householdMember.household.members.map((member) => ({
+        userId: member.user.id,
+        name: member.user.name,
+        email: member.user.email,
+        preferences: {
+          dietaryRestrictions: member.preferences?.dietaryRestrictions || [],
+          minProteinPerMeal: member.preferences?.minProteinPerMeal || null,
+          maxCaloriesPerMeal: member.preferences?.maxCaloriesPerMeal || null,
+        },
+      }));
+
+      // Aggregate dietary restrictions (union of all members)
+      const allRestrictions = new Set<string>();
+      for (const member of householdMembers) {
+        for (const restriction of member.preferences.dietaryRestrictions) {
+          allRestrictions.add(restriction);
+        }
+      }
+      aggregatedDietaryRestrictions = Array.from(allRestrictions);
+
+      // Calculate most restrictive nutrition targets
+      // Highest minProtein
+      const allMinProteins = householdMembers
+        .map((m) => m.preferences.minProteinPerMeal)
+        .filter((p): p is number => p !== null);
+      if (allMinProteins.length > 0) {
+        aggregatedMinProtein = Math.max(...allMinProteins);
+      }
+
+      // Lowest maxCalories
+      const allMaxCalories = householdMembers
+        .map((m) => m.preferences.maxCaloriesPerMeal)
+        .filter((c): c is number => c !== null);
+      if (allMaxCalories.length > 0) {
+        aggregatedMaxCalories = Math.min(...allMaxCalories);
+      }
+    }
+
     // Calculate week start date (defaults to next Sunday)
     let weekStart: Date;
     if (weekStartDate) {
@@ -76,6 +153,7 @@ export async function POST(request: Request) {
         weekStartDate: weekStart,
         status: 'PENDING',
         claudeModel: CLAUDE_MODEL,
+        householdId,
       },
     });
 
@@ -86,9 +164,9 @@ export async function POST(request: Request) {
       preferences: {
         numberOfMeals: userPreferences.numberOfMeals,
         servingsPerMeal: userPreferences.servingsPerMeal,
-        minProteinPerMeal: userPreferences.minProteinPerMeal,
-        maxCaloriesPerMeal: userPreferences.maxCaloriesPerMeal,
-        dietaryRestrictions: userPreferences.dietaryRestrictions,
+        minProteinPerMeal: aggregatedMinProtein,
+        maxCaloriesPerMeal: aggregatedMaxCalories,
+        dietaryRestrictions: aggregatedDietaryRestrictions,
       },
       hebEnabled: userPreferences.hebEnabled,
       claudeModel: CLAUDE_MODEL,
@@ -96,6 +174,8 @@ export async function POST(request: Request) {
         recipients: sendEmail ? userPreferences.emailRecipients : [],
       },
       testMode: !sendEmail,
+      householdId,
+      householdMembers,
     });
 
     // Update meal plan with job ID

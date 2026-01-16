@@ -23,6 +23,17 @@ export interface MealPlanJobData {
     recipients: string[];
   };
   testMode?: boolean;
+  householdId?: string;
+  householdMembers?: Array<{
+    userId: string;
+    name: string | null;
+    email: string;
+    preferences: {
+      dietaryRestrictions: string[];
+      minProteinPerMeal: number | null;
+      maxCaloriesPerMeal: number | null;
+    };
+  }>;
 }
 
 export interface ScheduledJobData {
