@@ -47,7 +47,7 @@ export default function InviteAcceptClient({
         </h2>
 
         <div className="my-6 p-4 bg-gradient-to-r from-primary-light/10 to-accent-light/10 rounded-lg border border-primary-light/20">
-          <p className="text-sm text-gray-600 mb-1">You've been invited to join</p>
+          <p className="text-sm text-gray-600 mb-1">You&apos;ve been invited to join</p>
           <p className="text-xl font-bold text-primary-dark mb-3">{householdName}</p>
           <p className="text-sm text-gray-600">
             by <strong>{inviterName}</strong>
