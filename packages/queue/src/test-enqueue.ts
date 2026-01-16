@@ -32,7 +32,6 @@ async function testEnqueue() {
           externalUserId: 'test-user',
           userPreferences: {
             create: {
-              emailRecipients: ['test@example.com'],
               numberOfMeals: 3,
               servingsPerMeal: 2,
               minProteinPerMeal: 40,
@@ -46,11 +45,11 @@ async function testEnqueue() {
       });
     }
 
-    console.log(`✅ User: ${user.email} (${user.id})\n`);
-
-    if (!user.userPreferences) {
-      throw new Error('User has no preferences');
+    if (!user || !user.userPreferences) {
+      throw new Error('User or user preferences not found');
     }
+
+    console.log(`✅ User: ${user.email} (${user.id})\n`);
 
     // Create a meal plan record
     const weekStart = new Date();
@@ -84,7 +83,7 @@ async function testEnqueue() {
       hebEnabled: prefs.hebEnabled,
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
-        recipients: prefs.emailRecipients,
+        recipients: [user.email], // Use user's email for testing
       },
       testMode: true, // Test mode - saves email to file instead of sending
     });
