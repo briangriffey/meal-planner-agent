@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface Preferences {
-  emailRecipients: string[];
   scheduleDayOfWeek: number;
   scheduleHour: number;
   scheduleMinute: number;
@@ -24,48 +23,18 @@ interface Message {
 
 interface PreferencesFormProps {
   initialPreferences: Preferences;
-  userEmail: string;
   hasMealPlans: boolean;
 }
 
-export default function PreferencesForm({ initialPreferences, userEmail, hasMealPlans }: PreferencesFormProps) {
+export default function PreferencesForm({ initialPreferences, hasMealPlans }: PreferencesFormProps) {
   const router = useRouter();
   const [preferences, setPreferences] = useState<Preferences>(initialPreferences);
-  const [emailInput, setEmailInput] = useState('');
   const [restrictionInput, setRestrictionInput] = useState('');
   const [message, setMessage] = useState<Message | null>(null);
   const [saving, setSaving] = useState(false);
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationError, setGenerationError] = useState(false);
-
-  const addEmail = () => {
-    const email = emailInput.trim();
-    if (email && !preferences.emailRecipients.includes(email)) {
-      setPreferences({
-        ...preferences,
-        emailRecipients: [...preferences.emailRecipients, email],
-      });
-      setEmailInput('');
-    }
-  };
-
-  const removeEmail = (email: string) => {
-    // Prevent removing own email
-    if (email === userEmail) {
-      setMessage({
-        type: 'error',
-        text: 'You cannot remove your own email address',
-      });
-      setTimeout(() => setMessage(null), 3000);
-      return;
-    }
-
-    setPreferences({
-      ...preferences,
-      emailRecipients: preferences.emailRecipients.filter((e) => e !== email),
-    });
-  };
 
   const addRestriction = () => {
     if (restrictionInput && !preferences.dietaryRestrictions.includes(restrictionInput)) {
@@ -360,59 +329,6 @@ export default function PreferencesForm({ initialPreferences, userEmail, hasMeal
                       className="ml-2 inline-flex items-center justify-center flex-shrink-0 h-4 w-4 rounded-full text-primary hover:bg-primary-light hover:text-primary-dark focus:outline-none transition-colors duration-150"
                     >
                       <span className="sr-only">Remove {restriction}</span>
-                      <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                        <path strokeLinecap="round" strokeWidth="1.5" d="M1 1l6 6m0-6L1 7" />
-                      </svg>
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-accent to-accent/90 rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-primary-dark">
-                  Email Recipients
-                </h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-3">
-                Email addresses to receive the meal plan
-              </p>
-              <div className="flex gap-2 mb-3">
-                <input
-                  type="email"
-                  placeholder="email@example.com"
-                  className="flex-1 border border-gray-300 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-150 ease-in-out sm:text-sm"
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addEmail())}
-                />
-                <button
-                  type="button"
-                  onClick={addEmail}
-                  className="px-6 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary-dark shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-150"
-                >
-                  Add
-                </button>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {preferences.emailRecipients.map((email) => (
-                  <span
-                    key={email}
-                    className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-accent/20 text-accent border border-accent/30"
-                  >
-                    {email}
-                    <button
-                      type="button"
-                      onClick={() => removeEmail(email)}
-                      className="ml-2 inline-flex items-center justify-center flex-shrink-0 h-4 w-4 rounded-full text-accent hover:bg-accent/30 hover:text-accent focus:outline-none transition-colors duration-150"
-                    >
-                      <span className="sr-only">Remove {email}</span>
                       <svg className="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
                         <path strokeLinecap="round" strokeWidth="1.5" d="M1 1l6 6m0-6L1 7" />
                       </svg>
