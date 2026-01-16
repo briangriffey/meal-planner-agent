@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { buttonVariants, cardVariants, badgeVariants, cn } from '@/lib/styles/variants';
 
 interface User {
   id: string;
@@ -45,7 +45,7 @@ export default function HouseholdMemberCard({
   const canRemove = isOwner && member.role !== 'OWNER' && !isCurrentUser;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg hover:border-primary-light transition-colors p-6">
+    <div className={cn(cardVariants.borderedHover, 'p-6')}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
           {/* Member Info */}
@@ -62,11 +62,9 @@ export default function HouseholdMemberCard({
               )}
             </div>
             <span
-              className={`text-xs px-3 py-1 rounded-full font-medium ${
-                member.role === 'OWNER'
-                  ? 'bg-purple-100 text-purple-800'
-                  : 'bg-blue-100 text-blue-800'
-              }`}
+              className={
+                member.role === 'OWNER' ? badgeVariants.roleOwner : badgeVariants.roleMember
+              }
             >
               {member.role}
             </span>
@@ -115,7 +113,7 @@ export default function HouseholdMemberCard({
           {canEdit && (
             <button
               onClick={() => onEditPreferences(member)}
-              className="px-4 py-2 text-sm font-medium text-primary-dark border border-primary-light rounded-lg hover:bg-primary-light hover:text-white transition-colors"
+              className={buttonVariants.outline}
             >
               Edit Preferences
             </button>
@@ -123,7 +121,7 @@ export default function HouseholdMemberCard({
           {canRemove && onRemoveMember && (
             <button
               onClick={() => onRemoveMember(member.id)}
-              className="px-4 py-2 text-sm font-medium text-red-600 border border-red-300 rounded-lg hover:bg-red-50 transition-colors"
+              className={buttonVariants.outlineDestructive}
             >
               Remove
             </button>

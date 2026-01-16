@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
+import { buttonVariants, layoutVariants, cn } from '@/lib/styles/variants';
 
 interface DashboardNavProps {
   user: {
@@ -63,7 +64,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
 
   return (
     <nav className="bg-gradient-to-r from-primary-dark to-primary shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={layoutVariants.maxWidthContainer}>
         <div className="flex justify-between h-16">
           <div className="flex items-center space-x-8">
             <Link href="/dashboard" className="flex items-center space-x-2">
@@ -84,10 +85,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`${isActive(item.href)
-                    ? 'bg-white/20 text-white'
-                    : 'text-white/80 hover:bg-white/10 hover:text-white'
-                    } inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150`}
+                  className={isActive(item.href) ? buttonVariants.navActive : buttonVariants.navInactive}
                 >
                   <span className="mr-2">{item.icon}</span>
                   {item.name}
@@ -102,7 +100,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
               </div>
               <button
                 onClick={() => signOut({ callbackUrl: '/login' })}
-                className="inline-flex items-center px-4 py-2 border border-white/30 text-sm font-medium rounded-lg text-white bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-150"
+                className={buttonVariants.signOut}
               >
                 <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -121,10 +119,12 @@ export default function DashboardNav({ user }: DashboardNavProps) {
             <Link
               key={item.name}
               href={item.href}
-              className={`${isActive(item.href)
-                ? 'bg-white/20 text-white'
-                : 'text-white/80 hover:bg-white/10 hover:text-white'
-                } flex items-center px-3 py-2 rounded-lg text-base font-medium transition-all duration-150`}
+              className={cn(
+                'flex items-center px-3 py-2 rounded-lg text-base font-medium transition-all duration-150',
+                isActive(item.href)
+                  ? 'bg-white/20 text-white'
+                  : 'text-white/80 hover:bg-white/10 hover:text-white'
+              )}
             >
               <span className="mr-3">{item.icon}</span>
               {item.name}

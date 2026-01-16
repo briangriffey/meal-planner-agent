@@ -9,3 +9,328 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ============================================================================
+ * CUSTOM UTILITY CLASSES
+ * Complex patterns that complement the style system in lib/styles/variants.ts
+ * ============================================================================ */
+
+@layer utilities {
+  /* Scrollbar Styling
+   * Usage: Add to containers with overflow (modals, long lists)
+   * Example: className="overflow-y-auto scrollbar-thin scrollbar-primary"
+   */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-lg;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-lg hover:bg-gray-400;
+  }
+
+  .scrollbar-primary::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 hover:bg-primary/50;
+  }
+
+  /* Hide scrollbar but keep functionality
+   * Usage: For cleaner UI where scrollbar isn't needed visually
+   */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Gradient Text
+   * Usage: Special headings, emphasized text
+   * Example: className="text-gradient-primary"
+   */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-accent/90 bg-clip-text text-transparent;
+  }
+
+  /* Glass Morphism Effects
+   * Usage: Modal backdrops, floating elements
+   * Example: className="glass-light"
+   */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Focus Ring Utilities
+   * Usage: Custom focus states for complex interactive elements
+   * Example: className="focus-ring-primary"
+   */
+  .focus-ring-primary {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .focus-ring-accent {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+
+  .focus-ring-error {
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+  }
+
+  /* Hover Lift Effect
+   * Usage: Cards, buttons that should lift on hover
+   * Example: className="hover-lift"
+   */
+  .hover-lift {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    @apply shadow-xl;
+  }
+
+  /* Smooth Transitions
+   * Usage: Elements that need smooth state changes
+   */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .transition-fast {
+    @apply transition-all duration-150 ease-in-out;
+  }
+
+  .transition-slow {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Gradient Borders
+   * Usage: Special cards, emphasized containers
+   * Example: className="gradient-border-primary"
+   */
+  .gradient-border-primary {
+    border: 2px solid transparent;
+    background-image:
+      linear-gradient(white, white),
+      linear-gradient(to right, theme('colors.primary.DEFAULT'), theme('colors.primary.dark'));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* Skeleton Loading Animation
+   * Usage: Loading states for content placeholders
+   * Example: className="skeleton-loading"
+   */
+  .skeleton-loading {
+    @apply bg-gray-200 animate-pulse rounded;
+  }
+
+  /* Print Utilities
+   * Usage: Optimize meal plans for printing
+   */
+  @media print {
+    .print-hidden {
+      display: none !important;
+    }
+
+    .print-visible {
+      display: block !important;
+    }
+
+    .print-break-before {
+      page-break-before: always;
+    }
+
+    .print-break-after {
+      page-break-after: always;
+    }
+
+    .print-no-break {
+      page-break-inside: avoid;
+    }
+  }
+
+  /* Safe Area Insets for Mobile
+   * Usage: iOS notch and gesture area handling
+   */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ============================================================================
+ * CUSTOM ANIMATIONS
+ * Keyframe animations for loading states, toasts, modals, etc.
+ * ============================================================================ */
+
+@layer utilities {
+  /* Fade In Animation
+   * Usage: Modal entrances, toast notifications
+   * Example: className="animate-fade-in"
+   */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-in-out;
+  }
+
+  /* Fade In Up Animation
+   * Usage: Content reveals, list items
+   * Example: className="animate-fade-in-up"
+   */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.3s ease-out;
+  }
+
+  /* Scale In Animation
+   * Usage: Modal entrances, popup menus
+   * Example: className="animate-scale-in"
+   */
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+  }
+
+  /* Slide In From Right
+   * Usage: Side panels, notifications
+   * Example: className="animate-slide-in-right"
+   */
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  /* Shimmer Loading Animation
+   * Usage: Loading states with shimmer effect
+   * Example: className="animate-shimmer"
+   */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      to right,
+      theme('colors.gray.200') 0%,
+      theme('colors.gray.300') 50%,
+      theme('colors.gray.200') 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite linear;
+  }
+
+  /* Bounce In Animation
+   * Usage: Success notifications, celebratory messages
+   * Example: className="animate-bounce-in"
+   */
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.5s ease-out;
+  }
+
+  /* Shake Animation
+   * Usage: Form validation errors, incorrect inputs
+   * Example: className="animate-shake"
+   */
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+}

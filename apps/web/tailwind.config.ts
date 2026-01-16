@@ -1,4 +1,16 @@
 import type { Config } from 'tailwindcss'
+import {
+  colors,
+  spacing,
+  typography,
+  shadows,
+  borders,
+  transitions,
+  opacities,
+  zIndex,
+  breakpoints,
+  maxWidth,
+} from './lib/styles/tokens'
 
 const config: Config = {
   content: [
@@ -8,17 +20,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          light: '#5EBFBF',
-          DEFAULT: '#3F9BA6',
-          dark: '#225C73',
-        },
-        accent: {
-          DEFAULT: '#A66A5D',
-          dark: '#8B5A4E',
-        },
-      },
+      colors,
+      spacing,
+      fontSize: typography.fontSize,
+      fontWeight: typography.fontWeight,
+      lineHeight: typography.lineHeight,
+      boxShadow: shadows,
+      borderWidth: borders.width,
+      borderRadius: borders.radius,
+      borderColor: borders.colors,
+      transitionDuration: transitions.duration,
+      transitionTimingFunction: transitions.timing,
+      opacity: opacities,
+      zIndex,
+      screens: breakpoints,
+      maxWidth,
     },
   },
   plugins: [],
