@@ -267,7 +267,6 @@ async function seedPreferences(
         maxCaloriesPerMeal: pref.targetCaloriesPerMeal || 600,
         dietaryRestrictions: pref.dietaryRestrictions,
         hebEnabled: pref.enableHEB,
-        emailRecipients: pref.emailRecipients,
         scheduleEnabled: pref.scheduleEnabled,
         scheduleDayOfWeek: pref.scheduleDay,
         scheduleHour: hour,
