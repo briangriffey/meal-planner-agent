@@ -96,9 +96,6 @@ model UserPreferences {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  // Email preferences
-  emailRecipients String[] @default([])
-
   // Schedule preferences
   scheduleDayOfWeek Int     @default(0) // 0 = Sunday, 6 = Saturday
   scheduleHour      Int     @default(10)
