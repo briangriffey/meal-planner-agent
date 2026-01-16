@@ -58,7 +58,6 @@ interface FixtureUserPreferences {
   targetCaloriesPerMeal: number | null;
   targetProteinGramsPerMeal: number | null;
   enableHEB: boolean;
-  emailRecipients: string[];
   scheduleEnabled: boolean;
   scheduleDay: number;
   scheduleTime: string;
