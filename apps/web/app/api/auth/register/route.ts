@@ -43,7 +43,6 @@ export async function POST(request: Request) {
         name,
         userPreferences: {
           create: {
-            emailRecipients: [email],
             numberOfMeals: 7,
             servingsPerMeal: 2,
             minProteinPerMeal: 40,

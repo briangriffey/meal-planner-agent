@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { updateUserScheduledJob } from '@meal-planner/queue';
 
 const preferencesSchema = z.object({
-  emailRecipients: z.array(z.string().email()).optional(),
   numberOfMeals: z.number().int().min(1).max(14).optional(),
   servingsPerMeal: z.number().int().min(1).max(10).optional(),
   minProteinPerMeal: z.number().int().min(0).optional(),

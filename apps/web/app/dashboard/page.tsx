@@ -21,11 +21,9 @@ export default async function DashboardPage() {
     }),
   ]);
 
-  // Redirect new users to preferences page if they haven't filled them out yet
-  // Check if this is a new user (no meal plans and default email recipients only)
-  if (recentMealPlans.length === 0 && preferences &&
-      preferences.emailRecipients.length === 1 &&
-      preferences.emailRecipients[0] === session.user.email) {
+  // Redirect new users to preferences page if they haven't generated any meal plans yet
+  // This helps them set up their preferences first
+  if (recentMealPlans.length === 0 && preferences) {
     redirect('/dashboard/preferences');
   }
 

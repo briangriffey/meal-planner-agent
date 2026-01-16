@@ -36,7 +36,6 @@ export default async function PreferencesPage() {
   return (
     <PreferencesForm
       initialPreferences={preferences}
-      userEmail={session.user.email || ''}
       hasMealPlans={mealPlanCount > 0}
     />
   );

@@ -58,7 +58,6 @@ interface FixtureUserPreferences {
   targetCaloriesPerMeal: number | null;
   targetProteinGramsPerMeal: number | null;
   enableHEB: boolean;
-  emailRecipients: string[];
   scheduleEnabled: boolean;
   scheduleDay: number;
   scheduleTime: string;
@@ -267,7 +266,6 @@ async function seedPreferences(
         maxCaloriesPerMeal: pref.targetCaloriesPerMeal || 600,
         dietaryRestrictions: pref.dietaryRestrictions,
         hebEnabled: pref.enableHEB,
-        emailRecipients: pref.emailRecipients,
         scheduleEnabled: pref.scheduleEnabled,
         scheduleDayOfWeek: pref.scheduleDay,
         scheduleHour: hour,

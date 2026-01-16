@@ -31,6 +31,32 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
 
     const prefs = user.userPreferences;
 
+    // Check if user belongs to a household and get member emails
+    const householdMember = await prisma.householdMember.findFirst({
+      where: { userId },
+      include: {
+        household: {
+          include: {
+            members: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Determine email recipients based on household membership
+    let emailRecipients: string[] = [];
+    if (householdMember?.household) {
+      // Extract emails from all household members
+      emailRecipients = householdMember.household.members.map((member) => member.user.email);
+    } else if (user.email) {
+      // Fall back to user's own email if not in household
+      emailRecipients = [user.email];
+    }
+
     // Check if scheduling is enabled
     if (!prefs.scheduleEnabled) {
       console.log(`⏸️  Scheduled generation disabled for user ${userId}`);
@@ -90,7 +116,7 @@ export async function processScheduledGeneration(job: Job<ScheduledJobData>): Pr
       hebEnabled: prefs.hebEnabled,
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
-        recipients: prefs.emailRecipients,
+        recipients: emailRecipients,
       },
       testMode: false,
     });
