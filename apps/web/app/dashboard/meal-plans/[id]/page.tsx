@@ -107,9 +107,6 @@ export default async function MealPlanDetailPage({
               year: 'numeric',
             })}
           </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Generated on {new Date(mealPlan.generatedAt).toLocaleDateString()} using {mealPlan.claudeModel || 'Claude AI'}
-          </p>
         </div>
         <div className="mt-4 flex md:mt-0 md:ml-4">
           <Link
