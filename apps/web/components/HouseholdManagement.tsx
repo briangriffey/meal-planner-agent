@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HouseholdMemberCard from './HouseholdMemberCard';
 import MemberPreferencesForm from './MemberPreferencesForm';
+import InviteMemberModal from './InviteMemberModal';
 
 interface User {
   id: string;
@@ -60,10 +61,8 @@ interface HouseholdManagementProps {
 export default function HouseholdManagement({ households, userId, userEmail }: HouseholdManagementProps) {
   const router = useRouter();
   const [householdName, setHouseholdName] = useState('');
-  const [inviteEmail, setInviteEmail] = useState('');
   const [message, setMessage] = useState<Message | null>(null);
   const [isCreating, setIsCreating] = useState(false);
-  const [isInviting, setIsInviting] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [editingMember, setEditingMember] = useState<HouseholdMember | null>(null);
 
@@ -105,45 +104,6 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
       });
     } finally {
       setIsCreating(false);
-    }
-  };
-
-  const sendInvitation = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!household) return;
-
-    setIsInviting(true);
-    setMessage(null);
-
-    try {
-      const response = await fetch(`/api/households/${household.id}/invitations`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: inviteEmail }),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Failed to send invitation');
-      }
-
-      setMessage({
-        type: 'success',
-        text: 'Invitation sent successfully',
-      });
-
-      setInviteEmail('');
-      setShowInviteModal(false);
-      router.refresh();
-    } catch (error) {
-      setMessage({
-        type: 'error',
-        text: error instanceof Error ? error.message : 'An error occurred',
-      });
-    } finally {
-      setIsInviting(false);
     }
   };
 
@@ -314,80 +274,20 @@ export default function HouseholdManagement({ households, userId, userEmail }: H
         </div>
       </div>
 
-      {/* Pending Invitations Section */}
-      {isOwner && household.invitations.length > 0 && (
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 p-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">
-            Pending Invitations
-          </h3>
-
-          <div className="space-y-3">
-            {household.invitations.map((invitation) => (
-              <div
-                key={invitation.id}
-                className="p-4 border border-gray-200 rounded-lg"
-              >
-                <p className="font-medium text-gray-900">{invitation.email}</p>
-                <p className="text-sm text-gray-600">
-                  Sent {new Date(invitation.createdAt).toLocaleDateString()} ·
-                  Expires {new Date(invitation.expiresAt).toLocaleDateString()}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Invite Modal */}
-      {showInviteModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Invite Household Member
-            </h3>
-            <p className="text-sm text-gray-600 mb-6">
-              Enter the email address of the person you want to invite to your household.
-            </p>
-
-            <form onSubmit={sendInvitation} className="space-y-4">
-              <div>
-                <label htmlFor="inviteEmail" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
-                </label>
-                <input
-                  id="inviteEmail"
-                  type="email"
-                  value={inviteEmail}
-                  onChange={(e) => setInviteEmail(e.target.value)}
-                  placeholder="member@example.com"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent"
-                  required
-                />
-              </div>
-
-              <div className="flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowInviteModal(false);
-                    setInviteEmail('');
-                  }}
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isInviting}
-                  className="flex-1 bg-gradient-to-r from-primary-light to-primary-dark text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isInviting ? 'Sending...' : 'Send Invitation'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Invite Member Modal */}
+      <InviteMemberModal
+        householdId={household.id}
+        pendingInvitations={household.invitations}
+        isOpen={showInviteModal}
+        onClose={() => setShowInviteModal(false)}
+        onSuccess={() => {
+          setMessage({
+            type: 'success',
+            text: 'Invitation sent successfully',
+          });
+          setTimeout(() => setMessage(null), 3000);
+        }}
+      />
 
       {/* Member Preferences Modal */}
       {editingMember && (
