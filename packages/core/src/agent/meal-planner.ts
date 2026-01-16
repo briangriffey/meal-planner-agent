@@ -65,6 +65,7 @@ export class MealPlannerAgent {
   private hebEnabled: boolean;
   private postProcessor: MealPlanPostProcessor;
   private emailRenderer: EmailTemplateRenderer;
+  private householdMembers?: MealPlannerAgentConfig['householdMembers'];
 
   constructor(config: MealPlannerAgentConfig & { hebEnabled?: boolean; emailConnector: EmailConnector }) {
     this.client = new Anthropic({
@@ -78,6 +79,7 @@ export class MealPlannerAgent {
     this.hebEnabled = config.hebEnabled ?? false;
     this.postProcessor = new MealPlanPostProcessor();
     this.emailRenderer = new EmailTemplateRenderer();
+    this.householdMembers = config.householdMembers;
   }
 
   async generateMealPlan(): Promise<MealPlanGenerationResult> {
@@ -191,14 +193,52 @@ export class MealPlannerAgent {
   }
 
   private buildSystemPrompt(): string {
+    // Aggregate dietary restrictions and nutrition targets if household members exist
+    let dietaryRestrictions = this.preferences.dietaryRestrictions;
+    let minProtein = this.preferences.minProteinPerMeal;
+    let maxCalories = this.preferences.maxCaloriesPerMeal;
+    let householdContext = '';
+
+    if (this.householdMembers && this.householdMembers.length > 0) {
+      // Aggregate dietary restrictions (union of all members)
+      const allRestrictions = new Set<string>(this.preferences.dietaryRestrictions);
+      this.householdMembers.forEach(member => {
+        member.preferences.dietaryRestrictions.forEach(restriction => {
+          allRestrictions.add(restriction);
+        });
+      });
+      dietaryRestrictions = Array.from(allRestrictions);
+
+      // Use most restrictive nutrition targets
+      // Highest minProtein across all members
+      let maxMinProtein = this.preferences.minProteinPerMeal;
+      this.householdMembers.forEach(member => {
+        if (member.preferences.minProteinPerMeal !== null && member.preferences.minProteinPerMeal > maxMinProtein) {
+          maxMinProtein = member.preferences.minProteinPerMeal;
+        }
+      });
+      minProtein = maxMinProtein;
+
+      // Lowest maxCalories across all members
+      let minMaxCalories = this.preferences.maxCaloriesPerMeal;
+      this.householdMembers.forEach(member => {
+        if (member.preferences.maxCaloriesPerMeal !== null && member.preferences.maxCaloriesPerMeal < minMaxCalories) {
+          minMaxCalories = member.preferences.maxCaloriesPerMeal;
+        }
+      });
+      maxCalories = minMaxCalories;
+
+      householdContext = `\n\nIMPORTANT: This meal plan is for a household of ${this.householdMembers.length + 1} people with varying dietary needs. The dietary restrictions and nutrition targets reflect the combined requirements of all household members.`;
+    }
+
     return `You are a meal planning expert. Generate a weekly dinner meal plan based on user preferences.
 
 Requirements:
 - Create ${this.preferences.numberOfMeals} unique dinner recipes
 - Each meal serves ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
-- Meet nutritional targets: minimum ${this.preferences.minProteinPerMeal}g protein, maximum ${this.preferences.maxCaloriesPerMeal} calories per serving
-- Respect dietary restrictions: ${this.preferences.dietaryRestrictions.length > 0 ? this.preferences.dietaryRestrictions.join(', ') : 'none'}
-- Ensure variety (avoid recent meals if provided)
+- Meet nutritional targets: minimum ${minProtein}g protein, maximum ${maxCalories} calories per serving
+- Respect dietary restrictions: ${dietaryRestrictions.length > 0 ? dietaryRestrictions.join(', ') : 'none'}
+- Ensure variety (avoid recent meals if provided)${householdContext}
 
 For each meal, provide:
 - Name (clear, appetizing)
@@ -229,19 +269,67 @@ Return a JSON object with this exact structure:
   private async buildUserPrompt(): Promise<string> {
     const weekLabel = this.getWeekLabel();
 
+    // Aggregate dietary restrictions and nutrition targets if household members exist
+    let dietaryRestrictions = this.preferences.dietaryRestrictions;
+    let minProtein = this.preferences.minProteinPerMeal;
+    let maxCalories = this.preferences.maxCaloriesPerMeal;
+    let householdInfo = '';
+
+    if (this.householdMembers && this.householdMembers.length > 0) {
+      // Aggregate dietary restrictions (union of all members)
+      const allRestrictions = new Set<string>(this.preferences.dietaryRestrictions);
+      this.householdMembers.forEach(member => {
+        member.preferences.dietaryRestrictions.forEach(restriction => {
+          allRestrictions.add(restriction);
+        });
+      });
+      dietaryRestrictions = Array.from(allRestrictions);
+
+      // Use most restrictive nutrition targets
+      let maxMinProtein = this.preferences.minProteinPerMeal;
+      this.householdMembers.forEach(member => {
+        if (member.preferences.minProteinPerMeal !== null && member.preferences.minProteinPerMeal > maxMinProtein) {
+          maxMinProtein = member.preferences.minProteinPerMeal;
+        }
+      });
+      minProtein = maxMinProtein;
+
+      let minMaxCalories = this.preferences.maxCaloriesPerMeal;
+      this.householdMembers.forEach(member => {
+        if (member.preferences.maxCaloriesPerMeal !== null && member.preferences.maxCaloriesPerMeal < minMaxCalories) {
+          minMaxCalories = member.preferences.maxCaloriesPerMeal;
+        }
+      });
+      maxCalories = minMaxCalories;
+
+      // Build household member details
+      const memberNames = this.householdMembers
+        .map(m => m.name || m.email)
+        .filter(Boolean)
+        .join(', ');
+
+      householdInfo = `\n\nHousehold Context:
+This meal plan is for ${this.householdMembers.length + 1} people: you and ${memberNames}.
+The nutritional targets and dietary restrictions account for all household members' preferences.`;
+    }
+
     let prompt = `Create a dinner meal plan for ${weekLabel}.
 
 Requirements:
-- High protein (minimum ${this.preferences.minProteinPerMeal}g per serving)
-- Low calorie (maximum ${this.preferences.maxCaloriesPerMeal} calories per serving)
+- High protein (minimum ${minProtein}g per serving)
+- Low calorie (maximum ${maxCalories} calories per serving)
 - ${this.preferences.numberOfMeals} different dinners
 - Each meal serves ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'person' : 'people'}
 - Include complete nutritional information per serving
 - Include ingredient lists with quantities for ${this.preferences.servingsPerMeal} ${this.preferences.servingsPerMeal === 1 ? 'serving' : 'servings'}
 - Include step-by-step cooking instructions`;
 
-    if (this.preferences.dietaryRestrictions.length > 0) {
-      prompt += `\n- Dietary restrictions: ${this.preferences.dietaryRestrictions.join(', ')}`;
+    if (dietaryRestrictions.length > 0) {
+      prompt += `\n- Dietary restrictions: ${dietaryRestrictions.join(', ')}`;
+    }
+
+    if (householdInfo) {
+      prompt += householdInfo;
     }
 
     // Add meal history for variety

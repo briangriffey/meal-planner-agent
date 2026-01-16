@@ -8,7 +8,7 @@ import { MealPlanJobData } from '../client';
  * This is the main worker job that generates meal plans using the agent
  */
 export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Promise<any> {
-  const { userId, mealPlanId, preferences, hebEnabled, claudeModel, emailConfig, testMode } = job.data;
+  const { userId, mealPlanId, preferences, hebEnabled, claudeModel, emailConfig, testMode, householdMembers } = job.data;
 
   console.log(`🚀 Starting meal plan generation for user ${userId}, plan ${mealPlanId}`);
   console.log(`Payload: ${JSON.stringify(job.data)}`);
@@ -54,7 +54,8 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
         await job.updateProgress(Math.round(jobProgress));
         console.log(`📊 ${Math.round(jobProgress)}%: ${message}`);
       },
-      hebEnabled // hebEnabled controls whether MealPlanPostProcessor generates HEB search URLs
+      hebEnabled, // hebEnabled controls whether MealPlanPostProcessor generates HEB search URLs
+      householdMembers // Pass household members for household-aware meal planning
     );
 
     console.log('🤖 Running meal planner agent...');

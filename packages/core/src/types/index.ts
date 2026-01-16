@@ -104,6 +104,16 @@ export interface MealPlannerAgentConfig {
   mealHistoryService: IMealHistoryService;
   claudeModel?: string;
   onProgress?: (percent: number, message: string) => Promise<void>;
+  householdMembers?: Array<{
+    userId: string;
+    name: string | null;
+    email: string;
+    preferences: {
+      dietaryRestrictions: string[];
+      minProteinPerMeal: number | null;
+      maxCaloriesPerMeal: number | null;
+    };
+  }>;
 }
 
 // Meal history service interface
