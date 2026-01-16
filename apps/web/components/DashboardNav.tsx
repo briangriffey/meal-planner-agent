@@ -24,13 +24,6 @@ export default function DashboardNav({ user }: DashboardNavProps) {
       )
     },
     {
-      name: 'Generate', href: '/dashboard/generate', icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-      )
-    },
-    {
       name: 'Meal Plans', href: '/dashboard/meal-plans', icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -92,8 +85,8 @@ export default function DashboardNav({ user }: DashboardNavProps) {
                   key={item.name}
                   href={item.href}
                   className={`${isActive(item.href)
-                      ? 'bg-white/20 text-white'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                    ? 'bg-white/20 text-white'
+                    : 'text-white/80 hover:bg-white/10 hover:text-white'
                     } inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150`}
                 >
                   <span className="mr-2">{item.icon}</span>
@@ -129,8 +122,8 @@ export default function DashboardNav({ user }: DashboardNavProps) {
               key={item.name}
               href={item.href}
               className={`${isActive(item.href)
-                  ? 'bg-white/20 text-white'
-                  : 'text-white/80 hover:bg-white/10 hover:text-white'
+                ? 'bg-white/20 text-white'
+                : 'text-white/80 hover:bg-white/10 hover:text-white'
                 } flex items-center px-3 py-2 rounded-lg text-base font-medium transition-all duration-150`}
             >
               <span className="mr-3">{item.icon}</span>
