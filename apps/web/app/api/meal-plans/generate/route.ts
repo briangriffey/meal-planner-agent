@@ -157,6 +157,18 @@ export async function POST(request: Request) {
       },
     });
 
+    // Determine email recipients based on household membership
+    let emailRecipients: string[] = [];
+    if (sendEmail) {
+      if (householdMembers && householdMembers.length > 0) {
+        // Extract emails from all household members
+        emailRecipients = householdMembers.map((member) => member.email);
+      } else if (session.user.email) {
+        // Fall back to user's own email if not in household
+        emailRecipients = [session.user.email];
+      }
+    }
+
     // Enqueue job
     const { jobId } = await enqueueMealPlanGeneration({
       userId: session.user.id,
@@ -171,7 +183,7 @@ export async function POST(request: Request) {
       hebEnabled: userPreferences.hebEnabled,
       claudeModel: CLAUDE_MODEL,
       emailConfig: {
-        recipients: sendEmail ? userPreferences.emailRecipients : [],
+        recipients: emailRecipients,
       },
       testMode: !sendEmail,
       householdId,
