@@ -33,6 +33,12 @@ model User {
   userPreferences UserPreferences?
   apiKeys        ApiKey[]
 
+  // Household relations
+  ownedHouseholds       Household[]       @relation("HouseholdOwner")
+  householdMemberships  HouseholdMember[]
+  sentInvitations       HouseholdInvitation[] @relation("InvitationInviter")
+  acceptedInvitations   HouseholdInvitation[] @relation("InvitationAcceptor")
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -119,6 +125,10 @@ model MealPlan {
   id     String @id @default(cuid())
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Household relation (optional, for household-shared plans)
+  householdId String?
+  household   Household? @relation(fields: [householdId], references: [id], onDelete: SetNull)
 
   // Metadata
   weekStartDate DateTime
@@ -207,4 +217,95 @@ model ApiKey {
   @@index([key])
   @@index([userId])
   @@map("api_keys")
+}
+
+// ============================================================================
+// Household Management Models
+// ============================================================================
+
+enum HouseholdRole {
+  OWNER
+  MEMBER
+}
+
+model Household {
+  id      String @id @default(cuid())
+  name    String
+  ownerId String
+  owner   User   @relation("HouseholdOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  // Relations
+  members     HouseholdMember[]
+  invitations HouseholdInvitation[]
+  mealPlans   MealPlan[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([ownerId])
+  @@map("households")
+}
+
+model HouseholdMember {
+  id          String        @id @default(cuid())
+  householdId String
+  household   Household     @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role        HouseholdRole @default(MEMBER)
+
+  // Relations
+  preferences MemberPreferences?
+
+  joinedAt DateTime @default(now())
+
+  @@unique([householdId, userId]) // A user can only be a member once per household
+  @@index([householdId])
+  @@index([userId])
+  @@map("household_members")
+}
+
+model MemberPreferences {
+  id                String          @id @default(cuid())
+  householdMemberId String          @unique
+  householdMember   HouseholdMember @relation(fields: [householdMemberId], references: [id], onDelete: Cascade)
+
+  // Individual meal preferences
+  dietaryRestrictions String[] @default([])
+  minProteinPerMeal   Int?
+  maxCaloriesPerMeal  Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("member_preferences")
+}
+
+model HouseholdInvitation {
+  id          String    @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+
+  // Inviter
+  inviterUserId String
+  inviterUser   User   @relation("InvitationInviter", fields: [inviterUserId], references: [id], onDelete: Cascade)
+
+  // Invitee
+  email String
+
+  // Token for email verification
+  token     String   @unique
+  expiresAt DateTime
+
+  // Acceptance tracking
+  acceptedAt       DateTime?
+  acceptedByUserId String?
+  acceptedByUser   User?     @relation("InvitationAcceptor", fields: [acceptedByUserId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+
+  @@index([householdId])
+  @@index([token])
+  @@index([email])
+  @@map("household_invitations")
 }
