@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
+import FavoriteButton from '@/components/FavoriteButton';
 
 interface Ingredient {
   item: string;
@@ -194,9 +195,12 @@ export default async function MealPlanDetailPage({
                   </h3>
                   <p className="text-lg text-white/90 mt-1">{meal.name}</p>
                 </div>
-                <div className="flex space-x-4 text-sm text-white/90">
-                  {meal.prepTime && <span>Prep: {meal.prepTime}</span>}
-                  {meal.cookTime && <span>Cook: {meal.cookTime}</span>}
+                <div className="flex items-center space-x-4">
+                  <div className="flex space-x-4 text-sm text-white/90">
+                    {meal.prepTime && <span>Prep: {meal.prepTime}</span>}
+                    {meal.cookTime && <span>Cook: {meal.cookTime}</span>}
+                  </div>
+                  <FavoriteButton mealData={meal} />
                 </div>
               </div>
             </div>
