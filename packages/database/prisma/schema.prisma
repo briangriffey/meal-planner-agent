@@ -39,6 +39,9 @@ model User {
   sentInvitations       HouseholdInvitation[] @relation("InvitationInviter")
   acceptedInvitations   HouseholdInvitation[] @relation("InvitationAcceptor")
 
+  // Favorite recipes
+  favoriteRecipes FavoriteRecipe[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -191,11 +194,48 @@ model MealRecord {
   prepTime     String?
   cookTime     String?
 
+  // Relations
+  favoriteRecipes FavoriteRecipe[]
+
   createdAt DateTime @default(now())
 
   @@index([userId, createdAt])
   @@index([name]) // For finding duplicate meals
   @@map("meal_records")
+}
+
+// User's favorite recipes for easy access and reuse
+model FavoriteRecipe {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Optional reference to the original meal record
+  mealRecordId String?
+  mealRecord   MealRecord? @relation(fields: [mealRecordId], references: [id], onDelete: SetNull)
+
+  // Meal details
+  name String
+  day  String? // Original day when it was served
+
+  // Nutrition (optional)
+  calories Int?
+  protein  Int?
+  carbs    Int?
+  fat      Int?
+  fiber    Int?
+
+  // Recipe details (stored as JSON for flexibility)
+  ingredients  Json? // Array of { item: string, amount: string }
+  instructions Json? // Array of strings
+  prepTime     String?
+  cookTime     String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([userId, name]) // For searching favorites by name
+  @@map("favorite_recipes")
 }
 
 // API Keys for CLI access
