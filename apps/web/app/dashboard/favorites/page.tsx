@@ -2,21 +2,55 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { redirect } from 'next/navigation';
 import FavoriteButton from '@/components/FavoriteButton';
+import FavoritesSearchFilters from '@/components/FavoritesSearchFilters';
 
 interface Ingredient {
   item: string;
   amount: string;
 }
 
-export default async function FavoritesPage() {
+interface FavoritesPageProps {
+  searchParams: {
+    search?: string;
+    minCalories?: string;
+    maxCalories?: string;
+    minProtein?: string;
+    maxProtein?: string;
+  };
+}
+
+export default async function FavoritesPage({ searchParams }: FavoritesPageProps) {
   const session = await auth();
 
   if (!session) {
     redirect('/login');
   }
 
+  // Build where clause with filters
+  const whereClause = {
+    userId: session.user.id,
+    ...(searchParams.search && {
+      name: {
+        contains: searchParams.search,
+        mode: 'insensitive' as const,
+      },
+    }),
+    ...(searchParams.minCalories && {
+      calories: { gte: parseInt(searchParams.minCalories) }
+    }),
+    ...(searchParams.maxCalories && {
+      calories: { lte: parseInt(searchParams.maxCalories) }
+    }),
+    ...(searchParams.minProtein && {
+      protein: { gte: parseInt(searchParams.minProtein) }
+    }),
+    ...(searchParams.maxProtein && {
+      protein: { lte: parseInt(searchParams.maxProtein) }
+    }),
+  };
+
   const favorites = await prisma.favoriteRecipe.findMany({
-    where: { userId: session.user.id },
+    where: whereClause,
     orderBy: { createdAt: 'desc' },
   });
 
@@ -32,6 +66,8 @@ export default async function FavoritesPage() {
           </p>
         </div>
       </div>
+
+      <FavoritesSearchFilters />
 
       {favorites.length === 0 ? (
         <div className="bg-white shadow overflow-hidden sm:rounded-md">

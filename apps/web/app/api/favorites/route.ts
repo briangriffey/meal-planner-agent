@@ -20,7 +20,7 @@ const favoriteRecipeSchema = z.object({
 
 /**
  * List all favorite recipes for the current user
- * GET /api/favorites?page=1&limit=10
+ * GET /api/favorites?page=1&limit=10&search=chicken&minCalories=300&maxCalories=600&minProtein=20&maxProtein=50
  */
 export async function GET(request: Request) {
   try {
@@ -34,11 +34,31 @@ export async function GET(request: Request) {
     const limit = parseInt(searchParams.get('limit') || '10');
     const skip = (page - 1) * limit;
 
+    // Search and filter parameters
+    const search = searchParams.get('search') || '';
+    const minCalories = searchParams.get('minCalories') ? parseInt(searchParams.get('minCalories')!) : undefined;
+    const maxCalories = searchParams.get('maxCalories') ? parseInt(searchParams.get('maxCalories')!) : undefined;
+    const minProtein = searchParams.get('minProtein') ? parseInt(searchParams.get('minProtein')!) : undefined;
+    const maxProtein = searchParams.get('maxProtein') ? parseInt(searchParams.get('maxProtein')!) : undefined;
+
+    // Build where clause with filters
+    const whereClause = {
+      userId: session.user.id,
+      ...(search && {
+        name: {
+          contains: search,
+          mode: 'insensitive' as const,
+        },
+      }),
+      ...(minCalories && { calories: { gte: minCalories } }),
+      ...(maxCalories && { calories: { lte: maxCalories } }),
+      ...(minProtein && { protein: { gte: minProtein } }),
+      ...(maxProtein && { protein: { lte: maxProtein } }),
+    };
+
     const [favorites, total] = await Promise.all([
       prisma.favoriteRecipe.findMany({
-        where: {
-          userId: session.user.id,
-        },
+        where: whereClause,
         orderBy: {
           createdAt: 'desc',
         },
@@ -62,9 +82,7 @@ export async function GET(request: Request) {
         },
       }),
       prisma.favoriteRecipe.count({
-        where: {
-          userId: session.user.id,
-        },
+        where: whereClause,
       }),
     ]);
 

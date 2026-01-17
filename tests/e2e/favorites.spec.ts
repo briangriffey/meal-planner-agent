@@ -496,4 +496,109 @@ test.describe('Recipe Favorites', () => {
     //   await expect(errorMessage).toContainText(/error|fail/i);
     // }
   });
+
+  // ============================================================================
+  // Search and Filter
+  // ============================================================================
+
+  test('should filter favorites by search query', async ({ page }) => {
+    // Navigate to favorites page
+    await page.goto(FAVORITES_PAGE_URL);
+    await page.waitForLoadState('networkidle');
+
+    // Wait for at least one meal card to be visible (we need favorites to test search)
+    const mealCards = page.locator(MEAL_PLAN_CARD_SELECTOR);
+    const initialCount = await mealCards.count();
+
+    // Skip test if no favorites exist
+    if (initialCount === 0) {
+      test.skip();
+      return;
+    }
+
+    // Get the name of the first meal to search for
+    const firstMealName = await mealCards.first().locator('p.text-xl, h3').textContent();
+    const searchTerm = firstMealName?.split(' ')[0].toLowerCase() || 'chicken';
+
+    // Enter search query
+    await page.fill('[data-testid="search-input"]', searchTerm);
+    await page.click('[data-testid="apply-filters-button"]');
+
+    // Wait for results
+    await page.waitForLoadState('networkidle');
+
+    // Verify filtered results contain the search term
+    const filteredCards = page.locator(MEAL_PLAN_CARD_SELECTOR);
+    const filteredCount = await filteredCards.count();
+
+    if (filteredCount > 0) {
+      // Check that each visible meal contains the search term
+      for (let i = 0; i < filteredCount; i++) {
+        const mealName = await filteredCards.nth(i).locator('p.text-xl, h3').textContent();
+        expect(mealName?.toLowerCase()).toContain(searchTerm);
+      }
+    }
+  });
+
+  test('should filter favorites by calories range', async ({ page }) => {
+    await page.goto(FAVORITES_PAGE_URL);
+    await page.waitForLoadState('networkidle');
+
+    // Wait for at least one meal card to be visible
+    const mealCards = page.locator(MEAL_PLAN_CARD_SELECTOR);
+    const initialCount = await mealCards.count();
+
+    // Skip test if no favorites exist
+    if (initialCount === 0) {
+      test.skip();
+      return;
+    }
+
+    // Set calorie range
+    await page.fill('[data-testid="min-calories-input"]', '300');
+    await page.fill('[data-testid="max-calories-input"]', '600');
+    await page.click('[data-testid="apply-filters-button"]');
+
+    await page.waitForLoadState('networkidle');
+
+    // Verify calories are within range (if nutrition badges are visible)
+    const caloriesBadges = page.locator('text=/\\d+ cal/');
+    const count = await caloriesBadges.count();
+
+    if (count > 0) {
+      for (let i = 0; i < count; i++) {
+        const text = await caloriesBadges.nth(i).textContent();
+        const calories = parseInt(text?.match(/\d+/)?.[0] || '0');
+        expect(calories).toBeGreaterThanOrEqual(300);
+        expect(calories).toBeLessThanOrEqual(600);
+      }
+    }
+  });
+
+  test('should clear filters when clicking clear button', async ({ page }) => {
+    await page.goto(FAVORITES_PAGE_URL);
+    await page.waitForLoadState('networkidle');
+
+    // Apply filters
+    await page.fill('[data-testid="search-input"]', 'test');
+    await page.fill('[data-testid="min-calories-input"]', '300');
+    await page.click('[data-testid="apply-filters-button"]');
+
+    await page.waitForLoadState('networkidle');
+
+    // Clear filters
+    await page.click('[data-testid="clear-filters-button"]');
+
+    await page.waitForLoadState('networkidle');
+
+    // Verify URL has no query params
+    const url = page.url();
+    expect(url).toContain(FAVORITES_PAGE_URL);
+    expect(url).not.toContain('search=');
+    expect(url).not.toContain('minCalories=');
+
+    // Verify input fields are cleared
+    await expect(page.locator('[data-testid="search-input"]')).toHaveValue('');
+    await expect(page.locator('[data-testid="min-calories-input"]')).toHaveValue('');
+  });
 });
