@@ -1,6 +1,22 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { z } from 'zod';
+
+const favoriteRecipeSchema = z.object({
+  name: z.string().min(1),
+  day: z.string().optional(),
+  calories: z.number().int().min(0).optional(),
+  protein: z.number().int().min(0).optional(),
+  carbs: z.number().int().min(0).optional(),
+  fat: z.number().int().min(0).optional(),
+  fiber: z.number().int().min(0).optional(),
+  ingredients: z.array(z.any()).optional(),
+  instructions: z.array(z.any()).optional(),
+  prepTime: z.string().optional(),
+  cookTime: z.string().optional(),
+  mealRecordId: z.string().optional(),
+});
 
 /**
  * List all favorite recipes for the current user
@@ -63,6 +79,44 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('Error fetching favorites:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * Add a favorite recipe
+ * POST /api/favorites
+ */
+export async function POST(request: Request) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const data = favoriteRecipeSchema.parse(body);
+
+    const favorite = await prisma.favoriteRecipe.create({
+      data: {
+        userId: session.user.id,
+        ...data,
+      },
+    });
+
+    return NextResponse.json(favorite, { status: 201 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Invalid input', details: error.errors },
+        { status: 400 }
+      );
+    }
+
+    console.error('Error creating favorite:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
