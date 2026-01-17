@@ -42,7 +42,7 @@ export async function GET(request: Request) {
     const maxProtein = searchParams.get('maxProtein') ? parseInt(searchParams.get('maxProtein')!) : undefined;
 
     // Build where clause with filters
-    const whereClause = {
+    const whereClause: any = {
       userId: session.user.id,
       ...(search && {
         name: {
@@ -50,11 +50,21 @@ export async function GET(request: Request) {
           mode: 'insensitive' as const,
         },
       }),
-      ...(minCalories && { calories: { gte: minCalories } }),
-      ...(maxCalories && { calories: { lte: maxCalories } }),
-      ...(minProtein && { protein: { gte: minProtein } }),
-      ...(maxProtein && { protein: { lte: maxProtein } }),
     };
+
+    // Add calories filter if either min or max is set
+    if (minCalories !== undefined || maxCalories !== undefined) {
+      whereClause.calories = {};
+      if (minCalories !== undefined) whereClause.calories.gte = minCalories;
+      if (maxCalories !== undefined) whereClause.calories.lte = maxCalories;
+    }
+
+    // Add protein filter if either min or max is set
+    if (minProtein !== undefined || maxProtein !== undefined) {
+      whereClause.protein = {};
+      if (minProtein !== undefined) whereClause.protein.gte = minProtein;
+      if (maxProtein !== undefined) whereClause.protein.lte = maxProtein;
+    }
 
     const [favorites, total] = await Promise.all([
       prisma.favoriteRecipe.findMany({
