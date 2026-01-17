@@ -186,7 +186,7 @@ export default async function MealPlanDetailPage({
 
       <div className="grid grid-cols-1 gap-6">
         {meals.map((meal, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+          <div key={index} data-testid="meal-card" className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
             <div className="px-6 py-5 bg-gradient-to-r from-primary-light to-primary border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>

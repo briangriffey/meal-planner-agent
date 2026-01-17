@@ -141,6 +141,8 @@ export default function FavoriteButton({ mealData }: FavoriteButtonProps) {
     <button
       onClick={handleToggleFavorite}
       disabled={loading}
+      data-testid="favorite-button"
+      aria-pressed={isFavorited}
       className={`p-2 transition-colors ${
         loading
           ? 'text-gray-300 cursor-wait'

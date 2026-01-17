@@ -262,6 +262,7 @@ export const ROUTES = {
   preferences: '/dashboard/preferences',
   mealPlans: '/dashboard/meal-plans',
   mealPlanDetail: (id: string) => `/dashboard/meal-plans/${id}`,
+  favorites: '/dashboard/favorites',
   generate: '/dashboard/generate',
   analytics: '/dashboard/analytics',
 } as const;
@@ -298,6 +299,12 @@ export const SELECTORS = {
   navDashboard: 'nav a:has-text("Dashboard")',
   navPreferences: 'nav a:has-text("Preferences")',
   navMealPlans: 'nav a:has-text("Meal Plans")',
+  navFavorites: 'nav a:has-text("Favorites")',
+
+  // Favorites
+  favoriteButton: '[data-testid="favorite-button"]',
+  mealCard: '[data-testid="meal-card"]',
+  emptyState: '[data-testid="empty-state"]',
 } as const;
 
 // ============================================================================

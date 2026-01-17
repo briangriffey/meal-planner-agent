@@ -35,7 +35,7 @@ export default async function FavoritesPage() {
 
       {favorites.length === 0 ? (
         <div className="bg-white shadow overflow-hidden sm:rounded-md">
-          <div className="px-6 py-12 text-center">
+          <div data-testid="empty-state" className="px-6 py-12 text-center">
             <svg
               className="mx-auto h-12 w-12 text-gray-400"
               fill="none"
@@ -64,6 +64,7 @@ export default async function FavoritesPage() {
             return (
               <div
                 key={favorite.id}
+                data-testid="meal-card"
                 className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
               >
                 <div className="px-6 py-5 bg-gradient-to-r from-primary-light to-primary border-b border-gray-200">
@@ -82,7 +83,7 @@ export default async function FavoritesPage() {
                         {favorite.cookTime && <span>Cook: {favorite.cookTime}</span>}
                       </div>
                       <FavoriteButton
-                        meal={{
+                        mealData={{
                           name: favorite.name,
                           day: favorite.day ?? 'Anytime',
                           calories: favorite.calories ?? undefined,
