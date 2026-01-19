@@ -7110,5 +7110,148 @@
       "hebAvailable": false
     },
     "createdAt": "2025-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "meal-e2e-001-mon",
+    "mealPlanId": "plan-fixture-e2e-001",
+    "dayNumber": 1,
+    "data": {
+      "name": "Grilled Chicken Breast with Quinoa",
+      "ingredients": [
+        {
+          "item": "chicken breast",
+          "amount": "6 oz"
+        },
+        {
+          "item": "quinoa",
+          "amount": "1 cup cooked"
+        },
+        {
+          "item": "olive oil",
+          "amount": "1 tbsp"
+        },
+        {
+          "item": "garlic",
+          "amount": "2 cloves"
+        },
+        {
+          "item": "lemon",
+          "amount": "1 whole"
+        }
+      ],
+      "instructions": [
+        "Season chicken with salt, pepper, and garlic",
+        "Grill chicken for 6-7 minutes per side",
+        "Cook quinoa according to package directions",
+        "Serve chicken over quinoa with lemon wedges"
+      ],
+      "nutrition": {
+        "calories": 450,
+        "protein": 45,
+        "carbs": 40,
+        "fat": 12,
+        "fiber": 8
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-12T10:05:00.000Z"
+  },
+  {
+    "id": "meal-e2e-001-tue",
+    "mealPlanId": "plan-fixture-e2e-001",
+    "dayNumber": 2,
+    "data": {
+      "name": "Salmon with Roasted Vegetables",
+      "ingredients": [
+        {
+          "item": "salmon fillet",
+          "amount": "6 oz"
+        },
+        {
+          "item": "broccoli",
+          "amount": "2 cups"
+        },
+        {
+          "item": "bell peppers",
+          "amount": "1 cup sliced"
+        },
+        {
+          "item": "olive oil",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "herbs",
+          "amount": "mixed fresh"
+        }
+      ],
+      "instructions": [
+        "Preheat oven to 425°F",
+        "Toss vegetables with olive oil and herbs",
+        "Roast vegetables for 20 minutes",
+        "Bake salmon for 12-15 minutes",
+        "Serve together"
+      ],
+      "nutrition": {
+        "calories": 520,
+        "protein": 42,
+        "carbs": 35,
+        "fat": 22,
+        "fiber": 10
+      },
+      "prepTime": 15,
+      "cookTime": 25,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-12T10:05:00.000Z"
+  },
+  {
+    "id": "meal-e2e-001-wed",
+    "mealPlanId": "plan-fixture-e2e-001",
+    "dayNumber": 3,
+    "data": {
+      "name": "Turkey Stir-Fry with Brown Rice",
+      "ingredients": [
+        {
+          "item": "ground turkey",
+          "amount": "6 oz"
+        },
+        {
+          "item": "mixed vegetables",
+          "amount": "3 cups"
+        },
+        {
+          "item": "brown rice",
+          "amount": "1 cup cooked"
+        },
+        {
+          "item": "soy sauce",
+          "amount": "2 tbsp"
+        },
+        {
+          "item": "ginger",
+          "amount": "1 tsp fresh"
+        }
+      ],
+      "instructions": [
+        "Cook brown rice according to package",
+        "Brown ground turkey in skillet",
+        "Add vegetables and stir-fry 5 minutes",
+        "Add soy sauce and ginger",
+        "Serve over rice"
+      ],
+      "nutrition": {
+        "calories": 480,
+        "protein": 38,
+        "carbs": 52,
+        "fat": 14,
+        "fiber": 6
+      },
+      "prepTime": 10,
+      "cookTime": 20,
+      "hebAvailable": true
+    },
+    "createdAt": "2025-01-12T10:05:00.000Z"
   }
 ]

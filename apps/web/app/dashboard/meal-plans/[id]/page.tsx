@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
+import FavoriteButton from '@/components/FavoriteButton';
 
 interface Ingredient {
   item: string;
@@ -185,7 +186,7 @@ export default async function MealPlanDetailPage({
 
       <div className="grid grid-cols-1 gap-6">
         {meals.map((meal, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+          <div key={index} data-testid="meal-card" className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
             <div className="px-6 py-5 bg-gradient-to-r from-primary-light to-primary border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
@@ -194,9 +195,12 @@ export default async function MealPlanDetailPage({
                   </h3>
                   <p className="text-lg text-white/90 mt-1">{meal.name}</p>
                 </div>
-                <div className="flex space-x-4 text-sm text-white/90">
-                  {meal.prepTime && <span>Prep: {meal.prepTime}</span>}
-                  {meal.cookTime && <span>Cook: {meal.cookTime}</span>}
+                <div className="flex items-center space-x-4">
+                  <div className="flex space-x-4 text-sm text-white/90">
+                    {meal.prepTime && <span>Prep: {meal.prepTime}</span>}
+                    {meal.cookTime && <span>Cook: {meal.cookTime}</span>}
+                  </div>
+                  <FavoriteButton mealData={meal} />
                 </div>
               </div>
             </div>
