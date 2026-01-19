@@ -5,9 +5,10 @@ import { config } from 'dotenv';
 import { resolve } from 'path';
 import { PrismaClient } from '@meal-planner/database';
 import { getRedisConnection } from './config';
-import { QUEUE_NAMES, MealPlanJobData, ScheduledJobData, setupScheduledJobs } from './client';
+import { QUEUE_NAMES, MealPlanJobData, ScheduledJobData, MarketingEmailJobData, setupScheduledJobs } from './client';
 import { processMealPlanGeneration } from './jobs/meal-plan-generator';
 import { processScheduledGeneration } from './jobs/scheduled-generator';
+import { processMarketingEmail } from './jobs/marketing-email-sender';
 
 // Load environment variables from project root
 config({ path: resolve(__dirname, '../../../.env') });
@@ -76,6 +77,29 @@ const scheduledWorker = new Worker<ScheduledJobData>(
   }
 );
 
+// Marketing Email Worker
+const marketingEmailWorker = new Worker<MarketingEmailJobData>(
+  QUEUE_NAMES.MARKETING_EMAIL,
+  async (job: Job<MarketingEmailJobData>) => {
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`📧 Processing marketing email job ${job.id} - ${job.name}`);
+    console.log(`   Release Version: ${job.data.releaseVersion}`);
+    console.log(`${'='.repeat(60)}\n`);
+
+    const result = await processMarketingEmail(job);
+
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`✅ Marketing email job ${job.id} completed`);
+    console.log(`${'='.repeat(60)}\n`);
+
+    return result;
+  },
+  {
+    connection: getRedisConnection(),
+    concurrency: 1, // Process marketing emails one at a time
+  }
+);
+
 // Event listeners for meal plan worker
 mealPlanWorker.on('completed', (job) => {
   console.log(`✅ Job ${job.id} completed successfully`);
@@ -109,12 +133,26 @@ scheduledWorker.on('error', (err) => {
   console.error('❌ Scheduled worker error:', err);
 });
 
+// Event listeners for marketing email worker
+marketingEmailWorker.on('completed', (job) => {
+  console.log(`✅ Marketing email job ${job.id} completed`);
+});
+
+marketingEmailWorker.on('failed', (job, err) => {
+  console.error(`❌ Marketing email job ${job?.id} failed:`, err.message);
+});
+
+marketingEmailWorker.on('error', (err) => {
+  console.error('❌ Marketing email worker error:', err);
+});
+
 // Graceful shutdown
 const shutdown = async () => {
   console.log('\n🛑 Shutting down workers...');
 
   await mealPlanWorker.close();
   await scheduledWorker.close();
+  await marketingEmailWorker.close();
 
   console.log('✅ Workers closed');
   process.exit(0);
@@ -126,6 +164,7 @@ process.on('SIGINT', shutdown);
 console.log('✅ Workers started successfully');
 console.log(`   - Meal Plan Generation Worker: Concurrency ${mealPlanWorker.opts.concurrency}`);
 console.log(`   - Scheduled Generation Worker: Concurrency ${scheduledWorker.opts.concurrency}`);
+console.log(`   - Marketing Email Worker: Concurrency ${marketingEmailWorker.opts.concurrency}`);
 
 // Sync all scheduled jobs on startup
 (async () => {

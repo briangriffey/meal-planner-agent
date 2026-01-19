@@ -13,6 +13,7 @@ An AI-powered meal planning web application that uses Claude AI to generate pers
 - **HEB Integration**: Optional integration to browse HEB website for ingredients
 - **Automated Scheduling**: Configure automatic weekly meal plan generation
 - **Email Verification**: Secure email verification for new user accounts
+- **Automated Marketing Emails**: GitHub webhook integration to send release announcements to all users
 
 ## Email Verification
 
@@ -57,6 +58,204 @@ Users can resend verification emails at: `/resend-verification`
 - `POST /api/auth/register` - Creates user and sends verification email
 - `GET /api/auth/verify-email?token=xxx` - Verifies email with token
 - `POST /api/auth/resend-verification` - Resends verification email
+
+## Automated Marketing Emails
+
+The application automatically sends marketing emails to all users when you publish a new GitHub release. This feature uses GitHub webhooks to trigger email generation and delivery.
+
+### Features
+
+- **Automatic Triggering**: Emails are sent automatically when you publish a release on GitHub
+- **AI-Powered Content**: Claude AI generates user-friendly marketing copy from your changelog
+- **Professional Templates**: Branded HTML email templates with responsive design
+- **Batch Processing**: Emails are sent in batches with rate limiting to avoid issues
+- **Secure Webhooks**: GitHub signature validation ensures only legitimate webhooks are processed
+
+### Setting Up GitHub Webhook
+
+#### 1. Generate a Webhook Secret
+
+First, generate a secure random secret for webhook signature validation:
+
+```bash
+openssl rand -hex 32
+```
+
+Save this value - you'll need it in steps 2 and 3.
+
+#### 2. Configure Environment Variable
+
+Add the webhook secret to your `.env` file:
+
+```env
+GITHUB_WEBHOOK_SECRET="your-generated-secret-here"
+```
+
+**Important**: Use the same secret value in both your `.env` file and GitHub webhook settings.
+
+#### 3. Configure Webhook in GitHub Repository
+
+1. Go to your GitHub repository
+2. Click **Settings** → **Webhooks** → **Add webhook**
+3. Configure the webhook:
+   - **Payload URL**: `https://yourdomain.com/api/webhooks/github`
+     - For local testing: `http://localhost:3000/api/webhooks/github`
+     - For production: Use your deployed URL (e.g., `https://meal-planner.example.com/api/webhooks/github`)
+   - **Content type**: `application/json`
+   - **Secret**: Paste the secret you generated in step 1
+   - **SSL verification**: Enable SSL verification (recommended for production)
+   - **Which events would you like to trigger this webhook?**
+     - Select "Let me select individual events"
+     - Check only **Releases** (uncheck everything else)
+   - **Active**: Check this box to enable the webhook
+
+4. Click **Add webhook**
+
+#### 4. Verify Webhook Configuration
+
+After adding the webhook, GitHub will send a test ping. You should see:
+- A green checkmark next to the webhook in GitHub settings
+- A "Recent Deliveries" entry with HTTP 200 response
+
+### Testing the Integration
+
+#### Local Testing
+
+Before deploying to production, test the webhook integration locally:
+
+1. **Start Services**:
+   ```bash
+   # Terminal 1 - Web app
+   pnpm dev
+
+   # Terminal 2 - Worker
+   export EMAIL_TEST_MODE=true
+   pnpm dev:worker
+   ```
+
+2. **Send Test Webhook**:
+   ```bash
+   curl -X POST http://localhost:3000/api/webhooks/github \
+     -H "Content-Type: application/json" \
+     -d '{
+       "action": "published",
+       "release": {
+         "tag_name": "v1.0.0",
+         "name": "Version 1.0.0",
+         "body": "## Features\n- New feature 1\n- New feature 2"
+       }
+     }'
+   ```
+
+3. **Expected Result**:
+   - HTTP response: `202 Accepted`
+   - Worker logs show job processing
+   - `TESTEMAIL.html` file is created in project root
+   - Email contains release notes with proper formatting
+
+#### Automated Test Script
+
+For comprehensive testing, use the automated test script:
+
+```bash
+# Ensure test mode is enabled
+export EMAIL_TEST_MODE=true
+
+# Run automated test
+bash scripts/test-marketing-email-flow.sh
+```
+
+The script will verify:
+- ✅ Webhook endpoint receives and validates the payload
+- ✅ Job is enqueued in BullMQ
+- ✅ Worker processes job successfully
+- ✅ Claude AI generates marketing copy
+- ✅ HTML email is rendered with brand styling
+- ✅ Email contains release information
+
+### Testing with Real GitHub Releases
+
+Once deployed to production:
+
+1. Create a new release in your GitHub repository
+2. Publish the release
+3. GitHub will automatically trigger the webhook
+4. Within 30-60 seconds, all users will receive a marketing email
+5. Check worker logs for job processing details
+
+### Webhook Security
+
+The webhook endpoint validates GitHub signatures to ensure authenticity:
+
+- **Valid signature**: Webhook is processed, email job is queued (HTTP 202)
+- **Invalid/missing signature**: Webhook is rejected (HTTP 401)
+- **Non-release events**: Webhook is acknowledged but ignored (HTTP 200)
+
+**Important**: Never commit your `GITHUB_WEBHOOK_SECRET` to version control. Always use environment variables.
+
+### Email Test Mode
+
+For testing without sending real emails, enable test mode:
+
+```bash
+export EMAIL_TEST_MODE=true
+```
+
+When enabled:
+- Emails are written to `TESTEMAIL.html` in the project root
+- No actual emails are sent via SMTP
+- Perfect for development and testing
+
+### Troubleshooting
+
+#### Webhook Returns 401 Unauthorized
+
+**Cause**: Signature validation failed
+
+**Solutions**:
+- Verify `GITHUB_WEBHOOK_SECRET` matches in both `.env` and GitHub webhook settings
+- Ensure the secret has no extra whitespace or quotes
+- Regenerate the secret and update both locations
+
+#### No Email Generated
+
+**Possible causes**:
+1. **Worker not running**: Start worker with `pnpm dev:worker`
+2. **Redis not accessible**: Check `REDIS_URL` and ensure Redis is running
+3. **No users in database**: Run `pnpm db:seed` to create test users
+4. **Email test mode not enabled**: Set `EMAIL_TEST_MODE=true` for local testing
+
+#### Worker Fails with "ANTHROPIC_API_KEY not set"
+
+**Solution**: Add your Anthropic API key to `.env`:
+```env
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+```
+
+#### Email Looks Wrong or Has Errors
+
+**Solutions**:
+- Check worker logs for Claude API errors
+- Verify all packages built successfully: `pnpm build`
+- Review `TESTEMAIL.html` for rendering issues
+- Check marketing email renderer: `packages/core/src/services/marketing-email-renderer.ts`
+
+### Related Documentation
+
+- **Detailed Testing Guide**: `.auto-claude/specs/010-automated-marketing/E2E_TEST_GUIDE.md`
+- **Quick Test Reference**: `.auto-claude/specs/010-automated-marketing/QUICK_TEST.md`
+- **Test Script**: `scripts/test-marketing-email-flow.sh`
+
+### Architecture
+
+This feature uses an event-driven architecture:
+1. GitHub publishes release → Webhook triggered
+2. Webhook endpoint validates signature → Enqueues job
+3. BullMQ worker picks up job
+4. Worker queries all users from database
+5. Claude AI generates user-friendly marketing copy
+6. Email renderer creates branded HTML
+7. Emails sent in batches to all users
 
 ## Architecture
 
@@ -106,6 +305,7 @@ ANTHROPIC_API_KEY="your-anthropic-api-key"
 # Claude model is defined in packages/core/src/constants.ts
 GMAIL_USER="your-email@gmail.com"
 GMAIL_APP_PASSWORD="your-gmail-app-password"
+GITHUB_WEBHOOK_SECRET="your-github-webhook-secret"  # Optional: for automated marketing emails
 ```
 
 **Note:** All database operations (migrations, schema management) run from the `packages/database` package, which is the single source of truth for the database schema.
