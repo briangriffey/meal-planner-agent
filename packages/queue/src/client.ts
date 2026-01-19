@@ -40,10 +40,17 @@ export interface ScheduledJobData {
   userId: string;
 }
 
+export interface MarketingEmailJobData {
+  releaseVersion: string;
+  releaseNotes: string;
+  changelogContent: string;
+}
+
 // Queue names
 export const QUEUE_NAMES = {
   MEAL_PLAN_GENERATION: 'meal-plan-generation',
   SCHEDULED_GENERATION: 'scheduled-generation',
+  MARKETING_EMAIL: 'marketing-email',
 } as const;
 
 /**
@@ -86,6 +93,29 @@ export function getScheduledQueue(): Queue<ScheduledJobData> {
 }
 
 /**
+ * Get or create the marketing email queue
+ */
+export function getMarketingEmailQueue(): Queue<MarketingEmailJobData> {
+  return new Queue<MarketingEmailJobData>(QUEUE_NAMES.MARKETING_EMAIL, {
+    connection: getRedisConnection(),
+    defaultJobOptions: {
+      attempts: 3,
+      backoff: {
+        type: 'exponential',
+        delay: 2000,
+      },
+      removeOnComplete: {
+        count: 50, // Keep last 50 completed jobs
+        age: 60 * 60 * 24 * 30, // Keep for 30 days
+      },
+      removeOnFail: {
+        count: 100, // Keep last 100 failed jobs for debugging
+      },
+    },
+  });
+}
+
+/**
  * Enqueue a meal plan generation job
  */
 export async function enqueueMealPlanGeneration(data: MealPlanJobData) {
@@ -98,6 +128,22 @@ export async function enqueueMealPlanGeneration(data: MealPlanJobData) {
   return {
     jobId: job.id,
     mealPlanId: data.mealPlanId,
+  };
+}
+
+/**
+ * Enqueue a marketing email job
+ */
+export async function enqueueMarketingEmail(data: MarketingEmailJobData) {
+  const queue = getMarketingEmailQueue();
+
+  const job = await queue.add('send-marketing-email', data, {
+    jobId: `marketing-email-${data.releaseVersion}`,
+  });
+
+  return {
+    jobId: job.id,
+    releaseVersion: data.releaseVersion,
   };
 }
 
@@ -247,7 +293,9 @@ export async function setupScheduledJobs(
 export async function closeQueues() {
   const mealPlanQueue = getMealPlanQueue();
   const scheduledQueue = getScheduledQueue();
+  const marketingEmailQueue = getMarketingEmailQueue();
 
   await mealPlanQueue.close();
   await scheduledQueue.close();
+  await marketingEmailQueue.close();
 }
