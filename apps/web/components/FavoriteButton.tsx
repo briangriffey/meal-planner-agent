@@ -143,12 +143,12 @@ export default function FavoriteButton({ mealData }: FavoriteButtonProps) {
       disabled={loading}
       data-testid="favorite-button"
       aria-pressed={isFavorited}
-      className={`p-2 transition-colors ${
+      className={`p-2 transition-colors duration-200 ${
         loading
           ? 'text-gray-300 cursor-wait'
           : isFavorited
-          ? 'text-red-500 hover:text-red-600'
-          : 'text-gray-400 hover:text-red-500'
+          ? 'text-red-600 hover:text-red-800'
+          : 'text-red-500 hover:text-red-700'
       }`}
       aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
       title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
