@@ -138,7 +138,7 @@ export async function enqueueMarketingEmail(data: MarketingEmailJobData) {
   const queue = getMarketingEmailQueue();
 
   const job = await queue.add('send-marketing-email', data, {
-    jobId: `marketing-email-${data.releaseVersion}`,
+    jobId: `marketing-email-release-${data.releaseVersion}`,
   });
 
   return {
