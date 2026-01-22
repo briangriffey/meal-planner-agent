@@ -45,13 +45,13 @@ export default function RecipeExplorerFilters() {
         {/* Search by name */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Search by name
+            Search recipes (name or ingredients)
           </label>
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="e.g., Chicken Parmesan"
+            placeholder="e.g., chicken, tofu, pasta"
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
             data-testid="search-input"
           />

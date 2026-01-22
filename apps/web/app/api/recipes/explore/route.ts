@@ -5,6 +5,7 @@ import { RecipeExplorerAgent } from '@meal-planner/core/src/agent/recipe-explore
 import { z } from 'zod';
 
 const exploreSchema = z.object({
+  search: z.string().optional(),
   cuisine: z.string().optional(),
   prepTime: z.enum(['under-30', '30-60', 'over-60']).optional(),
   minCalories: z.coerce.number().int().min(0).optional(),
@@ -30,6 +31,7 @@ export async function GET(request: Request) {
 
     // Parse and validate query parameters
     const params = exploreSchema.parse({
+      search: searchParams.get('search'),
       cuisine: searchParams.get('cuisine'),
       prepTime: searchParams.get('prepTime'),
       minCalories: searchParams.get('minCalories'),
@@ -74,6 +76,7 @@ export async function GET(request: Request) {
 
     // Generate recipes with filters
     const result = await agent.generateRecipes({
+      search: params.search,
       cuisine: params.cuisine,
       prepTime: params.prepTime,
       minCalories: params.minCalories,
@@ -104,6 +107,7 @@ export async function GET(request: Request) {
         totalPages: 1,
       },
       filters: {
+        search: params.search,
         cuisine: params.cuisine,
         prepTime: params.prepTime,
         minCalories: params.minCalories,

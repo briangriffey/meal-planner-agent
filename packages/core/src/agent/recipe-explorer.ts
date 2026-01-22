@@ -53,6 +53,7 @@ const RECIPE_SCHEMA = {
 };
 
 export interface RecipeExplorerFilters {
+  search?: string;
   cuisine?: string;
   prepTime?: string; // e.g., "under-30", "30-60", "over-60"
   minCalories?: number;
@@ -166,6 +167,10 @@ Remember: Users are browsing for inspiration, so make each recipe sound deliciou
 
     // Add filter criteria
     const criteria: string[] = [];
+
+    if (filters.search) {
+      criteria.push(`- Recipe name or key ingredients should include: "${filters.search}"`);
+    }
 
     if (filters.cuisine) {
       criteria.push(`- Cuisine type: ${filters.cuisine}`);
