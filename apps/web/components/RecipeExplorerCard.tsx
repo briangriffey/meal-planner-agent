@@ -38,7 +38,7 @@ export default function RecipeExplorerCard({
 }: RecipeExplorerCardProps) {
   return (
     <div
-      data-testid="recipe-explorer-card"
+      data-testid="recipe-card"
       className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
     >
       {/* Header with gradient background */}

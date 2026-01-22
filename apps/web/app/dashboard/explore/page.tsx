@@ -155,6 +155,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                 {currentPage > 1 && (
                   <a
                     href={`?${new URLSearchParams({ ...searchParams, page: String(currentPage - 1) }).toString()}`}
+                    data-testid="pagination-prev"
                     className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                   >
                     Previous
@@ -163,6 +164,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                 {hasMore && (
                   <a
                     href={`?${new URLSearchParams({ ...searchParams, page: String(currentPage + 1) }).toString()}`}
+                    data-testid="pagination-next"
                     className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                   >
                     Next
@@ -185,6 +187,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                     {currentPage > 1 && (
                       <a
                         href={`?${new URLSearchParams({ ...searchParams, page: String(currentPage - 1) }).toString()}`}
+                        data-testid="pagination-prev"
                         className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                       >
                         <span className="sr-only">Previous</span>
@@ -203,6 +206,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
                     {hasMore && (
                       <a
                         href={`?${new URLSearchParams({ ...searchParams, page: String(currentPage + 1) }).toString()}`}
+                        data-testid="pagination-next"
                         className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                       >
                         <span className="sr-only">Next</span>

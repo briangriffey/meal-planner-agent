@@ -63,6 +63,7 @@ export default function RecipeExplorerFilters() {
             Cuisine Type
           </label>
           <select
+            name="cuisine"
             value={cuisine}
             onChange={(e) => setCuisine(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
@@ -89,16 +90,16 @@ export default function RecipeExplorerFilters() {
             Prep Time
           </label>
           <select
+            name="prepTime"
             value={prepTime}
             onChange={(e) => setPrepTime(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
             data-testid="prep-time-select"
           >
             <option value="">Any Duration</option>
-            <option value="15">15 minutes or less</option>
-            <option value="30">30 minutes or less</option>
-            <option value="45">45 minutes or less</option>
-            <option value="60">60 minutes or less</option>
+            <option value="under-30">30 minutes or less</option>
+            <option value="30-60">30-60 minutes</option>
+            <option value="over-60">Over 60 minutes</option>
           </select>
         </div>
 
