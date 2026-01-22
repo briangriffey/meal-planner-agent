@@ -315,10 +315,10 @@ test.describe('Recipe Exploration', () => {
     await page.waitForLoadState('networkidle');
 
     // Apply prep time filter (30 minutes or less)
-    await applyFilters(page, { prepTime: '30' });
+    await applyFilters(page, { prepTime: 'under-30' });
 
     // Verify URL contains prepTime parameter
-    expect(page.url()).toContain('prepTime=30');
+    expect(page.url()).toContain('prepTime=under-30');
 
     // Verify recipes are displayed
     const recipeCount = await waitForRecipes(page);
@@ -378,14 +378,14 @@ test.describe('Recipe Exploration', () => {
     // Apply multiple filters
     await applyFilters(page, {
       cuisine: 'italian',
-      prepTime: '30',
+      prepTime: 'under-30',
       minCalories: '300',
       maxCalories: '600',
     });
 
     // Verify filters are applied in URL
     expect(page.url()).toContain('cuisine=italian');
-    expect(page.url()).toContain('prepTime=30');
+    expect(page.url()).toContain('prepTime=under-30');
 
     // Clear filters
     await page.click(SELECTORS.clearFiltersButton);
