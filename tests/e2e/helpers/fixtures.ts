@@ -263,6 +263,7 @@ export const ROUTES = {
   mealPlans: '/dashboard/meal-plans',
   mealPlanDetail: (id: string) => `/dashboard/meal-plans/${id}`,
   favorites: '/dashboard/favorites',
+  explore: '/dashboard/explore',
   generate: '/dashboard/generate',
   analytics: '/dashboard/analytics',
 } as const;
@@ -300,11 +301,25 @@ export const SELECTORS = {
   navPreferences: 'nav a:has-text("Preferences")',
   navMealPlans: 'nav a:has-text("Meal Plans")',
   navFavorites: 'nav a:has-text("Favorites")',
+  navExplore: 'nav a:has-text("Explore")',
 
   // Favorites
   favoriteButton: '[data-testid="favorite-button"]',
   mealCard: '[data-testid="meal-card"]',
   emptyState: '[data-testid="empty-state"]',
+
+  // Explore
+  cuisineSelect: 'select[name="cuisine"]',
+  prepTimeSelect: 'select[name="prepTime"]',
+  minCaloriesInput: '[data-testid="min-calories-input"]',
+  maxCaloriesInput: '[data-testid="max-calories-input"]',
+  minProteinInput: '[data-testid="min-protein-input"]',
+  maxProteinInput: '[data-testid="max-protein-input"]',
+  applyFiltersButton: '[data-testid="apply-filters-button"]',
+  clearFiltersButton: '[data-testid="clear-filters-button"]',
+  recipeCard: '[data-testid="recipe-card"]',
+  paginationNext: '[data-testid="pagination-next"]',
+  paginationPrev: '[data-testid="pagination-prev"]',
 } as const;
 
 // ============================================================================
