@@ -3,6 +3,7 @@ import Script from 'next/script'
 import './globals.css'
 import { generateDefaultMetadata } from '@/lib/seo/metadata'
 import { generateHomePageSchema } from '@/lib/seo/structured-data'
+import { GoogleAnalytics } from '@/lib/analytics/google-analytics'
 
 /**
  * Root layout metadata with comprehensive SEO
@@ -34,6 +35,9 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData),
           }}
         />
+
+        {/* Google Analytics */}
+        <GoogleAnalytics />
       </head>
       <body>{children}</body>
     </html>
