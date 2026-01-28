@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
+import { generateDefaultMetadata } from '@/lib/seo/metadata'
+import { generateHomePageSchema } from '@/lib/seo/structured-data'
 
+/**
+ * Root layout metadata with comprehensive SEO
+ * Includes Open Graph, Twitter cards, and structured data
+ */
 export const metadata: Metadata = {
-  title: 'Meal Planner Agent',
-  description: 'AI-powered meal planning with Claude',
+  ...generateDefaultMetadata(),
   icons: {
     icon: '/favicon.svg',
   },
@@ -14,8 +20,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Generate structured data for the site
+  const structuredData = generateHomePageSchema()
+
   return (
     <html lang="en">
+      <head>
+        {/* JSON-LD Structured Data */}
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   )
