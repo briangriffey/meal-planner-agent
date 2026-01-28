@@ -433,30 +433,439 @@ gtag('event', 'enable_automation', {
 
 ### Google Search Console
 
-#### Setup Steps
+Google Search Console is essential for monitoring search performance, identifying issues, and optimizing how Google crawls and indexes the site.
 
-1. **Verify Ownership**:
-   - Add meta tag to `<head>`: `<meta name="google-site-verification" content="xxx" />`
-   - Or upload verification file to `/public/`
+#### Initial Setup
 
-2. **Submit Sitemap**:
-   - URL: `https://mealplanner.briangriffey.com/sitemap.xml`
-   - Monitor indexing status
+**1. Create Google Search Console Account**:
+- Go to [Google Search Console](https://search.google.com/search-console)
+- Sign in with Google account
+- Click "Add Property"
+- Choose "URL prefix" property type
+- Enter: `https://mealplanner.briangriffey.com`
 
-3. **Monitor Performance**:
-   - Track keyword rankings
-   - Identify crawl errors
-   - Monitor Core Web Vitals
-   - Check mobile usability
+**2. Verify Ownership**:
 
-#### Key Metrics to Monitor
+Google offers multiple verification methods. Choose the one that best fits your setup:
+
+##### Method 1: HTML Meta Tag (Recommended for Next.js)
+
+Add verification meta tag to the site's `<head>` section:
+
+```typescript
+// apps/web/app/layout.tsx
+export const metadata: Metadata = {
+  verification: {
+    google: 'your-verification-code-here',
+  },
+  // ... other metadata
+}
+```
+
+Or manually add to head:
+```html
+<meta name="google-site-verification" content="your-verification-code-here" />
+```
+
+**Steps**:
+1. Copy verification code from Search Console
+2. Add to Next.js layout or head component
+3. Deploy changes to production
+4. Click "Verify" in Search Console
+5. Keep the tag in place (don't remove after verification)
+
+##### Method 2: HTML File Upload
+
+Upload verification file to the `/public/` directory:
+
+**Steps**:
+1. Download verification file from Search Console (e.g., `google1234567890abcdef.html`)
+2. Place file in `apps/web/public/` directory
+3. Deploy to production
+4. Verify file is accessible at: `https://mealplanner.briangriffey.com/google1234567890abcdef.html`
+5. Click "Verify" in Search Console
+6. Keep file in place permanently
+
+##### Method 3: Google Analytics (If GA4 Already Installed)
+
+If Google Analytics is already installed with admin access:
+
+**Steps**:
+1. Ensure GA4 tracking code is on all pages
+2. Verify you have "Edit" permission in Google Analytics
+3. Select "Google Analytics" verification method in Search Console
+4. Click "Verify"
+
+##### Method 4: Google Tag Manager
+
+If using Google Tag Manager:
+
+**Steps**:
+1. Ensure GTM container code is on all pages
+2. Verify you have "Publish" permission in GTM
+3. Select "Google Tag Manager" verification method in Search Console
+4. Click "Verify"
+
+##### Method 5: DNS Record (Domain Property)
+
+For domain-level verification (covers all subdomains):
+
+**Steps**:
+1. Go to your DNS provider (e.g., Cloudflare, Namecheap)
+2. Add TXT record with value provided by Search Console
+3. Record type: `TXT`
+4. Host: `@` or root domain
+5. Value: Verification code from Search Console
+6. Wait for DNS propagation (can take 24-48 hours)
+7. Click "Verify" in Search Console
+
+**Verification Status**:
+- Once verified, you'll see a green checkmark
+- Verification status is permanent (unless you remove verification method)
+- Add multiple verification methods for redundancy
+
+#### Sitemap Submission
+
+Submitting a sitemap helps Google discover and index all pages efficiently.
+
+**1. Generate Sitemap**:
+
+For Next.js, create a dynamic sitemap route:
+
+```typescript
+// apps/web/app/sitemap.ts
+import { MetadataRoute } from 'next'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://mealplanner.briangriffey.com'
+
+  // Static pages
+  const staticPages = [
+    '',
+    '/features',
+    '/about',
+    '/pricing',
+    '/blog',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: route === '' ? 1 : 0.8,
+  }))
+
+  // Dynamic blog posts (fetch from database)
+  // const blogPosts = await getBlogPosts()
+  // const dynamicPages = blogPosts.map((post) => ({
+  //   url: `${baseUrl}/blog/${post.slug}`,
+  //   lastModified: post.updatedAt,
+  //   changeFrequency: 'monthly' as const,
+  //   priority: 0.6,
+  // }))
+
+  return [...staticPages]
+}
+```
+
+**2. Submit Sitemap to Search Console**:
+
+**Steps**:
+1. Go to Search Console dashboard
+2. Select your property
+3. Navigate to "Sitemaps" in left sidebar
+4. Enter sitemap URL: `sitemap.xml`
+5. Click "Submit"
+6. Verify submission status shows "Success"
+
+**Sitemap URL Format**:
+```
+https://mealplanner.briangriffey.com/sitemap.xml
+```
+
+**3. Monitor Sitemap Status**:
+
+Check these indicators:
+- ✅ **Status**: "Success" (green)
+- ✅ **Type**: "Sitemap"
+- ✅ **Submitted URLs**: Number of URLs in sitemap
+- ✅ **Discovered URLs**: URLs Google found
+- ❌ **Errors**: Should be 0
+
+**Common Sitemap Issues**:
+
+| Issue | Solution |
+|-------|----------|
+| Couldn't fetch | Verify sitemap URL is accessible, check robots.txt allows crawling |
+| Parsing error | Validate XML syntax, check for special characters |
+| Submitted URL not found (404) | Verify sitemap file exists and is publicly accessible |
+| Compressed sitemap | Ensure sitemap is valid XML, not gzipped (unless properly configured) |
+| Redirect error | Sitemap URL should return 200, not 301/302 redirect |
+
+**4. Submit Additional Sitemaps** (if needed):
+
+For large sites, create multiple sitemaps:
+- `sitemap-pages.xml` - Static pages
+- `sitemap-blog.xml` - Blog posts
+- `sitemap-index.xml` - Sitemap index file
+
+**Sitemap Index Example**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://mealplanner.briangriffey.com/sitemap-pages.xml</loc>
+    <lastmod>2024-01-15</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://mealplanner.briangriffey.com/sitemap-blog.xml</loc>
+    <lastmod>2024-01-15</lastmod>
+  </sitemap>
+</sitemapindex>
+```
+
+**5. Automate Sitemap Updates**:
+
+- Regenerate sitemap on content changes
+- Update `lastmod` dates dynamically
+- Use build-time generation (Next.js automatic)
+- Consider real-time sitemap for frequently updated content
+
+#### Performance Monitoring
+
+**1. Search Performance Report**:
+
+Navigate to **Performance** section to track:
 
 - **Impressions**: How often site appears in search results
 - **Clicks**: Number of clicks from search results
-- **CTR (Click-Through Rate)**: Percentage of impressions that result in clicks
+- **CTR (Click-Through Rate)**: Clicks ÷ Impressions × 100
 - **Average Position**: Average ranking position for queries
-- **Coverage**: Number of pages indexed vs. errors
-- **Core Web Vitals**: Performance metrics (LCP, FID, CLS)
+
+**Key Actions**:
+- Filter by page to see top-performing content
+- Filter by query to identify keyword opportunities
+- Compare date ranges to track progress
+- Identify pages with high impressions but low CTR (optimization opportunity)
+
+**2. URL Inspection Tool**:
+
+Test individual URLs for indexing status:
+
+**Steps**:
+1. Enter URL in search bar at top
+2. Click "Test Live URL"
+3. Review results:
+   - ✅ URL is on Google (indexed)
+   - ✅ Coverage: Valid
+   - ✅ Mobile usability: No issues
+   - ✅ Page experience: Good
+
+**Request Indexing**:
+- For new pages, click "Request Indexing"
+- Google will crawl the page within a few hours/days
+- Useful for urgent content updates
+
+**3. Coverage Report**:
+
+Monitor indexing status of all pages:
+
+- **Valid**: Pages successfully indexed
+- **Valid with warnings**: Indexed but with minor issues
+- **Error**: Pages not indexed due to errors
+- **Excluded**: Pages intentionally not indexed
+
+**Common Issues**:
+
+| Status | Issue | Solution |
+|--------|-------|----------|
+| Error | Page with redirect | Fix permanent redirects, use 301 properly |
+| Error | Submitted URL not found (404) | Remove from sitemap or fix broken URL |
+| Error | Server error (5xx) | Fix server issues, check hosting |
+| Excluded | Blocked by robots.txt | Update robots.txt to allow crawling |
+| Excluded | Noindex tag detected | Remove noindex if page should be indexed |
+| Excluded | Duplicate without user-selected canonical | Add canonical tag or consolidate content |
+
+**4. Core Web Vitals Report**:
+
+Monitor user experience metrics:
+
+- **LCP (Largest Contentful Paint)**: < 2.5s (Good)
+- **FID (First Input Delay)**: < 100ms (Good)
+- **CLS (Cumulative Layout Shift)**: < 0.1 (Good)
+
+**Mobile vs Desktop**:
+- Prioritize mobile performance (mobile-first indexing)
+- Google uses mobile version for ranking
+
+**5. Mobile Usability Report**:
+
+Check for mobile-specific issues:
+
+- Text too small to read
+- Clickable elements too close together
+- Content wider than screen
+- Viewport not set
+
+**Fix Issues**:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+```
+
+**6. Security Issues Report**:
+
+Monitor for:
+- Hacked content
+- Malware
+- Social engineering
+
+Should be empty - if issues appear, address immediately.
+
+#### Link Monitoring
+
+**1. Links Report**:
+
+Track backlinks to your site:
+
+**External Links**:
+- Top linking sites
+- Top linking pages
+- Most linked content on your site
+
+**Internal Links**:
+- Most linked internal pages
+- Identify orphan pages (no internal links)
+
+**Actions**:
+- Identify valuable backlinks
+- Find broken backlinks to reclaim
+- Discover link-building opportunities
+
+**2. Manual Actions**:
+
+Check for Google penalties:
+
+- Should show "No issues detected"
+- If manual action exists, follow instructions to resolve
+- Request reconsideration after fixing issues
+
+#### Advanced Features
+
+**1. International Targeting**:
+
+For multiple countries/languages:
+- Set up hreflang tags
+- Use Search Console to specify target country
+- Create separate properties for different regions
+
+**2. URL Parameters**:
+
+Configure how Google handles URL parameters:
+- Crawling parameters (session IDs, tracking codes)
+- Content parameters (sort, filter)
+
+**3. Change of Address**:
+
+If moving domains:
+- Use "Change of address" tool
+- Maintains search rankings during migration
+- Set up 301 redirects from old to new domain
+
+**4. Disavow Links**:
+
+Remove toxic backlinks:
+- Identify spammy or harmful backlinks
+- Try to get them removed manually first
+- Last resort: Upload disavow file to Search Console
+
+#### Key Metrics to Monitor
+
+Weekly monitoring:
+
+- **Coverage Status**: Ensure all pages indexed
+- **Search Performance**: Track impressions, clicks, CTR, position
+- **Core Web Vitals**: Monitor performance issues
+
+Monthly monitoring:
+
+- **Link Analysis**: Review new backlinks
+- **Mobile Usability**: Check for new issues
+- **Manual Actions**: Verify no penalties
+
+**Action Items**:
+- Set up email alerts for critical issues
+- Review performance trends weekly
+- Fix coverage errors immediately
+- Optimize pages with high impressions but low CTR
+- Request indexing for new content
+
+#### Integration with Other Tools
+
+**1. Connect to Google Analytics**:
+- Link Search Console with GA4
+- See search queries in Analytics
+- Correlate search performance with user behavior
+
+**2. Connect to Looker Studio** (formerly Data Studio):
+- Create custom SEO dashboards
+- Visualize Search Console data
+- Track KPIs over time
+
+**3. Third-Party Tools**:
+- Import Search Console data to Ahrefs/SEMrush
+- Enhanced keyword tracking
+- Competitive analysis
+
+#### Best Practices
+
+✅ **Do**:
+- Check Search Console weekly
+- Fix errors promptly
+- Submit sitemap after major content updates
+- Monitor Core Web Vitals
+- Request indexing for important new pages
+- Keep verification method in place permanently
+
+❌ **Don't**:
+- Remove verification tag/file after verification
+- Ignore coverage errors
+- Submit URLs that return 404
+- Block important pages in robots.txt
+- Use noindex on pages you want indexed
+
+#### Troubleshooting Common Issues
+
+**Issue: Site Not Appearing in Search Console**
+
+Solution:
+1. Verify ownership is complete
+2. Wait 24-48 hours for data to populate
+3. Ensure site is live and accessible
+4. Check for robots.txt blocking
+
+**Issue: Pages Not Indexed**
+
+Solution:
+1. Check Coverage report for errors
+2. Verify pages are in sitemap
+3. Request indexing via URL Inspection
+4. Ensure no noindex tags
+5. Check robots.txt allows crawling
+
+**Issue: Search Performance Data Missing**
+
+Solution:
+1. Wait 2-3 days after verification (data lag)
+2. Ensure site has received search impressions
+3. Check date range filter
+4. Verify property is correctly set up
+
+**Issue: Sitemap Can't Be Read**
+
+Solution:
+1. Verify sitemap URL is accessible: `curl https://mealplanner.briangriffey.com/sitemap.xml`
+2. Validate XML syntax
+3. Check robots.txt allows sitemap access
+4. Ensure proper XML encoding (UTF-8)
+5. Test sitemap with online validators
 
 ### Additional Analytics Tools
 
