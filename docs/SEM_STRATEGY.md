@@ -26,24 +26,27 @@ The Meal Planner Agent SEM strategy focuses on Google Ads as the primary paid ac
 
 ### Key Recommendations
 
-1. **Initial Budget**: $800-$1,200/month across all Google Ads campaigns
+1. **Budget Tiers**:
+   - **Launch Budget**: $800/month (learning phase)
+   - **Growth Budget**: $1,200/month (optimization phase)
+   - **Scale Budget**: $2,500/month (aggressive scaling)
 2. **Primary Focus**: Google Search Ads (70% of budget) targeting high-intent keywords
 3. **Supporting Channels**: Display Network (20%) and YouTube (10%) for awareness and retargeting
 4. **Target CPC**: $1.50-$2.50 average (based on industry benchmarks)
-5. **Expected Monthly Clicks**: 400-800 clicks at target CPC
-6. **Target Conversion Rate**: 3-5% (sign-ups from clicks)
-7. **Expected Monthly Sign-ups**: 12-40 new users
+5. **Expected Monthly Clicks**: 400-800 clicks at Launch tier, up to 2,000 at Scale tier
+6. **Target Conversion Rate**: 3-5% (sign-ups from clicks), improving to 4-6% with optimization
+7. **Expected Monthly Sign-ups**: 17-39 (Launch) → 27-58 (Growth) → 60-126 (Scale)
 
 ### Success Metrics
 
-| Metric | Target | Measurement Method |
-|--------|--------|-------------------|
-| Cost Per Click (CPC) | $1.50-$2.50 | Google Ads dashboard |
-| Click-Through Rate (CTR) | 3-5% | Google Ads dashboard |
-| Conversion Rate | 3-5% | Google Analytics + GA4 events |
-| Cost Per Acquisition (CPA) | $30-$50 | Calculated from conversions |
-| Return on Ad Spend (ROAS) | 3:1+ (after 6 months) | Revenue/ad spend |
-| Quality Score | 7+ | Google Ads keyword quality score |
+| Metric | Launch Target | Growth Target | Scale Target | Measurement Method |
+|--------|--------------|--------------|--------------|-------------------|
+| Cost Per Click (CPC) | $1.50-$2.00 | $1.40-$1.80 | $1.20-$1.50 | Google Ads dashboard |
+| Click-Through Rate (CTR) | 3-5% | 3.5-5.5% | 4-6% | Google Ads dashboard |
+| Conversion Rate | 3-5% | 3.5-5.5% | 4-6% | Google Analytics + GA4 events |
+| Cost Per Acquisition (CPA) | $20-$47 | $21-$44 | $20-$42 | Calculated from conversions |
+| LTV:CAC Ratio | 3:1+ | 3.5:1+ | 4:1+ | LTV/CPA |
+| Quality Score | 7+ | 7+ | 8+ | Google Ads keyword quality score |
 
 ---
 
@@ -683,6 +686,46 @@ Recommended budget for scaling and optimization:
 
 ---
 
+#### Tier 3: Scale Budget ($2,500/month)
+
+Aggressive scaling budget for proven campaigns with strong ROI:
+
+| Campaign Type | Monthly Budget | % of Total | Expected Clicks | Expected Conversions |
+|--------------|---------------|-----------|----------------|---------------------|
+| **Search - Brand** | $200 | 8% | 200-400 | 10-20 |
+| **Search - High Intent** | $1,000 | 40% | 500-714 | 18-39 |
+| **Search - Secondary** | $200 | 8% | 100-167 | 3-8 |
+| **Search - Competitors** | $200 | 8% | 100-133 | 3-7 |
+| **Display - Awareness** | $250 | 10% | 500-1,000 | 8-15 |
+| **Display - Retargeting** | $250 | 10% | 500-625 | 10-19 |
+| **YouTube - Video** | $200 | 8% | 667-2,000 views | 3-8 |
+| **Performance Max** | $200 | 8% | Variable | 5-10 |
+| **TOTAL** | **$2,500** | **100%** | **~1,400-2,000** | **60-126** |
+
+**Key Metrics at Scale Budget**:
+- Cost per click: $1.20-$1.50 average (optimized bidding strategies)
+- Conversion rate: 4-6% (proven funnels, optimized landing pages)
+- Cost per acquisition: $20-$42
+- Expected monthly sign-ups: 60-126 users
+- Quality Score: 8+ (mature campaigns with strong relevance)
+
+**When to Scale to This Tier**:
+- ✅ Achieved consistent CPA under $45 for 2+ months at Growth Budget
+- ✅ Conversion tracking verified and accurate
+- ✅ Quality Scores averaging 7+ across Search campaigns
+- ✅ Landing page conversion rate 4%+
+- ✅ Sufficient demand (not maxing out search impression share)
+- ✅ LTV:CAC ratio consistently above 3:1
+
+**New at Scale Tier**:
+- **Performance Max Campaigns**: Google's automated campaign type that serves across all Google properties (Search, Display, YouTube, Gmail, Discover)
+- **Expanded Geographic Targeting**: Add secondary markets or regions based on performance data
+- **Advanced Bidding**: Value-based bidding to optimize for high-LTV users
+- **Competitor Conquesting**: Increased spend on competitor keyword campaigns
+- **Video Remarketing**: YouTube retargeting for users who engaged with Display/Search ads
+
+---
+
 ### Budget Scaling Strategy
 
 **Month 1-2: Learning Phase ($800/month)**
@@ -780,6 +823,55 @@ Allocate budget based on persona volume and conversion potential:
 - Average CPA: $29.58
 - Total LTV (12-month cohort): $51,120
 - First-year ROI: 306% (4.06:1 LTV:CAC ratio)
+
+---
+
+#### Aggressive Scale Projections (Year 2+)
+
+**Assumptions for Scale Tier ($2,500/month)**:
+- Average CPA: $31 (blended across expanded campaigns)
+- User lifetime value (LTV): $150 (improved retention + potential premium features)
+- Conversion rate: 5% (optimized funnels and landing pages)
+- LTV:CAC ratio target: 4:1+
+
+**Month 13-18 Projections (Aggressive Scale Phase)**:
+- Monthly ad spend: $2,500
+- Monthly conversions: 81 sign-ups (at $31 CPA)
+- CPA: $31 (mature campaigns)
+- Monthly cost: $2,500
+- 6-month total spend: $15,000
+- 6-month total conversions: 486 sign-ups
+- 12-month LTV of cohort: $72,900
+- ROI: 386% (4.86:1 LTV:CAC ratio)
+
+**Annual Projections at Scale Budget**:
+- Annual ad spend: $30,000 (12 months × $2,500)
+- Annual conversions: ~970 sign-ups
+- Average CPA: $31
+- Total LTV (12-month cohort): $145,500
+- Annual ROI: 385% (4.85:1 LTV:CAC ratio)
+
+**Break-Even Analysis**:
+- Break-even CPA: $150 (at LTV of $150)
+- Current CPA: $31
+- Margin of safety: 79% (can afford CPA increases up to $150)
+- Payback period: ~2-3 months (if using freemium model)
+
+**Scaling Decision Matrix**:
+
+| Metric | Continue Scaling | Hold & Optimize | Reduce Budget |
+|--------|-----------------|-----------------|---------------|
+| CPA | < $40 | $40-$60 | > $60 |
+| LTV:CAC Ratio | > 4:1 | 3:1 - 4:1 | < 3:1 |
+| Quality Score | 8+ | 6-7 | < 6 |
+| Conversion Rate | > 4.5% | 3-4.5% | < 3% |
+| Impression Share | < 70% | 70-85% | > 85% |
+
+**Notes**:
+- **Impression Share** > 85% indicates limited growth potential (saturating search demand)
+- **Quality Score** trends indicate account health and relevance
+- **CPA trends** matter more than absolute values (improving CPA = continue scaling)
+- Re-evaluate LTV assumptions quarterly based on actual retention data
 
 ---
 
