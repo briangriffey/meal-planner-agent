@@ -4,12 +4,295 @@ This document outlines the comprehensive SEO strategy for the Meal Planner Agent
 
 ## Table of Contents
 
+- [Environment Variables](#environment-variables)
 - [Keyword Research](#keyword-research)
 - [Technical SEO Checklist](#technical-seo-checklist)
 - [Content Optimization Strategy](#content-optimization-strategy)
 - [Analytics Setup Plan](#analytics-setup-plan)
 - [Implementation Priorities](#implementation-priorities)
 - [Ongoing Optimization](#ongoing-optimization)
+
+---
+
+## Environment Variables
+
+The SEO implementation uses several environment variables to configure analytics and search engine verification. These variables must be set in your environment configuration files (`.env.local` for development, `.env.production` for production, or in your hosting platform's environment settings).
+
+### Analytics Configuration
+
+#### NEXT_PUBLIC_GA_ID
+
+**Purpose**: Google Analytics 4 Measurement ID for tracking user behavior and conversions.
+
+**Type**: Public environment variable (accessible in browser)
+
+**Format**: `G-XXXXXXXXXX`
+
+**Required**: No (optional, but highly recommended for production)
+
+**Configuration**:
+```bash
+# .env.local (development)
+# .env.production (production)
+NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
+```
+
+**How to Get**:
+1. Go to [Google Analytics](https://analytics.google.com)
+2. Navigate to: Admin → Data Streams → Web
+3. Select your data stream (or create a new one)
+4. Copy the Measurement ID (format: `G-XXXXXXXXXX`)
+
+**Usage**:
+- Loaded by `apps/web/lib/analytics/google-analytics.tsx`
+- Only active in production environments (`NODE_ENV === 'production'`)
+- Tracks custom events: sign_up, generate_meal_plan, update_preferences, verify_email, enable_automation
+- Automatically initializes Google Analytics gtag.js script
+
+**Default Behavior**:
+- If not set: Analytics will not load (safe for development)
+- Development: Always disabled to avoid polluting production data
+- Production: Enabled if environment variable is set
+
+**Privacy & Performance**:
+- Script loads asynchronously (non-blocking)
+- Respects production-only loading to protect user privacy in dev/test
+- No cookies or tracking in development/testing environments
+
+---
+
+### Search Engine Verification
+
+These environment variables are used to verify site ownership with search engines for webmaster tools access.
+
+#### NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+
+**Purpose**: Google Search Console verification code to verify site ownership.
+
+**Type**: Public environment variable (accessible in browser)
+
+**Format**: Alphanumeric string (e.g., `abc123def456ghi789`)
+
+**Required**: No (optional, but recommended for SEO monitoring)
+
+**Configuration**:
+```bash
+# .env.local (development)
+# .env.production (production)
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION="your-verification-code-here"
+```
+
+**How to Get**:
+1. Go to [Google Search Console](https://search.google.com/search-console)
+2. Add your property (URL prefix: `https://mealplanner.briangriffey.com`)
+3. Choose "HTML tag" verification method
+4. Copy the `content` value from the meta tag (not the full tag)
+5. Example: `<meta name="google-site-verification" content="abc123def456ghi789" />`
+6. Copy only: `abc123def456ghi789`
+
+**Usage**:
+- Added to `apps/web/app/layout.tsx` metadata
+- Renders as: `<meta name="google-site-verification" content="..." />`
+- Google verifies ownership by checking this meta tag
+
+**Verification Process**:
+1. Set environment variable with verification code
+2. Deploy to production
+3. Return to Google Search Console
+4. Click "Verify" button
+5. Keep environment variable set permanently (don't remove after verification)
+
+---
+
+#### NEXT_PUBLIC_BING_VERIFICATION
+
+**Purpose**: Bing Webmaster Tools verification code to verify site ownership.
+
+**Type**: Public environment variable (accessible in browser)
+
+**Format**: Alphanumeric string
+
+**Required**: No (optional)
+
+**Configuration**:
+```bash
+# .env.local (development)
+# .env.production (production)
+NEXT_PUBLIC_BING_VERIFICATION="your-bing-verification-code"
+```
+
+**How to Get**:
+1. Go to [Bing Webmaster Tools](https://www.bing.com/webmasters)
+2. Add your site
+3. Choose "HTML meta tag" verification method
+4. Copy the `content` value from the meta tag
+5. Example: `<meta name="msvalidate.01" content="xyz789abc123" />`
+6. Copy only: `xyz789abc123`
+
+**Usage**:
+- Added to `apps/web/app/layout.tsx` metadata under `verification.other`
+- Renders as: `<meta name="msvalidate.01" content="..." />`
+- Bing verifies ownership by checking this meta tag
+
+---
+
+#### NEXT_PUBLIC_YANDEX_VERIFICATION
+
+**Purpose**: Yandex Webmaster verification code to verify site ownership.
+
+**Type**: Public environment variable (accessible in browser)
+
+**Format**: Alphanumeric string
+
+**Required**: No (optional, only needed for Russian market)
+
+**Configuration**:
+```bash
+# .env.local (development)
+# .env.production (production)
+NEXT_PUBLIC_YANDEX_VERIFICATION="your-yandex-verification-code"
+```
+
+**How to Get**:
+1. Go to [Yandex Webmaster](https://webmaster.yandex.com)
+2. Add your site
+3. Choose "Meta tag" verification method
+4. Copy the `content` value from the meta tag
+5. Example: `<meta name="yandex-verification" content="def456ghi789" />`
+6. Copy only: `def456ghi789`
+
+**Usage**:
+- Added to `apps/web/app/layout.tsx` metadata under `verification.other`
+- Renders as: `<meta name="yandex-verification" content="..." />`
+- Yandex verifies ownership by checking this meta tag
+
+---
+
+### Site Configuration
+
+#### NEXTAUTH_URL
+
+**Purpose**: Base URL of the site, used for generating absolute URLs in metadata, Open Graph tags, and canonical URLs.
+
+**Type**: Server-side environment variable (not accessible in browser)
+
+**Format**: Full URL including protocol (e.g., `https://mealplanner.briangriffey.com`)
+
+**Required**: Yes (also required for NextAuth authentication)
+
+**Configuration**:
+```bash
+# .env.local (development)
+NEXTAUTH_URL="http://localhost:3000"
+
+# .env.production (production)
+NEXTAUTH_URL="https://mealplanner.briangriffey.com"
+```
+
+**Usage**:
+- Used by `apps/web/lib/seo/constants.ts` (`getBaseUrl()` function)
+- Generates absolute URLs for:
+  - Open Graph `og:url` tags
+  - Twitter Card URLs
+  - Canonical URLs
+  - Structured data (Schema.org) URLs
+  - Sitemap URLs
+- Also used by NextAuth for authentication callbacks
+
+**Default Behavior**:
+- If not set: Falls back to `http://localhost:3000` (development only)
+- Production: Must be set to the actual domain
+
+**Important Notes**:
+- Must include protocol (`https://` for production, `http://` for local)
+- Should NOT include trailing slash
+- Must match the actual domain where the app is deployed
+- Used for both SEO and authentication, so it's a critical configuration
+
+**Example Values**:
+```bash
+# Local development
+NEXTAUTH_URL="http://localhost:3000"
+
+# Production
+NEXTAUTH_URL="https://mealplanner.briangriffey.com"
+
+# Staging environment
+NEXTAUTH_URL="https://staging.mealplanner.briangriffey.com"
+```
+
+---
+
+### Environment Variable Summary
+
+| Variable | Purpose | Required | Format | Where to Get |
+|----------|---------|----------|--------|--------------|
+| `NEXTAUTH_URL` | Site base URL for metadata | Yes | `https://domain.com` | Your domain/hosting platform |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics tracking | Recommended | `G-XXXXXXXXXX` | [Google Analytics](https://analytics.google.com) |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console | Recommended | Alphanumeric | [Google Search Console](https://search.google.com/search-console) |
+| `NEXT_PUBLIC_BING_VERIFICATION` | Bing Webmaster Tools | Optional | Alphanumeric | [Bing Webmaster](https://www.bing.com/webmasters) |
+| `NEXT_PUBLIC_YANDEX_VERIFICATION` | Yandex Webmaster | Optional | Alphanumeric | [Yandex Webmaster](https://webmaster.yandex.com) |
+
+### Configuration Example
+
+Complete `.env.production` example with all SEO variables:
+
+```bash
+# ============================================================================
+# Site Configuration
+# ============================================================================
+# Base URL of the site (required for SEO metadata and authentication)
+NEXTAUTH_URL="https://mealplanner.briangriffey.com"
+
+# ============================================================================
+# Analytics Configuration
+# ============================================================================
+# Google Analytics 4 Measurement ID
+NEXT_PUBLIC_GA_ID="G-1234567890"
+
+# ============================================================================
+# Search Engine Verification
+# ============================================================================
+# Google Search Console verification
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION="abc123def456ghi789jkl012"
+
+# Bing Webmaster Tools verification (optional)
+NEXT_PUBLIC_BING_VERIFICATION="xyz789abc123def456"
+
+# Yandex Webmaster verification (optional, for Russian market)
+NEXT_PUBLIC_YANDEX_VERIFICATION="def456ghi789jkl012"
+```
+
+### Development vs Production
+
+**Development** (`.env.local`):
+- **Required**: Set `NEXTAUTH_URL="http://localhost:3000"`
+- **Optional**: Leave all other SEO variables empty
+- Google Analytics will not load (protects production data)
+- Search engine verification not needed locally
+
+**Production** (`.env.production` or hosting platform):
+- **Required**: Set `NEXTAUTH_URL` to your production domain
+- **Recommended**: Set `NEXT_PUBLIC_GA_ID` for analytics tracking
+- **Recommended**: Set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` for Search Console access
+- **Optional**: Set Bing/Yandex verification codes if targeting those search engines
+
+### Hosting Platform Configuration
+
+**Vercel**:
+1. Go to Project Settings → Environment Variables
+2. Add each variable for Production environment
+3. Redeploy to apply changes
+
+**Railway**:
+1. Go to project → Variables
+2. Add each environment variable
+3. Deploy to apply changes
+
+**Netlify**:
+1. Go to Site settings → Build & deploy → Environment
+2. Add environment variables
+3. Trigger new deploy
 
 ---
 
@@ -392,6 +675,27 @@ For each blog post:
   gtag('config', 'G-XXXXXXXXXX');
 </script>
 ```
+
+#### Environment Variable Configuration
+
+The Google Analytics integration requires setting the `NEXT_PUBLIC_GA_ID` environment variable.
+
+**See the [Environment Variables](#environment-variables) section at the top of this document for complete configuration details.**
+
+**Quick Setup**:
+
+1. Get your Measurement ID from [Google Analytics](https://analytics.google.com) (Admin → Data Streams → Web)
+2. Add to your environment:
+   ```bash
+   NEXT_PUBLIC_GA_ID="G-XXXXXXXXXX"
+   ```
+3. Deploy to production (analytics only loads in production, not development)
+
+**Implementation Notes**:
+- Implemented in `apps/web/lib/analytics/google-analytics.tsx`
+- Only loads in production (`NODE_ENV === 'production'`)
+- Provides helper functions for custom event tracking
+- Automatically initializes Google Analytics gtag.js script
 
 #### Key Events to Track
 
