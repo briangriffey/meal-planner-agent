@@ -1,6 +1,6 @@
 # SEM Strategy - Meal Planner Agent
 
-This document outlines the comprehensive Search Engine Marketing (SEM) strategy for the Meal Planner Agent web application at [mealplanner.briangriffey.com](https://mealplanner.briangriffey.com). The goal is to drive qualified traffic through Google Ads across Search, Display, and YouTube campaigns.
+This document outlines the comprehensive paid advertising strategy for the Meal Planner Agent web application at [mealplanner.briangriffey.com](https://mealplanner.briangriffey.com). The goal is to drive qualified traffic through Google Ads (Search, Display, and YouTube) and social media platforms (Meta, Pinterest, TikTok) to maximize conversions and user acquisition.
 
 ## Table of Contents
 
@@ -14,9 +14,10 @@ This document outlines the comprehensive Search Engine Marketing (SEM) strategy 
 - [Budget Allocation](#budget-allocation)
 - [Creative Guidelines](#creative-guidelines)
 - [Landing Page Recommendations](#landing-page-recommendations)
-- [Conversion Optimization](#conversion-optimization)
 - [Measurement & Analytics](#measurement--analytics)
+- [Conversion Optimization](#conversion-optimization)
 - [Implementation Timeline](#implementation-timeline)
+- [Social Media Advertising Strategy](#social-media-advertising-strategy)
 
 ---
 
