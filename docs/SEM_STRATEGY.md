@@ -5,15 +5,17 @@ This document outlines the comprehensive Search Engine Marketing (SEM) strategy 
 ## Table of Contents
 
 - [Executive Summary](#executive-summary)
+- [Market Analysis](#market-analysis)
+- [Target Audience](#target-audience)
 - [Environment Variables](#environment-variables)
 - [Target Keywords & Search Volumes](#target-keywords--search-volumes)
 - [Ad Group Structure](#ad-group-structure)
-- [Campaign Types](#campaign-types)
+- [Platform Strategies](#platform-strategies)
 - [Budget Allocation](#budget-allocation)
-- [Sample Ad Copy](#sample-ad-copy)
+- [Creative Guidelines](#creative-guidelines)
 - [Landing Page Recommendations](#landing-page-recommendations)
-- [Conversion Tracking Setup](#conversion-tracking-setup)
-- [Optimization Strategy](#optimization-strategy)
+- [Conversion Optimization](#conversion-optimization)
+- [Measurement & Analytics](#measurement--analytics)
 - [Implementation Timeline](#implementation-timeline)
 
 ---
@@ -47,6 +49,393 @@ The Meal Planner Agent SEM strategy focuses on Google Ads as the primary paid ac
 | Cost Per Acquisition (CPA) | $20-$47 | $21-$44 | $20-$42 | Calculated from conversions |
 | LTV:CAC Ratio | 3:1+ | 3.5:1+ | 4:1+ | LTV/CPA |
 | Quality Score | 7+ | 7+ | 8+ | Google Ads keyword quality score |
+
+---
+
+## Market Analysis
+
+### Overview
+
+The meal planning app market presents a significant growth opportunity, with increasing consumer demand for AI-powered solutions that simplify daily meal preparation. This analysis examines the competitive landscape, market size, and positioning opportunities for Meal Planner Agent.
+
+**For detailed competitive research, see:** [Competitive Landscape Research - SEM Strategy](./competitive-research-sem.md)
+
+### Market Size & Growth
+
+**Current Market Value**:
+- Meal planning app market: **USD 1.2 Million (2024)** → **USD 3.6 Million (2032)**
+- Growth Rate: **CAGR 10.5%**
+- AI-powered meal planning segment: **USD 27.147 billion by 2024**
+- AI segment growth rate: **CAGR 25.7%**
+
+**Total Addressable Market (TAM) - Paid Search**:
+- Combined monthly search volume: **50,000+ searches** across target keywords
+- Estimated CPC range: **$1.50-$3.50** (varies by keyword competition)
+- Market opportunity: **$75,000-$175,000** monthly ad spend potential
+
+### Competitive Landscape
+
+**Major Competitors** (9+ identified):
+
+**Tier 1 - Premium Personalized Services**:
+- **PlateJoy**: Personalized nutrition, dietitian-approved, $12.99/mo
+- **Eat This Much**: Automatic meal planning, macro tracking, $8.99/mo
+- **Strongr Fastr**: Fitness-focused, macro-based planning, $12.99/mo
+
+**Tier 2 - Mass Market Solutions**:
+- **eMeals**: Established leader (15+ years), $9.99/mo, heavy advertising
+- **Mealime**: Freemium model, simple meal planning, $5.99/mo premium
+- **Plan to Eat**: Recipe-focused, $5.95/mo, minimal advertising
+
+**Tier 3 - Niche/Budget Options**:
+- **Paprika**: One-time purchase $4.99, recipe manager focus
+- **Yummly**: Free with ads, recipe discovery platform
+- **BigOven**: Freemium, community-driven recipes
+
+### Competitor Advertising Strategies
+
+**Heavy Paid Advertising** (estimated $20k-$100k+/month):
+- eMeals: Aggressive Google Search and Display campaigns
+- PlateJoy: Partnership with Healthline Media, sponsored content
+- Eat This Much: Moderate paid search investment
+
+**Organic/Minimal Advertising**:
+- Paprika: App store optimization, word-of-mouth
+- Yummly: SEO and content marketing focus
+- BigOven: Community and recipe sharing
+
+**Hybrid Approaches**:
+- Mealime: Balanced paid/organic strategy
+- Plan to Eat: Focused paid search, strong organic presence
+
+### Key Value Propositions (Competitive Analysis)
+
+**Most Common** (used by 70%+ of competitors):
+1. **Time Savings**: "Save hours on meal planning"
+2. **Personalization**: "Custom meal plans for your preferences"
+3. **Dietary Customization**: "Works with any diet (keto, vegan, etc.)"
+4. **Grocery Integration**: "Automated grocery lists"
+5. **Cost Reduction**: "Save money, reduce food waste"
+
+**Differentiators** (less common, higher value):
+1. **AI-Powered Intelligence**: Only 2-3 competitors emphasize AI
+2. **Learning Algorithms**: "Plans that get better over time"
+3. **Automation**: "Set it and forget it" weekly planning
+4. **Advanced Technology**: "Powered by Claude AI"
+
+### Competitive Gaps & Opportunities
+
+**Meal Planner Agent Advantages**:
+
+1. **AI Technology Leader**:
+   - Most competitors use rules-based systems
+   - Claude AI provides more sophisticated recommendations
+   - Opportunity: Position as "next-generation" meal planning
+
+2. **True Personalization**:
+   - Competitors offer static preference settings
+   - Meal Planner Agent learns and adapts over time
+   - Opportunity: "Meal plans that get smarter each week"
+
+3. **Automation Excellence**:
+   - Many competitors require weekly manual generation
+   - Meal Planner Agent offers true "set and forget" automation
+   - Opportunity: Appeal to busy professionals
+
+4. **Transparent Pricing**:
+   - Some competitors hide pricing until sign-up
+   - Opportunity: Build trust with upfront pricing
+
+5. **Free Tier Access**:
+   - Many competitors require credit card for free trial
+   - Opportunity: Lower barrier to entry, "No credit card required"
+
+### Expected CPC Benchmarks (by Keyword Type)
+
+| Keyword Category | Example Keywords | Est. CPC | Competition |
+|-----------------|------------------|----------|-------------|
+| **Brand Terms** | "meal planner agent" | $0.50-$1.00 | Low |
+| **AI-Specific** | "ai meal planner" | $1.50-$2.50 | Medium |
+| **Generic High-Intent** | "meal planning app" | $2.50-$3.50 | High |
+| **Long-Tail** | "automatic meal planner with grocery list" | $1.20-$2.00 | Low-Medium |
+| **Competitor** | "emeals alternative" | $1.80-$2.80 | Medium |
+
+**Source**: Google Keyword Planner, SEMrush competitor analysis, industry benchmarks
+
+### Market Insights & Trends
+
+**Growing Trends**:
+- ✅ AI and machine learning in meal planning (emerging)
+- ✅ Macro and nutrition tracking integration
+- ✅ Grocery delivery partnerships (Instacart, Amazon Fresh)
+- ✅ Family-focused meal planning (multi-person households)
+- ✅ Dietary restriction support (allergies, medical diets)
+
+**Declining Trends**:
+- ❌ Manual meal planning tools (spreadsheets, printables)
+- ❌ Generic meal plan templates (one-size-fits-all)
+- ❌ Desktop-only solutions (mobile-first is essential)
+
+**Seasonal Patterns**:
+- **Peak seasons**: January (New Year's resolutions), September (back-to-school)
+- **Low seasons**: November-December (holidays), July-August (summer vacations)
+- **Strategy**: Increase budget 50-100% during peak seasons
+
+---
+
+## Target Audience
+
+### Overview
+
+Meal Planner Agent targets five distinct audience personas, each with unique pain points, motivations, and search behaviors. Understanding these personas informs ad copy, keyword selection, landing page design, and budget allocation.
+
+**For detailed persona profiles, see:** [Target Audience Personas](./target-audience-personas.md)
+
+### Primary Audience Segments
+
+#### 1. Busy Professional Brian (30% of budget)
+
+**Demographics**:
+- Age: 28-42
+- Gender: 60% Male, 40% Female
+- Income: $75,000-$150,000
+- Occupation: Corporate professionals, tech workers, consultants
+- Location: Urban areas, major metros
+
+**Psychographics**:
+- Values time efficiency above all
+- Tech-savvy, early adopter of productivity tools
+- Health-conscious but struggles with consistency
+- Willing to pay premium for convenience
+
+**Pain Points**:
+- "I don't have time to plan meals every week"
+- "I end up ordering expensive takeout"
+- "I want to eat healthier but lack time to plan"
+
+**Search Behavior**:
+- "quick meal planning"
+- "automated meal planner"
+- "ai meal planning app"
+- "meal planning for busy professionals"
+
+**Messaging Priorities**:
+1. Time savings (primary)
+2. Automation and convenience
+3. Health benefits
+4. AI technology
+
+**Expected Performance**:
+- CPC: $1.80-$2.80 (competitive keywords)
+- Conversion Rate: 4-6% (high intent)
+- LTV: $120+ (likely to upgrade to premium)
+
+---
+
+#### 2. Health-Conscious Hannah (25% of budget)
+
+**Demographics**:
+- Age: 26-45
+- Gender: 70% Female, 30% Male
+- Income: $50,000-$100,000
+- Lifestyle: Fitness enthusiasts, weight management goals
+- Location: Suburban and urban areas
+
+**Psychographics**:
+- Focused on nutrition and wellness
+- Tracks macros, calories, or follows specific diets
+- Seeks variety while hitting nutrition goals
+- Active on health and fitness communities
+
+**Pain Points**:
+- "I want to hit my macro targets without guesswork"
+- "I need meal variety that fits my nutrition goals"
+- "Meal prep planning takes too much time"
+
+**Search Behavior**:
+- "nutrition meal planner"
+- "macro meal planning app"
+- "healthy meal planning"
+- "meal planner with calorie tracking"
+
+**Messaging Priorities**:
+1. Nutrition tracking and customization
+2. Macro/calorie precision
+3. Meal variety within dietary goals
+4. Time savings for meal prep
+
+**Expected Performance**:
+- CPC: $1.50-$2.30 (moderate competition)
+- Conversion Rate: 3.5-5%
+- LTV: $90-$110
+
+---
+
+#### 3. Family-Focused Fatima (25% of budget)
+
+**Demographics**:
+- Age: 32-50
+- Gender: 75% Female, 25% Male
+- Income: $60,000-$120,000
+- Household: Families with 2-4 members, often with children
+- Location: Suburban areas
+
+**Psychographics**:
+- Prioritizes family health and nutrition
+- Manages diverse preferences and dietary restrictions
+- Budget-conscious, seeks to reduce food waste
+- Values simplicity and practical solutions
+
+**Pain Points**:
+- "Everyone in my family has different food preferences"
+- "I waste food because I don't plan ahead"
+- "Kids are picky eaters"
+- "I want healthier meals without the stress"
+
+**Search Behavior**:
+- "family meal planner"
+- "meal planning for picky eaters"
+- "weekly family meal planning"
+- "meal planner for families"
+
+**Messaging Priorities**:
+1. Family-friendly meals
+2. Customization for multiple preferences
+3. Grocery list and budget savings
+4. Reducing food waste
+
+**Expected Performance**:
+- CPC: $1.40-$2.20
+- Conversion Rate: 3-4.5%
+- LTV: $100-$130 (family plans, longer retention)
+
+---
+
+#### 4. Tech-Savvy Taylor (15% of budget)
+
+**Demographics**:
+- Age: 24-38
+- Gender: 55% Male, 45% Female
+- Income: $60,000-$130,000
+- Occupation: Tech industry, startups, digital professionals
+- Location: Tech hubs (SF, NYC, Austin, Seattle)
+
+**Psychographics**:
+- Excited by AI and new technology
+- Early adopter, loves trying new apps
+- Seeks automation and cutting-edge solutions
+- Active on Product Hunt, Hacker News, tech communities
+
+**Pain Points**:
+- "I want to experience the latest AI applications"
+- "I'm curious how AI can improve meal planning"
+- "I want tools that leverage advanced technology"
+
+**Search Behavior**:
+- "ai meal planner"
+- "claude ai meal planning"
+- "ai powered meal planning app"
+- "machine learning meal planner"
+
+**Messaging Priorities**:
+1. AI technology emphasis (Claude AI)
+2. Innovation and cutting-edge features
+3. Automation and intelligence
+4. Developer/tech credibility
+
+**Expected Performance**:
+- CPC: $1.60-$2.50
+- Conversion Rate: 4.5-6% (high interest in AI)
+- LTV: $80-$100 (may churn to try other AI apps)
+
+---
+
+#### 5. Budget-Conscious Beatrice (5% of budget - Opportunistic)
+
+**Demographics**:
+- Age: 22-35
+- Gender: 60% Female, 40% Male
+- Income: $30,000-$60,000
+- Occupation: Students, entry-level professionals, gig workers
+- Location: Urban and college towns
+
+**Psychographics**:
+- Price-sensitive, seeks value
+- Interested in reducing food costs
+- Willing to invest time if it saves money
+- Values free tiers and trials
+
+**Pain Points**:
+- "I need to eat healthier on a tight budget"
+- "I waste money on takeout and impulse groceries"
+- "I want to cook at home more to save money"
+
+**Search Behavior**:
+- "free meal planner"
+- "budget meal planning app"
+- "cheap meal planning"
+- "meal planner to save money"
+
+**Messaging Priorities**:
+1. Free tier availability
+2. Cost savings and budget benefits
+3. Reducing food waste
+4. Simplicity
+
+**Expected Performance**:
+- CPC: $0.80-$1.50 (lower competition)
+- Conversion Rate: 2.5-4%
+- LTV: $40-$60 (may stay on free tier)
+- **Note**: Test and scale only if LTV supports acquisition cost
+
+---
+
+### Audience Targeting Strategy
+
+**Google Ads Audience Segments**:
+
+**Affinity Audiences**:
+- Cooking Enthusiasts
+- Health & Fitness Buffs
+- Technology Enthusiasts
+- Foodies & Restaurant-Goers
+
+**In-Market Audiences**:
+- Food & Drink > Meal Planning
+- Health & Fitness > Weight Loss
+- Cooking & Recipes
+
+**Custom Intent Audiences** (build from):
+- Users searching: "meal planning", "meal prep", "weekly meal planner"
+- Users visiting: Competitor websites, recipe sites, nutrition blogs
+
+**Demographic Targeting**:
+- **Income**: Top 40% (adjust by persona)
+- **Parental Status**: Separate campaigns for parents vs. non-parents
+- **Age**: 25-54 primary, 18-24 and 55-65 as test segments
+
+### Budget Allocation by Persona
+
+| Persona | Budget % | Monthly Budget (Launch) | Monthly Budget (Scale) | Rationale |
+|---------|----------|------------------------|----------------------|-----------|
+| Busy Professional Brian | 30% | $240 | $750 | High LTV, strong conversion |
+| Health-Conscious Hannah | 25% | $200 | $625 | Good conversion, moderate LTV |
+| Family-Focused Fatima | 25% | $200 | $625 | High LTV, longer retention |
+| Tech-Savvy Taylor | 15% | $120 | $375 | Moderate LTV, great for awareness |
+| Budget-Conscious Beatrice | 5% | $40 | $125 | Test viability, lower LTV |
+
+### Persona-Specific Landing Pages
+
+**Recommendation**: Create dedicated landing pages for top 3 personas (Brian, Hannah, Fatima) with:
+- Persona-specific headlines and imagery
+- Pain point-focused copy
+- Relevant testimonials and use cases
+- Custom CTAs aligned with motivations
+
+**Example**:
+- **Busy Professional**: "Save 5+ Hours Per Week with AI Meal Planning"
+- **Health-Conscious**: "Hit Your Macros Without the Guesswork"
+- **Family-Focused**: "Healthy Family Meals Everyone Will Love"
 
 ---
 
@@ -442,7 +831,7 @@ Account: Meal Planner Agent
 
 ---
 
-## Campaign Types
+## Platform Strategies
 
 ### 1. Google Search Ads (Primary Focus)
 
@@ -875,7 +1264,7 @@ Allocate budget based on persona volume and conversion potential:
 
 ---
 
-## Sample Ad Copy
+## Creative Guidelines
 
 ### Search Ads - Responsive Search Ads (RSA) Format
 
@@ -1450,7 +1839,7 @@ Use these to track which ads/keywords drive best conversions.
 
 ---
 
-## Conversion Tracking Setup
+## Measurement & Analytics
 
 ### Google Analytics 4 (GA4) Event Tracking
 
@@ -1665,7 +2054,7 @@ Before launching campaigns:
 
 ---
 
-## Optimization Strategy
+## Conversion Optimization
 
 ### Ongoing Optimization Framework
 
