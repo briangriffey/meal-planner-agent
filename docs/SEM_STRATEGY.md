@@ -2179,6 +2179,1897 @@ Potential Causes & Solutions:
 
 ---
 
+## Social Media Advertising Strategy
+
+### Overview
+
+While Google Ads captures high-intent users actively searching for meal planning solutions, social media advertising expands reach to users who may not yet realize they need an AI meal planner. Social platforms enable visual storytelling, precise demographic targeting, and cost-effective audience building.
+
+**Strategic Positioning**: Social media advertising complements Google Ads by:
+1. **Building Awareness**: Introducing Meal Planner Agent to users before they actively search
+2. **Visual Engagement**: Showcasing beautiful meal imagery and app interface
+3. **Persona Targeting**: Reaching specific demographics (parents, fitness enthusiasts, etc.)
+4. **Retargeting**: Re-engaging users who visited the site but didn't convert
+5. **Cost Efficiency**: Lower CPC/CPM than Google Search Ads ($0.50-$2.00 vs. $1.50-$3.50)
+
+---
+
+### Platform Selection Rationale
+
+Based on competitive research and platform analysis, we recommend a **phased multi-platform approach**:
+
+#### Tier 1: Core Platforms (Launch Immediately)
+
+**Meta (Facebook & Instagram)** - Primary social advertising channel
+
+**Selection Rationale**:
+- ✅ **Precise Targeting**: Demographic, interest, and behavior targeting matches all 5 personas
+- ✅ **Largest Reach**: 3.05B Facebook + 2.4B Instagram users
+- ✅ **Visual Formats**: Image, video, carousel, Stories, Reels support meal content beautifully
+- ✅ **Cost Efficiency**: $0.50-$1.50 CPC, $8-$15 CPM, $8-$16 CPA expected
+- ✅ **Conversion Optimization**: Robust pixel tracking and conversion campaigns
+- ✅ **Retargeting Capabilities**: Powerful remarketing to site visitors
+- ✅ **Low Barrier to Entry**: $5/day minimum, easy setup
+
+**Target Personas**: All 5 personas (Busy Parent Beth - primary, Fitness Frank, Meal Prep Maria, Budget Brian, Health-Seeker Hannah)
+
+**Budget Allocation**: 40-50% of total social media budget
+
+**Expected Performance**:
+- CPA: $8-$16 (free trial signups)
+- Conversion Rate: 8-12% (ad click → signup)
+- Monthly Conversions: 75-150 (at $1,000/month spend)
+
+---
+
+#### Tier 2: Expansion Platform (Launch Month 2-3)
+
+**Pinterest Ads** - Strategic fit for meal planning audience
+
+**Selection Rationale**:
+- ✅ **Perfect Use Case Fit**: Meal planning is a top Pinterest search category
+- ✅ **High Intent**: 89% of Pinners use Pinterest for purchase inspiration
+- ✅ **Affluent Audience**: Higher household income than average social user
+- ✅ **Long Content Lifespan**: Pins remain discoverable for months (vs. hours on Meta)
+- ✅ **Cost Effective**: $0.50-$2.00 CPC, $6-$12 CPA
+- ✅ **Visual Discovery**: Users actively seeking meal ideas and planning tools
+- ⚠️ **Female Skew**: 60% female audience (strong match for Busy Parent Beth, Health Hannah)
+- ⚠️ **Smaller Reach**: 498M users (vs. 5B+ on Meta)
+
+**Target Personas**: Busy Parent Beth (primary), Health-Seeker Hannah, Meal Prep Maven Maria
+
+**Budget Allocation**: 20-30% of total social media budget
+
+**Expected Performance**:
+- CPA: $6-$12 (free trial signups)
+- Conversion Rate: 10-15% (higher intent than Meta)
+- Monthly Conversions: 50-100 (at $600/month spend)
+
+**Launch Timing**: Month 2-3 after Meta campaigns stabilize
+
+---
+
+#### Tier 3: Experimental Platform (Launch Month 4-6+)
+
+**TikTok Ads** - Reach younger demographics with video content
+
+**Selection Rationale**:
+- ✅ **Younger Audience**: Strong reach for 18-34 age group (Fitness Frank, Meal Prep Maria)
+- ✅ **Low CPM**: $4-$8 CPM (lowest among all platforms)
+- ✅ **Viral Potential**: Trending content can achieve organic reach beyond paid
+- ✅ **Authentic Engagement**: Native, user-generated style ads perform best
+- ⚠️ **Video Production Required**: Requires ongoing video content creation (2-4 videos/week)
+- ⚠️ **Higher Minimum Budget**: $20/day minimum ($600/month)
+- ⚠️ **Less Precise Targeting**: No household income or parental status targeting
+- ⚠️ **Unproven ROI**: Less certain conversion rates for meal planning apps
+
+**Target Personas**: Fitness-Focused Frank (primary), Meal Prep Maven Maria
+
+**Budget Allocation**: 15-25% of total social media budget (if launched)
+
+**Expected Performance** (estimates):
+- CPA: $10-$20 (free trial signups)
+- Conversion Rate: 5-8% (lower intent than Meta/Pinterest)
+- Monthly Conversions: 30-60 (at $600/month spend)
+
+**Launch Prerequisites**:
+1. ✅ Video content library (10+ videos ready)
+2. ✅ Meta and Pinterest campaigns optimized (3+ months data)
+3. ✅ Budget capacity ($600-$1,000/month minimum)
+4. ✅ Resources for ongoing video production
+5. ✅ Clear KPIs and ROI benchmarks from Tier 1/2 platforms
+
+**Launch Timing**: Month 4-6+ (only if Tier 1/2 show positive ROI)
+
+---
+
+#### Platforms NOT Recommended (At This Time)
+
+**Reddit Ads**:
+- ❌ Community skepticism of advertising (requires highly authentic approach)
+- ❌ Smaller meal planning subreddit communities
+- ❌ Higher setup complexity and moderation requirements
+- ⏸️ **Reconsider**: If building strong organic Reddit presence first
+
+**LinkedIn Ads**:
+- ❌ Not aligned with target audience (B2C, not B2B)
+- ❌ Higher costs ($5-$12 CPC)
+- ❌ Lower meal planning intent
+- ⏸️ **Reconsider**: Only if targeting corporate wellness programs (B2B pivot)
+
+**Twitter (X) Ads**:
+- ❌ Platform uncertainty and advertiser exodus
+- ❌ Limited meal planning / recipe browsing behavior
+- ❌ Less precise targeting than Meta
+- ⏸️ **Reconsider**: Monitor platform stability; reconsider in 6-12 months
+
+**Snapchat Ads**:
+- ❌ Younger skew (18-24) misaligned with primary personas (30-45)
+- ❌ Less meal planning intent
+- ❌ Higher production requirements for Snapchat-native content
+- ⏸️ **Reconsider**: If data shows significant 18-24 adoption
+
+---
+
+### Meta (Facebook & Instagram) Strategy
+
+**Status**: Tier 1 - Launch Immediately
+
+#### Audience Targeting Parameters
+
+##### Core Audiences (Cold Traffic)
+
+**Demographic Targeting**:
+- **Age**: 25-55 (primary personas)
+- **Gender**: All (slight female skew 55% expected)
+- **Location**: United States (expand to Canada/UK after initial success)
+- **Language**: English (US)
+- **Parental Status**: Parents with children under 18 (for Busy Parent Beth campaigns)
+- **Household Income**: $50,000+ (exclude lowest tier to improve conversion rates)
+- **Education**: Some college or higher (optional, use for budget efficiency)
+- **Device**: All (mobile-optimized creative required)
+
+**Interest Targeting** (Meta Categories):
+
+**Primary Interests** (Highest Priority):
+- Food & dining → Cooking
+- Food & dining → Recipes
+- Food & dining → Meal planning
+- Food & dining → Healthy eating
+- Fitness & wellness → Healthy lifestyle
+- Fitness & wellness → Nutrition
+- Fitness & wellness → Weight training (for Fitness Frank)
+- Family & relationships → Parenting (for Busy Parent Beth)
+- Shopping & fashion → Health & beauty
+- Technology → Mobile apps
+- Technology → Early adopters
+
+**Secondary Interests** (Supporting):
+- Hobbies & activities → Home improvement (organization, meal prep)
+- Business & industry → Small business (busy professionals)
+- Entertainment → Podcasts (wellness, parenting)
+- Fitness & wellness → Yoga, Running, Gym (for Fitness Frank)
+- Food & dining → Vegetarian/Vegan (dietary preferences)
+
+**Behavior Targeting**:
+- **Purchase Behavior**: Online shoppers, health & beauty shoppers
+- **Device Usage**: Mobile device users (iOS & Android)
+- **Travel**: Domestic travelers (busy lifestyles)
+- **Digital Activities**: Technology early adopters, frequent online purchasers
+- **Mobile Usage**: Heavy mobile users (app engagement)
+
+**Exclusions** (Negative Targeting):
+- Users interested in meal kits (HelloFresh, Blue Apron) - different value prop
+- Users interested in personal chefs / meal delivery services
+- Users engaged with competitor pages (optional, may reduce reach significantly)
+
+---
+
+##### Custom Audiences (Retargeting)
+
+**Website Traffic Audiences**:
+
+1. **All Website Visitors (Last 30 Days)**
+   - Target: Users who visited any page
+   - Message: General value prop reminder
+   - Budget: 10% of Meta budget
+   - Expected CPA: $10-$14
+
+2. **Landing Page Viewers (Last 30 Days)**
+   - Target: Users who viewed main landing page but didn't sign up
+   - Message: Overcome objections, social proof
+   - Budget: 15% of Meta budget
+   - Expected CPA: $8-$12
+
+3. **Pricing Page Viewers (Last 14 Days)**
+   - Target: High-intent users considering purchase
+   - Message: Free trial emphasis, testimonials
+   - Budget: 20% of Meta budget
+   - Expected CPA: $6-$10 (highest intent)
+
+4. **Sign-Up Abandoners (Last 7 Days)**
+   - Target: Started signup but didn't complete
+   - Message: Urgency, reminder, remove friction
+   - Budget: 15% of Meta budget
+   - Expected CPA: $5-$8 (very high intent)
+
+5. **Video Viewers (Last 30 Days)**
+   - Target: Watched 25%, 50%, 75%, or 95% of video ads
+   - Segment by completion percentage (higher % = higher intent)
+   - Message: Next step in funnel
+   - Budget: 10% of Meta budget
+   - Expected CPA: $7-$11
+
+6. **Engagement Audiences (Last 90 Days)**
+   - Target: Liked, commented, shared, or saved ads/posts
+   - Message: Community invitation, free trial
+   - Budget: 5% of Meta budget
+   - Expected CPA: $9-$13
+
+**Customer List Audiences**:
+- Email subscriber list (if available)
+- Trial users who haven't returned (re-engagement)
+- Churned users (win-back campaigns)
+
+---
+
+##### Lookalike Audiences
+
+**Priority Order** (build after 50-100 conversions minimum):
+
+1. **1% Lookalike - Converters** (Highest Priority)
+   - Source: Users who completed free trial signup
+   - Similarity: 1% (most similar, smallest audience)
+   - Use: Primary prospecting audience
+   - Expected CPA: $10-$14
+
+2. **2% Lookalike - Converters**
+   - Source: Same as above
+   - Similarity: 2% (broader reach)
+   - Use: Scaling prospecting after 1% saturates
+   - Expected CPA: $12-$16
+
+3. **1% Lookalike - High-Value Actions**
+   - Source: Users who generated meal plan (engaged trial users)
+   - Use: Find users likely to engage deeply
+   - Expected CPA: $9-$13
+
+4. **3-5% Lookalike - Converters** (Expansion)
+   - Source: Converters
+   - Similarity: 3-5% (largest reach, less precision)
+   - Use: Only when 1-2% audiences saturate
+   - Expected CPA: $14-$18
+
+**Note**: Lookalike audiences require 50-100 source conversions minimum for effective modeling. Build these in Month 2-3 after initial conversions.
+
+---
+
+##### Audience Sizing Guidelines
+
+**Recommended Audience Sizes** (per ad set):
+
+- **Cold Traffic**: 500,000 - 2,000,000 users (allows Facebook's algorithm room to optimize)
+- **Retargeting**: 1,000 - 50,000 users (smaller is okay for high-intent)
+- **Lookalike 1%**: ~2 million users (US-wide 1% lookalike)
+- **Too Small**: <1,000 users (insufficient delivery, higher costs)
+- **Too Large**: >5 million users (too broad, diluted messaging)
+
+**Layering Strategy** (combining targets):
+- ✅ **Effective**: Age 25-55 + Parental Status + Interest: Cooking
+- ✅ **Effective**: Age 25-40 + Interest: Fitness + Behavior: Mobile app users
+- ❌ **Too Narrow**: Age 25-30 + Parental Status + Interest: Cooking + Income $100K+ (likely <100K users)
+- ❌ **Too Broad**: Age 18-65 + Interest: Food (millions, too generic)
+
+**Campaign Budget Optimization (CBO)**:
+- Use Facebook's automatic budget distribution across ad sets
+- Requires multiple ad sets (3-5 recommended)
+- Facebook allocates more budget to better-performing audiences
+- Start with $40-$60/day CBO budget minimum
+
+---
+
+#### Ad Formats & Specifications
+
+##### Image Ads (Single Image)
+
+**Specifications**:
+- **Recommended Resolution**: 1080 x 1080 pixels (1:1 square)
+- **Supported Ratios**: 1.91:1 (landscape), 1:1 (square), 4:5 (vertical)
+- **File Type**: JPG or PNG
+- **File Size**: Max 30 MB
+- **Text in Image**: Minimal (no longer penalized, but keep under 20% for best performance)
+
+**Best Practices**:
+- High-quality food photography (vibrant, appetizing)
+- Show diversity of meals (variety appeal)
+- Include people enjoying meals when possible (emotional connection)
+- Showcase mobile app UI for product clarity
+- Use brand colors consistently
+- Subtle text overlay with key benefit (not required in all images)
+
+**Image Themes by Persona**:
+
+1. **Busy Parent Beth**:
+   - Family eating dinner together (happy, relaxed)
+   - Organized meal prep containers
+   - Before/after: chaotic kitchen → organized meal plan
+   - Kid-friendly meals (colorful, appealing to children)
+
+2. **Fitness-Focused Frank**:
+   - High-protein meals with nutrition facts
+   - Meal prep for gym-goers (batch cooking, containers)
+   - Athletic person eating healthy meal
+   - Macro-friendly meal examples
+
+3. **Meal Prep Maven Maria**:
+   - Weekly meal prep layout (grid of prepped meals)
+   - Grocery haul organized by meal
+   - Efficient kitchen setup
+   - Time-lapse style: ingredients → finished meals
+
+4. **Budget-Conscious Brian**:
+   - Grocery savings comparison
+   - Affordable meal examples with cost breakdown
+   - Pantry staples utilized
+   - "Week of meals for $X" visual
+
+5. **Health-Seeker Hannah**:
+   - Colorful, nutrient-dense meals
+   - Fresh ingredients showcase
+   - Health transformation journey
+   - Mediterranean/whole foods focused meals
+
+---
+
+##### Video Ads
+
+**Specifications**:
+- **Recommended Resolution**: 1080 x 1080 (1:1 square) or 1080 x 1920 (9:16 vertical)
+- **Aspect Ratio**: 1:1 (Feed), 4:5 (Feed - vertical), 9:16 (Stories/Reels)
+- **File Type**: MP4 or MOV (H.264 codec recommended)
+- **File Size**: Max 4 GB
+- **Length**:
+  - Feed: 1-241 minutes (optimal: 15-30 seconds)
+  - Stories: Up to 120 seconds (optimal: 15 seconds)
+  - Reels: 15-90 seconds (optimal: 15-30 seconds)
+- **Captions**: REQUIRED (85% of users watch without sound)
+- **Frame Rate**: 30 fps minimum
+- **Audio**: Stereo AAC, 128 kbps+
+
+**Best Practices**:
+- **Hook in 3 seconds**: Grab attention immediately (problem statement or surprising stat)
+- **Design for sound-off**: Add text captions throughout
+- **Show product value quickly**: Demonstrate app within first 5-10 seconds
+- **Include clear CTA**: Tell viewers what to do (end card with "Download Free")
+- **Vertical format prioritized**: 9:16 for Stories/Reels (higher engagement)
+- **Branding visible**: Logo/app name visible throughout
+- **Fast pacing**: Keep energy high, avoid slow segments
+
+**Video Script Templates**:
+
+**Template 1: Problem → Solution (30 seconds)**
+```
+[0-3s] Hook: "Staring at the fridge with no idea what to make?"
+       VISUAL: Person frustrated, looking in empty fridge
+       TEXT OVERLAY: "Every. Single. Night."
+
+[4-8s] Problem Amplification: "Meal planning takes hours. Grocery shopping is chaos."
+       VISUAL: Overwhelmed person with recipes, grocery lists, phone
+       TEXT OVERLAY: "There's a better way..."
+
+[9-16s] Solution Introduction: "Meal Planner Agent uses AI to create personalized meal plans in 2 minutes"
+        VISUAL: User opening app → selecting preferences → AI generating plan
+        TEXT OVERLAY: "AI creates your perfect meal plan"
+
+[17-23s] Benefits Showcase: "Automated grocery lists. 1000s of recipes. Saves 5+ hours per week."
+         VISUAL: App showing grocery list, recipe variety, happy user cooking
+         TEXT OVERLAY: "✅ Grocery lists ✅ Recipes ✅ 5 hours saved"
+
+[24-30s] CTA: "Try free for 7 days - no credit card required"
+         VISUAL: App download screen, logo, "Download Free" button
+         TEXT OVERLAY: "Start Free Today"
+```
+
+**Template 2: User Testimonial (20 seconds)**
+```
+[0-3s] Hook: USER ON SCREEN: "I used to spend Sunday afternoons meal planning..."
+       TEXT OVERLAY: "Meet Sarah, Mom of 3"
+
+[4-8s] Problem: USER: "It was exhausting. And I'd still forget ingredients."
+       VISUAL: User looking stressed with papers, laptop
+       TEXT OVERLAY: "Sound familiar?"
+
+[9-14s] Solution: USER: "Then I found Meal Planner Agent. Now it takes 2 minutes."
+        VISUAL: User smiling, using app on phone
+        TEXT OVERLAY: "2 minutes. That's it."
+
+[15-17s] Result: USER: "I actually have time to enjoy cooking again!"
+         VISUAL: User cooking with family, smiling
+         TEXT OVERLAY: "More family time. Less stress."
+
+[18-20s] CTA: VISUAL: App logo, download screen
+         TEXT OVERLAY: "Try free → Link in bio"
+```
+
+**Template 3: App Demo / Feature Showcase (25 seconds)**
+```
+[0-3s] Hook: "Watch AI create your perfect meal plan in real-time"
+       VISUAL: Animated phone screen with app logo
+       TEXT OVERLAY: "AI Meal Planning ✨"
+
+[4-8s] Step 1: "Tell us your preferences"
+       VISUAL: User selecting dietary preferences, family size, dislikes
+       TEXT OVERLAY: "1. Your Preferences"
+
+[9-14s] Step 2: "AI generates personalized plan"
+        VISUAL: AI animation, generating meals (fast motion)
+        TEXT OVERLAY: "2. AI Works Its Magic"
+
+[15-20s] Step 3: "Get grocery list & start cooking"
+         VISUAL: Grocery list appearing, user shopping, cooking beautiful meal
+         TEXT OVERLAY: "3. Shop & Cook"
+
+[21-25s] CTA: "Start your free trial today - no credit card needed"
+         VISUAL: App download screen, logo
+         TEXT OVERLAY: "Download Free"
+```
+
+**Template 4: Before & After (15 seconds - Short Form)**
+```
+[0-2s] BEFORE: Chaotic kitchen, stressed person, messy fridge
+       TEXT OVERLAY: "BEFORE Meal Planner Agent"
+
+[3-7s] TRANSITION: Downloading app, selecting preferences
+       TEXT OVERLAY: "2 minutes later..."
+
+[8-12s] AFTER: Organized meal plan on phone, happy user, prepped ingredients
+        TEXT OVERLAY: "AFTER Meal Planner Agent ✨"
+
+[13-15s] CTA: "Try free today"
+         VISUAL: App logo, download button
+         TEXT OVERLAY: "Download Free"
+```
+
+**Video Production Notes**:
+- **Stock Footage**: Use Pexels, Unsplash Video, or Storyblocks for meal/cooking clips
+- **Screen Recordings**: Record app demo with QuickTime or OBS (clean, high-res)
+- **User-Generated Content (UGC)**: Film real users with iPhone (authentic, relatable)
+- **Animation**: Use CapCut, Adobe Premiere, or Canva for text overlays and transitions
+- **Music**: Use Meta Sound Collection (free, no copyright issues) or Epidemic Sound
+- **Captions**: Auto-generate in Meta Ads Manager or use Descript, CapCut
+
+**Video Performance Expectations**:
+- **ThruPlay Rate** (watched to completion): 40-60% target
+- **3-Second Video Views**: 70-85% of impressions
+- **CTR**: 1.5-3% (higher than static images)
+- **CPC**: $0.80-$1.50 (slightly better than images)
+- **Engagement**: Higher saves, shares, comments
+
+---
+
+##### Carousel Ads (Multiple Images/Videos)
+
+**Specifications**:
+- **Cards**: 2-10 cards (optimal: 3-5 cards)
+- **Image Resolution**: 1080 x 1080 pixels per card (1:1)
+- **Video**: Can mix images and videos in one carousel
+- **File Type**: JPG, PNG (images) or MP4 (video)
+- **File Size**: Max 30 MB per image, 4 GB per video
+- **Headline**: 40 characters per card
+- **Description**: 20 characters per card (optional)
+
+**Best Practices**:
+- **Consistent visual style** across all cards (same color palette, typography)
+- **Sequential storytelling** (each card builds on previous)
+- **First card is most important** (hook users to swipe)
+- **Each card has a purpose** (don't repeat same message)
+- **CTA on final card** (drive to action)
+- **Mobile-optimized**: Users swipe easily on mobile
+
+**Carousel Strategies**:
+
+**Strategy 1: Feature Showcase**
+- **Card 1**: 🎯 AI Personalization - "Meal plans tailored to YOU"
+- **Card 2**: 📝 Automated Grocery Lists - "No more forgotten ingredients"
+- **Card 3**: 🍲 1000s of Recipes - "Never run out of ideas"
+- **Card 4**: ⏰ Save 5 Hours/Week - "More time for what matters"
+- **Card 5**: 🎉 Start Free Trial - "Try 7 days free, no credit card" [CTA]
+
+**Strategy 2: Meal Variety Showcase**
+- **Card 1**: Italian Night - Pasta Primavera hero shot
+- **Card 2**: Mexican Fiesta - Chicken Tacos hero shot
+- **Card 3**: Asian Fusion - Teriyaki Salmon hero shot
+- **Card 4**: Comfort Food - Meatloaf & Mashed Potatoes hero shot
+- **Card 5**: Healthy & Light - Mediterranean Salad hero shot
+- **Each card links to landing page, showcases variety**
+
+**Strategy 3: Persona-Based Targeting**
+- **Card 1**: For Busy Parents - "Family-friendly meals in 30 minutes"
+- **Card 2**: For Fitness Enthusiasts - "Hit your macros effortlessly"
+- **Card 3**: For Budget Shoppers - "Save money on groceries"
+- **Card 4**: For Health-Seekers - "Nutritious meals made easy"
+- **Card 5**: Start Free - "Find your perfect plan" [CTA]
+
+**Strategy 4: Social Proof / Testimonials**
+- **Card 1**: ⭐⭐⭐⭐⭐ "Saves me hours every week!" - Sarah M.
+- **Card 2**: ⭐⭐⭐⭐⭐ "My kids actually eat the meals!" - John D.
+- **Card 3**: ⭐⭐⭐⭐⭐ "Perfect for my fitness goals" - Lisa K.
+- **Card 4**: ⭐⭐⭐⭐⭐ "Grocery bill went down 20%" - Mike T.
+- **Card 5**: Join 10,000+ Happy Users - "Start Free Today" [CTA]
+
+**Strategy 5: Step-by-Step Process**
+- **Card 1**: Step 1 - "Tell us about you" (preferences screen)
+- **Card 2**: Step 2 - "AI creates your plan" (AI generating animation)
+- **Card 3**: Step 3 - "Get grocery list" (grocery list view)
+- **Card 4**: Step 4 - "Start cooking!" (meal being prepared)
+- **Card 5**: "Try it free" [CTA]
+
+**Carousel Performance Expectations**:
+- **Swipe-Through Rate**: 20-40% of viewers see Card 2+
+- **CTR**: 1.2-2.5% (higher engagement than single image)
+- **CPC**: $0.90-$1.60
+- **Best Use Case**: Feature education, variety showcase
+
+---
+
+##### Stories & Reels Ads
+
+**Specifications**:
+- **Resolution**: 1080 x 1920 pixels (9:16 vertical full-screen)
+- **Aspect Ratio**: 9:16 only (vertical)
+- **File Type**: MP4 or MOV (video), JPG/PNG (image)
+- **Video Length**:
+  - Stories: Up to 120 seconds (optimal: 5-15 seconds)
+  - Reels: 15-90 seconds (optimal: 15-30 seconds)
+- **File Size**: Max 4 GB (video), 30 MB (image)
+- **Captions**: Required (sound often off in Stories)
+- **Safe Zones**: Keep text/logos away from top 250px and bottom 250px (UI overlap)
+
+**Best Practices**:
+- **Immersive full-screen**: Use entire vertical canvas
+- **Fast-paced content**: Stories/Reels users swipe quickly
+- **Thumb-stopping hook**: First frame must grab attention
+- **Interactive elements**: Polls, questions (organic only, not in ads)
+- **Authentic feel**: Less polished, more relatable
+- **Trendy aesthetics**: Mirror popular Reels trends
+- **Strong CTA**: Swipe up / "Learn More" button
+
+**Creative Ideas for Stories**:
+
+1. **Day in the Life**
+   - Follow user from meal plan creation → grocery shopping → cooking → family dinner
+   - Fast cuts, energetic music
+   - Text overlays showing time stamps ("Sunday 2pm", "Monday 6pm")
+   - End with "Make your life easier" CTA
+
+2. **Quick Tip / Hack**
+   - "Meal planning hack nobody talks about"
+   - Fast reveal: "Use AI instead of spending hours on Pinterest"
+   - Quick app demo
+   - CTA: "Try free"
+
+3. **Before/After Transformation**
+   - Before: Messy fridge, stressed parent
+   - After: Organized meal plan, happy family eating
+   - Side-by-side or swipe transition
+   - CTA: "Transform your dinner time"
+
+4. **User-Generated Content (UGC)**
+   - Repost user testimonial videos
+   - Authentic, relatable, trustworthy
+   - Add text overlay with user name (with permission)
+   - CTA: "Join our community"
+
+5. **Behind-the-Scenes**
+   - "How AI creates your personalized meal plan"
+   - Animated visualization of AI at work
+   - Educational + cool factor
+   - CTA: "See it in action"
+
+**Creative Ideas for Reels**:
+
+1. **Trending Audio Remix**
+   - Use popular TikTok/Reels audio
+   - Adapt to meal planning message
+   - Example: "Tell me you're a meal planner without telling me you're a meal planner" → Show organized fridge, meal prep, app
+   - CTA: Link in bio
+
+2. **Relatable Humor**
+   - "POV: It's 5pm and you have no idea what's for dinner"
+   - Cut to: User casually opening app, meal plan generated
+   - Cut to: Happy family eating dinner
+   - CTA: "Download free"
+
+3. **Tutorial / How-To**
+   - "How to plan a week of meals in 2 minutes"
+   - Fast-paced walkthrough of app
+   - Energetic music, quick cuts
+   - CTA: "Try it yourself"
+
+4. **Challenge / Transformation**
+   - "I tried AI meal planning for 7 days. Here's what happened:"
+   - Day 1, Day 3, Day 7 check-ins
+   - Show meals, reactions, results
+   - CTA: "Start your own journey"
+
+5. **Comparison**
+   - "Meal planning before AI vs. after AI"
+   - Split screen or transition
+   - Before: Stressed, time-consuming, chaotic
+   - After: Easy, fast, organized
+   - CTA: "Switch to AI"
+
+**Stories/Reels Performance Expectations**:
+- **Completion Rate**: 60-75% (higher than Feed videos)
+- **CTR**: 2-4% (higher engagement due to full-screen)
+- **CPC**: $0.70-$1.40 (competitive)
+- **Best Use Case**: Brand awareness, retargeting, Reels discovery feed
+
+---
+
+#### Sample Creative Concepts by Persona
+
+##### Persona 1: Busy Parent Beth
+
+**Image Ad Concept**:
+- **Visual**: Happy family of four eating dinner together at dining table (natural lighting, warm tones)
+- **Text Overlay**: "From stressed to blessed in 2 minutes"
+- **Headline**: "AI Meal Planning for Busy Families"
+- **Primary Text**: "Tired of the nightly 'What's for dinner?' scramble? Meal Planner Agent creates family-friendly meal plans in just 2 minutes. AI-powered personalization, kid-approved recipes, automated grocery lists. Save 5+ hours per week and reclaim family time. Join 10,000+ parents who've transformed dinner time. Try free for 7 days - no credit card required! 🎉"
+- **CTA Button**: "Start Free Trial"
+
+**Video Ad Concept** (20 seconds):
+```
+[0-3s] Mom standing in kitchen at 5:30pm looking stressed, kids in background
+       TEXT: "Every parent's worst nightmare: It's 5:30pm..."
+
+[4-6s] Close-up of empty fridge, mom's stressed face
+       TEXT: "...and you have NO idea what's for dinner"
+
+[7-11s] Mom pulls out phone, opens Meal Planner Agent app, selects preferences quickly
+        TEXT: "There's a better way ✨"
+
+[12-16s] App generates meal plan (animation), mom smiles, starts cooking
+         TEXT: "AI meal planning in 2 minutes"
+
+[17-20s] Family eating together, laughing
+         TEXT: "More family time. Less stress. Try free → "
+```
+
+**Carousel Ad Concept**:
+- **Card 1**: Kid eating colorful meal happily - "Kid-approved recipes"
+- **Card 2**: Organized grocery list on phone - "No more forgotten ingredients"
+- **Card 3**: 30-minute meal timer graphic - "Dinner ready in 30 minutes"
+- **Card 4**: Family eating together, relaxed - "Reclaim family time"
+- **Card 5**: "Start Free Trial" CTA
+
+---
+
+##### Persona 2: Fitness-Focused Frank
+
+**Image Ad Concept**:
+- **Visual**: Fit person eating high-protein meal prep bowls, gym bag visible, clean aesthetic
+- **Text Overlay**: "Hit your macros without the guesswork"
+- **Headline**: "AI Meal Planning for Athletes"
+- **Primary Text**: "Spending hours tracking macros and planning meals? Let AI do the heavy lifting. Meal Planner Agent creates personalized meal plans optimized for your fitness goals - whether you're bulking, cutting, or maintaining. Hit your protein targets, automate meal prep, save 5+ hours per week. Join 10,000+ fitness enthusiasts who train smarter. Try free for 7 days! 💪"
+- **CTA Button**: "Get My Plan"
+
+**Video Ad Concept** (25 seconds):
+```
+[0-3s] Person at gym finishing workout, checking phone
+       TEXT: "You crush your workouts..."
+
+[4-7s] Person at home staring at MyFitnessPal, meal prep containers, confused
+       TEXT: "But meal planning? That's the real challenge."
+
+[8-13s] Opens Meal Planner Agent, enters fitness goals (high protein, 2200 cals)
+        TEXT: "Until now. AI meal planning for athletes."
+
+[14-19s] App generates macro-optimized meal plan, grocery list appears
+         TEXT: "Perfect macros. Zero guesswork."
+
+[20-22s] Person meal prepping, looking confident
+         TEXT: "Train hard. Eat smart."
+
+[23-25s] App logo, download screen
+         TEXT: "Try free → Download now"
+```
+
+---
+
+##### Persona 3: Meal Prep Maven Maria
+
+**Image Ad Concept**:
+- **Visual**: Overhead shot of week's worth of meal prep containers, color-coded, organized perfectly
+- **Text Overlay**: "Meal prep made effortless"
+- **Headline**: "AI-Powered Meal Prep Planning"
+- **Primary Text**: "Love meal prep but hate the planning? Meal Planner Agent creates batch-cooking friendly meal plans optimized for efficiency. AI suggests meals that share ingredients, minimize waste, and save money. Get organized grocery lists sorted by recipe. Join 10,000+ meal prep enthusiasts who prep smarter. Try free for 7 days! 🥗"
+- **CTA Button**: "Start Prepping Smarter"
+
+**Carousel Ad Concept**:
+- **Card 1**: Grocery haul organized by meal - "Smart ingredient planning"
+- **Card 2**: Batch cooking in progress - "Cook once, eat all week"
+- **Card 3**: Organized meal prep containers in fridge - "Perfectly portioned"
+- **Card 4**: Money saved graphic - "Reduce food waste & save money"
+- **Card 5**: "Try Free" CTA
+
+---
+
+##### Persona 4: Budget-Conscious Brian
+
+**Image Ad Concept**:
+- **Visual**: Split image - LEFT: Expensive grocery receipt, stressed shopper - RIGHT: Organized meal plan, happy shopper with lower total
+- **Text Overlay**: "Cut your grocery bill by 20%"
+- **Headline**: "AI Meal Planning That Saves Money"
+- **Primary Text**: "Tired of overspending at the grocery store? Meal Planner Agent helps you plan smarter, not harder. AI creates meal plans that minimize waste, use pantry staples, and share ingredients across recipes. Get organized grocery lists to avoid impulse buys. Join 10,000+ budget-conscious shoppers saving money. Try free for 7 days! 💰"
+- **CTA Button**: "Start Saving"
+
+---
+
+##### Persona 5: Health-Seeker Hannah
+
+**Image Ad Concept**:
+- **Visual**: Beautiful, colorful Mediterranean-style meal (salmon, quinoa, roasted vegetables) artfully plated
+- **Text Overlay**: "Eat healthier without the stress"
+- **Headline**: "AI Nutrition Planning"
+- **Primary Text**: "Want to eat healthier but overwhelmed by options? Meal Planner Agent creates personalized meal plans focused on whole foods, balanced nutrition, and your health goals. Whether you're managing a condition or just want to feel better, AI makes healthy eating effortless. Join 10,000+ on their health journey. Try free for 7 days! 🥗"
+- **CTA Button**: "Get Started"
+
+**Video Ad Concept** (20 seconds):
+```
+[0-3s] Person looking at conflicting health advice on phone (keto, vegan, paleo), overwhelmed
+       TEXT: "So much health advice. Which is right for YOU?"
+
+[4-8s] Opens Meal Planner Agent, enters health goals (heart health, more vegetables, gluten-free)
+       TEXT: "AI creates YOUR perfect health plan"
+
+[9-14s] App generates meal plan with colorful, whole foods
+        TEXT: "Personalized nutrition. Real results."
+
+[15-17s] Person enjoying healthy meal, looking energized
+         TEXT: "Feel amazing."
+
+[18-20s] App logo, CTA
+         TEXT: "Start your health journey free"
+```
+
+---
+
+#### Budget Allocation
+
+##### Starter Budget: $600-$800/month
+
+**Campaign Allocation**:
+- **Conversion Campaigns (Cold Traffic)**: $300-$400/month (50%)
+  - Prospecting with interest targeting
+  - Focus on Core Audiences (interests + demographics)
+  - Ad sets by persona (Busy Parent Beth, Fitness Frank, etc.)
+  - Expected: 40-60 signups/month at $8-$12 CPA
+
+- **Retargeting Campaigns**: $200-$300/month (35%)
+  - Landing page viewers (last 30 days)
+  - Pricing page viewers (last 14 days)
+  - Sign-up abandoners (last 7 days)
+  - Expected: 20-35 signups/month at $6-$10 CPA
+
+- **Testing Budget**: $100/month (15%)
+  - New audience testing
+  - Creative testing (new ad formats, copy)
+  - Lookalike audience testing (once available)
+
+**Total Expected Results**:
+- **Signups**: 60-95/month
+- **Average CPA**: $8-$12
+- **Impressions**: 400,000-600,000/month
+- **Clicks**: 4,000-7,000/month
+- **CTR**: 1-1.5%
+
+---
+
+##### Growth Budget: $1,200-$1,500/month
+
+**Campaign Allocation**:
+- **Conversion Campaigns (Cold Traffic)**: $600-$750/month (50%)
+  - Expand interest targeting
+  - Add Lookalike audiences (1% converters)
+  - More persona-specific ad sets
+  - Expected: 75-115 signups/month
+
+- **Retargeting Campaigns**: $420-$525/month (35%)
+  - All retargeting segments
+  - Video view retargeting
+  - Engagement retargeting
+  - Expected: 40-65 signups/month
+
+- **Testing & Expansion**: $180/month (15%)
+  - New creative formats (Reels, Stories)
+  - Broader Lookalike audiences (2-3%)
+  - Seasonal campaign testing
+
+**Total Expected Results**:
+- **Signups**: 115-180/month
+- **Average CPA**: $8-$12
+- **Impressions**: 800,000-1,200,000/month
+- **Clicks**: 8,000-12,000/month
+- **CTR**: 1-1.5%
+
+---
+
+##### Scale Budget: $2,000-$2,500/month
+
+**Campaign Allocation**:
+- **Conversion Campaigns (Cold Traffic)**: $1,000-$1,250/month (50%)
+  - Multiple Lookalike audiences
+  - Broad interest targeting
+  - Competitor audience targeting
+  - Expected: 125-190 signups/month
+
+- **Retargeting Campaigns**: $700-$875/month (35%)
+  - All segments
+  - Cross-platform retargeting (users who saw Google Ads)
+  - Expected: 65-105 signups/month
+
+- **Brand Awareness + Testing**: $300/month (15%)
+  - Reach campaigns (top-of-funnel)
+  - Video view campaigns
+  - New platform testing (Pinterest, TikTok)
+
+**Total Expected Results**:
+- **Signups**: 190-295/month
+- **Average CPA**: $8-$12
+- **Impressions**: 1,500,000-2,000,000/month
+- **Clicks**: 15,000-20,000/month
+- **CTR**: 1-1.5%
+
+---
+
+#### Testing Plan
+
+##### Phase 1: Foundation Testing (Month 1)
+
+**Goal**: Establish baseline performance, identify winning audiences and creatives
+
+**Audience Tests**:
+1. **Test: Interest-Based Audiences**
+   - Ad Set A: Cooking + Meal Planning interests
+   - Ad Set B: Fitness + Nutrition interests
+   - Ad Set C: Parenting + Family interests
+   - Budget: $15/day per ad set
+   - Duration: 2 weeks
+   - Success Metric: CPA < $12, CTR > 1%
+   - **Expected Winner**: Cooking + Meal Planning (highest relevance)
+
+2. **Test: Demographic Variations**
+   - Ad Set A: Age 25-35 (younger parents, professionals)
+   - Ad Set B: Age 36-45 (established parents)
+   - Ad Set C: Age 46-55 (older health-seekers)
+   - Budget: $10/day per ad set
+   - Duration: 2 weeks
+   - Success Metric: CPA, conversion rate
+   - **Expected Winner**: Age 30-45 (core personas)
+
+**Creative Tests**:
+1. **Test: Ad Format**
+   - Variation A: Single image ad (meal hero shot)
+   - Variation B: Video ad (15s problem-solution)
+   - Variation C: Carousel ad (5-card feature showcase)
+   - Budget: $15/day per variation
+   - Duration: 2 weeks
+   - Success Metric: CTR, CPC, CPA
+   - **Expected Winner**: Video (higher engagement) or Carousel (feature education)
+
+2. **Test: Messaging Angle**
+   - Variation A: Time savings focus - "Save 5 hours per week"
+   - Variation B: Stress reduction focus - "Never wonder what's for dinner"
+   - Variation C: AI technology focus - "AI-powered personalization"
+   - Budget: $10/day per variation
+   - Duration: 2 weeks
+   - Success Metric: CTR, conversion rate
+   - **Expected Winner**: Time savings (strongest pain point for Busy Parent Beth)
+
+3. **Test: Visual Style**
+   - Variation A: Food-focused (beautiful meal photography)
+   - Variation B: People-focused (family eating together)
+   - Variation C: App-focused (mobile interface screenshots)
+   - Budget: $10/day per variation
+   - Duration: 2 weeks
+   - Success Metric: CTR, engagement
+   - **Expected Winner**: People-focused (emotional connection)
+
+**Testing Best Practices**:
+- **One variable at a time**: Isolate what's being tested
+- **Statistical significance**: Minimum 500 impressions per variation before evaluating
+- **Adequate budget**: At least $100-$150 per variation to reach significance
+- **Time frame**: 1-2 weeks minimum (account for day-of-week variance)
+- **Document results**: Track all tests in shared spreadsheet
+- **Implement winners**: Roll out winning variations to larger budgets
+- **Continuous testing**: Never stop testing (audience preferences change)
+
+---
+
+##### Phase 2: Optimization Testing (Month 2-3)
+
+**Goal**: Refine winning strategies, scale top performers, expand reach
+
+**Audience Tests**:
+1. **Test: Lookalike Audiences** (requires 50+ conversions first)
+   - Ad Set A: 1% Lookalike - Converters
+   - Ad Set B: 2% Lookalike - Converters
+   - Ad Set C: 1% Lookalike - High-Value Actions (meal plan generated)
+   - Budget: $20/day per ad set
+   - Duration: 3 weeks
+   - Success Metric: CPA < $14 (acceptable for expansion)
+   - **Expected Winner**: 1% Lookalike Converters
+
+2. **Test: Retargeting Windows**
+   - Ad Set A: Retarget last 7 days (high intent, small audience)
+   - Ad Set B: Retarget last 14 days (medium intent)
+   - Ad Set C: Retarget last 30 days (lower intent, larger audience)
+   - Budget: $15/day per ad set
+   - Duration: 2 weeks
+   - Success Metric: CPA, ROAS
+   - **Expected Winner**: 14-day window (balance of intent and scale)
+
+**Creative Tests**:
+1. **Test: Video Length**
+   - Variation A: 10-second video (ultra-short, fast hook)
+   - Variation B: 20-second video (balanced, story arc)
+   - Variation C: 30-second video (comprehensive, detailed)
+   - Budget: $15/day per variation
+   - Duration: 2 weeks
+   - Success Metric: ThruPlay rate, CTR, CPA
+   - **Expected Winner**: 15-20 seconds (sweet spot for engagement and comprehension)
+
+2. **Test: CTA Button Text**
+   - Variation A: "Start Free Trial"
+   - Variation B: "Get My Meal Plan"
+   - Variation C: "Try It Free"
+   - Budget: $10/day per variation
+   - Duration: 1 week
+   - Success Metric: CTR, conversion rate
+   - **Expected Winner**: "Start Free Trial" (clear, low-friction)
+
+3. **Test: Social Proof Elements**
+   - Variation A: User count - "Join 10,000+ families"
+   - Variation B: Testimonial quote - "Saves me 5 hours per week!" - Sarah M.
+   - Variation C: Rating - "⭐⭐⭐⭐⭐ Rated 4.8/5 by users"
+   - Budget: $10/day per variation
+   - Duration: 2 weeks
+   - Success Metric: Conversion rate
+   - **Expected Winner**: Testimonial (humanizes, relatable)
+
+---
+
+##### Phase 3: Scaling Tests (Month 4-6)
+
+**Goal**: Expand reach profitably, test new formats, prepare for seasonal campaigns
+
+**Audience Tests**:
+1. **Test: Broad vs. Narrow Targeting**
+   - Ad Set A: Narrow (tightly defined interests, demographics)
+   - Ad Set B: Broad (18-65, minimal interests, let Facebook optimize)
+   - Budget: $30/day per ad set
+   - Duration: 3-4 weeks
+   - Success Metric: CPA, scale (conversions volume)
+   - **Expected Winner**: Depends on Facebook's algorithm maturity
+
+2. **Test: Competitor Audience**
+   - Ad Set A: Users interested in MyFitnessPal
+   - Ad Set B: Users interested in Mealime
+   - Ad Set C: Users interested in Yummly
+   - Budget: $15/day per ad set
+   - Duration: 3 weeks
+   - Success Metric: CPA, conversion quality
+   - **Expected Winner**: MyFitnessPal (largest competitor audience)
+
+**Creative Tests**:
+1. **Test: Stories vs. Reels Placement**
+   - Campaign A: Stories placement only
+   - Campaign B: Reels placement only
+   - Campaign C: Both placements (Facebook optimizes)
+   - Budget: $20/day per campaign
+   - Duration: 2-3 weeks
+   - Success Metric: CTR, CPA, reach
+   - **Expected Winner**: Reels (discovery feed, newer format)
+
+2. **Test: UGC (User-Generated Content) vs. Polished Creative**
+   - Variation A: User testimonial video (authentic, iPhone-shot)
+   - Variation B: Professionally produced ad (high production value)
+   - Budget: $20/day per variation
+   - Duration: 3 weeks
+   - Success Metric: CTR, engagement, CPA
+   - **Expected Winner**: UGC (authenticity resonates, especially on social)
+
+---
+
+##### Continuous Testing Cadence
+
+**Weekly Tasks**:
+- Review test results (Thursday)
+- Pause underperforming variations (CPA > $16 after $150 spend)
+- Scale winners (increase budget by 20% weekly if CPA < $10)
+- Launch 1-2 new creative tests
+
+**Bi-Weekly Tasks**:
+- Analyze audience performance
+- Refresh ad creative (avoid ad fatigue - swap images/videos every 2-3 weeks)
+- Expand winning audiences to new demographics/interests
+
+**Monthly Tasks**:
+- Comprehensive performance review
+- Update testing roadmap based on learnings
+- Creative refresh (produce 5-10 new images, 2-3 new videos)
+- Budget reallocation across campaigns
+
+---
+
+### TikTok Ads Strategy
+
+**Status**: Tier 3 - Launch Month 4-6+ (Conditional on Tier 1/2 success)
+
+#### Platform Readiness Assessment
+
+**Before Launching TikTok Ads, Ensure**:
+- ✅ Meta campaigns running profitably for 3+ months (CPA < $14, ROAS > 2:1)
+- ✅ Pinterest campaigns tested and optimized (if applicable)
+- ✅ Video content library ready (minimum 10 videos, 9:16 vertical format)
+- ✅ Resources allocated for ongoing video production (2-4 new videos per week)
+- ✅ Budget capacity of $600-$1,000/month minimum (TikTok requires $20/day min)
+- ✅ Clear KPIs and ROI benchmarks from existing platforms
+
+**If Any of Above Are Not Met**: Delay TikTok launch and focus on optimizing Tier 1/2 platforms.
+
+---
+
+#### Audience Targeting Parameters
+
+**Demographic Targeting**:
+- **Age**: 18-44 (TikTok's core audience skews younger)
+  - Primary: 25-34 (Fitness Frank, Meal Prep Maria)
+  - Secondary: 18-24 (younger professionals, students)
+- **Gender**: All
+- **Location**: United States
+- **Language**: English
+
+**Interest Targeting** (TikTok Categories):
+- **Food & Drink**: Cooking, recipes, meal prep, healthy eating
+- **Health & Fitness**: Workout, nutrition, wellness, weight loss
+- **Lifestyle**: Home organization, productivity, life hacks
+- **Family & Parenting**: Busy parents, family activities
+- **Technology**: Apps, AI, tech reviews
+
+**Behavior Targeting**:
+- **Video Interactions**: Users who watch food/cooking videos, how-to content
+- **Hashtag Interests**: #mealprep, #cooking, #fitness, #healthyfood
+- **Device**: iOS and Android (app install campaigns)
+- **Connection Type**: Wi-Fi preferred (higher engagement)
+
+**Limitations** (compared to Meta):
+- ❌ No household income targeting
+- ❌ No parental status targeting (must rely on interest proxies)
+- ❌ Less granular than Meta overall
+
+**Workaround**: Use creative content to self-select audience (e.g., "busy parents" in copy)
+
+---
+
+#### Ad Formats & Specifications
+
+##### In-Feed Video Ads (Primary Format)
+
+**Specifications**:
+- **Resolution**: 1080 x 1920 pixels (9:16 vertical, full-screen)
+- **File Type**: MP4, MOV, MPEG, AVI, 3GP
+- **File Size**: Max 500 MB
+- **Length**: 5-60 seconds (optimal: 9-15 seconds for TikTok)
+- **Aspect Ratio**: 9:16 (vertical) recommended, 1:1 or 16:9 supported
+- **Video Bitrate**: ≥516 kbps
+- **Sound**: Required (TikTok users watch with sound ON - critical difference from Meta)
+
+**Best Practices**:
+- **Hook in 1-2 seconds**: TikTok scroll speed is FAST
+- **Sound-on design**: Use trending music, voiceover, sound effects (unlike Meta)
+- **Native feel**: Don't look like an ad - mimic organic TikTok content
+- **Vertical format only**: 9:16 performs dramatically better
+- **Text overlays**: For emphasis, but don't rely solely on text (sound is king)
+- **Fast-paced editing**: Quick cuts, energetic pacing
+- **Authentic over polished**: User-generated style beats high production value
+- **Clear CTA**: Tell viewers to click, download, or check link in bio
+
+**Content Formats That Work on TikTok**:
+
+1. **Trending Sound/Music Remix**
+   - Use popular TikTok audio from trending page
+   - Adapt sound to meal planning message
+   - Ride the wave of existing trend
+   - Example: "Tell me you're a meal planner without telling me you're a meal planner" → Show organized fridge, meal prep tools, app
+
+2. **Quick Tutorial/Demo**
+   - "How to plan a week of meals in 2 minutes"
+   - Fast-paced walkthrough of app
+   - Show value immediately
+   - Energetic music, quick cuts
+
+3. **Relatable Humor/Memes**
+   - "Me realizing it's 5pm and I have no idea what's for dinner 😱"
+   - Shared pain point → solution reveal
+   - Use trending meme formats
+   - Self-deprecating, authentic humor
+
+4. **Transformation/Before & After**
+   - Chaotic meal planning → organized AI plan
+   - Messy fridge → perfectly planned groceries
+   - Stressed cook → confident chef
+   - Fast transitions, satisfying reveal
+
+5. **"Day in the Life" / Vlog Style**
+   - Follow a user through meal planning process
+   - Authentic user experience (not actor)
+   - Showcases real value
+   - Casual, relatable, conversational
+
+**Sample TikTok Ad Scripts**:
+
+**Script 1: Trending Sound Hook (12 seconds)**
+```
+AUDIO: [Trending TikTok sound] "I woke up feeling so... (depressed)"
+[0-2s] VISUAL: Person staring at empty fridge, looking hopeless
+        TEXT OVERLAY: "Me at 5pm with no dinner plan"
+
+AUDIO: "...so I bought myself (expensive thing)"
+[3-5s] VISUAL: Person opens Meal Planner Agent app on phone
+        TEXT OVERLAY: "So I got myself AI meal planning"
+
+AUDIO: "Now I'm feeling so... (incredible, unstoppable)"
+[6-10s] VISUAL: Person confidently cooking from app's meal plan, smiling
+         TEXT OVERLAY: "Now I'm unstoppable 😎"
+
+[11-12s] VISUAL: App logo, download screen
+          TEXT OVERLAY: "Download free → link in bio"
+```
+
+**Script 2: Problem-Solution Hook (15 seconds)**
+```
+[0-2s] TEXT ON SCREEN: "POV: You're sick of asking 'what's for dinner?'"
+       VISUAL: Person looking in fridge, frustrated expression
+       AUDIO: Frustrated sigh sound effect
+
+[3-5s] TEXT: "So you let AI do it"
+       VISUAL: Hand swiping on phone, opening Meal Planner Agent
+       AUDIO: Upbeat transition sound
+
+[6-11s] VISUAL: Fast-motion screen recording of app generating meal plan
+        TEXT: "AI creates your week in 2 minutes ✨"
+        AUDIO: Satisfying "whoosh" sounds as meals populate
+
+[12-14s] VISUAL: Person holding phone showing completed plan, smiling
+         TEXT: "No more dinner stress"
+         AUDIO: Happy music
+
+[15s] VISUAL: "Download free" with app logo
+      TEXT: "Link in bio 👆"
+```
+
+**Script 3: Relatable Skit (10 seconds)**
+```
+[0-2s] Person 1: "What's for dinner tonight?"
+       Person 2: "Uhhh..." [looks panicked]
+       VISUAL: Kitchen, couple talking
+       AUDIO: Realistic conversation
+
+[3-5s] Person 2: "Hold on, let me check my AI meal planner"
+       VISUAL: Person 2 pulls out phone, opens app
+       AUDIO: Phone unlock sound
+
+[6-8s] Person 2: "Teriyaki salmon with roasted veggies!"
+       Person 1: "Wow, you're so organized!"
+       VISUAL: Phone screen showing meal plan
+       AUDIO: Impressed tone
+
+[9-10s] TEXT ON SCREEN: "Get Meal Planner Agent free"
+        VISUAL: App logo
+        AUDIO: Upbeat outro music
+```
+
+**Script 4: Quick Win / Life Hack (9 seconds)**
+```
+[0-2s] TEXT: "Meal planning hack nobody talks about"
+       VISUAL: Person looking directly at camera, knowing expression
+       AUDIO: "Listen..." (voiceover)
+
+[3-6s] TEXT: "Stop spending hours on Pinterest. Use AI instead."
+       VISUAL: Quick cuts - Pinterest browsing → app → meal plan generated
+       AUDIO: Fast-paced voiceover
+
+[7-9s] TEXT: "Download Meal Planner Agent free"
+       VISUAL: App icon, download animation
+       AUDIO: "You're welcome" (voiceover)
+```
+
+---
+
+#### Creative Production for TikTok
+
+**Video Production Approach**:
+
+1. **User-Generated Content (UGC) Style** (Recommended)
+   - Film with iPhone/smartphone (authentic feel)
+   - Natural lighting (no studio setup)
+   - Casual, conversational tone
+   - Real users sharing experience (with permission)
+   - Cost: $50-$200 per video (pay users or create in-house)
+
+2. **Trending Format Remixes**
+   - Monitor TikTok trending page daily
+   - Adapt trending sounds/challenges to meal planning
+   - Quick turnaround (trends move fast, 24-48 hour production)
+   - Use CapCut (free TikTok video editor) for editing
+   - Cost: $0-$100 per video (in-house creation)
+
+3. **Quick App Demos**
+   - Screen recording of app (QuickTime, iOS screen record)
+   - Add text overlays, trending music in CapCut
+   - Fast-paced editing (no segment longer than 3 seconds)
+   - Cost: $0 (in-house)
+
+**Tools**:
+- **Editing**: CapCut (free, TikTok's editor), Adobe Premiere, DaVinci Resolve
+- **Captions**: CapCut auto-captions, Descript
+- **Music**: TikTok Commercial Music Library (licensed for ads), Epidemic Sound
+- **Screen Recording**: QuickTime (Mac), iOS built-in, OBS (Windows)
+- **Stock Footage**: Pexels, Pixabay (use sparingly - original content better)
+
+**Content Calendar** (if launching TikTok):
+- **Week 1-2**: Produce 10-12 videos (variety of hooks, formats)
+- **Ongoing**: 2-4 new videos per week
+- **Refresh**: Retire videos after 2-3 weeks (avoid ad fatigue)
+
+---
+
+#### Budget Allocation
+
+##### Test Budget: $600-$800/month
+
+**Campaign Structure**:
+- **Reach Campaign** (Awareness): $400/month
+  - Objective: Reach (maximize impressions)
+  - Audience: Broad interests (food, fitness, lifestyle)
+  - Creative: 5-7 entertaining videos (trending formats)
+  - Goal: Brand awareness, build pixel data
+  - KPI: CPM < $8, Reach 200K-400K users
+
+- **Traffic Campaign** (Website Clicks): $200-$400/month
+  - Objective: Traffic
+  - Audience: Interest targeting (meal planning, cooking, nutrition)
+  - Creative: 3-5 demo videos with strong CTA
+  - Goal: Drive traffic to landing page
+  - KPI: CPC < $2.00, CTR > 1%
+
+**Expected Performance** (Month 1-2):
+- **Impressions**: 75,000-120,000/month
+- **Clicks**: 300-600/month
+- **Website Visits**: 200-400/month
+- **Conversions**: 10-30 signups/month (conservative estimate)
+- **CPA**: $20-$40 (higher than Meta initially - learning phase)
+
+**Decision Point After 2 Months**:
+- ✅ **Continue if**: CPA trending toward $15-$20, engagement strong
+- ❌ **Pause if**: CPA > $40 consistently, poor engagement (low watch time)
+- 🔄 **Adjust if**: Mixed results - iterate on creative, targeting
+
+---
+
+#### Testing Plan
+
+**Phase 1: Platform Validation (Month 1-2)**
+
+**Goal**: Determine if TikTok is a viable acquisition channel
+
+**Tests**:
+1. **Content Style Test**
+   - Variation A: UGC testimonial (real user, authentic)
+   - Variation B: Trending sound remix (entertaining, viral potential)
+   - Variation C: Quick tutorial (educational, app demo)
+   - Budget: $150 per variation
+   - Duration: 2 weeks
+   - Success Metric: CTR, engagement rate, CPA
+
+2. **Hook Speed Test**
+   - Variation A: 1-second hook (ultra-fast)
+   - Variation B: 3-second hook (standard)
+   - Variation C: 5-second hook (slow build)
+   - Budget: $100 per variation
+   - Duration: 2 weeks
+   - Success Metric: Watch time, completion rate
+
+3. **Audience Breadth Test**
+   - Ad Set A: Narrow (age 25-34, cooking + meal prep interests)
+   - Ad Set B: Broad (age 18-44, food + lifestyle interests)
+   - Budget: $200 per ad set
+   - Duration: 2 weeks
+   - Success Metric: CPA, conversion quality
+
+**Phase 2: Optimization (Month 3-4, if Phase 1 successful)**
+
+**Tests**:
+- Video length optimization (9s vs. 15s vs. 20s)
+- Music type (trending vs. generic upbeat)
+- CTA placement (beginning vs. end)
+- Persona targeting (test messaging for different personas)
+
+---
+
+### Comprehensive Budget Allocation Framework
+
+#### Recommended Budget Tiers
+
+##### Tier 1: Starter ($1,000-$1,500/month)
+
+**Channel Allocation**:
+- **Meta (Facebook + Instagram)**: $700-$1,000/month (70%)
+  - Conversion campaigns (cold): $350-$500
+  - Retargeting: $250-$350
+  - Testing: $100-$150
+
+- **Google Ads**: $300-$500/month (30%) [From existing Google Ads strategy]
+  - Search campaigns: $250-$400
+  - Display/YouTube: $50-$100
+
+- **Pinterest**: $0 (not yet launched)
+- **TikTok**: $0 (not yet launched)
+
+**Expected Total Performance**:
+- **Total Signups**: 90-130/month
+- **Blended CPA**: $10-$15
+- **Channel Mix**: 60% Meta, 40% Google
+
+**When to Use**: Validating product-market fit, early-stage startup, limited budget
+
+---
+
+##### Tier 2: Growth ($2,000-$3,000/month)
+
+**Channel Allocation**:
+- **Meta (Facebook + Instagram)**: $1,200-$1,500/month (50%)
+  - Conversion campaigns: $600-$750
+  - Retargeting: $420-$525
+  - Testing: $180-$225
+
+- **Google Ads**: $600-$900/month (30%)
+  - Search campaigns: $500-$750
+  - Display/YouTube: $100-$150
+
+- **Pinterest**: $200-$600/month (20%)
+  - Consideration campaigns: $150-$300
+  - Conversion campaigns: $50-$300
+
+- **TikTok**: $0 (evaluate for Month 3-4)
+
+**Expected Total Performance**:
+- **Total Signups**: 180-270/month
+- **Blended CPA**: $9-$13
+- **Channel Mix**: 50% Meta, 30% Google, 20% Pinterest
+
+**When to Use**: Proven conversion funnel, scaling user acquisition, healthy unit economics
+
+---
+
+##### Tier 3: Scale ($4,000-$6,000/month)
+
+**Channel Allocation**:
+- **Meta (Facebook + Instagram)**: $2,000-$2,500/month (45%)
+  - Conversion campaigns: $1,000-$1,250
+  - Retargeting: $700-$875
+  - Brand awareness: $300-$375
+
+- **Google Ads**: $1,200-$2,000/month (30%)
+  - Search campaigns: $900-$1,500
+  - Display/YouTube: $300-$500
+
+- **Pinterest**: $600-$1,000/month (15%)
+  - Consideration: $300-$500
+  - Conversion: $300-$500
+
+- **TikTok**: $600-$1,000/month (10%) [If validated]
+  - Reach: $400-$600
+  - Traffic: $200-$400
+
+**Expected Total Performance**:
+- **Total Signups**: 350-500/month
+- **Blended CPA**: $10-$14
+- **Channel Mix**: 45% Meta, 30% Google, 15% Pinterest, 10% TikTok
+
+**When to Use**: Strong PMF, efficient conversion funnel, aggressive growth goals
+
+---
+
+#### Cross-Platform Retargeting Strategy
+
+**Coordinated Retargeting Across Channels**:
+
+1. **User Journey Tracking**:
+   - User sees Meta ad → visits site (Meta Pixel + GA4 track)
+   - User doesn't convert → added to retargeting audiences (Meta + Google + Pinterest)
+   - User sees retargeting ads across all platforms (coordinated frequency cap)
+
+2. **Sequential Messaging**:
+   - **First Touch (Meta/Pinterest/TikTok)**: Awareness - "Discover AI meal planning"
+   - **Second Touch (Google Display/Meta Retargeting)**: Consideration - "See how it works"
+   - **Third Touch (Meta/Google Retargeting)**: Conversion - "Start free trial today"
+   - **Fourth Touch (Email + Retargeting)**: Urgency - "Limited time offer"
+
+3. **Coordinated Frequency Caps**:
+   - **Meta**: 3 impressions per 7 days
+   - **Google Display**: 5 impressions per 7 days
+   - **Pinterest**: 4 impressions per 7 days
+   - **Total**: Max 12 impressions per user per week across all platforms (avoid fatigue)
+
+4. **Cross-Platform Exclusions**:
+   - Exclude converted users from all ad platforms (mark as customer)
+   - Exclude active trial users from conversion campaigns (shift to retention messaging)
+   - Share customer lists across platforms (Google Customer Match, Meta Custom Audience, Pinterest Customer List)
+
+---
+
+#### ROI Projections by Budget Tier
+
+**Assumptions**:
+- Average CPA: Meta $10, Google $35, Pinterest $9, TikTok $18 (blended)
+- Trial-to-Paid Conversion: 15% (industry standard for SaaS)
+- Average Revenue Per User (ARPU): $120/year ($10/month × 12 months average lifetime)
+- Churn Rate: 30% annually
+
+| Budget Tier | Monthly Spend | Monthly Signups | Trial→Paid (15%) | Monthly Revenue | Year 1 Revenue | ROI (Year 1) | Break-Even Month |
+|-------------|---------------|-----------------|------------------|-----------------|----------------|--------------|------------------|
+| **Starter** | $1,250 | 110 | 17 | $170 | $22,440 | 49% | Month 9 |
+| **Growth** | $2,500 | 225 | 34 | $340 | $44,880 | 49% | Month 9 |
+| **Scale** | $5,000 | 425 | 64 | $640 | $84,480 | 41% | Month 10 |
+
+**Notes**:
+- ROI calculated as: (Year 1 Revenue - Total Ad Spend) / Total Ad Spend
+- Assumes all users acquired in Month 1 (conservative - actual revenue would be higher with ongoing acquisition)
+- Does not include LTV beyond Year 1 (actual ROI significantly higher with retention)
+
+---
+
+### Implementation Timeline
+
+#### Pre-Launch (Week -2 to Week 0)
+
+**Meta Ads Setup**:
+- [ ] Create Facebook Business Manager account
+- [ ] Create ad account, add payment method
+- [ ] Install Meta Pixel on website (`apps/web/lib/analytics/meta-pixel.tsx`)
+- [ ] Create Custom Conversions (PageView, ViewContent, CompleteRegistration)
+- [ ] Test pixel with Facebook Pixel Helper extension
+- [ ] Create initial audiences (saved audiences for targeting)
+- [ ] Upload customer list (if available) for exclusions
+- [ ] Create campaign structure (naming conventions, folder organization)
+
+**Creative Production**:
+- [ ] Photoshoot or source stock images (meal photography, app screenshots)
+- [ ] Produce 3-5 video ads (15-30 seconds each)
+- [ ] Design image ads (5-7 variations, persona-specific)
+- [ ] Write ad copy (headlines, primary text, descriptions)
+- [ ] Create carousel ads (3-5 cards each, 2-3 carousels)
+
+---
+
+#### Month 1: Meta Launch & Google Ads Continuation
+
+**Week 1: Meta Launch**
+- [ ] Launch Conversion Campaigns (3-4 ad sets, interest-based audiences)
+  - Ad Set 1: Busy Parents (parenting + cooking interests)
+  - Ad Set 2: Fitness Enthusiasts (fitness + nutrition interests)
+  - Ad Set 3: General Meal Planning (broad meal planning interests)
+- [ ] Launch Retargeting Campaign (website visitors, last 30 days)
+- [ ] Set daily budgets: $20-$30/day total
+- [ ] Monitor pixel firing (check Events Manager)
+- [ ] Daily monitoring for first 3 days (check for disapprovals, errors)
+
+**Week 2-4: Optimization & Testing**
+- [ ] Review performance daily (first week), then 3x/week
+- [ ] Pause underperforming ad sets (CPA > $16 after $100 spend)
+- [ ] Scale winners (increase budget by 20% if CPA < $10)
+- [ ] Launch first A/B test (messaging angle test)
+- [ ] Collect pixel data for retargeting audiences (need 1,000+ site visitors)
+- [ ] Coordinate with Google Ads campaigns (ensure consistent messaging)
+
+**Google Ads** (Ongoing from previous strategy):
+- [ ] Continue Search + Display campaigns
+- [ ] Add exclusion audiences (users who converted via Meta)
+- [ ] Cross-platform reporting setup (track source of all conversions)
+
+**End of Month 1 Goals**:
+- **Meta**: 40-60 conversions, $10-$14 CPA, 3,000+ pixel events
+- **Google**: Continue baseline performance
+- **Learning**: Identify top-performing Meta audiences and creatives
+
+---
+
+#### Month 2-3: Meta Expansion + Pinterest Launch
+
+**Meta**:
+- [ ] Launch Lookalike Audiences (1% converters - requires 50+ conversions)
+- [ ] Expand retargeting (video viewers, engagement audiences, pricing page viewers)
+- [ ] Refresh creative (new images, new videos - combat ad fatigue)
+- [ ] Test Stories/Reels placements
+- [ ] Increase budget to $40-$60/day (if Month 1 successful)
+
+**Pinterest Launch** (Month 2-3):
+- [ ] Create Pinterest Business account
+- [ ] Install Pinterest Tag on website
+- [ ] Create Pin designs (vertical 1000x1500px images)
+- [ ] Set up Consideration campaigns (traffic objective)
+- [ ] Set up Conversion campaigns (signup objective)
+- [ ] Launch with $10-$20/day budget
+- [ ] Monitor for 2-3 weeks before scaling
+
+**Google Ads** (Ongoing):
+- [ ] Expand to Performance Max campaigns (if eligible)
+- [ ] Increase YouTube video ad budget (if performing well)
+
+**End of Month 3 Goals**:
+- **Meta**: 75-115 conversions/month, $9-$12 CPA, Lookalikes performing
+- **Pinterest**: 20-40 conversions/month, $8-$12 CPA (validation)
+- **Google**: Stable performance
+- **Cross-platform**: Coordinated retargeting active
+
+---
+
+#### Month 4-6: Scaling + TikTok Evaluation
+
+**Meta**:
+- [ ] Scale winning campaigns (increase budgets by 30-50%)
+- [ ] Launch broader Lookalikes (2-3% if 1% saturated)
+- [ ] Test Campaign Budget Optimization (CBO)
+- [ ] Quarterly creative refresh (new photoshoot, new videos)
+
+**Pinterest**:
+- [ ] Scale if CPA < $12 (increase to $30-$40/day)
+- [ ] Test Actalike audiences (Pinterest's lookalikes)
+- [ ] Expand keyword targeting
+
+**TikTok** (ONLY if Meta + Pinterest show strong ROI):
+- [ ] Decide: Launch TikTok or focus on scaling proven channels
+- [ ] If launching: Produce 10+ TikTok-specific videos
+- [ ] Launch with test budget ($20/day minimum)
+- [ ] Run for 2 months before evaluation
+
+**Google Ads** (Ongoing):
+- [ ] Continue optimization, keyword expansion
+- [ ] Scale top-performing campaigns
+
+**End of Month 6 Goals**:
+- **Total Conversions**: 180-270/month (across all channels)
+- **Blended CPA**: $10-$13
+- **ROAS**: 2:1 or better
+- **Decision**: Scale further or maintain current spend
+
+---
+
+### Key Performance Indicators (KPIs)
+
+#### Primary KPIs (Check Weekly)
+
+| Metric | Target | Excellent | Poor | Action if Poor |
+|--------|--------|-----------|------|----------------|
+| **CPA (Meta)** | $10-$14 | <$10 | >$16 | Pause poor ad sets, refresh creative |
+| **CPA (Pinterest)** | $8-$12 | <$8 | >$14 | Adjust targeting, test new creatives |
+| **CPA (TikTok)** | $15-$20 | <$15 | >$25 | Re-evaluate platform fit |
+| **CTR (Meta)** | 1.2-1.8% | >2% | <1% | Improve ad copy, visuals |
+| **Conversion Rate (Landing Page)** | 8-12% | >12% | <6% | Optimize landing page, CTA |
+| **ROAS (All Channels)** | 2:1 | 3:1+ | <1.5:1 | Reduce spend, improve targeting |
+
+#### Secondary KPIs (Check Bi-Weekly)
+
+| Metric | Target | Notes |
+|--------|--------|-------|
+| **CPM (Meta)** | $10-$15 | Reflects audience competition |
+| **CPC (Meta)** | $0.80-$1.50 | Lower is better, but CTR matters more |
+| **Engagement Rate** | 3-5% | Likes, comments, shares, saves |
+| **Video Completion Rate** | 40-60% | % who watched to end |
+| **Frequency (Retargeting)** | 2-4 | Times same user sees ad |
+| **Ad Fatigue** (CTR decline over time) | <20% decline | Refresh creative if CTR drops >20% |
+
+#### Business KPIs (Check Monthly)
+
+| Metric | Target | Notes |
+|--------|--------|-------|
+| **Trial-to-Paid Conversion** | 12-18% | Signups who become paying customers |
+| **Churn Rate** | <5% monthly | Paying users who cancel |
+| **LTV (Customer Lifetime Value)** | $120-$200 | Average revenue per customer |
+| **CAC Payback Period** | <6 months | Time to recoup acquisition cost |
+| **MRR (Monthly Recurring Revenue)** | Growing | From paid conversions |
+
+---
+
+### Creative Asset Library
+
+#### Required Assets for Launch
+
+**Images** (Minimum):
+- 10-15 high-quality meal photos (various cuisines, colorful, appetizing)
+- 5-7 app interface screenshots (key features, meal plan view, grocery list)
+- 3-5 lifestyle photos (people cooking, families eating, meal prep setups)
+- 2-3 before/after images (chaotic kitchen → organized, stressed → happy)
+
+**Videos** (Minimum):
+- 3-5 video ads (15-30 seconds each, problem-solution format)
+- 2-3 testimonial videos (real users or actors, authentic feel)
+- 1-2 app demo videos (screen recording with voiceover)
+
+**Written Copy**:
+- 20+ headline variations (for testing)
+- 10+ primary text variations (different angles, personas)
+- 5+ description/CTA variations
+
+**Carousel Content**:
+- 2-3 carousel ad sets (feature showcase, meal variety, personas)
+- 15-20 individual carousel cards (designed consistently)
+
+---
+
+#### Ongoing Creative Production Schedule
+
+**Weekly**:
+- 1-2 new image ads (keep content fresh)
+- Monitor ad fatigue (refresh if CTR declines >20%)
+
+**Bi-Weekly**:
+- 1 new video ad (15-30 seconds)
+- Test new messaging angles
+
+**Monthly**:
+- Full creative refresh (new photoshoot or stock image sourcing)
+- 2-3 new video concepts
+- 1-2 new carousel ads
+- Copy variations testing
+
+**Quarterly**:
+- Major creative overhaul (new visual style, updated app screenshots)
+- Seasonal content (New Year health goals, summer meal prep, holiday planning)
+- User-generated content campaigns (encourage users to share meal photos)
+
+---
+
+### Measurement & Analytics
+
+#### Tracking Setup Requirements
+
+**Meta Pixel Events** (Priority Order):
+1. **PageView** - All page loads (auto-tracked)
+2. **ViewContent** - Landing page view (track source/campaign)
+3. **CompleteRegistration** - Free trial signup completed
+4. **Lead** - Email verified
+5. **Custom: generate_meal_plan** - First meal plan generated
+6. **Custom: enable_automation** - Enabled weekly automation
+
+**Google Analytics 4 Events** (Cross-Platform):
+- All events above, plus source/medium/campaign tracking
+- User journey funnel: Ad Click → Landing Page → Signup → Email Verify → First Meal Plan → Paid Conversion
+
+**Pinterest Tag Events**:
+- PageVisit, Signup, Lead (same as Meta)
+
+**TikTok Pixel Events** (if launched):
+- ViewContent, ClickButton, CompleteRegistration, Subscribe
+
+---
+
+#### Attribution Model
+
+**Primary Attribution**: Last-Click (Meta default)
+- User who clicked Meta ad and converted gets attributed to Meta
+
+**Secondary Analysis**: Data-Driven Attribution (GA4)
+- GA4 analyzes full user journey across touchpoints
+- Provides credit to assisting channels (e.g., user saw Meta ad, then searched Google)
+
+**Multi-Touch Attribution Reporting** (Monthly):
+- Track: First-touch channel (where user first heard about us)
+- Track: Last-touch channel (what drove final conversion)
+- Track: Assist channels (touchpoints along the way)
+- Example: User sees Meta ad (first) → searches Google (assist) → clicks Pinterest ad (last) → converts
+
+**Why This Matters**:
+- Meta may drive awareness but Google drives conversion (both valuable)
+- Avoid over-crediting last-click channel
+- Inform budget allocation (awareness channels need credit too)
+
+---
+
+### Troubleshooting & Optimization
+
+#### Common Issues & Solutions
+
+**Issue: High CPA (>$20)**
+
+**Potential Causes**:
+1. **Audience too broad**: Targeting millions of users, low relevance
+   - Solution: Narrow targeting (add more interest layers, tighter demographics)
+
+2. **Creative not compelling**: Low CTR, low engagement
+   - Solution: Refresh creative, test new formats (video instead of image)
+
+3. **Landing page poor**: High bounce rate, low conversion
+   - Solution: A/B test landing page, improve message match
+
+4. **Wrong audience**: Attracting users who won't convert
+   - Solution: Review conversion quality, add negative interests, adjust demographics
+
+---
+
+**Issue: Low CTR (<0.8%)**
+
+**Potential Causes**:
+1. **Ad creative not eye-catching**: Blends into feed
+   - Solution: Use bright colors, dynamic visuals, people in images
+
+2. **Hook not strong**: Doesn't grab attention in first 3 seconds
+   - Solution: Start with question, surprising stat, or bold claim
+
+3. **Ad fatigue**: Same users seeing ad repeatedly
+   - Solution: Expand audience, refresh creative, check frequency
+
+4. **Irrelevant audience**: Targeting users not interested
+   - Solution: Narrow interests, test different demographics
+
+---
+
+**Issue: Low Conversion Rate on Landing Page (<5%)**
+
+**Potential Causes**:
+1. **Message mismatch**: Ad promises one thing, landing page says another
+   - Solution: Ensure ad copy matches landing page headline/value prop
+
+2. **Too much friction**: Signup process too complicated
+   - Solution: Simplify form (email only), remove unnecessary fields
+
+3. **Weak value prop**: Benefits not clear
+   - Solution: Strengthen headline, add social proof, emphasize "free" and "no credit card"
+
+4. **Poor mobile experience**: Most traffic is mobile, page not optimized
+   - Solution: Mobile-first design, fast loading, large CTA buttons
+
+---
+
+**Issue: Ad Disapprovals**
+
+**Common Reasons**:
+1. **Before/after claims**: Meta restricts health/weight loss claims
+   - Solution: Avoid "lose weight", "get healthy" claims; focus on "meal planning" instead
+
+2. **Too much text in image**: Old rule (no longer applies but still best practice)
+   - Solution: Keep text under 20% of image area
+
+3. **Landing page issues**: Broken link, slow loading
+   - Solution: Test landing page, ensure fast load time
+
+4. **Targeting restricted categories**: Accidentally selected special ad category
+   - Solution: Ensure "Special Ad Categories" is set to "None"
+
+**How to Appeal**:
+- Click "Request Review" in Meta Ads Manager
+- Provide explanation if policy violation was unintentional
+- Usually resolved within 24-48 hours
+
+---
+
+### Appendix: Social Media Quick Reference
+
+#### Campaign Naming Conventions
+
+**Meta Format**: `[Platform]-[Objective]-[Audience]-[Date]`
+
+Examples:
+- `FB-Conversions-BusyParents-Jan2026`
+- `IG-Retargeting-LandingPageVisitors-Jan2026`
+- `FB-Traffic-FitnessEnthusiasts-Feb2026`
+
+**Pinterest Format**: `PIN-[Objective]-[Audience]-[Date]`
+
+Examples:
+- `PIN-Traffic-MealPreppers-Feb2026`
+- `PIN-Conversions-Lookalike1pct-Mar2026`
+
+---
+
+#### UTM Parameter Standards (Social Media)
+
+**Meta**:
+```
+?utm_source=facebook
+&utm_medium=paid_social
+&utm_campaign={{campaign.name}}
+&utm_content={{ad.name}}
+&utm_term={{adset.name}}
+```
+
+**Instagram**:
+```
+?utm_source=instagram
+&utm_medium=paid_social
+&utm_campaign={{campaign.name}}
+&utm_content={{ad.name}}
+```
+
+**Pinterest**:
+```
+?utm_source=pinterest
+&utm_medium=paid_social
+&utm_campaign={campaign_name}
+&utm_content={pin_id}
+```
+
+**TikTok**:
+```
+?utm_source=tiktok
+&utm_medium=paid_social
+&utm_campaign=__CAMPAIGN_NAME__
+&utm_content=__AID__
+```
+
+---
+
+#### Key Performance Benchmarks (Social Media)
+
+| Metric | Meta Target | Pinterest Target | TikTok Target | Notes |
+|--------|-------------|------------------|---------------|-------|
+| **CTR** | 1.2-1.8% | 0.5-1.2% | 1.5-2.5% | TikTok higher (full-screen) |
+| **CPC** | $0.80-$1.50 | $0.50-$1.50 | $0.80-$2.00 | Varies by competition |
+| **CPM** | $10-$15 | $8-$12 | $6-$10 | TikTok lowest CPM |
+| **CPA** | $10-$14 | $8-$12 | $15-$20 | Pinterest highest intent |
+| **Conversion Rate** | 8-12% | 10-15% | 5-8% | Landing page performance |
+| **Engagement Rate** | 3-5% | 2-4% | 5-8% | TikTok highest engagement |
+| **Video Completion** | 40-60% | 30-50% | 50-70% | TikTok users watch longer |
+
+---
+
+#### Emergency Pause Checklist (Social Media)
+
+If social campaigns are underperforming or spending too fast:
+
+1. **Pause all campaigns immediately** (in Ads Manager)
+2. **Review daily budgets** (set lower caps, e.g., reduce by 50%)
+3. **Audit targeting** (are audiences too broad? Add more constraints)
+4. **Check creative performance** (pause ads with CTR < 0.8% or CPA > $20)
+5. **Review landing page** (is it loading? Converting properly?)
+6. **Check pixel/tracking** (are conversions tracking correctly?)
+7. **Re-enable only top performers** (campaigns with CPA < $14)
+8. **Monitor hourly for 24 hours** (ensure stability)
+9. **Gradually increase budgets** (20% per week once performance stabilizes)
+
+---
+
+#### Platform-Specific Best Practices
+
+**Meta (Facebook & Instagram)**:
+- ✅ Use Campaign Budget Optimization (CBO) with 3+ ad sets
+- ✅ Refresh creative every 2-3 weeks (combat ad fatigue)
+- ✅ Layer audiences (demographics + interests + behaviors)
+- ✅ Exclude converters immediately (avoid wasted spend)
+- ❌ Don't use too many ad sets (Facebook can't optimize with <$10/day per ad set)
+- ❌ Don't edit campaigns during learning phase (first 50 conversions)
+
+**Pinterest**:
+- ✅ Use vertical images (1000x1500px performs best)
+- ✅ Keyword targeting (users search on Pinterest)
+- ✅ Long-term mindset (Pins live for months, not days)
+- ✅ Seasonal content (plan 2-3 months ahead)
+- ❌ Don't expect immediate results (Pinterest is slower but longer-lasting)
+- ❌ Don't over-brand (native, inspirational content works better)
+
+**TikTok**:
+- ✅ Sound-on creative (TikTok users watch with sound)
+- ✅ Hook in 1-2 seconds (fastest scroll speed)
+- ✅ Native, UGC-style content (don't look like an ad)
+- ✅ Ride trending sounds/challenges (relevance drives reach)
+- ❌ Don't use polished, corporate creative (feels inauthentic)
+- ❌ Don't launch without video production capacity (2-4 new videos/week needed)
+
+---
+
 ## Appendix: Quick Reference
 
 ### Campaign Naming Conventions
