@@ -1,6 +1,31 @@
 import { auth } from '@/lib/auth';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/seo/metadata';
+
+/**
+ * Landing page metadata with SEO optimization
+ * Focuses on meal planning, AI-powered features, and key benefits
+ */
+export const metadata: Metadata = generatePageMetadata({
+  title: 'AI-Powered Meal Planner - Stop Thinking About What\'s for Dinner',
+  description: 'Get personalized, healthy meal plans delivered to your inbox every week. AI-powered recipes that match your nutrition goals, with direct links to order ingredients from HEB. Save time, eat healthy, stay organized.',
+  keywords: [
+    'meal planner',
+    'AI meal planning',
+    'weekly meal plan',
+    'healthy meal planner',
+    'personalized meal plans',
+    'automatic meal planning',
+    'meal prep app',
+    'nutrition planner',
+    'grocery list generator',
+    'HEB meal planning',
+    'family meal planner',
+    'diet meal planner',
+  ],
+});
 
 export default async function Home() {
   const session = await auth();

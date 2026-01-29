@@ -257,6 +257,58 @@ This feature uses an event-driven architecture:
 6. Email renderer creates branded HTML
 7. Emails sent in batches to all users
 
+## Search Engine Optimization (SEO)
+
+The application is optimized for search engines to maximize organic visibility and drive qualified traffic. Our comprehensive SEO strategy targets high-intent keywords like "ai meal planner", "meal planning app", and "automatic meal planner".
+
+### Implemented SEO Features
+
+- **Meta Tags & Structured Data**: Comprehensive meta tags (title, description, Open Graph, Twitter Card) and Schema.org structured data for rich search results
+- **Technical SEO**: Optimized robots.txt, XML sitemap, canonical tags, and HTTPS configuration
+- **Performance Optimization**: Core Web Vitals optimization with fast page loads (LCP < 2.5s, FID < 100ms, CLS < 0.1)
+- **Mobile-First Design**: Fully responsive design with mobile optimization for mobile-first indexing
+- **Analytics Integration**: Google Analytics 4 and Google Search Console for tracking and monitoring
+- **Semantic HTML**: Proper heading hierarchy and semantic markup for better crawlability
+- **Content Strategy**: SEO-optimized content targeting primary, secondary, and long-tail keywords
+
+### Key Target Keywords
+
+- **Primary**: ai meal planner, meal planning app, ai meal planning, automatic meal planner
+- **Secondary**: personalized meal plan, nutrition meal planner, healthy meal planning
+- **Long-Tail**: ai powered meal planning app, meal planner with grocery list, meal planner that learns preferences
+
+### Documentation
+
+For comprehensive SEO strategy, keyword research, technical implementation details, and optimization guidelines, see:
+
+📄 **[Complete SEO Strategy Documentation](./docs/SEO_STRATEGY.md)**
+
+The documentation includes:
+- Detailed keyword research with search volumes and difficulty scores
+- Technical SEO checklist and implementation guide
+- Content optimization strategy and blog post planning
+- Analytics setup and monitoring plan
+- Implementation priorities and timelines
+- Ongoing optimization procedures
+
+### Analytics & Monitoring
+
+**Google Search Console Setup**:
+- Site verification via HTML meta tag or file upload
+- Sitemap submission for efficient crawling
+- Performance monitoring (impressions, clicks, CTR, position)
+- Coverage reports for indexing status
+- Core Web Vitals tracking
+
+**Google Analytics 4 Tracking**:
+- User registration and sign-up events
+- Meal plan generation tracking
+- Preferences update tracking
+- Email verification tracking
+- Automated scheduling events
+
+For detailed setup instructions, verification methods, and monitoring procedures, refer to the full [SEO Strategy documentation](./docs/SEO_STRATEGY.md).
+
 ## Architecture
 
 This is a monorepo containing:
