@@ -245,12 +245,13 @@ export default async function Home() {
       {/* Example Section */}
       <div className="py-16 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h3 className="text-4xl font-bold text-primary-dark mb-4">
-              See What You&apos;ll Get
+              Your Complete AI Meal Planner
             </h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Check out a real example of what your weekly meal plan email will look like
+              Personalized meal plans, smart shopping lists, and a powerful dashboard -
+              plus weekly email delivery to keep your whole family on track.
             </p>
           </div>
 
