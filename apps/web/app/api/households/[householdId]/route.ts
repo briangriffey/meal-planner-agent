@@ -55,7 +55,7 @@ export async function GET(
 
     // Check if user is a member or owner
     const isMember = household.members.some(
-      (member) => member.userId === session.user.id
+      (member: { userId: string }) => member.userId === session.user.id
     );
     const isOwner = household.ownerId === session.user.id;
 
