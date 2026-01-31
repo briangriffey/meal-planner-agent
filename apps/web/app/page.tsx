@@ -360,6 +360,16 @@ export default async function Home() {
               </p>
             </div>
           </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-12">
+            <Link
+              href="/register"
+              className="px-8 py-4 bg-gradient-to-r from-accent to-accent-dark text-white rounded-xl font-semibold text-lg hover:shadow-2xl transition-all duration-150 transform hover:scale-105"
+            >
+              Get Started Free
+            </Link>
+          </div>
         </div>
       </div>
 
