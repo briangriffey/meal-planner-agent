@@ -68,11 +68,11 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
             carbs: meal.nutrition.carbs,
             fat: meal.nutrition.fat,
             fiber: meal.nutrition.fiber,
-            ingredients: meal.ingredients,
+            ingredients: meal.ingredients as unknown as object[], // Cast for Prisma JSON field
             instructions: meal.instructions,
             prepTime: meal.prepTime,
             cookTime: meal.cookTime,
-          },
+          } as object, // Cast full object for Prisma JSON field
           expiresAt,
         },
       });

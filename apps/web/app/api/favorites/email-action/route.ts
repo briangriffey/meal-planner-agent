@@ -140,8 +140,8 @@ export async function GET(request: NextRequest) {
         carbs: mealData.carbs,
         fat: mealData.fat,
         fiber: mealData.fiber,
-        ingredients: mealData.ingredients,
-        instructions: mealData.instructions,
+        ingredients: mealData.ingredients as object[] | undefined, // Cast for Prisma JSON field
+        instructions: mealData.instructions as object[] | undefined, // Cast for Prisma JSON field
         prepTime: mealData.prepTime,
         cookTime: mealData.cookTime,
         mealRecordId: mealData.mealRecordId,
