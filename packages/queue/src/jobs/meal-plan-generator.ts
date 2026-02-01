@@ -1,6 +1,7 @@
 import { Job } from 'bullmq';
+import crypto from 'crypto';
 import { PrismaClient } from '@meal-planner/database';
-import { MealPlannerAgentFactory, EmailConnector } from '@meal-planner/core';
+import { MealPlannerAgentFactory, EmailConnector, Meal, EmailActionTokenGenerator } from '@meal-planner/core';
 import { MealPlanJobData } from '../client';
 
 /**
@@ -40,6 +41,46 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
 
     await job.updateProgress(20);
 
+    // Get base URL for email action links (from environment)
+    const baseUrl = process.env.NEXTAUTH_URL || process.env.BASE_URL;
+
+    // Create email action token generator
+    // This creates a database record for each meal and returns the token
+    const emailActionTokenGenerator: EmailActionTokenGenerator = async (mealIndex: number, meal: Meal): Promise<string> => {
+      // Generate cryptographically secure token
+      const token = crypto.randomBytes(32).toString('hex');
+
+      // 48-hour expiration (longer than verification emails since meal plans are weekly)
+      const expiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000);
+
+      // Store token in database with meal data
+      await prisma.emailActionToken.create({
+        data: {
+          token,
+          userId,
+          actionType: 'add_favorite',
+          mealData: {
+            // Store complete meal data needed to create a favorite
+            day: meal.day,
+            name: meal.name,
+            calories: meal.nutrition.calories,
+            protein: meal.nutrition.protein,
+            carbs: meal.nutrition.carbs,
+            fat: meal.nutrition.fat,
+            fiber: meal.nutrition.fiber,
+            ingredients: meal.ingredients as unknown as object[], // Cast for Prisma JSON field
+            instructions: meal.instructions,
+            prepTime: meal.prepTime,
+            cookTime: meal.cookTime,
+          } as object, // Cast full object for Prisma JSON field
+          expiresAt,
+        },
+      });
+
+      console.log(`🔐 Created email action token for meal ${mealIndex}: ${meal.name}`);
+      return token;
+    };
+
     // Create agent with database-backed services and progress callback
     const agent = MealPlannerAgentFactory.create(
       userId,
@@ -55,7 +96,9 @@ export async function processMealPlanGeneration(job: Job<MealPlanJobData>): Prom
         console.log(`📊 ${Math.round(jobProgress)}%: ${message}`);
       },
       hebEnabled, // hebEnabled controls whether MealPlanPostProcessor generates HEB search URLs
-      householdMembers // Pass household members for household-aware meal planning
+      householdMembers, // Pass household members for household-aware meal planning
+      baseUrl, // Base URL for email action links
+      baseUrl ? emailActionTokenGenerator : undefined // Only generate tokens if baseUrl is set
     );
 
     console.log('🤖 Running meal planner agent...');

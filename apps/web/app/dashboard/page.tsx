@@ -3,7 +3,27 @@ import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-export default async function DashboardPage() {
+interface DashboardPageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function DashboardPage({ searchParams }: DashboardPageProps) {
+  const params = await searchParams;
+  const favoriteAdded = params.favorite_added === 'true';
+  const error = params.error as string | undefined;
+
+  // Error message mapping for email action failures
+  const errorMessages: Record<string, string> = {
+    invalid_link: 'Invalid link. Please try again from your email.',
+    already_added: 'This recipe was already added to your favorites.',
+    expired_link: 'This link has expired. You can add favorites from your meal plan history.',
+    already_favorited: 'This recipe is already in your favorites.',
+    invalid_action: 'Something went wrong. Please try again.',
+    invalid_data: 'Something went wrong. Please try again.',
+    action_failed: 'Something went wrong. Please try again.',
+  };
+
+  const errorMessage = error ? errorMessages[error] || 'An error occurred.' : null;
   const session = await auth();
 
   if (!session) {
@@ -37,6 +57,32 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-8">
+      {favoriteAdded && (
+        <div className="rounded-lg bg-green-50 border border-green-200 p-4">
+          <div className="flex">
+            <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <p className="ml-3 text-sm text-green-800">
+              Meal added to your favorites! It will be included more often in future meal plans.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="rounded-lg bg-red-50 border border-red-200 p-4">
+          <div className="flex">
+            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            </svg>
+            <p className="ml-3 text-sm text-red-800">
+              {errorMessage}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="md:flex md:items-center md:justify-between">
         <div className="flex-1 min-w-0">
           <h2 className="text-3xl font-bold text-primary-dark">
