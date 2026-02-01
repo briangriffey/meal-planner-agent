@@ -3,7 +3,13 @@ import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-export default async function DashboardPage() {
+interface DashboardPageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function DashboardPage({ searchParams }: DashboardPageProps) {
+  const params = await searchParams;
+  const favoriteAdded = params.favorite_added === 'true';
   const session = await auth();
 
   if (!session) {
@@ -37,6 +43,19 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-8">
+      {favoriteAdded && (
+        <div className="rounded-lg bg-green-50 border border-green-200 p-4">
+          <div className="flex">
+            <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <p className="ml-3 text-sm text-green-800">
+              Meal added to your favorites! It will be included more often in future meal plans.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="md:flex md:items-center md:justify-between">
         <div className="flex-1 min-w-0">
           <h2 className="text-3xl font-bold text-primary-dark">
