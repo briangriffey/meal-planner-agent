@@ -14,12 +14,24 @@ const BRAND_COLORS = {
   mediumGray: '#666'
 };
 
+/**
+ * Meal action tokens for email buttons
+ * Maps meal index (0-based) to the token for that meal's action
+ */
+export interface MealActionTokens {
+  [mealIndex: number]: string;
+}
+
 export interface EmailRenderOptions {
   weekLabel: string;
   includeHEBLinks: boolean;
   servingsPerMeal: number;
   minProteinPerMeal: number;
   maxCaloriesPerMeal: number;
+  /** Base URL for generating action links (e.g., https://example.com) */
+  baseUrl?: string;
+  /** Tokens for email action buttons (add to favorites) */
+  mealActionTokens?: MealActionTokens;
 }
 
 export class EmailTemplateRenderer {
@@ -43,7 +55,7 @@ export class EmailTemplateRenderer {
 
         <div class="content">
             ${this.renderSummary(meals.length, options.minProteinPerMeal, options.maxCaloriesPerMeal, options.servingsPerMeal)}
-            ${meals.map((meal, index) => this.renderMealCard(meal, index + 1, options.servingsPerMeal)).join('\n')}
+            ${meals.map((meal, index) => this.renderMealCard(meal, index + 1, options.servingsPerMeal, options.baseUrl, options.mealActionTokens?.[index])).join('\n')}
         </div>
 
         ${this.renderShoppingSection(shoppingList, hebLinks, options.includeHEBLinks)}
@@ -175,6 +187,28 @@ export class EmailTemplateRenderer {
             margin: 8px 0;
             font-size: 14px;
         }
+        .favorite-button-container {
+            text-align: center;
+            margin: 20px 0 10px 0;
+            padding-top: 15px;
+            border-top: 1px solid ${BRAND_COLORS.backgroundGray};
+        }
+        .favorite-button {
+            display: inline-block;
+            background: linear-gradient(135deg, ${BRAND_COLORS.accentTerracotta}, ${BRAND_COLORS.accentTerracottaDark});
+            color: ${BRAND_COLORS.white};
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(166, 106, 93, 0.3);
+        }
+        .favorite-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(166, 106, 93, 0.4);
+        }
         .shopping-section {
             background: linear-gradient(135deg, ${BRAND_COLORS.primaryTeal}, ${BRAND_COLORS.primaryTealDark});
             color: ${BRAND_COLORS.white};
@@ -291,7 +325,10 @@ export class EmailTemplateRenderer {
   /**
    * Render a single meal card
    */
-  private renderMealCard(meal: Meal, dayNumber: number, servings: number): string {
+  private renderMealCard(meal: Meal, dayNumber: number, servings: number, baseUrl?: string, actionToken?: string): string {
+    // Render the favorite button if we have both baseUrl and a token for this meal
+    const favoriteButton = this.renderFavoriteButton(baseUrl, actionToken);
+
     return `<div class="meal-card">
                 <div class="meal-header">
                     <div class="meal-title">Day ${dayNumber}: ${meal.name}</div>
@@ -313,7 +350,26 @@ export class EmailTemplateRenderer {
                         ${meal.instructions.map(step => `<li>${step}</li>`).join('\n                        ')}
                     </ol>
                 </div>
+                ${favoriteButton}
             </div>`;
+  }
+
+  /**
+   * Render the "Add to Favorites" button for a meal
+   */
+  private renderFavoriteButton(baseUrl?: string, actionToken?: string): string {
+    // Only render the button if we have both baseUrl and a token
+    if (!baseUrl || !actionToken) {
+      return '';
+    }
+
+    const favoriteUrl = `${baseUrl}/api/favorites/email-action?token=${actionToken}`;
+
+    return `<div class="favorite-button-container">
+                    <a href="${favoriteUrl}" class="favorite-button">
+                        ❤️ Add to Favorites
+                    </a>
+                </div>`;
   }
 
   /**
