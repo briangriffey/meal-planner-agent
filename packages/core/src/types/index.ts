@@ -97,6 +97,13 @@ export interface Connector {
   execute(params: any): Promise<any>;
 }
 
+/**
+ * Callback type for generating email action tokens
+ * Called for each meal when generating the email to create "Add to Favorites" buttons
+ * Returns the unique token string that will be used in the email link
+ */
+export type EmailActionTokenGenerator = (mealIndex: number, meal: Meal) => Promise<string>;
+
 // Agent configuration with dependency injection
 export interface MealPlannerAgentConfig {
   anthropicApiKey: string;
@@ -114,6 +121,10 @@ export interface MealPlannerAgentConfig {
       maxCaloriesPerMeal: number | null;
     };
   }>;
+  /** Base URL for email action links (e.g., https://example.com) */
+  baseUrl?: string;
+  /** Callback to generate tokens for email action buttons (e.g., Add to Favorites) */
+  emailActionTokenGenerator?: EmailActionTokenGenerator;
 }
 
 // Meal history service interface

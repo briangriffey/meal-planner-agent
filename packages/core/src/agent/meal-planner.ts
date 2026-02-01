@@ -1,8 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { EmailConnector } from '../connectors/email';
-import { MealPlannerAgentConfig, MealPlanGenerationResult, UserPreferences, Meal } from '../types';
+import { MealPlannerAgentConfig, MealPlanGenerationResult, UserPreferences, Meal, EmailActionTokenGenerator } from '../types';
 import { MealPlanPostProcessor } from '../services/meal-plan-post-processor';
-import { EmailTemplateRenderer } from '../services/email-template-renderer';
+import { EmailTemplateRenderer, MealActionTokens } from '../services/email-template-renderer';
 
 // JSON schema for Claude's structured output
 const MEAL_PLAN_SCHEMA = {
@@ -66,6 +66,8 @@ export class MealPlannerAgent {
   private postProcessor: MealPlanPostProcessor;
   private emailRenderer: EmailTemplateRenderer;
   private householdMembers?: MealPlannerAgentConfig['householdMembers'];
+  private baseUrl?: string;
+  private emailActionTokenGenerator?: EmailActionTokenGenerator;
 
   constructor(config: MealPlannerAgentConfig & { hebEnabled?: boolean; emailConnector: EmailConnector }) {
     this.client = new Anthropic({
@@ -80,6 +82,8 @@ export class MealPlannerAgent {
     this.postProcessor = new MealPlanPostProcessor();
     this.emailRenderer = new EmailTemplateRenderer();
     this.householdMembers = config.householdMembers;
+    this.baseUrl = config.baseUrl;
+    this.emailActionTokenGenerator = config.emailActionTokenGenerator;
   }
 
   async generateMealPlan(): Promise<MealPlanGenerationResult> {
@@ -133,6 +137,23 @@ export class MealPlannerAgent {
         await this.onProgress(75, 'Generating HTML email');
       }
 
+      // Generate email action tokens for each meal (if token generator is provided)
+      let mealActionTokens: MealActionTokens | undefined;
+      if (this.emailActionTokenGenerator && this.baseUrl) {
+        mealActionTokens = {};
+        console.log('🔐 Generating email action tokens for meals...');
+        for (let i = 0; i < meals.length; i++) {
+          try {
+            const token = await this.emailActionTokenGenerator(i, meals[i]);
+            mealActionTokens[i] = token;
+          } catch (error) {
+            console.error(`Failed to generate token for meal ${i}:`, error);
+            // Continue without token for this meal - button won't render
+          }
+        }
+        console.log(`✅ Generated ${Object.keys(mealActionTokens).length} email action tokens`);
+      }
+
       // Generate HTML email
       const weekLabel = this.getWeekLabel();
       const emailHtml = this.emailRenderer.render(processedData, {
@@ -140,7 +161,9 @@ export class MealPlannerAgent {
         includeHEBLinks: this.hebEnabled,
         servingsPerMeal: this.preferences.servingsPerMeal,
         minProteinPerMeal: this.preferences.minProteinPerMeal,
-        maxCaloriesPerMeal: this.preferences.maxCaloriesPerMeal
+        maxCaloriesPerMeal: this.preferences.maxCaloriesPerMeal,
+        baseUrl: this.baseUrl,
+        mealActionTokens
       });
 
       if (this.onProgress) {
